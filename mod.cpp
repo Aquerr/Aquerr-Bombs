@@ -1,0 +1,12 @@
+name = "N-Bombs";
+picture = "n_bombs_logo.paa";
+actionName = "GitHub";
+action = "https://github.com/Aquerr/N-Bombs";
+description = "Mod that adds various interactive explosives that can be created from Zeus";
+logo = "n_bombs_logo.paa";
+logoOver = "n_bombs_logo.paa";
+tooltip = "N-Bombs";
+tooltipOwned = "N-Bombs Owned";
+overview = "Mod that adds various interactive explosives that can be created from Zeus";
+author = "Nerdi (Aquerr)";
+overviewPicture = "n_bombs_logo.paa";
