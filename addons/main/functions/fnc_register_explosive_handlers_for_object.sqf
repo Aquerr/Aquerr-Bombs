@@ -59,7 +59,7 @@ _fxied = false;
             _target setVariable ["aquerr_hits", _hits];
         };
 
-        if (_target getVariable ["aquerr_vulnerable_events_registered", false]) then {
+        if (!(alive _target) && {(_target getVariable ["aquerr_vulnerable_events_registered", false])}) then {
             _target removeEventHandler ["HitPart", _target getVariable "aquerr_hit_part_event_index"];
             _target removeEventHandler ["Explosion", _target getVariable "aquerr_explosion_event_index"];
             _target setVariable ["aquerr_vulnerable_events_registered", false];
@@ -83,7 +83,7 @@ _fxied = false;
         if (_vehicle getVariable ["already_exploded", 0] == 1) exitWith {};
         _vehicle setVariable ["already_exploded", 1];
 
-        if (_vehicle getVariable ["aquerr_vulnerable_events_registered", false]) then {
+        if (!(alive _vehicle) && {(_vehicle getVariable ["aquerr_vulnerable_events_registered", false])}) then {
             _vehicle removeEventHandler ["HitPart", _vehicle getVariable "aquerr_hit_part_event_index"];
             _vehicle removeEventHandler ["Explosion", _vehicle getVariable "aquerr_explosion_event_index"];
             _vehicle setVariable ["aquerr_vulnerable_events_registered", false];
