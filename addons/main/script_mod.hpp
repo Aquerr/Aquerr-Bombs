@@ -1,5 +1,5 @@
 #define MAINPREFIX z
-#define PREFIX nbs
+#define PREFIX abombs
 
 #include "script_version.hpp"
 

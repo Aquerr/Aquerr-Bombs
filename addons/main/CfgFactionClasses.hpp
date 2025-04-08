@@ -1,13 +1,13 @@
 class CfgFactionClasses {
-    class GVAR(NBOMBS) {
-        displayName = "N-Bombs";
+    class GVAR(ABOMBS) {
+        displayName = "Aquerr's Bombs";
         priority = 2;
         side = 7;
     };
 };
 
 class CfgVehicleClasses {
-    class NBS_Vehicles {
-        displayName = "N-Bombs Vehicles";
+    class ABOMBS_Vehicles {
+        displayName = "Aquerr's Vehicles";
     };
 };

@@ -1,1 +1,1 @@
-#include "\z\nbs\addons\main\script_component.hpp"
+#include "\z\abombs\addons\main\script_component.hpp"

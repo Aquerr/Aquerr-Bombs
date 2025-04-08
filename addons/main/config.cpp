@@ -6,14 +6,13 @@ class CfgPatches {
         units[] = {
             QGVAR(moduleScrollKeypadBomb),
             QGVAR(moduleScrollWireBomb),
-            QGVAR(moduleVulnerableObject),
-            QGVAR(modulePrintText)
+            QGVAR(moduleVulnerableObject)
         };
         weapons[] = {};
         requiredVersion = REQUIRED_VERSION;
         requiredAddons[] = {"cba_main"};
         author = "";
-        authors[] = {"Nerdi (Aquerr)"};
+        authors[] = {"Aquerr"};
         authorUrl = "https://github.com/Aquerr";
         VERSION_CONFIG;
     };

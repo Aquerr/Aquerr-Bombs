@@ -2,8 +2,8 @@ class CfgVehicles {
     class Module_F;
 
     class GVAR(baseModule): Module_F {
-        author = "Nerdi";
-        category = QGVAR(NBOMBS);
+        author = "Aquerr";
+        category = QGVAR(ABOMBS);
         function = QFUNC(emptyFunction);
         functionPriority = 1;
         isGlobal = 1;
@@ -31,13 +31,6 @@ class CfgVehicles {
         curatorCanAttach = 1;
         displayName = CSTRING(Module_Scroll_Wire_Bomb_DisplayName);
         curatorInfoType = QGVAR(RscScollWireBomb);
-        icon = "a3\ui_f\data\IGUI\Cfg\Actions\repair_ca.paa";
-    };
-
-    class GVAR(modulePrintText): GVAR(baseModule) {
-        curatorCanAttach = 1;
-        displayName = CSTRING(Module_Print_Text);
-        function = QFUNC(printText);
         icon = "a3\ui_f\data\IGUI\Cfg\Actions\repair_ca.paa";
     };
 };

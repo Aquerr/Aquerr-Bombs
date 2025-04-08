@@ -27,7 +27,7 @@
 
 params ["_device", ["_timeSeconds", 60, [0]], ["_shouldBeep", true, [true]], ["_wireSign", "|", ["string"]], ["_wireCount", 40, [40]], ["_explosionClassName", "DemoCharge_Remote_Ammo", ["string"]]];
 
-if (isNil "_device") exitWith {hint "Urządzenie jest wymagane!";};
+if (isNil "_device") exitWith {hint LLSTRING(MustSelectObject);};
 
 private _generateBombWires = {
     params ["_device", "_wireCount"];
@@ -126,13 +126,13 @@ private _explodeFunction = {
     params ["_device", "_wireColor", "_explodeFunction"];
 
     private _isArmed = _device getVariable ["aquerr_bomb_is_armed", false];
-    if (!_isArmed) exitWith {hint "Bomba jest już rozbrojona!"};
+    if (!_isArmed) exitWith {hint LLSTRING(BombAlreadyDefused)};
 
     _solutionWireColor = _device getVariable ["aquerr_bomb_solution_wire", ""];
 
     if (_solutionWireColor == parseNumber _wireColor) then {
             _device setVariable ["aquerr_bomb_is_armed", false, true];
-            hint "Bomba rozbrojona";
+            hint LLSTRING(BombDefused);
             [_device, "tacticalLaser_on"] remoteExec ["say3D"];
             [_device, "watchBeep_off"] remoteExec ["say3D"];
         } else {
@@ -221,7 +221,8 @@ private _explodeFunction = {
 
     private _wiresInRow = 0;
     private _message = "";
-    _message = _message + "Przetnij kolor występujący najczęściej:<br/>";
+    private _messageHeader = LLSTRING(CutMostOccurringWire);
+    _message = _message + _messageHeader + "<br/>";
     {
         _wireColor = _x;
 
@@ -291,7 +292,7 @@ private _explodeFunction = {
          if (_bombTimeSeconds == 0) then {
              _bombTimeSecondsStr = "???";
          };
-         hint format["Czas bomby: %1s", _bombTimeSecondsStr];
+         hint format[LLSTRING(BombTime) + ": %1s", _bombTimeSecondsStr];
      };
 
      _action = ["code_clear", _actionName, "",
@@ -328,11 +329,11 @@ private _explodeFunction = {
  private _prepareActionsFunction = {
         params ["_device", "_cutColoredWireFunction", "_prepareWireCutAction", "_prepareShowBombWiresInHintAction", "_explodeFunction", "_showWiresInHintFunction", "_wireSign", "_prepareCheckTimeFunction"];
 
-        [_device, "Sprawdź czas"] call _prepareCheckTimeFunction;
-        [_device, "Pokaż kable", _wireSign, _showWiresInHintFunction] call _prepareShowBombWiresInHintAction;
-        [_device, "Przetnij CZERWONY kabel", "1", _cutColoredWireFunction, _explodeFunction] call _prepareWireCutAction;
-        [_device, "Przetnij ZIELONY kabel", "2", _cutColoredWireFunction, _explodeFunction] call _prepareWireCutAction;
-        [_device, "Przetnij NIEBIESKI kabel", "3", _cutColoredWireFunction, _explodeFunction] call _prepareWireCutAction;
+        [_device, LLSTRING(CheckBombTime)] call _prepareCheckTimeFunction;
+        [_device, LLSTRING(CheckBombWires), _wireSign, _showWiresInHintFunction] call _prepareShowBombWiresInHintAction;
+        [_device, LLSTRING(CutRedWire), "1", _cutColoredWireFunction, _explodeFunction] call _prepareWireCutAction;
+        [_device, LLSTRING(CutGreenWire), "2", _cutColoredWireFunction, _explodeFunction] call _prepareWireCutAction;
+        [_device, LLSTRING(CutBlueWire), "3", _cutColoredWireFunction, _explodeFunction] call _prepareWireCutAction;
  };
 
 

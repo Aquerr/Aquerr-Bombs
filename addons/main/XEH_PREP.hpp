@@ -1,7 +1,7 @@
 // FUNCTION PREPS
 PREP(emptyFunction);
 
-PREP(printText);
+PREP(showZeusFeedbackMessage);
 
 PREP(register_explosive_handlers_for_object);
 PREP(scroll_action_bomb_hint_text_image);

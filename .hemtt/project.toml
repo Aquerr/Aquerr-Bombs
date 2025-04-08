@@ -1,10 +1,10 @@
-name = "N-Bombs"
-prefix = "nbs"
+name = "Aquerr Bombs"
+prefix = "abombs"
 mainprefix = "z"
 
 [properties]
-author = "Nerdi (Aquerr)"
-url = "https://github.com/Aquerr/N-Bombs"
+author = "Aquerr"
+url = "https://github.com/Aquerr/Aquerr-Bombs"
 
 [version]
 path = "addons/main/script_version.hpp"
@@ -15,7 +15,7 @@ include = [
     "mod.cpp",      # These files are copied to the build directory by default
     "meta.cpp",     # They do not need to be added to your list
     "LICENSE",
-    "n_bombs_logo.paa"
+    "aquerr_bombs_logo.paa"
 ]
 exclude = [
     ".idea/**"

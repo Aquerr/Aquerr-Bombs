@@ -5,8 +5,8 @@ params ["_object", "_bombTime", "_shouldBeep", "_wireSign", "_wireCount", "_expl
 (GETMVAR(bis_fnc_curatorObjectPlaced_mouseOver,[""])) params ["_mouseOverType", "_mouseOverUnit"];
 
 if (_mouseOverType != "OBJECT") then {
-    [LSTRING(MustSelectObject)] call FUNC(showMessage);
+    [LLSTRING(MustSelectObject)] call FUNC(showMessage);
 } else {
     [_object, _bombTime, _shouldBeep, _wireSign, _wireCount, _explosionClassName] call FUNC(scroll_action_bomb_hint_text_image);
-    [objNull, "Bomb created!"] call BIS_fnc_showCuratorFeedbackMessage;
+    [objNull, LLSTRING(BombCreated)] call BIS_fnc_showCuratorFeedbackMessage;
 };

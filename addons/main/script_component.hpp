@@ -1,5 +1,5 @@
 #define COMPONENT main
-#include "\z\nbs\addons\main\script_mod.hpp"
+#include "\z\abombs\addons\main\script_mod.hpp"
 
 // #define DEBUG_MODE_FULL
 // #define DISABLE_COMPILE_CACHE
@@ -14,7 +14,7 @@
     #define DEBUG_SETTINGS DEBUG_SETTINGS_MAIN
 #endif
 
-#include "\z\nbs\addons\main\script_macros.hpp"
+#include "\z\abombs\addons\main\script_macros.hpp"
 // Include BI DIK codes
 #include "\a3\ui_f\hpp\defineDIKCodes.inc"
 

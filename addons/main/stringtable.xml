@@ -1,71 +1,131 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Project name="N-Bombs">
+<Project name="Aquerr-Bombs">
     <Package name="main">
-        <Key ID="STR_nbs_main_BombTimeLabel">
+        <Key ID="STR_abombs_main_BombTimeLabel">
             <English>Bomb time (0 = indefinite)</English>
             <Polish>Czas bomby (0 = nieskończona)</Polish>
         </Key>
-        <Key ID="STR_nbs_main_Module_Print_Text">
-            <English>Print Text</English>
-            <Polish>Pokaż tekst</Polish>
-        </Key>
-        <Key ID="STR_nbs_main_Module_Scroll_Keypad_Bomb_DisplayName">
+        <Key ID="STR_abombs_main_Module_Scroll_Keypad_Bomb_DisplayName">
             <English>Create keypad bomb</English>
             <Polish>Utwórz bombę na keypad</Polish>
         </Key>
-        <Key ID="STR_nbs_main_Module_Scroll_Wire_Bomb_DisplayName">
+        <Key ID="STR_abombs_main_Module_Scroll_Wire_Bomb_DisplayName">
             <English>Create scroll wire bomb</English>
             <Polish>Utwórz scroll wire bomb</Polish>
         </Key>
-        <Key ID="STR_nbs_main_Module_Shoot_Vulnerable_DisplayName">
+        <Key ID="STR_abombs_main_Module_Shoot_Vulnerable_DisplayName">
             <English>Make object vulnerable to shoot</English>
             <Polish>Uczyń obiekt podatnym na strzały</Polish>
         </Key>
-        <Key ID="str_nbs_common_disabled">
+        <Key ID="str_abombs_common_disabled">
             <English>Disabled</English>
             <Polish>Wyłączone</Polish>
         </Key>
-        <Key ID="str_nbs_common_enabled">
+        <Key ID="str_abombs_common_enabled">
             <English>Enabled</English>
             <Polish>Włączone</Polish>
         </Key>
-        <Key ID="str_nbs_main_deletewreckafterexplosionlabel">
+        <Key ID="str_abombs_main_bombalreadydefused">
+            <English>Bomb is already defused</English>
+            <Polish>Bomba jest już rozbrojona</Polish>
+        </Key>
+        <Key ID="str_abombs_main_bombcreated">
+            <English>Bomb has been created</English>
+            <Polish>Bomba została utworzona</Polish>
+        </Key>
+        <Key ID="str_abombs_main_bombdefused">
+            <English>Bomb has been defused</English>
+            <Polish>Bomba rozbrojona</Polish>
+        </Key>
+        <Key ID="str_abombs_main_bombserialnumber">
+            <English>Serial number</English>
+            <Polish>Numer seryjny</Polish>
+        </Key>
+        <Key ID="str_abombs_main_bombtime">
+            <English>Bomb time</English>
+            <Polish>Czas bomby</Polish>
+        </Key>
+        <Key ID="str_abombs_main_checkbombserialnumber">
+            <English>Check serial number</English>
+            <Polish>Sprawdź kod seryjny</Polish>
+        </Key>
+        <Key ID="str_abombs_main_checkbombtime">
+            <English>Check time</English>
+            <Polish>Sprawdź czas</Polish>
+        </Key>
+        <Key ID="str_abombs_main_checkbombwires">
+            <English>Check wires</English>
+            <Polish>Zobacz kable</Polish>
+        </Key>
+        <Key ID="str_abombs_main_clearbombcode">
+            <English>Clear code</English>
+            <Polish>Wyczyść kod</Polish>
+        </Key>
+        <Key ID="str_abombs_main_codecleared">
+            <English>Code has been cleared</English>
+            <Polish>Kod został wyczyszczony</Polish>
+        </Key>
+        <Key ID="str_abombs_main_currentbombcode">
+            <English>Current code</English>
+            <Polish>Obecny kod</Polish>
+        </Key>
+        <Key ID="str_abombs_main_cutbluewire">
+            <English>Cut blue wire</English>
+            <Polish>Przetnij niebieski kabel</Polish>
+        </Key>
+        <Key ID="str_abombs_main_cutgreenwire">
+            <English>Cut green wire</English>
+            <Polish>Przetnij zielony kabel</Polish>
+        </Key>
+        <Key ID="str_abombs_main_cutmostoccurringwire">
+            <English>Cut most occurring wire</English>
+            <Polish>Przetnij najczęściej wystepujący kabel</Polish>
+        </Key>
+        <Key ID="str_abombs_main_cutredwire">
+            <English>Cut red wire</English>
+            <Polish>Przetnij czerwony kabel</Polish>
+        </Key>
+        <Key ID="str_abombs_main_deletewreckafterexplosionlabel">
             <English>Delete wreck after explosion?</English>
             <Polish>Usunąć wrak po eksplozji?</Polish>
         </Key>
-        <Key ID="str_nbs_main_explosionclasslabel">
+        <Key ID="str_abombs_main_explosionclasslabel">
             <English>Explosion class name</English>
             <Polish>Klasa eksplozji</Polish>
         </Key>
-        <Key ID="str_nbs_main_mustselectobject">
+        <Key ID="str_abombs_main_mustselectobject">
             <English>Must select an object!</English>
             <Polish>Należy wybrać obiekt!</Polish>
         </Key>
-        <Key ID="str_nbs_main_overrideexplosionclasslabel">
+        <Key ID="str_abombs_main_objectisnowvulnerabletoshots">
+            <English>Object is now vulnerable to shots</English>
+            <Polish>Obiekt jest teraz podatny na strzały</Polish>
+        </Key>
+        <Key ID="str_abombs_main_overrideexplosionclasslabel">
             <English>Override explosion class</English>
             <Polish>Nadpisz klasę eksplozji</Polish>
         </Key>
-        <Key ID="str_nbs_main_overrideexplosionclasslabeltooltip">
+        <Key ID="str_abombs_main_overrideexplosionclasslabeltooltip">
             <English>Leave empty to use value from above list</English>
             <Polish>Zostaw puste aby użyć wartości z powyższej listy</Polish>
         </Key>
-        <Key ID="str_nbs_main_serialnumberlabel">
+        <Key ID="str_abombs_main_serialnumberlabel">
             <English>Serial Number</English>
             <Polish>Kod seryjny</Polish>
         </Key>
-        <Key ID="str_nbs_main_shouldbeeplabel">
+        <Key ID="str_abombs_main_shouldbeeplabel">
             <English>Should beep?</English>
             <Polish>Wydaje dźwięk?</Polish>
         </Key>
-        <Key ID="str_nbs_main_solutioncodelabel">
+        <Key ID="str_abombs_main_solutioncodelabel">
             <English>Solution Code (digits only)</English>
             <Polish>Kod rozwiązania (tylko cyfry)</Polish>
         </Key>
-        <Key ID="str_nbs_main_wirecountlabel">
+        <Key ID="str_abombs_main_wirecountlabel">
             <English>Wire count</English>
             <Polish>Ilość kabli</Polish>
         </Key>
-        <Key ID="str_nbs_main_wiresignlabel">
+        <Key ID="str_abombs_main_wiresignlabel">
             <English>Wire sign</English>
             <Polish>Znak kabla</Polish>
         </Key>

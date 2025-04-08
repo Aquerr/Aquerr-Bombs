@@ -94,19 +94,19 @@ private _bombTimerFunction = {
     params ["_device", "_digit", "_explodeFunction", "_removeBombActionsFunction"];
 
     private _isArmed = _device getVariable ["aquerr_bomb_is_armed", false];
-    if (!_isArmed) exitWith {hint "Bomba jest już rozbrojona!"};
+    if (!_isArmed) exitWith {hint LLSTRING(BombAlreadyDefused)};
 
     _newCode = (format  ["%1%2", (_device getVariable ["aquerr_bomb_entered_code", ""]), _digit]);
     _device setVariable ["aquerr_bomb_entered_code", _newCode, true];
 
-    hint (format ["Obecny kod: %1", _newCode]);
+    hint (format [ LLSTRING(CurrentBombCode) + ": %1", _newCode]);
 
     _solutionCode = _device getVariable ["aquerr_bomb_solution_code", ""];
     if ((count _newCode) == (count _solutionCode)) then {
         if (_solutionCode isEqualTo _newCode) then {
             call _removeBombActionsFunction;
             _device setVariable ["aquerr_bomb_is_armed", false, true];
-            hint "Bomb defused";
+            hint LLSTRING(BombDefused);
             [_device, "tacticalLaser_on"] remoteExec ["say3D"];
             [_device, "watchBeep_off"] remoteExec ["say3D"];
         } else {
@@ -164,7 +164,7 @@ private _bombTimerFunction = {
             params ["_device"];
 
             _device setVariable ["aquerr_bomb_entered_code", "", true];
-            hint "Kod wyczyszczony";
+            hint LLSTRING(CodeCleared);
         };
 
         _action = ["code_clear", _actionName, "",
@@ -206,7 +206,7 @@ private _bombTimerFunction = {
         if (_bombTimeSeconds == 0) then {
             _bombTimeSecondsStr = "???";
         };
-        hint format["Czas bomby: %1s", _bombTimeSecondsStr];
+        hint format[ LLSTRING(BombTime) + ": %1s", _bombTimeSecondsStr];
     };
 
     _action = ["code_clear", _actionName, "",
@@ -244,7 +244,7 @@ private _bombTimerFunction = {
     private _checkSerialNumber = {
         params ["_device"];
         _bombSerialNumber = _device getVariable ["aquerr_bomb_serial_number", ""];
-        hint format["Numer seryjny: %1", _bombSerialNumber];
+        hint format[ LLSTRING(BombSerialNumber) + ": %1", _bombSerialNumber];
     };
 
     _action = ["check_serial_number", _actionName, "",
@@ -285,9 +285,9 @@ private _bombTimerFunction = {
         [_device, 0, ["ACE_MainActions"], _actionParent] call ace_interact_menu_fnc_addActionToObject;
 
         _bombActionIds = [];
-        _bombActionIds pushBack ([_device, "Sprawdź czas"] call _prepareCheckTimeFunction);
-        _bombActionIds pushBack ([_device, "Wyczyść kod"] call _prepareClearCodeFunction);
-        _bombActionIds pushBack ([_device, "Sprawdź numer seryjny"] call _prepareCheckSerialNumberFunction);
+        _bombActionIds pushBack ([_device, LLSTRING(CheckBombTime)] call _prepareCheckTimeFunction);
+        _bombActionIds pushBack ([_device, LLSTRING(ClearBombCode)] call _prepareClearCodeFunction);
+        _bombActionIds pushBack ([_device, LLSTRING(CheckBombSerialNumber)] call _prepareCheckSerialNumberFunction);
         _bombActionIds pushBack ([_device, "0", _enterDigitFunction, _explodeFunction, _removeBombActionsFunction] call _prepareDigitActionFunction);
         _bombActionIds pushBack ([_device, "1", _enterDigitFunction, _explodeFunction, _removeBombActionsFunction] call _prepareDigitActionFunction);
         _bombActionIds pushBack ([_device, "2", _enterDigitFunction, _explodeFunction, _removeBombActionsFunction] call _prepareDigitActionFunction);

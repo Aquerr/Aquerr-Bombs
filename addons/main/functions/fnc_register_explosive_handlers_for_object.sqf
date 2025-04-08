@@ -1,3 +1,4 @@
+#include "script_component.hpp"
 /*
 	Author: Aquerr (also known as Nerdi)
 	https://github.com/Aquerr
@@ -23,7 +24,7 @@
 
 params ["_object", ["_shouldDeleteWreckAfterExplosion", true, [true]], ["_requiredHits", 5, [5]], ["_fixed", false, [false]]];
 
-if ((isNil "_object") || isNull(_object)) exitWith { hint "You must select an object!" };
+if ((isNil "_object") || isNull(_object)) exitWith { hint LLSTRING(MustSelectObject) };
 
 _requiredHits = 5;
 _fxied = false;
