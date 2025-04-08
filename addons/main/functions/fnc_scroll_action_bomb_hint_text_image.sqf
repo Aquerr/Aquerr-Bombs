@@ -103,7 +103,7 @@ private _bombTimerFunction = {
 
             _shouldBeep = _device getVariable ["aquerr_bomb_beep_enabled", false];
             if (_shouldBeep) then {
-               [_device, "watchBeep_single"] remoteExec ["say3D"];
+               [_device, QGVAR(BombBeep)] remoteExec ["say3D"];
             };
         };
     };
@@ -133,8 +133,7 @@ private _explodeFunction = {
     if (_solutionWireColor == parseNumber _wireColor) then {
             _device setVariable ["aquerr_bomb_is_armed", false, true];
             hint LLSTRING(BombDefused);
-            [_device, "tacticalLaser_on"] remoteExec ["say3D"];
-            [_device, "watchBeep_off"] remoteExec ["say3D"];
+            [_device, QGVAR(BombDefuse)] remoteExec ["say3D"];
         } else {
             call _explodeFunction;
         };

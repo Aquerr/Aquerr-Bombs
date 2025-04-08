@@ -22,3 +22,4 @@ class CfgPatches {
 #include "CfgVehicles.hpp"
 #include "CfgEventHandlers.hpp"
 #include "ui\RscAttributes.hpp"
+#include "CfgSounds.hpp"

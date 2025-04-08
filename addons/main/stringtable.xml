@@ -25,6 +25,14 @@
             <English>Enabled</English>
             <Polish>Włączone</Polish>
         </Key>
+        <Key ID="str_abombs_main_acemenubombback">
+            <English>Back panel</English>
+            <Polish>Tył bomby</Polish>
+        </Key>
+        <Key ID="str_abombs_main_acemenubombkeyboard">
+            <English>Keyboard</English>
+            <Polish>Klawisze</Polish>
+        </Key>
         <Key ID="str_abombs_main_bombalreadydefused">
             <English>Bomb is already defused</English>
             <Polish>Bomba jest już rozbrojona</Polish>
