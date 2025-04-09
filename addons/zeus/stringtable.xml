@@ -14,7 +14,7 @@
             <Polish>Utwórz scroll wire bomb</Polish>
         </Key>
         <Key ID="STR_abombs_zeus_Module_Shoot_Vulnerable_DisplayName">
-            <English>Make object vulnerable to shoot</English>
+            <English>Make object vulnerable to shots</English>
             <Polish>Uczyń obiekt podatnym na strzały</Polish>
         </Key>
         <Key ID="str_abombs_zeus_bombcreated">
