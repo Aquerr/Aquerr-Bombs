@@ -21,8 +21,8 @@
                     // "APERSMine_Range_Ammo" (small)
 
 	Example:
-		[myBombThing, 360, true, "#", 20] execVM 'scroll_action_bomb_hint_text_image.sqf';
-		[myBombThing, 0, false, nil, nil, "GrenadeHand"] execVM 'scroll_action_bomb_hint_text_image.sqf';
+		[myBombThing, 360, true, "#", 20] call abombs_main_fnc_scroll_action_bomb_hint_text_image;
+		[myBombThing, 0, false, nil, nil, "GrenadeHand"] call abombs_main_fnc_scroll_action_bomb_hint_text_image;
 */
 
 params ["_device", ["_timeSeconds", 60, [0]], ["_shouldBeep", true, [true]], ["_wireSign", "|", ["string"]], ["_wireCount", 40, [40]], ["_explosionClassName", "DemoCharge_Remote_Ammo", ["string"]]];

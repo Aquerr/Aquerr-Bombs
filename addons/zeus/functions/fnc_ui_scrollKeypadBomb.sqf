@@ -32,7 +32,7 @@ switch (false) do {
 private _bombTimeEditField = _display displayCtrl 66312;
 private _solutionCodeEditField = _display displayCtrl 66314;
 private _serialCodeEditField = _display displayCtrl 66315;
-private _explosionClassNameCombo = _display displayCtrl 66216;
+private _explosionClassNameCombo = _display displayCtrl 66316;
 
 ////////////////////////////////////////////////////////////
 // Default values
@@ -63,9 +63,9 @@ private _fnc_onConfirm = {
     private _shouldBeep = lbCurSel (_display displayCtrl 66313) > 0;
     private _solutionCode = ctrlText (_display displayCtrl 66314);
     private _serialNumber = ctrlText (_display displayCtrl 66315);
-    private _explosionClassNameIndex = lbCurSel (_display displayCtrl 66216);
-    private _explosionClassName = (_display displayCtrl 66216) lbText _explosionClassNameIndex;
-    private _overrideExplosionClassName = ctrlText (_display displayCtrl 66217);
+    private _explosionClassNameIndex = lbCurSel (_display displayCtrl 66316);
+    private _explosionClassName = (_display displayCtrl 66316) lbText _explosionClassNameIndex;
+    private _overrideExplosionClassName = ctrlText (_display displayCtrl 66317);
 
     if (not(_overrideExplosionClassName isEqualTo "")) then {
         _explosionClassName = _overrideExplosionClassName;

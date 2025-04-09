@@ -17,9 +17,9 @@
         3: BOOLEAN - whether the number of hits is fixed or random (it is random by default).
 
 	Example:
-        [this] execVM "register_explosive_handlers_for_object.sqf"
-        [this, false, 10] execVM "register_explosive_handlers_for_object.sqf"
-        [this, false, 10, true] execVM "register_explosive_handlers_for_object.sqf"
+        [this] call abombs_main_fnc_register_explosive_handlers_for_object
+        [this, false, 10] call abombs_main_fnc_register_explosive_handlers_for_object
+        [this, false, 10, true] call abombs_main_fnc_register_explosive_handlers_for_object
 */
 
 params ["_object", ["_shouldDeleteWreckAfterExplosion", true, [true]], ["_requiredHits", 5, [5]], ["_fixed", false, [false]]];

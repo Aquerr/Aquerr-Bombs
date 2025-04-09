@@ -191,7 +191,7 @@ class GVAR(RscScollWireBomb): RscDisplayAttributes {
                         };
                         class OverrideExplosionClassLabel: RscText {
                             idc = -1;
-                            text = CSTRING(ExplosionClassLabel);
+                            text = CSTRING(OverrideExplosionClassLabel);
                             x = 0;
                             y = QUOTE(H_PART(5.5));
                             w = QUOTE(W_PART(10));
@@ -229,7 +229,7 @@ class GVAR(RscScollKeypadBomb): RscDisplayAttributes {
                     x = 0;
                     y = 0;
                     w = QUOTE(W_PART(26));
-                    h = QUOTE(H_PART(5.5));
+                    h = QUOTE(H_PART(6.6));
                     class controls {
                         class BombTimeLabel: RscText {
                             idc = -1;
@@ -305,7 +305,7 @@ class GVAR(RscScollKeypadBomb): RscDisplayAttributes {
                             colorBackground[] = {0, 0, 0, 0.5};
                         };
                         class ExplosionClass: RscCombo {
-                            idc = 66216;
+                            idc = 66316;
                             x = QUOTE(W_PART(10.1));
                             y = QUOTE(H_PART(4.5));
                             w = QUOTE(W_PART(15.9));
@@ -337,7 +337,7 @@ class GVAR(RscScollKeypadBomb): RscDisplayAttributes {
                             colorBackground[] = {0, 0, 0, 0.5};
                         };
                         class OverrideExplosionClass: RscEdit {
-                            idc = 66217;
+                            idc = 66317;
                             x = QUOTE(W_PART(10.1));
                             y = QUOTE(H_PART(5.5));
                             w = QUOTE(W_PART(15.9));
