@@ -25,9 +25,19 @@
 		[myBombThing, 0, false, nil, nil, "GrenadeHand"] call abombs_main_fnc_scroll_action_bomb_hint_text_image;
 */
 
-params ["_device", ["_timeSeconds", 60, [0]], ["_shouldBeep", true, [true]], ["_wireSign", "|", ["string"]], ["_wireCount", 40, [40]], ["_explosionClassName", "DemoCharge_Remote_Ammo", ["string"]]];
+params ["_device", ["_timeSeconds", 60, [0]], ["_shouldBeep", true, [true]], ["_wireSign", "|", ["string"]], ["_wireCount", 40, [40]], ["_explosionClassName", "DemoCharge_Remote_Ammo", ["string"]], ["_global", true, [true]]];
 
-if (isNil "_device") exitWith {hint LELSTRING(common,MustSelectObject);};
+if ((isNil "_device") || {isNull(_device)}) exitWith { hint LELSTRING(common,MustSelectObject) };
+
+if (_global && {isMultiplayer} && {isNil {_device getVariable QGVAR(scroll_action_bomb_hint_text_image_JIP)}}) exitWith {
+
+    private _id = [QGVAR(scroll_action_bomb_hint_text_image), [_device, _timeSeconds, _shouldBeep, _wireSign, _wireCount, _explosionClassName, false]] call CBA_fnc_globalEventJIP;
+
+    // Remove JIP EH if object is deleted
+    [_id, _device] call CBA_fnc_removeGlobalEventJIP;
+
+    _device setVariable [QGVAR(scroll_action_bomb_hint_text_image_JIP), _id, true];
+};
 
 private _generateBombWires = {
     params ["_device", "_wireCount"];

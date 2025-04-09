@@ -22,9 +22,19 @@
         [this, false, 10, true] call abombs_main_fnc_register_explosive_handlers_for_object
 */
 
-params ["_object", ["_shouldDeleteWreckAfterExplosion", true, [true]], ["_requiredHits", 5, [5]], ["_fixed", false, [false]]];
+params ["_object", ["_shouldDeleteWreckAfterExplosion", true, [true]], ["_requiredHits", 5, [5]], ["_fixed", false, [false]], ["_global", true, [true]]];
 
-if ((isNil "_object") || isNull(_object)) exitWith { hint LELSTRING(common,MustSelectObject) };
+if ((isNil "_object") || {isNull(_object)}) exitWith { hint LELSTRING(common,MustSelectObject) };
+
+if (_global && {isMultiplayer} && {isNil {_object getVariable QGVAR(register_explosive_handlers_for_object_JIP)}}) exitWith {
+
+    private _id = [QGVAR(register_explosive_handlers_for_object), [_object, _shouldDeleteWreckAfterExplosion, _requiredHits, _fixed, false]] call CBA_fnc_globalEventJIP;
+
+    // Remove JIP EH if object is deleted
+    [_id, _object] call CBA_fnc_removeGlobalEventJIP;
+
+    _object setVariable [QGVAR(register_explosive_handlers_for_object_JIP), _id, true];
+};
 
 _requiredHits = 5;
 _fxied = false;

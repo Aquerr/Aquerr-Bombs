@@ -24,7 +24,19 @@
         [_myBombThing, 0, "123", true, "DemoCharge_Remote_Ammo"] call  call abombs_main_fnc_scroll_action_keypad_bomb;
 */
 
-params ["_device", ["_timeSeconds", 60, [0]], ["_solutionCode", "0000", ["string"]], ["_shouldBeep", true, [true]], ["_explosionClassName", "DemoCharge_Remote_Ammo", ["string"]], ["_serialNumber", "", ["string"]]];
+params ["_device", ["_timeSeconds", 60, [0]], ["_solutionCode", "0000", ["string"]], ["_shouldBeep", true, [true]], ["_explosionClassName", "DemoCharge_Remote_Ammo", ["string"]], ["_serialNumber", "", ["string"]], ["_global", true, [true]]];
+
+if ((isNil "_device") || {isNull(_object)}) exitWith { hint LELSTRING(common,MustSelectObject) };
+
+if (_global && {isMultiplayer} && {isNil {_device getVariable QGVAR(scroll_action_keypad_bomb_JIP)}}) exitWith {
+
+    private _id = [QGVAR(scroll_action_keypad_bomb), [_device, _timeSeconds, _solutionCode, _shouldBeep, _explosionClassName, _serialNumber, false]] call CBA_fnc_globalEventJIP;
+
+    // Remove JIP EH if object is deleted
+    [_id, _device] call CBA_fnc_removeGlobalEventJIP;
+
+    _device setVariable [QGVAR(scroll_action_keypad_bomb_JIP), _id, true];
+};
 
 private _removeBombActionsFunction = {
     params ["_device"];

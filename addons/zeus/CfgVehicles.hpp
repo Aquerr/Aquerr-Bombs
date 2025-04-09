@@ -10,7 +10,6 @@ class CfgVehicles {
         isTriggerActivated = 0;
         scope = 1;
         scopeCurator = 2;
-        side = 7; 
     };
 
     class GVAR(moduleVulnerableObject): GVAR(baseModule) {
