@@ -25,15 +25,8 @@ private _fnc_errorAndClose = {
 
 switch (false) do {
     case !(isNull _unit): {
-        [LLSTRING(MustSelectObject)] call _fnc_errorAndClose;
+        [LELSTRING(common,MustSelectObject)] call _fnc_errorAndClose;
     };
-};
-
-private _fnc_onSliderMove = {
-    params ["_slider"];
-
-    private _display = ctrlParent _slider;
-    (_display displayCtrl 66220) ctrlSetText (str round sliderPosition _slider);
 };
 
 private _bombTimeEditField = _display displayCtrl 66212;
@@ -74,19 +67,9 @@ private _fnc_onConfirm = {
     private _logic = GETMVAR(BIS_fnc_initCuratorAttributes_target,objNull);
     if (isNull _logic) exitWith {};
 
-    private _bombTime = parseNumber (ctrlText(_display displayCtrl 66212));
-    private _shouldBeep = lbCurSel (_display displayCtrl 66213) > 0;
-    private _wireSign = ctrlText (_display displayCtrl 66214);
-    private _wireCount = round sliderPosition (_display displayCtrl 66215);
-    private _explosionClassNameIndex = lbCurSel (_display displayCtrl 66216);
-    private _explosionClassName = (_display displayCtrl 66216) lbText _explosionClassNameIndex;
-    private _overrideExplosionClassName = ctrlText (_display displayCtrl 66217);
+    private _shouldDeleteWreckAfterExplosion = lbCurSel (_display displayCtrl 66113) > 0;
 
-    if (not(_overrideExplosionClassName isEqualTo "")) then {
-        _explosionClassName = _overrideExplosionClassName;
-    };
-
-    [attachedTo _logic, _bombTime, _shouldBeep, _wireSign, _wireCount, _explosionClassName] call FUNC(moduleScrollWireBomb);
+    [attachedTo _logic, _shouldDeleteWreckAfterExplosion] call FUNC(moduleShootVulnerable);
     deleteVehicle _logic;
 };
 

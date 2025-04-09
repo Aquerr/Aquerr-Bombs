@@ -5,9 +5,3 @@ class CfgFactionClasses {
         side = 7;
     };
 };
-
-class CfgVehicleClasses {
-    class ABOMBS_Vehicles {
-        displayName = "Aquerr's Vehicles";
-    };
-};

@@ -27,7 +27,7 @@
 
 params ["_device", ["_timeSeconds", 60, [0]], ["_shouldBeep", true, [true]], ["_wireSign", "|", ["string"]], ["_wireCount", 40, [40]], ["_explosionClassName", "DemoCharge_Remote_Ammo", ["string"]]];
 
-if (isNil "_device") exitWith {hint LLSTRING(MustSelectObject);};
+if (isNil "_device") exitWith {hint LELSTRING(common,MustSelectObject);};
 
 private _generateBombWires = {
     params ["_device", "_wireCount"];
@@ -383,7 +383,7 @@ private _explodeFunction = {
 // Execution code
 if (isServer) then {
 
-    if (_device getVariable ["aquerr_bomb_is_armed", false]) exitWith {hint "Bomba jest już uzbrojona!";};
+    if (_device getVariable ["aquerr_bomb_is_armed", false]) exitWith {hint LLSTRING(BombAlreadyArmed);};
 
     [_timeSeconds, _explosionClassName, _shouldBeep] call _prepareServerVariablesFunction;
     [_device, _explodeFunction] call _bombTimerFunction;

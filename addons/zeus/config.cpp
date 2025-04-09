@@ -10,7 +10,7 @@ class CfgPatches {
         };
         weapons[] = {};
         requiredVersion = REQUIRED_VERSION;
-        requiredAddons[] = {"cba_main", "ace_main"};
+        requiredAddons[] = {"cba_main"};
         author = "";
         authors[] = {"Aquerr"};
         authorUrl = "https://github.com/Aquerr";
@@ -18,6 +18,7 @@ class CfgPatches {
     };
 };
 
+#include "CfgFactionClasses.hpp"
+#include "CfgVehicles.hpp"
 #include "CfgEventHandlers.hpp"
-#include "CfgSounds.hpp"
-#include "CfgUnitInsignia.hpp"
+#include "ui\RscAttributes.hpp"

@@ -345,7 +345,7 @@ private _bombTimerFunction = {
 
 if (isServer) then {
 
-    if (_device getVariable ["aquerr_bomb_is_armed", false]) exitWith {hint "Bomba jest już uzbrojona!";};
+    if (_device getVariable ["aquerr_bomb_is_armed", false]) exitWith {hint LLSTRING(BombAlreadyArmed);};
 
     [_solutionCode, _timeSeconds, _explosionClassName, _shouldBeep, _serialNumber] call _prepareServerVariablesFunction;
     [_device, _explodeFunction, _removeBombActionsFunction] call _bombTimerFunction;

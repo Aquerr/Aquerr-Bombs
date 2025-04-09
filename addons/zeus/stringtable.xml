@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project name="Aquerr-Bombs">
+    <Package name="main">
+        <Key ID="STR_abombs_zeus_BombTimeLabel">
+            <English>Bomb time (0 = indefinite)</English>
+            <Polish>Czas bomby (0 = nieskończona)</Polish>
+        </Key>
+        <Key ID="STR_abombs_zeus_Module_Scroll_Keypad_Bomb_DisplayName">
+            <English>Create keypad bomb</English>
+            <Polish>Utwórz bombę na keypad</Polish>
+        </Key>
+        <Key ID="STR_abombs_zeus_Module_Scroll_Wire_Bomb_DisplayName">
+            <English>Create scroll wire bomb</English>
+            <Polish>Utwórz scroll wire bomb</Polish>
+        </Key>
+        <Key ID="STR_abombs_zeus_Module_Shoot_Vulnerable_DisplayName">
+            <English>Make object vulnerable to shoot</English>
+            <Polish>Uczyń obiekt podatnym na strzały</Polish>
+        </Key>
+        <Key ID="str_abombs_zeus_bombcreated">
+            <English>Bomb has been created</English>
+            <Polish>Bomba została utworzona</Polish>
+        </Key>
+        <Key ID="str_abombs_zeus_deletewreckafterexplosionlabel">
+            <English>Delete wreck after explosion?</English>
+            <Polish>Usunąć wrak po eksplozji?</Polish>
+        </Key>
+        <Key ID="str_abombs_zeus_explosionclasslabel">
+            <English>Explosion class name</English>
+            <Polish>Klasa eksplozji</Polish>
+        </Key>
+        <Key ID="str_abombs_zeus_objectisnowvulnerabletoshots">
+            <English>Object is now vulnerable to shots</English>
+            <Polish>Obiekt jest teraz podatny na strzały</Polish>
+        </Key>
+        <Key ID="str_abombs_zeus_overrideexplosionclasslabel">
+            <English>Override explosion class</English>
+            <Polish>Nadpisz klasę eksplozji</Polish>
+        </Key>
+        <Key ID="str_abombs_zeus_overrideexplosionclasslabeltooltip">
+            <English>Leave empty to use value from above list</English>
+            <Polish>Zostaw puste aby użyć wartości z powyższej listy</Polish>
+        </Key>
+        <Key ID="str_abombs_zeus_serialnumberlabel">
+            <English>Serial Number</English>
+            <Polish>Kod seryjny</Polish>
+        </Key>
+        <Key ID="str_abombs_zeus_shouldbeeplabel">
+            <English>Should beep?</English>
+            <Polish>Wydaje dźwięk?</Polish>
+        </Key>
+        <Key ID="str_abombs_zeus_solutioncodelabel">
+            <English>Solution Code (digits only)</English>
+            <Polish>Kod rozwiązania (tylko cyfry)</Polish>
+        </Key>
+        <Key ID="str_abombs_zeus_wirecountlabel">
+            <English>Wire count</English>
+            <Polish>Ilość kabli</Polish>
+        </Key>
+        <Key ID="str_abombs_zeus_wiresignlabel">
+            <English>Wire sign</English>
+            <Polish>Znak kabla</Polish>
+        </Key>
+    </Package>
+</Project>
