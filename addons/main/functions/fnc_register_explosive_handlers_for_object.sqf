@@ -13,8 +13,15 @@
 	Parameter(s):
 		0: OBJECT - the object that should be registered as explosive.
         1: BOOL - if the wreck should be deleted after explosion.
-        2: NUMBER - the number of required hits.
-        3: BOOLEAN - whether the number of hits is fixed or random (it is random by default).
+        2: STRING - optional, the explosion class name to use
+            // "ammo_Missile_Cruise_01" (very big)
+            // "helicopterExploBig" (big)
+            // "DemoCharge_Remote_Ammo" (medium)
+            // "IEDUrbanSmall_Remote_Ammo" (medium with small fire effect)
+            // "APERSMine_Range_Ammo" (small)
+        3: NUMBER - optional, the number of required hits. Default: 5
+        4: BOOLEAN - whether the number of hits is fixed or random. Default: random
+        5: BOOLEAN - if initialize script globally.
 
 	Example:
         [this] call abombs_main_fnc_register_explosive_handlers_for_object
@@ -22,13 +29,13 @@
         [this, false, 10, true] call abombs_main_fnc_register_explosive_handlers_for_object
 */
 
-params ["_object", ["_shouldDeleteWreckAfterExplosion", true, [true]], ["_requiredHits", 5, [5]], ["_fixed", false, [false]], ["_global", true, [true]]];
+params ["_object", ["_shouldDeleteWreckAfterExplosion", true, [true]], ["_explosionClassName", "IEDUrbanSmall_Remote_Ammo", ["string"]], ["_requiredHits", 5, [5]], ["_fixed", false, [false]], ["_global", true, [true]]];
 
 if ((isNil "_object") || {isNull(_object)}) exitWith { hint LELSTRING(common,MustSelectObject) };
 
 if (_global && {isMultiplayer} && {isNil {_object getVariable QGVAR(register_explosive_handlers_for_object_JIP)}}) exitWith {
 
-    private _id = [QGVAR(register_explosive_handlers_for_object), [_object, _shouldDeleteWreckAfterExplosion, _requiredHits, _fixed, false]] call CBA_fnc_globalEventJIP;
+    private _id = [QGVAR(register_explosive_handlers_for_object), [_object, _shouldDeleteWreckAfterExplosion, _explosionClassName, _requiredHits, _fixed, false]] call CBA_fnc_globalEventJIP;
 
     // Remove JIP EH if object is deleted
     [_id, _object] call CBA_fnc_removeGlobalEventJIP;
@@ -36,11 +43,8 @@ if (_global && {isMultiplayer} && {isNil {_object getVariable QGVAR(register_exp
     _object setVariable [QGVAR(register_explosive_handlers_for_object_JIP), _id, true];
 };
 
-_requiredHits = 5;
-_fxied = false;
-
  private _registerEventHandlersFunction = {
-    params ["_device", "_shouldDeleteWreckAfterExplosion", "_requiredHits", "_fixed"];
+    params ["_device", "_shouldDeleteWreckAfterExplosion", "_explosionClassName", "_requiredHits", "_fixed"];
 
     if (_device getVariable ["aquerr_vulnerable_events_registered", false]) exitWith {};
 
@@ -48,6 +52,7 @@ _fxied = false;
     _device setVariable ["aquerr_delete_after_explosion", _shouldDeleteWreckAfterExplosion];
     _device setVariable ["aquerr_required_hits", _requiredHits];
     _device setVariable ["aquerr_hit_count_fixed", _fixed];
+    _device setVariable ["aquerr_explosion_class_name", _explosionClassName, true];
 
     _hitPartEventIndex = _device addEventHandler ["HitPart", {
         (_this select 0) params ["_target", "_shooter", "_projectile", "_position", "_velocity", "_selection", "_ammo", "_vector", "_radius", "_surfaceType", "_isDirect", "_instigator"];
@@ -76,7 +81,7 @@ _fxied = false;
             _target setVariable ["aquerr_vulnerable_events_registered", false];
         };
 
-        _explosionClassName = "IEDUrbanSmall_Remote_Ammo";
+        _explosionClassName = _target getVariable ["aquerr_explosion_class_name", "IEDUrbanSmall_Remote_Ammo"];
         _explosive = createVehicle [_explosionClassName, (getPosATL _target), [], 0, "CAN_COLLIDE"];
 
         _shouldDeleteWreckAfterExplosion = _target getVariable ["aquerr_delete_after_explosion", true];
@@ -100,7 +105,7 @@ _fxied = false;
             _vehicle setVariable ["aquerr_vulnerable_events_registered", false];
         };
 
-        _explosionClassName = "IEDUrbanSmall_Remote_Ammo";
+        _explosionClassName = _target getVariable ["aquerr_explosion_class_name", "IEDUrbanSmall_Remote_Ammo"];
         _explosive = createVehicle [_explosionClassName, (getPosATL _vehicle), [], 0, "CAN_COLLIDE"];
 
         _shouldDeleteWreckAfterExplosion = _vehicle getVariable ["aquerr_delete_after_explosion", true];
@@ -115,4 +120,4 @@ _fxied = false;
     _device setVariable ["aquerr_hit_part_event_index", _hitPartEventIndex];
  };
 
-[_object, _shouldDeleteWreckAfterExplosion, _requiredHits, _fixed] call _registerEventHandlersFunction;
+[_object, _shouldDeleteWreckAfterExplosion, _explosionClassName, _requiredHits, _fixed] call _registerEventHandlersFunction;

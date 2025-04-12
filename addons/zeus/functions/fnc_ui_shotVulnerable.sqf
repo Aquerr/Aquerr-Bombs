@@ -29,25 +29,13 @@ switch (false) do {
     };
 };
 
-private _bombTimeEditField = _display displayCtrl 66212;
-private _wireEditField = _display displayCtrl 66214;
-private _wireCountSlider = _display displayCtrl 66215;
-private _wireCountEdit = _display displayCtrl 66220;
-private _explosionClassNameCombo = _display displayCtrl 66216;
+private _shouldDeleteWreckAfterExplosionToggle = _display displayCtrl ZEUS_SHOT_VULNERABLE_OBJECT_DIALOG_DELETE_OBJECT_AFTER_EXPLOSION_ID;
+private _explosionClassNameCombo = _display displayCtrl ZEUS_COMMON_DIALOG_EXPLOSION_CLASS_ID;
 
 ////////////////////////////////////////////////////////////
 // Default values
-_bombTimeEditField ctrlSetText "60";
-_wireEditField ctrlSetText "|";
-
-_wireCountSlider sliderSetRange [4, 100];
-_wireCountSlider sliderSetSpeed [1, 1];
-_wireCountSlider sliderSetPosition 10;
-_wireCountEdit ctrlSetText "10";
-
+_shouldDeleteWreckAfterExplosionToggle lbSetCurSel 0;
 _explosionClassNameCombo lbSetCurSel 0;
-
-_wireCountSlider ctrlAddEventHandler ["SliderPosChanged", _fnc_onSliderMove];
 
 /////////////////////////////////////////////////////////////
 // Cancel and Confirmation
@@ -67,9 +55,16 @@ private _fnc_onConfirm = {
     private _logic = GETMVAR(BIS_fnc_initCuratorAttributes_target,objNull);
     if (isNull _logic) exitWith {};
 
-    private _shouldDeleteWreckAfterExplosion = lbCurSel (_display displayCtrl 66113) > 0;
+    private _shouldDeleteWreckAfterExplosion = lbCurSel (_display displayCtrl ZEUS_SHOT_VULNERABLE_OBJECT_DIALOG_DELETE_OBJECT_AFTER_EXPLOSION_ID) > 0;
+    private _explosionClassNameIndex = lbCurSel (_display displayCtrl ZEUS_COMMON_DIALOG_EXPLOSION_CLASS_ID);
+    private _explosionClassName = (_display displayCtrl ZEUS_COMMON_DIALOG_EXPLOSION_CLASS_ID) lbText _explosionClassNameIndex;
+    private _overrideExplosionClassName = ctrlText (_display displayCtrl ZEUS_COMMON_DIALOG_EXPLOSION_OVERRIDE_EXPLOSION_ID);
 
-    [attachedTo _logic, _shouldDeleteWreckAfterExplosion] call FUNC(moduleShootVulnerable);
+    if (not(_overrideExplosionClassName isEqualTo "")) then {
+        _explosionClassName = _overrideExplosionClassName;
+    };
+
+    [attachedTo _logic, _shouldDeleteWreckAfterExplosion, _overrideExplosionClassName] call FUNC(moduleShotVulnerable);
     deleteVehicle _logic;
 };
 

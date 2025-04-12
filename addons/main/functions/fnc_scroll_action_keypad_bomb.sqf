@@ -19,9 +19,9 @@
             // "APERSMine_Range_Ammo" (small)
 
 	Example:
-		[_myBombThing, 60, "2454"] call  call abombs_main_fnc_scroll_action_keypad_bomb;
-		[_myBombThing, 0, "123", true, "GrenadeHand"] call  call abombs_main_fnc_scroll_action_keypad_bomb;
-        [_myBombThing, 0, "123", true, "DemoCharge_Remote_Ammo"] call  call abombs_main_fnc_scroll_action_keypad_bomb;
+		[_myBombThing, 60, "2454"] call abombs_main_fnc_scroll_action_keypad_bomb;
+		[_myBombThing, 0, "123", true, "GrenadeHand"] call abombs_main_fnc_scroll_action_keypad_bomb;
+        [_myBombThing, 0, "123", true, "DemoCharge_Remote_Ammo"] call abombs_main_fnc_scroll_action_keypad_bomb;
 */
 
 params ["_device", ["_timeSeconds", 60, [0]], ["_solutionCode", "0000", ["string"]], ["_shouldBeep", true, [true]], ["_explosionClassName", "DemoCharge_Remote_Ammo", ["string"]], ["_serialNumber", "", ["string"]], ["_global", true, [true]]];

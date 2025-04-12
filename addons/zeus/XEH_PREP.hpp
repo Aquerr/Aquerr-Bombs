@@ -3,11 +3,11 @@ PREP(emptyFunction);
 
 PREP(showZeusFeedbackMessage);
 
-PREP(moduleShootVulnerable);
+PREP(moduleShotVulnerable);
 PREP(moduleScrollWireBomb);
 PREP(moduleScrollKeypadBomb);
 
-PREP(ui_shootVulnerable);
+PREP(ui_shotVulnerable);
 PREP(ui_scrollWireBomb);
 PREP(ui_scrollKeypadBomb);
 

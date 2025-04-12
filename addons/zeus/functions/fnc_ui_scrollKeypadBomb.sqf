@@ -29,14 +29,16 @@ switch (false) do {
     };
 };
 
-private _bombTimeEditField = _display displayCtrl 66312;
-private _solutionCodeEditField = _display displayCtrl 66314;
-private _serialCodeEditField = _display displayCtrl 66315;
-private _explosionClassNameCombo = _display displayCtrl 66316;
+private _bombTimeEditField = _display displayCtrl ZEUS_COMMON_DIALOG_BOMB_TIME_ID;
+private _shouldBeepToggleField = _display displayCtrl ZEUS_COMMON_DIALOG_SHOULD_BEEP_ID;
+private _solutionCodeEditField = _display displayCtrl ZEUS_SCROLL_KEYPAD_BOMB_DIALOG_SOLUTION_CODE_ID;
+private _serialCodeEditField = _display displayCtrl ZEUS_SCROLL_KEYPAD_BOMB_DIALOG_SERIAL_NUMBER_ID;
+private _explosionClassNameCombo = _display displayCtrl ZEUS_COMMON_DIALOG_EXPLOSION_CLASS_ID;
 
 ////////////////////////////////////////////////////////////
 // Default values
 _bombTimeEditField ctrlSetText "60";
+_shouldBeepToggleField lbSetCurSel 1;
 _solutionCodeEditField ctrlSetText "000000";
 _serialCodeEditField ctrlSetText "Unknown";
 _explosionClassNameCombo lbSetCurSel 0;
@@ -59,13 +61,13 @@ private _fnc_onConfirm = {
     private _logic = GETMVAR(BIS_fnc_initCuratorAttributes_target,objNull);
     if (isNull _logic) exitWith {};
 
-    private _bombTime = parseNumber (ctrlText(_display displayCtrl 66312));
-    private _shouldBeep = lbCurSel (_display displayCtrl 66313) > 0;
-    private _solutionCode = ctrlText (_display displayCtrl 66314);
-    private _serialNumber = ctrlText (_display displayCtrl 66315);
-    private _explosionClassNameIndex = lbCurSel (_display displayCtrl 66316);
-    private _explosionClassName = (_display displayCtrl 66316) lbText _explosionClassNameIndex;
-    private _overrideExplosionClassName = ctrlText (_display displayCtrl 66317);
+    private _bombTime = parseNumber (ctrlText(_display displayCtrl ZEUS_COMMON_DIALOG_BOMB_TIME_ID));
+    private _shouldBeep = lbCurSel (_display displayCtrl ZEUS_COMMON_DIALOG_SHOULD_BEEP_ID) > 0;
+    private _solutionCode = ctrlText (_display displayCtrl ZEUS_SCROLL_KEYPAD_BOMB_DIALOG_SOLUTION_CODE_ID);
+    private _serialNumber = ctrlText (_display displayCtrl ZEUS_SCROLL_KEYPAD_BOMB_DIALOG_SERIAL_NUMBER_ID);
+    private _explosionClassNameIndex = lbCurSel (_display displayCtrl ZEUS_COMMON_DIALOG_EXPLOSION_CLASS_ID);
+    private _explosionClassName = (_display displayCtrl ZEUS_COMMON_DIALOG_EXPLOSION_CLASS_ID) lbText _explosionClassNameIndex;
+    private _overrideExplosionClassName = ctrlText (_display displayCtrl ZEUS_COMMON_DIALOG_EXPLOSION_OVERRIDE_EXPLOSION_ID);
 
     if (not(_overrideExplosionClassName isEqualTo "")) then {
         _explosionClassName = _overrideExplosionClassName;

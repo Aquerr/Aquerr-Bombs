@@ -15,7 +15,7 @@ class CfgVehicles {
     class GVAR(moduleVulnerableObject): GVAR(baseModule) {
         curatorCanAttach = 1;
         displayName = CSTRING(Module_Shoot_Vulnerable_DisplayName);
-        curatorInfoType = QGVAR(RscShootVulnerable);
+        curatorInfoType = QGVAR(RscShotVulnerable);
         icon = "a3\ui_f\data\IGUI\Cfg\Actions\repair_ca.paa";
     };
 
