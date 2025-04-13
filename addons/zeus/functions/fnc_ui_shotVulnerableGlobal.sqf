@@ -14,7 +14,15 @@ private _explosionClassNameCombo = _display displayCtrl ZEUS_COMMON_DIALOG_EXPLO
 
 ////////////////////////////////////////////////////////////
 // Default values
-_classNamesEdit ctrlSetText '["Land_MetalBarrel_F", "Land_GasTank_02_F", "Barrel1"]';
+_classListPreparedValue = '["Land_MetalBarrel_F", "Land_GasTank_02_F", "Barrel1"]';
+
+// If Zeus selected an object then retrieve its class name.
+private _unit = attachedTo _logic;
+if (!(isNull _unit)) then {
+    _classListPreparedValue = format ['["%1"]', typeOf _unit]; 
+};
+
+_classNamesEdit ctrlSetText _classListPreparedValue;
 _shouldDeleteWreckAfterExplosionToggle lbSetCurSel 1;
 _explosionClassNameCombo lbSetCurSel 3;
 
