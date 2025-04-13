@@ -6,7 +6,8 @@ class CfgPatches {
         units[] = {
             QGVAR(moduleScrollKeypadBomb),
             QGVAR(moduleScrollWireBomb),
-            QGVAR(moduleVulnerableObject)
+            QGVAR(moduleVulnerableObject),
+            QGVAR(moduleVulnerableObjectsGlobal)
         };
         weapons[] = {};
         requiredVersion = REQUIRED_VERSION;

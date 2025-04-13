@@ -3,11 +3,7 @@
 class CfgPatches {
     class ADDON {
         name = COMPONENT_NAME;
-        units[] = {
-            QGVAR(moduleScrollKeypadBomb),
-            QGVAR(moduleScrollWireBomb),
-            QGVAR(moduleVulnerableObject)
-        };
+        units[] = {};
         weapons[] = {};
         requiredVersion = REQUIRED_VERSION;
         requiredAddons[] = {"cba_main", "ace_main"};

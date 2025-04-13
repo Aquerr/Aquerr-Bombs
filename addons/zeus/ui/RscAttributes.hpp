@@ -137,6 +137,33 @@ class GVAR(ExplosionClassControls): RscControlsGroupNoScrollbars {
     };
 };
 
+class GVAR(DeleteObjectAfterExplosionControls): RscControlsGroupNoScrollbars {
+    idc = -1;
+    w = QUOTE(W_PART(26));
+    h = QUOTE(H_PART(1.1));
+    class controls {
+        class DeleteWreckAfterExplosionLabel: RscText {
+            idc = -1;
+            text = CSTRING(DeleteWreckAfterExplosionLabel);
+            x = 0;
+            y = 0;
+            w = QUOTE(W_PART(10));
+            h = QUOTE(H_PART(1));
+            colorBackground[] = {0, 0, 0, 0.5};
+        };
+        class DeleteWreckAfterExplosionToggle: ctrlToolbox {
+            idc = ZEUS_COMMON_DIALOG_DELETE_OBJECT_AFTER_EXPLOSION_ID;
+            x = QUOTE(W_PART(10.1));
+            y = 0;
+            w = QUOTE(W_PART(15.9));
+            h = QUOTE(H_PART(1));
+            rows = 1;
+            columns = 2;
+            strings[] = {ECSTRING(common,Disabled), ECSTRING(common,Enabled)};
+        };
+    };
+};
+
 class GVAR(RscShotVulnerable): RscDisplayAttributes {
     onLoad = QUOTE([ARR_3('onLoad',_this,QQGVAR(RscShotVulnerable))] call FUNC(zeusAttributes));
     onUnload = QUOTE([ARR_3('onUnload',_this,QQGVAR(RscShotVulnerable))] call FUNC(zeusAttributes));
@@ -145,35 +172,66 @@ class GVAR(RscShotVulnerable): RscDisplayAttributes {
         class Title: Title {};
         class Content: Content {
             class Controls {
-                class scrollWireBomb: RscControlsGroupNoScrollbars {
+                class shotVulnerableObjectGroup: RscControlsGroupNoScrollbars {
                     onSetFocus = QUOTE(call FUNC(ui_shotVulnerable));
-                    idc = ZEUS_SHOT_VULNERABLE_OBJECT_DIALOG_ID;
+                    idc = -1;
                     x = 0;
                     y = 0;
                     w = QUOTE(W_PART(26));
                     h = QUOTE(H_PART(2.2));
                     class controls {
-                        class DeleteWreckAfterExplosionLabel: RscText {
+                        class deleteObjectAfterExplosionControls: GVAR(DeleteObjectAfterExplosionControls) {};
+                        class explosionClassControls: GVAR(ExplosionClassControls) {
+                            y = QUOTE(H_PART(1.1));
+                        };
+                    };
+                };
+            };
+        };
+        class ButtonOK: ButtonOK {};
+        class ButtonCancel: ButtonCancel {};
+    };
+};
+
+class GVAR(RscShotVulnerableGlobal): RscDisplayAttributes {
+    onLoad = QUOTE([ARR_3('onLoad',_this,QQGVAR(RscShotVulnerableGlobal))] call FUNC(zeusAttributes));
+    onUnload = QUOTE([ARR_3('onUnload',_this,QQGVAR(RscShotVulnerableGlobal))] call FUNC(zeusAttributes));
+    class Controls: Controls {
+        class Background: Background {};
+        class Title: Title {};
+        class Content: Content {
+            class Controls {
+                class shotVulnerableObjectsGlobalGroup: RscControlsGroupNoScrollbars {
+                    onSetFocus = QUOTE(call FUNC(ui_shotVulnerableGlobal));
+                    idc = -1;
+                    x = 0;
+                    y = 0;
+                    w = QUOTE(W_PART(26));
+                    h = QUOTE(H_PART(3.3));
+                    class controls {
+                        class ClassNamesLabel: RscText {
                             idc = -1;
-                            text = CSTRING(DeleteWreckAfterExplosionLabel);
+                            text = CSTRING(ClassNamesLabel);
+                            tooltip = CSTRING(ClassNamesLabelTooltip);
                             x = 0;
                             y = 0;
                             w = QUOTE(W_PART(10));
                             h = QUOTE(H_PART(1));
                             colorBackground[] = {0, 0, 0, 0.5};
                         };
-                        class DeleteWreckAfterExplosionToggle: ctrlToolbox {
-                            idc = ZEUS_SHOT_VULNERABLE_OBJECT_DIALOG_DELETE_OBJECT_AFTER_EXPLOSION_ID;
+                        class ClassNamesEdit: RscEdit {
+                            idc = ZEUS_VULNERABLE_OBJECTS_GLOBAL_DIALOG_CLASS_NAMES_ID;
                             x = QUOTE(W_PART(10.1));
                             y = 0;
                             w = QUOTE(W_PART(15.9));
                             h = QUOTE(H_PART(1));
-                            rows = 1;
-                            columns = 2;
-                            strings[] = {ECSTRING(common,Disabled), ECSTRING(common,Enabled)};
+                            autocomplete = "";
+                        };
+                        class deleteObjectAfterExplosionControls: GVAR(DeleteObjectAfterExplosionControls) {
+                            y = QUOTE(H_PART(1.1));
                         };
                         class explosionClassControls: GVAR(ExplosionClassControls) {
-                            y = QUOTE(H_PART(1.1));
+                            y = QUOTE(H_PART(2.2));
                         };
                     };
                 };

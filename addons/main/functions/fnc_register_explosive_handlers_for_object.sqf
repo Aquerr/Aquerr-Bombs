@@ -7,8 +7,8 @@
         Script for making a given object an explosive that will explode on bullet hit or nearby explosions.
 
         Explosion hits randomness:
-            _fixed parameter is not passed or set to false, the script will randomly decide if the object should explode.
-            The chance will increase with each hit where the maximum change will be at _requiredHits. 
+            When _fixed parameter is not passed or set to false, the script will randomly decide if the object should explode.
+            The explosion chance will be increased with each hit, where the maximum chance will be at _requiredHits. 
 
 	Parameter(s):
 		0: OBJECT - the object that should be registered as explosive.
@@ -25,8 +25,8 @@
 
 	Example:
         [this] call abombs_main_fnc_register_explosive_handlers_for_object
-        [this, false, 10] call abombs_main_fnc_register_explosive_handlers_for_object
-        [this, false, 10, true] call abombs_main_fnc_register_explosive_handlers_for_object
+        [this, false, "DemoCharge_Remote_Ammo", 10] call abombs_main_fnc_register_explosive_handlers_for_object
+        [this, false, "DemoCharge_Remote_Ammo", 10, true, true] call abombs_main_fnc_register_explosive_handlers_for_object
 */
 
 params ["_object", ["_shouldDeleteWreckAfterExplosion", true, [true]], ["_explosionClassName", "IEDUrbanSmall_Remote_Ammo", ["string"]], ["_requiredHits", 5, [5]], ["_fixed", false, [false]], ["_global", true, [true]]];
@@ -46,20 +46,22 @@ if (_global && {isMultiplayer} && {isNil {_object getVariable QGVAR(register_exp
  private _registerEventHandlersFunction = {
     params ["_device", "_shouldDeleteWreckAfterExplosion", "_explosionClassName", "_requiredHits", "_fixed"];
 
-    if (_device getVariable ["aquerr_vulnerable_events_registered", false]) exitWith {};
+    if (GETVAR(_device,aquerr_vulnerable_events_registered,false)) exitWith {};
 
-    _device setVariable ["aquerr_vulnerable_events_registered", true];
-    _device setVariable ["aquerr_delete_after_explosion", _shouldDeleteWreckAfterExplosion];
-    _device setVariable ["aquerr_required_hits", _requiredHits];
-    _device setVariable ["aquerr_hit_count_fixed", _fixed];
-    _device setVariable ["aquerr_explosion_class_name", _explosionClassName, true];
+    TRACE_1("Registering handlers for device",_device);
+	
+    SETVAR(_device,aquerr_vulnerable_events_registered,true);
+    SETVAR(_device,aquerr_delete_after_explosion,_shouldDeleteWreckAfterExplosion);
+    SETVAR(_device,aquerr_required_hits,_requiredHits);
+    SETVAR(_device,aquerr_hit_count_fixed,_fixed);
+    SETPVAR(_device,aquerr_explosion_class_name,_explosionClassName);
 
     _hitPartEventIndex = _device addEventHandler ["HitPart", {
         (_this select 0) params ["_target", "_shooter", "_projectile", "_position", "_velocity", "_selection", "_ammo", "_vector", "_radius", "_surfaceType", "_isDirect", "_instigator"];
 
-        _hits = (_target getVariable ["aquerr_hits", 0]) + 1;
-        _requiredHits = _target getVariable ["aquerr_required_hits", 3];
-        _hitCountFixed = _target getVariable ["aquerr_hit_count_fixed", false];
+        _hits = (GETVAR(_target,aquerr_hits,0)) + 1;
+        _requiredHits = GETVAR(_target,aquerr_required_hits,3);
+        _hitCountFixed = GETVAR(_target,aquerr_hit_count_fixed,false);
         
         _shouldExplode = false;
         if (_hits >= _requiredHits) then {
@@ -72,52 +74,55 @@ if (_global && {isMultiplayer} && {isNil {_object getVariable QGVAR(register_exp
         };
 
         if (!_shouldExplode) exitWith {
-            _target setVariable ["aquerr_hits", _hits];
+            SETVAR(_target,aquerr_hits,_hits);
         };
 
-        if (!(alive _target) && {(_target getVariable ["aquerr_vulnerable_events_registered", false])}) exitWith {
+        if (!(alive _target) && {(GETVAR(_target,aquerr_vulnerable_events_registered,false)) && {((GETVAR(_vehicle,aquerr_already_exploded,0)) == 1)}}) exitWith {
             _target removeEventHandler ["HitPart", _target getVariable "aquerr_hit_part_event_index"];
             _target removeEventHandler ["Explosion", _target getVariable "aquerr_explosion_event_index"];
-            _target setVariable ["aquerr_vulnerable_events_registered", false];
+            SETVAR(_target,aquerr_vulnerable_events_registered,false);
         };
 
-        _explosionClassName = _target getVariable ["aquerr_explosion_class_name", "IEDUrbanSmall_Remote_Ammo"];
-        _explosive = createVehicle [_explosionClassName, (getPosATL _target), [], 0, "CAN_COLLIDE"];
+        if ((GETVAR(_target,aquerr_already_exploded,0)) == 1) exitWith {};
+        SETVAR(_target,aquerr_already_exploded,1);
 
+        _explosionClassName = GETVAR(_target,aquerr_explosion_class_name,IEDUrbanSmall_Remote_Ammo);
+        _explosive = createVehicle [_explosionClassName, (getPosATL _target), [], 0, "CAN_COLLIDE"];
+        
         _shouldDeleteWreckAfterExplosion = _target getVariable ["aquerr_delete_after_explosion", true];
         if(_shouldDeleteWreckAfterExplosion) then {
             deleteVehicle _target;
         };
-
+        
         _explosive setDamage 1;
     }];
 
     _explosionEventIndex = _device addEventHandler ["Explosion", {
         params ["_vehicle", "_damage", "_source"];
 
-        // Workaround for event being fired multiple times... (don't know why)
-        if (_vehicle getVariable ["already_exploded", 0] == 1) exitWith {};
-        _vehicle setVariable ["already_exploded", 1];
-
-        if (!(alive _vehicle) && {(_vehicle getVariable ["aquerr_vulnerable_events_registered", false])}) exitWith {
+        if (!(alive _vehicle) && {(GETVAR(_vehicle,aquerr_vulnerable_events_registered,false)) && {((GETVAR(_vehicle,aquerr_already_exploded,0)) == 1)}}) exitWith {
             _vehicle removeEventHandler ["HitPart", _vehicle getVariable "aquerr_hit_part_event_index"];
             _vehicle removeEventHandler ["Explosion", _vehicle getVariable "aquerr_explosion_event_index"];
-            _vehicle setVariable ["aquerr_vulnerable_events_registered", false];
+            SETVAR(_vehicle,aquerr_vulnerable_events_registered,false);
         };
 
-        _explosionClassName = _target getVariable ["aquerr_explosion_class_name", "IEDUrbanSmall_Remote_Ammo"];
-        _explosive = createVehicle [_explosionClassName, (getPosATL _vehicle), [], 0, "CAN_COLLIDE"];
+        // Workaround for event being fired multiple times... (don't know why)
+        if ((GETVAR(_vehicle,aquerr_already_exploded,0)) == 1) exitWith {};
+        SETVAR(_vehicle,aquerr_already_exploded,1);
 
-        _shouldDeleteWreckAfterExplosion = _vehicle getVariable ["aquerr_delete_after_explosion", true];
+        _explosionClassName = GETVAR(_vehicle,aquerr_explosion_class_name,IEDUrbanSmall_Remote_Ammo);
+        _explosive = createVehicle [_explosionClassName, (getPosATL _vehicle), [], 0, "CAN_COLLIDE"];
+        
+        _shouldDeleteWreckAfterExplosion = GETVAR(_vehicle,aquerr_delete_after_explosion,true);
         if(_shouldDeleteWreckAfterExplosion) then {
             deleteVehicle _vehicle;
         };
-
+        
         _explosive setDamage 1;
     }];
 
     _device setVariable ["aquerr_explosion_event_index", _explosionEventIndex];
     _device setVariable ["aquerr_hit_part_event_index", _hitPartEventIndex];
- };
+};
 
 [_object, _shouldDeleteWreckAfterExplosion, _explosionClassName, _requiredHits, _fixed] call _registerEventHandlersFunction;

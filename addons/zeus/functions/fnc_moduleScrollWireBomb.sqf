@@ -5,8 +5,8 @@ params ["_object", "_bombTime", "_shouldBeep", "_wireSign", "_wireCount", "_expl
 (GETMVAR(bis_fnc_curatorObjectPlaced_mouseOver,[""])) params ["_mouseOverType", "_mouseOverUnit"];
 
 if (_mouseOverType != "OBJECT") then {
-    [LELSTRING(common,MustSelectObject)] call FUNC(showMessage);
+    [LELSTRING(common,MustSelectObject)] call FUNC(showZeusFeedbackMessage);
 } else {
     [_object, _bombTime, _shouldBeep, _wireSign, _wireCount, _explosionClassName] call EFUNC(main,scroll_action_bomb_hint_text_image);
-    [objNull, LLSTRING(BombCreated)] call BIS_fnc_showCuratorFeedbackMessage;
+    [LLSTRING(BombCreated)] call FUNC(showZeusFeedbackMessage);
 };

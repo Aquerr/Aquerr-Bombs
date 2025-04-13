@@ -13,13 +13,21 @@
             <English>Create scroll wire bomb</English>
             <Polish>Utwórz scroll wire bomb</Polish>
         </Key>
-        <Key ID="STR_abombs_zeus_Module_Shoot_Vulnerable_DisplayName">
+        <Key ID="STR_abombs_zeus_Module_Shot_Vulnerable_DisplayName">
             <English>Make object vulnerable to shots</English>
             <Polish>Uczyń obiekt podatnym na strzały</Polish>
         </Key>
         <Key ID="str_abombs_zeus_bombcreated">
             <English>Bomb has been created</English>
             <Polish>Bomba została utworzona</Polish>
+        </Key>
+        <Key ID="str_abombs_zeus_classnameslabel">
+            <English>Class names</English>
+            <Polish>Nazwy klas</Polish>
+        </Key>
+        <Key ID="str_abombs_zeus_classnameslabeltooltip">
+            <English>Should be in array format</English>
+            <Polish>Powinny być w formacie array</Polish>
         </Key>
         <Key ID="str_abombs_zeus_deletewreckafterexplosionlabel">
             <English>Delete wreck after explosion?</English>
@@ -28,6 +36,10 @@
         <Key ID="str_abombs_zeus_explosionclasslabel">
             <English>Explosion class name</English>
             <Polish>Klasa eksplozji</Polish>
+        </Key>
+        <Key ID="str_abombs_zeus_module_shot_vulnerable_global_displayname">
+            <English>Make class names vulnerable to shots</English>
+            <Polish>Uczyń nazwy klas wrażliwe na strzały</Polish>
         </Key>
         <Key ID="str_abombs_zeus_objectisnowvulnerabletoshots">
             <English>Object is now vulnerable to shots</English>

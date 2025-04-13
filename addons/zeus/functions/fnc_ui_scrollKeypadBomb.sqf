@@ -19,7 +19,7 @@ private _fnc_errorAndClose = {
     params ["_msg"];
     _display closeDisplay 0;
     deleteVehicle _logic;
-    [_msg] call FUNC(showMessage);
+    [_msg] call FUNC(showZeusFeedbackMessage);
     breakOut "Main";
 };
 
@@ -41,7 +41,7 @@ _bombTimeEditField ctrlSetText "60";
 _shouldBeepToggleField lbSetCurSel 1;
 _solutionCodeEditField ctrlSetText "000000";
 _serialCodeEditField ctrlSetText "Unknown";
-_explosionClassNameCombo lbSetCurSel 0;
+_explosionClassNameCombo lbSetCurSel 2;
 
 /////////////////////////////////////////////////////////////
 // Cancel and Confirmation

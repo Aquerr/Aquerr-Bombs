@@ -19,7 +19,7 @@ private _fnc_errorAndClose = {
     params ["_msg"];
     _display closeDisplay 0;
     deleteVehicle _logic;
-    [_msg] call FUNC(showMessage);
+    [_msg] call FUNC(showZeusFeedbackMessage);
     breakOut "Main";
 };
 
@@ -55,7 +55,7 @@ _wireCountSlider sliderSetSpeed [1, 1];
 _wireCountSlider sliderSetPosition 10;
 _wireCountEdit ctrlSetText "10";
 
-_explosionClassNameCombo lbSetCurSel 0;
+_explosionClassNameCombo lbSetCurSel 2;
 
 _wireCountSlider ctrlAddEventHandler ["SliderPosChanged", _fnc_onSliderMove];
 

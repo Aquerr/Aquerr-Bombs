@@ -1,7 +1,7 @@
 #define COMPONENT zeus
 #include "\z\abombs\addons\main\script_mod.hpp"
 
-// #define DEBUG_MODE_FULL
+// #define DEBUG_ENABLED_ZEUS
 // #define DISABLE_COMPILE_CACHE
 // #define CBA_DEBUG_SYNCHRONOUS
 // #define ENABLE_PERFORMANCE_COUNTERS

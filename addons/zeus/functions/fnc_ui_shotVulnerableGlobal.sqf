@@ -5,35 +5,16 @@ params ["_control"];
 private _display = ctrlParent _control;
 private _ctrlButtonOK = _display displayCtrl 1; // IDC_OK
 private _logic = GETMVAR(BIS_fnc_initCuratorAttributes_target,objNull);
-TRACE_1("Logic Object",_logic);
 
 _control ctrlRemoveAllEventHandlers "SetFocus";
 
-// Validate module target
-private _unit = attachedTo _logic;
-TRACE_1("unit",_unit);
-
-scopeName "Main";
-
-private _fnc_errorAndClose = {
-    params ["_msg"];
-    _display closeDisplay 0;
-    deleteVehicle _logic;
-    [_msg] call FUNC(showZeusFeedbackMessage);
-    breakOut "Main";
-};
-
-switch (false) do {
-    case !(isNull _unit): {
-        [LELSTRING(common,MustSelectObject)] call _fnc_errorAndClose;
-    };
-};
-
+private _classNamesEdit = _display displayCtrl ZEUS_VULNERABLE_OBJECTS_GLOBAL_DIALOG_CLASS_NAMES_ID;
 private _shouldDeleteWreckAfterExplosionToggle = _display displayCtrl ZEUS_COMMON_DIALOG_DELETE_OBJECT_AFTER_EXPLOSION_ID;
 private _explosionClassNameCombo = _display displayCtrl ZEUS_COMMON_DIALOG_EXPLOSION_CLASS_ID;
 
 ////////////////////////////////////////////////////////////
 // Default values
+_classNamesEdit ctrlSetText '["Land_MetalBarrel_F", "Land_GasTank_02_F", "Barrel1"]';
 _shouldDeleteWreckAfterExplosionToggle lbSetCurSel 1;
 _explosionClassNameCombo lbSetCurSel 3;
 
@@ -55,6 +36,7 @@ private _fnc_onConfirm = {
     private _logic = GETMVAR(BIS_fnc_initCuratorAttributes_target,objNull);
     if (isNull _logic) exitWith {};
 
+    private _classNamesEdit = parseSimpleArray (ctrlText (_display displayCtrl ZEUS_VULNERABLE_OBJECTS_GLOBAL_DIALOG_CLASS_NAMES_ID));
     private _shouldDeleteWreckAfterExplosion = lbCurSel (_display displayCtrl ZEUS_COMMON_DIALOG_DELETE_OBJECT_AFTER_EXPLOSION_ID) > 0;
     private _explosionClassNameIndex = lbCurSel (_display displayCtrl ZEUS_COMMON_DIALOG_EXPLOSION_CLASS_ID);
     private _explosionClassName = (_display displayCtrl ZEUS_COMMON_DIALOG_EXPLOSION_CLASS_ID) lbText _explosionClassNameIndex;
@@ -64,7 +46,7 @@ private _fnc_onConfirm = {
         _explosionClassName = _overrideExplosionClassName;
     };
 
-    [attachedTo _logic, _shouldDeleteWreckAfterExplosion, _explosionClassName] call FUNC(moduleShotVulnerable);
+    [_classNamesEdit, _shouldDeleteWreckAfterExplosion, _explosionClassName] call FUNC(moduleShotVulnerableGlobal);
     deleteVehicle _logic;
 };
 
