@@ -25,13 +25,13 @@
 		[myBombThing, 0, false, nil, nil, "GrenadeHand"] call abombs_main_fnc_scroll_action_bomb_hint_text_image;
 */
 
-params ["_device", ["_timeSeconds", 60, [0]], ["_shouldBeep", true, [true]], ["_wireSign", "|", ["string"]], ["_wireCount", 40, [40]], ["_explosionClassName", "DemoCharge_Remote_Ammo", ["string"]], ["_global", true, [true]]];
+params ["_device", ["_timeSeconds", 60, [0]], ["_shouldBeep", true, [true]], ["_wireSign", "|", ["string"]], ["_wireCount", 40, [40]], ["_explosionClassName", "DemoCharge_Remote_Ammo", ["string"]], ["_afterDefuseFunction", {}, [{}]], ["_global", true, [true]]];
 
 if ((isNil "_device") || {isNull(_device)}) exitWith { hint LELSTRING(common,MustSelectObject) };
 
 if (_global && {isMultiplayer} && {isNil {_device getVariable QGVAR(scroll_action_bomb_hint_text_image_JIP)}}) exitWith {
 
-    private _id = [QGVAR(scroll_action_bomb_hint_text_image), [_device, _timeSeconds, _shouldBeep, _wireSign, _wireCount, _explosionClassName, false]] call CBA_fnc_globalEventJIP;
+    private _id = [QGVAR(scroll_action_bomb_hint_text_image), [_device, _timeSeconds, _shouldBeep, _wireSign, _wireCount, _explosionClassName, _afterDefuseFunction, false]] call CBA_fnc_globalEventJIP;
 
     // Remove JIP EH if object is deleted
     [_id, _device] call CBA_fnc_removeGlobalEventJIP;
@@ -133,7 +133,7 @@ private _explodeFunction = {
 };
 
  private _cutColoredWireFunction = {
-    params ["_device", "_wireColor", "_explodeFunction"];
+    params ["_defuser", "_device", "_wireColor", "_explodeFunction"];
 
     private _isArmed = _device getVariable ["aquerr_bomb_is_armed", false];
     if (!_isArmed) exitWith {hint LLSTRING(BombAlreadyDefused)};
@@ -144,6 +144,9 @@ private _explodeFunction = {
             _device setVariable ["aquerr_bomb_is_armed", false, true];
             hint LLSTRING(BombDefused);
             [_device, QGVAR(BombDefuse)] remoteExec ["say3D"];
+
+            _afterDefuseFunction = _device getVariable ["aquerr_bomb_after_defuse_function", {}];
+            [_device, _defuser] call _afterDefuseFunction;
         } else {
             call _explodeFunction;
         };
@@ -175,7 +178,7 @@ private _explodeFunction = {
             _wireColor = _actionParams select 0;
             _cutColoredWireFunction = _actionParams select 1;
             _explodeFunction = _actionParams select 2;
-            [_target, _wireColor, _explodeFunction] call _cutColoredWireFunction;
+            [_player, _target, _wireColor, _explodeFunction] call _cutColoredWireFunction;
 
         }, {true}, {}, [_wireColor, _cutColoredWireFunction, _explodeFunction]] call ace_interact_menu_fnc_createAction;
 
@@ -191,7 +194,7 @@ private _explodeFunction = {
                 _wireColor = _arguments select 0;
                 _cutColoredWireFunction = _arguments select 1;
                 _explodeFunction = _arguments select 2;
-                [_target, _wireColor, _explodeFunction] call _cutColoredWireFunction;
+                [_caller, _target, _wireColor, _explodeFunction] call _cutColoredWireFunction;
             },
             [_wireColor, _cutColoredWireFunction, _explodeFunction],		// arguments
             1.5,		// priority
@@ -348,12 +351,13 @@ private _explodeFunction = {
 
  //Variables
  private _prepareServerVariablesFunction = {
-     params ["_timeSeconds", "_explosionClassName", "_shouldBeep"];
+     params ["_timeSeconds", "_explosionClassName", "_shouldBeep", "_afterDefuseFunction"];
 
      _device setVariable ["aquerr_bomb_beep_enabled", _shouldBeep, true];
      _device setVariable ["aquerr_bomb_is_armed", true, true];
      _device setVariable ["aquerr_bomb_time_seconds", _timeSeconds, true];
      _device setVariable ["aquerr_bomb_explosion_class_name", _explosionClassName, true];
+     _device setVariable ["aquerr_bomb_after_defuse_function", _afterDefuseFunction, true];
  };
 
  private _prepareClientVariablesFunction = {
@@ -395,7 +399,7 @@ if (isServer) then {
 
     if (_device getVariable ["aquerr_bomb_is_armed", false]) exitWith {hint LLSTRING(BombAlreadyArmed);};
 
-    [_timeSeconds, _explosionClassName, _shouldBeep] call _prepareServerVariablesFunction;
+    [_timeSeconds, _explosionClassName, _shouldBeep, _afterDefuseFunction] call _prepareServerVariablesFunction;
     [_device, _explodeFunction] call _bombTimerFunction;
     [_device, _wireCount] call _generateBombWires;
 };

@@ -7,7 +7,8 @@ class CfgPatches {
             QGVAR(moduleScrollKeypadBomb),
             QGVAR(moduleScrollWireBomb),
             QGVAR(moduleVulnerableObject),
-            QGVAR(moduleVulnerableObjectsGlobal)
+            QGVAR(moduleVulnerableObjectsGlobal),
+            QGVAR(edenModuleVulnerableObjects)
         };
         weapons[] = {};
         requiredVersion = REQUIRED_VERSION;
@@ -19,6 +20,7 @@ class CfgPatches {
     };
 };
 
+#include "Cfg3DEN.hpp"
 #include "CfgFactionClasses.hpp"
 #include "CfgVehicles.hpp"
 #include "CfgEventHandlers.hpp"

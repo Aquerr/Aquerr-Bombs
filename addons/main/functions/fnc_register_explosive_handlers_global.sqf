@@ -30,19 +30,9 @@
         [["Land_MetalBarrel_F", "Land_GasTank_02_F", "Barrel1"], false, "DemoCharge_Remote_Ammo", 10, true, true] call abombs_main_fnc_register_explosive_handlers_global;
 */
 
-params ["_explosiveObjectsClassNames", ["_shouldDeleteWreckAfterExplosion", true, [true]], ["_explosionClassName", "IEDUrbanSmall_Remote_Ammo", ["string"]], ["_requiredHits", 5, [5]], ["_fixed", false, [false]], ["_global", true, [true]]];
+params [["_explosiveObjectsClassNames", [], [[]]], ["_shouldDeleteWreckAfterExplosion", true, [true]], ["_explosionClassName", "IEDUrbanSmall_Remote_Ammo", ["string"]], ["_requiredHits", 5, [5]], ["_fixed", false, [false]], ["_global", true, [true]]];
 
 TRACE_1("_explosiveObjectsClassNames",str _objectClassNames);
-
-if (_global && {isMultiplayer} && {isNil {_object getVariable QGVAR(register_explosive_handlers_global_JIP)}}) exitWith {
-
-    private _id = [QGVAR(register_explosive_handlers_global), [_explosiveObjectsClassNames, _shouldDeleteWreckAfterExplosion, _explosionClassName, _requiredHits, _fixed, false]] call CBA_fnc_globalEventJIP;
-
-    // Remove JIP EH if object is deleted
-    [_id, _object] call CBA_fnc_removeGlobalEventJIP;
-
-    _object setVariable [QGVAR(register_explosive_handlers_global_JIP), _id, true];
-};
 
 _explosiveObjects = allMissionObjects "";
 _explosiveObjectsFiltered = [];
