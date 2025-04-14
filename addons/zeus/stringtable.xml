@@ -23,8 +23,9 @@
         </Key>
         <Key ID="str_abombs_zeus_afterdefusecodetooltip">
             <English>Code will be executed locally for the defuser. 
-            Params passed to the code: ["_thisBomb", "_defuerPlayer"]</English>
-            <Polish>Kod będzie wykonany lokalnie dla rozbrajającego. Parametry przekazane do kodu: ["_thisBomb", "_defuerPlayer"]</Polish>
+Params passed to the code: ["_thisBomb", "_defuserPlayer"]</English>
+            <Polish>Kod będzie wykonany lokalnie dla rozbrajającego. 
+Parametry przekazane do kodu: ["_thisBomb", "_defuserPlayer"]</Polish>
         </Key>
         <Key ID="str_abombs_zeus_bombcreated">
             <English>Bomb has been created</English>

@@ -8,10 +8,6 @@ params [
 
 if (!_activated) exitWith {};
 
-INFO_1("Logic: %1",_logic);
-INFO_1("Units: %1",_units);
-INFO_1("Activated: %1",_activated);
-
 private _synchronizedObjects = synchronizedObjects _logic;
 
 private _objectClassNames = parseSimpleArray (_logic getVariable ["ClassNames", "[]"]);
@@ -20,13 +16,6 @@ private _explosionClassName = _logic getVariable ["ExplosionClassName", "DemoCha
 private _explosionClassNameOverride = _logic getVariable ["ExplosionClassNameOverride", ""];
 private _requiredHits = _logic getVariable ["RequiredHits", 5];
 private _fixedRequiredHits = _logic getVariable ["FixedRequiredHits", false];
-
-INFO_1("ClassNames: %1",_objectClassNames);
-INFO_1("ShouldDeleteWreck: %1",_shouldDeleteWreckAfterExplosion);
-INFO_1("ExplosionClassName: %1",_explosionClassName);
-INFO_1("ExplosionClassNameOverride: %1",_explosionClassNameOverride);
-INFO_1("RequiredHits: %1",_requiredHits);
-INFO_1("FixedRequiredHits: %1",_fixedRequiredHits);
 
 if (not(_explosionClassNameOverride isEqualTo "")) then {
 	_explosionClassName = _explosionClassNameOverride;
