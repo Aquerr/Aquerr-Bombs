@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Project name="Aquerr-Bombs">
-    <Package name="main">
+    <Package name="zeus">
         <Key ID="STR_abombs_zeus_BombTimeLabel">
             <English>Bomb time (0 = indefinite)</English>
             <Polish>Czas bomby (0 = nieskończona)</Polish>
@@ -17,23 +17,9 @@
             <English>Make object vulnerable to shots</English>
             <Polish>Uczyń obiekt podatnym na strzały</Polish>
         </Key>
-        <Key ID="str_abombs_zeus_afterdefusecodelabel">
-            <English>After defuse code function</English>
-            <Polish>Kod do wykonania po rozbrojeniu</Polish>
-        </Key>
-        <Key ID="str_abombs_zeus_afterdefusecodetooltip">
-            <English>Code will be executed locally for the defuser. 
-Params passed to the code: ["_thisBomb", "_defuserPlayer"]</English>
-            <Polish>Kod będzie wykonany lokalnie dla rozbrajającego. 
-Parametry przekazane do kodu: ["_thisBomb", "_defuserPlayer"]</Polish>
-        </Key>
         <Key ID="str_abombs_zeus_bombcreated">
             <English>Bomb has been created</English>
             <Polish>Bomba została utworzona</Polish>
-        </Key>
-        <Key ID="str_abombs_zeus_bombtimetooltip">
-            <English>Bomb time in seconds. 0 = indefinite</English>
-            <Polish>Czas bomby w sekundach. 0 = nieskończona</Polish>
         </Key>
         <Key ID="str_abombs_zeus_classnameslabel">
             <English>Class names</English>
@@ -46,22 +32,6 @@ Parametry przekazane do kodu: ["_thisBomb", "_defuserPlayer"]</Polish>
         <Key ID="str_abombs_zeus_deletewreckafterexplosionlabel">
             <English>Delete wreck after explosion?</English>
             <Polish>Usunąć wrak po eksplozji?</Polish>
-        </Key>
-        <Key ID="str_abombs_zeus_edenmodulepropertycommon_fixedrequiredhitslabel">
-            <English>Fixed hits amount</English>
-            <Polish>Twarda ilość trafień</Polish>
-        </Key>
-        <Key ID="str_abombs_zeus_edenmodulepropertycommon_fixedrequiredhitstooltip">
-            <English>The amount of hits required to trigger the explosion is fixed, that means, object MUST be hit "requiredhits" times to trigger the explosion.</English>
-            <Polish>Ilość trafień wymaganych do wywołania eksplozji jest konkretna. Obiekt musi zostać trafiony określoną ilość razy aby wywołać eksplozję.</Polish>
-        </Key>
-        <Key ID="str_abombs_zeus_edenmodulepropertycommon_requiredhitslabel">
-            <English>Required hits</English>
-            <Polish>Wymagane trafienia</Polish>
-        </Key>
-        <Key ID="str_abombs_zeus_edenmodulepropertycommon_requiredhitstooltip">
-            <English>Max hits to trigger the expolsion. Chance to trigger the explosion is increased with each hit.</English>
-            <Polish>Maksymalna ilość trafień aby wywołać ekslpozję. Szansa na eksplozję wzrasta z każdym trafieniem.</Polish>
         </Key>
         <Key ID="str_abombs_zeus_explosionclasslabel">
             <English>Explosion class name</English>

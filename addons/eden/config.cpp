@@ -4,10 +4,9 @@ class CfgPatches {
     class ADDON {
         name = COMPONENT_NAME;
         units[] = {
-            QGVAR(moduleScrollKeypadBomb),
-            QGVAR(moduleScrollWireBomb),
-            QGVAR(moduleVulnerableObject),
-            QGVAR(moduleVulnerableObjectsGlobal)
+            QGVAR(edenModuleVulnerableObjects),
+            QGVAR(edenModuleScrollWireBomb),
+            QGVAR(edenModuleScrollKeypadBomb)
         };
         weapons[] = {};
         requiredVersion = REQUIRED_VERSION;
@@ -20,6 +19,6 @@ class CfgPatches {
 };
 
 #include "CfgFactionClasses.hpp"
+#include "Cfg3DEN.hpp"
 #include "CfgVehicles.hpp"
 #include "CfgEventHandlers.hpp"
-#include "ui\RscAttributes.hpp"

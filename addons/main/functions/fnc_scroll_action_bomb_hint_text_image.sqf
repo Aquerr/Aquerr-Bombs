@@ -5,7 +5,7 @@
 	https://github.com/Aquerr
 
 	Description:
-		Script for simple bomb defusal with colored hint text image.
+        Script for simple bomb with scroll/ace action that shows colored wires in hint message.
 		To defuse the bomb, one must correctly guess the color that occurrs the most times.
 
 	Parameter(s):
@@ -19,6 +19,8 @@
                     // "helicopterExploBig" (big)
                     // "DemoCharge_Remote_Ammo" (medium)
                     // "APERSMine_Range_Ammo" (small)
+        7: CODE - optional, after defuse function. Executed LOCALLY when bomb is defused. Passed parameters are ["_bomb", "_defuserPlayer"]
+        8: BOOL - optional, if the script should be run globally. Can be skipped in most cases.
 
 	Example:
 		[myBombThing, 360, true, "#", 20] call abombs_main_fnc_scroll_action_bomb_hint_text_image;

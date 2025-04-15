@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project name="Aquerr-Bombs">
+    <Package name="eden">
+        <Key ID="STR_abombs_eden_BombTimeLabel">
+            <English>Bomb time (0 = indefinite)</English>
+            <Polish>Czas bomby (0 = nieskończona)</Polish>
+        </Key>
+        <Key ID="STR_abombs_eden_Module_Scroll_Keypad_Bomb_Description">
+            <English>This module has to be synced with objects that should be converted to keypad bombs.</English>
+            <Polish>Ten moduł musi zostać zsynchronizowany z obiektami, które mają zostać zamienione w bomby.</Polish>
+        </Key>
+        <Key ID="STR_abombs_eden_Module_Scroll_Keypad_Bomb_DisplayName">
+            <English>Create keypad bomb</English>
+            <Polish>Utwórz bombę na keypad</Polish>
+        </Key>
+        <Key ID="STR_abombs_eden_Module_Scroll_Wire_Bomb_Description">
+            <English>This module has to be synced with objects that should be converted to wire bombs.</English>
+            <Polish>Ten moduł musi zostać zsynchronizowany z obiektami, które mają zostać zamienione w bomby kablowe.</Polish>
+        </Key>
+        <Key ID="STR_abombs_eden_Module_Scroll_Wire_Bomb_DisplayName">
+            <English>Create scroll wire bomb</English>
+            <Polish>Utwórz scroll wire bomb</Polish>
+        </Key>
+        <Key ID="STR_abombs_eden_Module_Shot_Vulnerable_Description">
+            <English>This module makes given class names vulnerable to shots and nearby explosions. To make a specific object shot/explosion vulnerable, sync it with this module.</English>
+            <Polish>Ten moduł uczynia podane klasy obiektów podatne na strzały i pobliskie eksplozje. Aby uczynić konrketny obiekt podatnym na strzały, zsynchronizuj go z tym modułem.</Polish>
+        </Key>
+        <Key ID="STR_abombs_eden_Module_Shot_Vulnerable_DisplayName">
+            <English>Make object vulnerable to shots</English>
+            <Polish>Uczyń obiekt podatnym na strzały</Polish>
+        </Key>
+        <Key ID="str_abombs_eden_afterdefusecodelabel">
+            <English>After defuse code function</English>
+            <Polish>Kod do wykonania po rozbrojeniu</Polish>
+        </Key>
+        <Key ID="str_abombs_eden_afterdefusecodetooltip">
+            <English>Code will be executed locally for the defuser. 
+Params passed to the code: ["_thisBomb", "_defuserPlayer"]</English>
+            <Polish>Kod będzie wykonany lokalnie dla rozbrajającego. 
+Parametry przekazane do kodu: ["_thisBomb", "_defuserPlayer"]</Polish>
+        </Key>
+        <Key ID="str_abombs_eden_bombtimetooltip">
+            <English>Bomb time in seconds. 0 = indefinite</English>
+            <Polish>Czas bomby w sekundach. 0 = nieskończona</Polish>
+        </Key>
+        <Key ID="str_abombs_eden_classnameslabel">
+            <English>Class names</English>
+            <Polish>Nazwy klas</Polish>
+        </Key>
+        <Key ID="str_abombs_eden_classnameslabeltooltip">
+            <English>Should be in array format</English>
+            <Polish>Powinny być w formacie array</Polish>
+        </Key>
+        <Key ID="str_abombs_eden_deletewreckafterexplosionlabel">
+            <English>Delete wreck after explosion?</English>
+            <Polish>Usunąć wrak po eksplozji?</Polish>
+        </Key>
+        <Key ID="str_abombs_eden_edenmodulepropertycommon_fixedrequiredhitslabel">
+            <English>Fixed hits amount</English>
+            <Polish>Twarda ilość trafień</Polish>
+        </Key>
+        <Key ID="str_abombs_eden_edenmodulepropertycommon_fixedrequiredhitstooltip">
+            <English>The amount of hits required to trigger the explosion is fixed, that means, object MUST be hit "requiredhits" times to trigger the explosion.</English>
+            <Polish>Ilość trafień wymaganych do wywołania eksplozji jest konkretna. Obiekt musi zostać trafiony określoną ilość razy aby wywołać eksplozję.</Polish>
+        </Key>
+        <Key ID="str_abombs_eden_edenmodulepropertycommon_requiredhitslabel">
+            <English>Required hits</English>
+            <Polish>Wymagane trafienia</Polish>
+        </Key>
+        <Key ID="str_abombs_eden_edenmodulepropertycommon_requiredhitstooltip">
+            <English>Max hits to trigger the expolsion. Chance to trigger the explosion is increased with each hit.</English>
+            <Polish>Maksymalna ilość trafień aby wywołać ekslpozję. Szansa na eksplozję wzrasta z każdym trafieniem.</Polish>
+        </Key>
+        <Key ID="str_abombs_eden_explosionclasslabel">
+            <English>Explosion class name</English>
+            <Polish>Klasa eksplozji</Polish>
+        </Key>
+        <Key ID="str_abombs_eden_overrideexplosionclasslabel">
+            <English>Override explosion class</English>
+            <Polish>Nadpisz klasę eksplozji</Polish>
+        </Key>
+        <Key ID="str_abombs_eden_overrideexplosionclasslabeltooltip">
+            <English>Leave empty to use value from above list</English>
+            <Polish>Zostaw puste aby użyć wartości z powyższej listy</Polish>
+        </Key>
+        <Key ID="str_abombs_eden_serialnumberlabel">
+            <English>Serial Number</English>
+            <Polish>Kod seryjny</Polish>
+        </Key>
+        <Key ID="str_abombs_eden_serialnumbertooltip">
+            <English>Player can check it by interacting with bomb. Not used by the mod. Feel free to use it how you want.</English>
+            <Polish>Gracze mogą go sprawdzić poprzez interakcję z bombą. Nieużywane przez mod. Użyj tego jak chcesz.</Polish>
+        </Key>
+        <Key ID="str_abombs_eden_shouldbeeplabel">
+            <English>Should beep?</English>
+            <Polish>Wydaje dźwięk?</Polish>
+        </Key>
+        <Key ID="str_abombs_eden_solutioncodelabel">
+            <English>Solution Code (digits only)</English>
+            <Polish>Kod rozwiązania (tylko cyfry)</Polish>
+        </Key>
+        <Key ID="str_abombs_eden_wirecountlabel">
+            <English>Wire count</English>
+            <Polish>Ilość kabli</Polish>
+        </Key>
+        <Key ID="str_abombs_eden_wiresignlabel">
+            <English>Wire sign</English>
+            <Polish>Znak kabla</Polish>
+        </Key>
+    </Package>
+</Project>

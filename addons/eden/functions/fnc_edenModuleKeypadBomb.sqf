@@ -10,7 +10,6 @@ if (!_activated) exitWith {};
 
 private _synchronizedObjects = synchronizedObjects _logic;
 
-systemChat (str (allVariables _logic));
 private _bombTime = _logic getVariable ["BombTime", "60"];
 private _shouldBeep = _logic getVariable ["ShouldBeep", true];
 private _solutionCode = _logic getVariable ["SolutionCode", "000000"];

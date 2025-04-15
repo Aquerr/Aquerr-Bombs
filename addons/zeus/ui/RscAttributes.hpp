@@ -178,7 +178,7 @@ class GVAR(RscShotVulnerable): RscDisplayAttributes {
                     x = 0;
                     y = 0;
                     w = QUOTE(W_PART(26));
-                    h = QUOTE(H_PART(2.2));
+                    h = QUOTE(H_PART(3.3));
                     class controls {
                         class deleteObjectAfterExplosionControls: GVAR(DeleteObjectAfterExplosionControls) {};
                         class explosionClassControls: GVAR(ExplosionClassControls) {
@@ -207,7 +207,7 @@ class GVAR(RscShotVulnerableGlobal): RscDisplayAttributes {
                     x = 0;
                     y = 0;
                     w = QUOTE(W_PART(26));
-                    h = QUOTE(H_PART(3.3));
+                    h = QUOTE(H_PART(4.4));
                     class controls {
                         class ClassNamesLabel: RscText {
                             idc = -1;

@@ -5,7 +5,7 @@
 	https://github.com/Aquerr
 
 	Description:
-		Script for simple action based digit system for bomb defusal.
+        Script for simple bomb with scroll/ace action keypad.
 
 	Parameter(s):
 		0: the thing that the script should be attached to
@@ -17,6 +17,9 @@
             // "helicopterExploBig" (big)
             // "DemoCharge_Remote_Ammo" (medium)
             // "APERSMine_Range_Ammo" (small)
+        5: STRING - the bombs's serial number. Not used by the mod.
+        6: CODE - after defuse function. Executed LOCALLY when bomb is defused. Passed parameters are ["_bomb", "_defuserPlayer"].
+        7: BOOL - optional, if the script should be run globally. Can be skipped in most cases.
 
 	Example:
 		[_myBombThing, 60, "2454"] call abombs_main_fnc_scroll_action_keypad_bomb;

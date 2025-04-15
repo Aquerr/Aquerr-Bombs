@@ -3,10 +3,6 @@ PREP(emptyFunction);
 
 PREP(showZeusFeedbackMessage);
 
-PREP(edenModuleShotVulnerable);
-PREP(edenModuleWireBomb);
-PREP(edenModuleKeypadBomb);
-
 PREP(moduleShotVulnerableGlobal);
 PREP(moduleShotVulnerable);
 PREP(moduleScrollWireBomb);
