@@ -54,7 +54,7 @@ private _generateBombWires = {
     while {true} do {
         private _part1 = floor random (_remaining + 1);
         private _part2 = floor random (_remaining - _part1 + 1);
-        private _part3 = floor random (_remaining - _part1 - _part2);
+        private _part3 = _remaining - _part1 - _part2;
 
         _correctWires = _part1 + 1;
         _wires2 = _part2 + 1;

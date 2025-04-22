@@ -11,11 +11,11 @@ This mod was specially made for a TIS group and as a modding learning project. :
 
 ## Features
 
-- [x] Zeus module for scroll/ace keypad bomb
-- [x] Zeus module for scroll/ace wires bomb
-- [x] Zeus module for converting to shot/explosion vulnerable object
-- [ ] Custom GUI for bombs
-- [ ] EDEN modules
+- [x] Zeus/Eden module for scroll/ace keypad bomb
+- [x] Zeus/Eden module for scroll/ace wires bomb
+- [x] Zeus/Eden module for making an object vulnerable to shots and nearby explosions
+- [x] Simple keypad bomb GUI
+- [ ] Simple wire bomb GUI
 - [ ] ...
 
 ## Links
