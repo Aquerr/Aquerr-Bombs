@@ -29,11 +29,10 @@ class GVAR(Simple_Keypad_Bomb_Interface_Dialog) {
     class controls {
         class DISPLAY_FRAME: RscFrame
         {
-            idc = 1800;
-            font="TahomaB";
+            idc = -1;
             text = "";
             x = 0.35;
-            y = 0.1;
+            y = 0.3;
             w = QUOTE(W_PART(10));
             h = QUOTE(H_PART(3));
         };
@@ -43,12 +42,35 @@ class GVAR(Simple_Keypad_Bomb_Interface_Dialog) {
             font="TahomaB";
             text = "0";
             x = 0.36;
-            y = 0.11;
+            y = 0.31;
             w = QUOTE(W_PART(6.1));
             h = QUOTE(H_PART(2.5));
             colorText[] = {1,1,1,1};
             tooltip = "Enter code";
         };
+
+        class TIME_FRAME: RscFrame
+        {
+            idc = -1;
+            text = "";
+            x = 0.44;
+            y = 0.1;
+            w = QUOTE(W_PART(4.0));
+            h = QUOTE(H_PART(1.5));
+        };
+        class TIME_TEXT: RscText
+        {
+            idc = BOMB_GUI_TIME_LABEL_ID;
+            font="TahomaB";
+            text = "";
+            style = 2;
+            x = 0.44;
+            y = 0.10;
+            w = QUOTE(W_PART(4.0));
+            h = QUOTE(H_PART(1.5));
+            colorText[] = {1,1,1,1};
+        };
+
         class KEYPAD_FRAME: RscFrame
         {
             idc = 1801;
@@ -70,7 +92,7 @@ class GVAR(Simple_Keypad_Bomb_Interface_Dialog) {
             type=1;
             colorBackground[] = {1, 0, 0,0.5};
             tooltip = "Enter 1";
-            action = QUOTE([1] call FUNC(bomb_gui_enter_digit));
+            action = QUOTE([1] call FUNC(gui_bomb_enter_digit));
         };
         class DIGIT_2: RscButton
         {
@@ -84,7 +106,7 @@ class GVAR(Simple_Keypad_Bomb_Interface_Dialog) {
             type=1;
             colorBackground[] = {1, 0, 0,0.5};
             tooltip = "Enter 2";
-            action = QUOTE([2] call FUNC(bomb_gui_enter_digit));
+            action = QUOTE([2] call FUNC(gui_bomb_enter_digit));
         };
         class DIGIT_3: RscButton
         {
@@ -98,7 +120,7 @@ class GVAR(Simple_Keypad_Bomb_Interface_Dialog) {
             type=1;
             colorBackground[] = {1, 0, 0,0.5};
             tooltip = "Enter 3";
-            action = QUOTE([3] call FUNC(bomb_gui_enter_digit));
+            action = QUOTE([3] call FUNC(gui_bomb_enter_digit));
         };
         class DIGIT_4: RscButton
         {
@@ -112,7 +134,7 @@ class GVAR(Simple_Keypad_Bomb_Interface_Dialog) {
             type=1;
             colorBackground[] = {1, 0, 0,0.5};
             tooltip = "Enter 4";
-            action = QUOTE([4] call FUNC(bomb_gui_enter_digit));
+            action = QUOTE([4] call FUNC(gui_bomb_enter_digit));
         };
         class DIGIT_5: RscButton
         {
@@ -126,7 +148,7 @@ class GVAR(Simple_Keypad_Bomb_Interface_Dialog) {
             type=1;
             colorBackground[] = {1, 0, 0,0.5};
             tooltip = "Enter 5";
-            action = QUOTE([5] call FUNC(bomb_gui_enter_digit));
+            action = QUOTE([5] call FUNC(gui_bomb_enter_digit));
         };
         class DIGIT_6: RscButton
         {
@@ -140,7 +162,7 @@ class GVAR(Simple_Keypad_Bomb_Interface_Dialog) {
             type=1;
             colorBackground[] = {1, 0, 0,0.5};
             tooltip = "Enter 6";
-            action = QUOTE([6] call FUNC(bomb_gui_enter_digit));
+            action = QUOTE([6] call FUNC(gui_bomb_enter_digit));
         };
         class DIGIT_7: RscButton
         {
@@ -154,7 +176,7 @@ class GVAR(Simple_Keypad_Bomb_Interface_Dialog) {
             type=1;
             colorBackground[] = {1, 0, 0,0.5};
             tooltip = "Enter 7";
-            action = QUOTE([7] call FUNC(bomb_gui_enter_digit));
+            action = QUOTE([7] call FUNC(gui_bomb_enter_digit));
         };
         class DIGIT_8: RscButton
         {
@@ -168,7 +190,7 @@ class GVAR(Simple_Keypad_Bomb_Interface_Dialog) {
             type=1;
             colorBackground[] = {1, 0, 0,0.5};
             tooltip = "Enter 8";
-            action = QUOTE([8] call FUNC(bomb_gui_enter_digit));
+            action = QUOTE([8] call FUNC(gui_bomb_enter_digit));
         };
         class DIGIT_9: RscButton
         {
@@ -182,7 +204,7 @@ class GVAR(Simple_Keypad_Bomb_Interface_Dialog) {
             type=1;
             colorBackground[] = {1, 0, 0,0.5};
             tooltip = "Enter 9";
-            action = QUOTE([9] call FUNC(bomb_gui_enter_digit));
+            action = QUOTE([9] call FUNC(gui_bomb_enter_digit));
         };
         class CLEAR_CODE: RscButton
         {
@@ -196,7 +218,7 @@ class GVAR(Simple_Keypad_Bomb_Interface_Dialog) {
             type=1;
             colorBackground[] = {1, 0, 0,0.5};
             tooltip = "Clear code";
-            action = QUOTE(call FUNC(bomb_gui_clear_code));
+            action = QUOTE(call FUNC(gui_bomb_clear_code));
         };
         class DIGIT_0: RscButton
         {
@@ -210,7 +232,7 @@ class GVAR(Simple_Keypad_Bomb_Interface_Dialog) {
             type=1;
             colorBackground[] = {1, 0, 0,0.5};
             tooltip = "Enter 0";
-            action = QUOTE([0] call FUNC(bomb_gui_enter_digit));
+            action = QUOTE([0] call FUNC(gui_bomb_enter_digit));
         };
 
         class BACK_PANEL: RscButton 
@@ -225,7 +247,7 @@ class GVAR(Simple_Keypad_Bomb_Interface_Dialog) {
             type=1;
             colorBackground[] = {0.3, 0.3, 0.3,0.5};
             tooltip = "View back panel";
-            action = QUOTE([GVAR(Bomb_Interface_Target)] call FUNC(bomb_gui_view_back_panel));
+            action = QUOTE([GVAR(Bomb_Interface_Target)] call FUNC(gui_bomb_view_back_panel));
         };
     };
 };

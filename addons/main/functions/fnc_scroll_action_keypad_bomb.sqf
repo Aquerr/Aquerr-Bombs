@@ -41,7 +41,7 @@ if (_global && {isMultiplayer} && {isNil {_device getVariable QGVAR(scroll_actio
     _device setVariable [QGVAR(scroll_action_keypad_bomb_JIP), _id, true];
 };
 
-private _removeBombActionsFunction = {
+private _clientCleanupFunction = {
     params ["_device"];
 
     _actionIds = _device getVariable ["aquerr_bomb_action_ids", []];
@@ -51,12 +51,12 @@ private _removeBombActionsFunction = {
 };
 
 private _bombTimerFunction = {
-    params ["_device", "_explodeFunction", "_removeBombActionsFunction"];
+    params ["_bomb", "_clientCleanupFunction"];
 
-    [_device, _explodeFunction, _removeBombActionsFunction] spawn {
-        params ["_device", "_explodeFunction", "_removeBombActionsFunction"];
+    [_bomb, _clientCleanupFunction] spawn {
+        params ["_bomb", "_clientCleanupFunction"];
 
-        private _timeLeft = (_device getVariable ["aquerr_bomb_time_seconds", 0]);
+        private _timeLeft = (_bomb getVariable ["aquerr_bomb_time_seconds", 0]);
         private _fakeTimer = false;
         if (_timeLeft == 0) then {
             _fakeTimer = true;
@@ -64,11 +64,11 @@ private _bombTimerFunction = {
 
         while {true} do {
 
-            if(!alive _device) exitWith {
+            if(!alive _bomb) exitWith {
                 0;
             };
 
-            if (!(_device getVariable ["aquerr_bomb_is_armed", false])) exitWith {
+            if (!(_bomb getVariable ["aquerr_bomb_is_armed", false])) exitWith {
                 0;
             };
 
@@ -76,76 +76,31 @@ private _bombTimerFunction = {
 
             if (!(_fakeTimer)) then {
                   if (_timeLeft <= 0) exitWith {
-                      call _removeBombActionsFunction;
-                      call _explodeFunction;
+                      call _clientCleanupFunction;
+                      [objNull, _bomb] call FUNC(bomb_explode);
                   };
                 _timeLeft = _timeLeft - 1;
-                _device setVariable ["aquerr_bomb_time_seconds", _timeLeft, true];
+                _bomb setVariable ["aquerr_bomb_time_seconds", _timeLeft, true];
             };
 
-            _shouldBeep = _device getVariable ["aquerr_bomb_beep_enabled", false];
+            _shouldBeep = _bomb getVariable ["aquerr_bomb_beep_enabled", false];
             if (_shouldBeep) then {
-               [_device, QGVAR(BombBeep)] remoteExec ["say3D"];
+               [_bomb, QGVAR(BombBeep)] remoteExec ["say3D"];
             };
         };
     };
 };
 
- private _explodeFunction = {
-    params ["_device"];
-
-    // VERY_BIG = "ammo_Missile_Cruise_01"
-    // BIG = "helicopterExploBig"
-    // MEDIUM = "DemoCharge_Remote_Ammo"
-    // SMALL = "APERSMine_Range_Ammo"
-
-    _explosionClassName = _device getVariable ["aquerr_bomb_explosion_class_name", "DemoCharge_Remote_Ammo"];
-    _explosive = _explosionClassName createVehicle (getPos _device);
-    deleteVehicle _device;
-    _explosive setDamage 1;
- };
-
- private _enterDigitFunction = {
-    params ["_defuser", "_device", "_digit", "_explodeFunction", "_removeBombActionsFunction"];
-
-    private _isArmed = _device getVariable ["aquerr_bomb_is_armed", false];
-    if (!_isArmed) exitWith {hint LLSTRING(BombAlreadyDefused)};
-
-    _newCode = (format  ["%1%2", (_device getVariable ["aquerr_bomb_entered_code", ""]), _digit]);
-    _device setVariable ["aquerr_bomb_entered_code", _newCode, true];
-
-    hint (format [ LLSTRING(CurrentBombCode) + ": %1", _newCode]);
-
-    _solutionCode = _device getVariable ["aquerr_bomb_solution_code", ""];
-    if ((count _newCode) >= (count _solutionCode)) then {
-        if (_solutionCode isEqualTo _newCode) then {
-            [_device] call _removeBombActionsFunction;
-            _device setVariable ["aquerr_bomb_is_armed", false, true];
-            hint LLSTRING(BombDefused);
-            [_device, QGVAR(BombDefuse)] remoteExec ["say3D"];
-
-            _afterDefuseFunction = _device getVariable ["aquerr_bomb_after_defuse_function", {}];
-            [_device, _defuser] call _afterDefuseFunction; 
-        } else {
-            [_device] call _removeBombActionsFunction;
-            [_device] call _explodeFunction;
-        };
-    };
- };
-
  private _prepareDigitActionFunction = {
-        params ["_device", "_digit", "_enterDigitFunction", "_explodeFunction", "_removeBombActionsFunction"];
+        params ["_device", "_digit"];
 
         _action = [(format ["number_%1", _digit]), _digit, "",
         {
             params ["_target", "_player", "_actionParams"];
             _digit = _actionParams select 0;
-            _enterDigitFunction = _actionParams select 1;
-            _explodeFunction = _actionParams select 2;
-            _removeBombActionsFunction = _actionParams select 3;
-            [_player, _target, _digit, _explodeFunction, _removeBombActionsFunction] call _enterDigitFunction;
+            [_player, _target, _digit] call FUNC(bomb_enter_digit);
 
-        }, {true}, {}, [_digit, _enterDigitFunction, _explodeFunction, _removeBombActionsFunction, _enterDigitFunction]] call ace_interact_menu_fnc_createAction;
+        }, {true}, {}, [_digit]] call ace_interact_menu_fnc_createAction;
 
         [_device, 0, ["ACE_MainActions", "aquerr_bomb_keypad"], _action] call ace_interact_menu_fnc_addActionToObject;
 
@@ -156,12 +111,9 @@ private _bombTimerFunction = {
                 params ["_target", "_caller", "_actionId", "_arguments"]; // script
 
                 _digit = _arguments select 0;
-                _enterDigitFunction = _arguments select 1;
-                _explodeFunction = _arguments select 2;
-                _removeBombActionsFunction = _arguments select 3;
-                [_caller, _target, _digit, _explodeFunction, _removeBombActionsFunction] call _enterDigitFunction;
+                [_caller, _target, _digit] call FUNC(bomb_enter_digit);
             },
-            [_digit, _enterDigitFunction, _explodeFunction, _removeBombActionsFunction],		// arguments
+            [_digit],		// arguments
             1.5,		// priority
             true,		// showWindow
             true,		// hideOnUse
@@ -178,16 +130,14 @@ private _bombTimerFunction = {
         params ["_device", "_actionName"];
 
         private _clearCodeFunction = {
-            params ["_device"];
-
-            _device setVariable ["aquerr_bomb_entered_code", "", true];
-            hint LLSTRING(CodeCleared);
+            params ["_defuser", "_device"];
+            [_defuser, _device] call FUNC(bomb_clear_entered_code);
         };
 
         _action = ["code_clear", _actionName, "",
         {
             params ["_target", "_player", "_actionParams"];
-            [_target] call (_actionParams select 0);
+            [_player, _target] call (_actionParams select 0);
 
         }, {true}, {}, [_clearCodeFunction]] call ace_interact_menu_fnc_createAction;
 
@@ -198,7 +148,7 @@ private _bombTimerFunction = {
             format ["<t color='#00FF00'>%1</t>", _actionName],	// title
             {
                 params ["_target", "_caller", "_actionId", "_arguments"]; // script
-                [_target] call (_arguments select 0);
+                [_caller, _target] call (_arguments select 0);
             },
             [_clearCodeFunction],		// arguments
             1.5,		// priority
@@ -331,7 +281,7 @@ private _bombTimerFunction = {
  };
 
  private _prepareActionsFunction = {
-        params ["_device", "_enterDigitFunction", "_prepareDigitActionFunction", "_prepareClearCodeFunction", "_explodeFunction", "_removeBombActionsFunction", "_prepareCheckTimeFunction", "_prepareCheckSerialNumberFunction", "_prepareOpenGuiFunction"];
+        params ["_device", "_prepareDigitActionFunction", "_prepareClearCodeFunction", "_prepareCheckTimeFunction", "_prepareCheckSerialNumberFunction", "_prepareOpenGuiFunction"];
 
         _actionParent = ["aquerr_bomb_keypad", LLSTRING(AceMenuBombKeyboard), "", {}, {true}, {}, []] call ace_interact_menu_fnc_createAction;
         [_device, 0, ["ACE_MainActions"], _actionParent] call ace_interact_menu_fnc_addActionToObject;
@@ -339,82 +289,64 @@ private _bombTimerFunction = {
         [_device, 0, ["ACE_MainActions"], _actionParent] call ace_interact_menu_fnc_addActionToObject;
 
         _bombActionIds = [];
-        _bombActionIds pushBack ([_device, LLSTRING(OpenBombGui)] call _prepareOpenGuiFunction);
+        _bombActionIds pushBack ([_device, LLSTRING(OpenBombInterface)] call _prepareOpenGuiFunction);
         _bombActionIds pushBack ([_device, LLSTRING(CheckBombTime)] call _prepareCheckTimeFunction);
         _bombActionIds pushBack ([_device, LLSTRING(ClearBombCode)] call _prepareClearCodeFunction);
         _bombActionIds pushBack ([_device, LLSTRING(CheckBombSerialNumber)] call _prepareCheckSerialNumberFunction);
-        _bombActionIds pushBack ([_device, "0", _enterDigitFunction, _explodeFunction, _removeBombActionsFunction] call _prepareDigitActionFunction);
-        _bombActionIds pushBack ([_device, "1", _enterDigitFunction, _explodeFunction, _removeBombActionsFunction] call _prepareDigitActionFunction);
-        _bombActionIds pushBack ([_device, "2", _enterDigitFunction, _explodeFunction, _removeBombActionsFunction] call _prepareDigitActionFunction);
-        _bombActionIds pushBack ([_device, "3", _enterDigitFunction, _explodeFunction, _removeBombActionsFunction] call _prepareDigitActionFunction);
-        _bombActionIds pushBack ([_device, "4", _enterDigitFunction, _explodeFunction, _removeBombActionsFunction] call _prepareDigitActionFunction);
-        _bombActionIds pushBack ([_device, "5", _enterDigitFunction, _explodeFunction, _removeBombActionsFunction] call _prepareDigitActionFunction);
-        _bombActionIds pushBack ([_device, "6", _enterDigitFunction, _explodeFunction, _removeBombActionsFunction] call _prepareDigitActionFunction);
-        _bombActionIds pushBack ([_device, "7", _enterDigitFunction, _explodeFunction, _removeBombActionsFunction] call _prepareDigitActionFunction);
-        _bombActionIds pushBack ([_device, "8", _enterDigitFunction, _explodeFunction, _removeBombActionsFunction] call _prepareDigitActionFunction);
-        _bombActionIds pushBack ([_device, "9", _enterDigitFunction, _explodeFunction, _removeBombActionsFunction] call _prepareDigitActionFunction);
+        _bombActionIds pushBack ([_device, "0"] call _prepareDigitActionFunction);
+        _bombActionIds pushBack ([_device, "1"] call _prepareDigitActionFunction);
+        _bombActionIds pushBack ([_device, "2"] call _prepareDigitActionFunction);
+        _bombActionIds pushBack ([_device, "3"] call _prepareDigitActionFunction);
+        _bombActionIds pushBack ([_device, "4"] call _prepareDigitActionFunction);
+        _bombActionIds pushBack ([_device, "5"] call _prepareDigitActionFunction);
+        _bombActionIds pushBack ([_device, "6"] call _prepareDigitActionFunction);
+        _bombActionIds pushBack ([_device, "7"] call _prepareDigitActionFunction);
+        _bombActionIds pushBack ([_device, "8"] call _prepareDigitActionFunction);
+        _bombActionIds pushBack ([_device, "9"] call _prepareDigitActionFunction);
 
         _device setVariable ["aquerr_bomb_action_ids", _bombActionIds, clientOwner];
  };
 
  private _prepareServerVariablesFunction = {
-     params ["_solutionCode", "_timeSeconds", "_explosionClassName", "_shouldBeep", "_serialNumber", "_afterDefuseFunction", "_explodeFunction"];
+     params ["_solutionCode", "_timeSeconds", "_explosionClassName", "_shouldBeep", "_serialNumber", "_afterDefuseFunction"];
 
+     _device setVariable ["aquerr_bomb_type", "KEYPAD", true];
      _device setVariable ["aquerr_bomb_solution_code", _solutionCode, true];
      _device setVariable ["aquerr_bomb_is_armed", true, true];
      _device setVariable ["aquerr_bomb_time_seconds", _timeSeconds, true];
      _device setVariable ["aquerr_bomb_entered_code", "", true];
-     _device setVariable ["aquerr_bomb_explosion_class_name", _explosionClassName, true];
+     _device setVariable ["aquerr_explosion_class_name", _explosionClassName, true];
      _device setVariable ["aquerr_bomb_beep_enabled", _shouldBeep, true];
      _device setVariable ["aquerr_bomb_serial_number", _serialNumber, true];
      _device setVariable ["aquerr_bomb_after_defuse_function", _afterDefuseFunction, true];
-     _device setVariable ["aquerr_bomb_explode_function", _explodeFunction, true];
  };
 
  private _prepareClientVariablesFunction = {
-    params ["_removeBombActionsFunction"];
+    params ["_clientCleanupFunction"];
 
     SETVAR(_device,aquerr_wire_bomb_interface_initialized,true);
-    SETVAR(_device,aquerr_bomb_remove_actions_function,_removeBombActionsFunction);
+    SETVAR(_device,aquerr_bomb_client_cleanup_function,_clientCleanupFunction);
  };
 
  private _registerEventHandlersFunction = {
-    params ["_device"];
+    params ["_device", "_explosionClassName"];
 
-    _device addEventHandler ["HitPart", {
-        (_this select 0) params ["_target", "_shooter", "_projectile", "_position", "_velocity", "_selection", "_ammo", "_vector", "_radius", "_surfaceType", "_isDirect", "_instigator"];
-
-        _explosionClassName = _target getVariable ["aquerr_bomb_explosion_class_name", "DemoCharge_Remote_Ammo"];
-        _explosive = createVehicle [_explosionClassName, (getPos _target), [], 0, "CAN_COLLIDE"];
-        deleteVehicle _target;
-        _explosive setDamage 1;
-    }];
-
-    _device addEventHandler ["Explosion", {
-        params ["_vehicle", "_damage", "_source"];
-        if (_vehicle getVariable ["already_exploded", 0] == 1) exitWith {};
-        _vehicle setVariable ["already_exploded", 1];
-
-        _explosionClassName = _vehicle getVariable ["aquerr_bomb_explosion_class_name", "DemoCharge_Remote_Ammo"];
-        _explosive = createVehicle [_explosionClassName, (getPos _vehicle), [], 0, "CAN_COLLIDE"];
-        deleteVehicle _vehicle;
-        _explosive setDamage 1;
-    }];
+    [_device, true, _explosionClassName, 2] call FUNC(register_explosive_handlers_for_object);
  };
 
 if (isServer) then {
 
     if (_device getVariable ["aquerr_bomb_is_armed", false]) exitWith {hint LLSTRING(BombAlreadyArmed);};
 
-    [_solutionCode, _timeSeconds, _explosionClassName, _shouldBeep, _serialNumber, _afterDefuseFunction, _explodeFunction] call _prepareServerVariablesFunction;
-    [_device, _explodeFunction, _removeBombActionsFunction] call _bombTimerFunction;
+    [_solutionCode, _timeSeconds, _explosionClassName, _shouldBeep, _serialNumber, _afterDefuseFunction] call _prepareServerVariablesFunction;
+    [_device, _clientCleanupFunction] call _bombTimerFunction;
 };
 
 if (hasInterface) then {
 
     if (GETVAR(_device,aquerr_wire_bomb_interface_initialized,false)) exitWith {};
 
-    [_removeBombActionsFunction] call _prepareClientVariablesFunction;
-    [_device, _enterDigitFunction, _prepareDigitActionFunction, _prepareClearCodeFunction, _explodeFunction, _removeBombActionsFunction, _prepareCheckTimeFunction, _prepareCheckSerialNumberFunction, _prepareOpenGuiFunction] call _prepareActionsFunction;
-    [_device] call _registerEventHandlersFunction;
+    [_clientCleanupFunction] call _prepareClientVariablesFunction;
+    [_device, _prepareDigitActionFunction, _prepareClearCodeFunction, _prepareCheckTimeFunction, _prepareCheckSerialNumberFunction, _prepareOpenGuiFunction] call _prepareActionsFunction;
+    [_device, _explosionClassName] call _registerEventHandlersFunction;
 };

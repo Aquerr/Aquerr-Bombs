@@ -147,6 +147,8 @@ private _explodeFunction = {
             hint LLSTRING(BombDefused);
             [_device, QGVAR(BombDefuse)] remoteExec ["say3D"];
 
+            [QGVAR(BombDefused), [_device, _defuser]] call CBA_fnc_globalEvent;
+
             _afterDefuseFunction = _device getVariable ["aquerr_bomb_after_defuse_function", {}];
             [_device, _defuser] call _afterDefuseFunction;
         } else {

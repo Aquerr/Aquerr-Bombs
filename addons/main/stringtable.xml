@@ -81,9 +81,9 @@
             <English>Cut red wire</English>
             <Polish>Przetnij czerwony kabel</Polish>
         </Key>
-        <Key ID="str_abombs_main_openbombgui">
-            <English>Open bomb GUI</English>
-            <Polish>Otwórz GUI</Polish>
+        <Key ID="str_abombs_main_openbombinterface">
+            <English>Open bomb interface</English>
+            <Polish>Otwórz interfejs bomby</Polish>
         </Key>
     </Package>
 </Project>

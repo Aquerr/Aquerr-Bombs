@@ -8,6 +8,11 @@ PREP(scroll_action_keypad_bomb);
 PREP(open_simple_bomb_interface);
 
 // GUI Buttons
-PREP(bomb_gui_clear_code);
-PREP(bomb_gui_enter_digit);
-PREP(bomb_gui_view_back_panel);
+PREP(gui_bomb_clear_code);
+PREP(gui_bomb_enter_digit);
+PREP(gui_bomb_view_back_panel);
+
+// Bomb functions
+PREP(bomb_enter_digit);
+PREP(bomb_clear_entered_code);
+PREP(bomb_explode);
