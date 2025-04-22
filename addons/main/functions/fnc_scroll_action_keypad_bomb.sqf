@@ -117,9 +117,9 @@ private _bombTimerFunction = {
     hint (format [ LLSTRING(CurrentBombCode) + ": %1", _newCode]);
 
     _solutionCode = _device getVariable ["aquerr_bomb_solution_code", ""];
-    if ((count _newCode) == (count _solutionCode)) then {
+    if ((count _newCode) >= (count _solutionCode)) then {
         if (_solutionCode isEqualTo _newCode) then {
-            call _removeBombActionsFunction;
+            [_device] call _removeBombActionsFunction;
             _device setVariable ["aquerr_bomb_is_armed", false, true];
             hint LLSTRING(BombDefused);
             [_device, QGVAR(BombDefuse)] remoteExec ["say3D"];
@@ -127,8 +127,8 @@ private _bombTimerFunction = {
             _afterDefuseFunction = _device getVariable ["aquerr_bomb_after_defuse_function", {}];
             [_device, _defuser] call _afterDefuseFunction; 
         } else {
-            call _removeBombActionsFunction;
-            call _explodeFunction;
+            [_device] call _removeBombActionsFunction;
+            [_device] call _explodeFunction;
         };
     };
  };
@@ -293,8 +293,45 @@ private _bombTimerFunction = {
     ];
  };
 
+ private _prepareOpenGuiFunction = {
+    params ["_device", "_actionName"];
+
+    private _openGui = {
+        params ["_device"];
+        [_device] call FUNC(open_simple_bomb_interface);
+    };
+
+    _action = ["open_gui", _actionName, "",
+        {
+            params ["_target", "_player", "_actionParams"];
+            [_target] call (_actionParams select 0);
+
+        }, {true}, {}, [_openGui]] call ace_interact_menu_fnc_createAction;
+
+        [_device, 0, ["ACE_MainActions"], _action] call ace_interact_menu_fnc_addActionToObject;
+
+    _device addAction
+    [
+        format ["<t color='#00FF00'>%1</t>", _actionName],	// title
+        {
+            params ["_target", "_caller", "_actionId", "_arguments"]; // script
+            [_target] call (_arguments select 0);
+        },
+        [_openGui],		// arguments
+        1.5,		// priority
+        true,		// showWindow
+        true,		// hideOnUse
+        "",			// shortcut
+        "true",		// condition
+        3,			// radius
+        false,		// unconscious
+        "",			// selection
+        ""			// memoryPoint
+    ];
+ };
+
  private _prepareActionsFunction = {
-        params ["_device", "_enterDigitFunction", "_prepareDigitActionFunction", "_prepareClearCodeFunction", "_explodeFunction", "_removeBombActionsFunction", "_prepareCheckTimeFunction", "_prepareCheckSerialNumberFunction"];
+        params ["_device", "_enterDigitFunction", "_prepareDigitActionFunction", "_prepareClearCodeFunction", "_explodeFunction", "_removeBombActionsFunction", "_prepareCheckTimeFunction", "_prepareCheckSerialNumberFunction", "_prepareOpenGuiFunction"];
 
         _actionParent = ["aquerr_bomb_keypad", LLSTRING(AceMenuBombKeyboard), "", {}, {true}, {}, []] call ace_interact_menu_fnc_createAction;
         [_device, 0, ["ACE_MainActions"], _actionParent] call ace_interact_menu_fnc_addActionToObject;
@@ -302,6 +339,7 @@ private _bombTimerFunction = {
         [_device, 0, ["ACE_MainActions"], _actionParent] call ace_interact_menu_fnc_addActionToObject;
 
         _bombActionIds = [];
+        _bombActionIds pushBack ([_device, LLSTRING(OpenBombGui)] call _prepareOpenGuiFunction);
         _bombActionIds pushBack ([_device, LLSTRING(CheckBombTime)] call _prepareCheckTimeFunction);
         _bombActionIds pushBack ([_device, LLSTRING(ClearBombCode)] call _prepareClearCodeFunction);
         _bombActionIds pushBack ([_device, LLSTRING(CheckBombSerialNumber)] call _prepareCheckSerialNumberFunction);
@@ -320,7 +358,7 @@ private _bombTimerFunction = {
  };
 
  private _prepareServerVariablesFunction = {
-     params ["_solutionCode", "_timeSeconds", "_explosionClassName", "_shouldBeep", "_serialNumber", "_afterDefuseFunction"];
+     params ["_solutionCode", "_timeSeconds", "_explosionClassName", "_shouldBeep", "_serialNumber", "_afterDefuseFunction", "_explodeFunction"];
 
      _device setVariable ["aquerr_bomb_solution_code", _solutionCode, true];
      _device setVariable ["aquerr_bomb_is_armed", true, true];
@@ -330,12 +368,14 @@ private _bombTimerFunction = {
      _device setVariable ["aquerr_bomb_beep_enabled", _shouldBeep, true];
      _device setVariable ["aquerr_bomb_serial_number", _serialNumber, true];
      _device setVariable ["aquerr_bomb_after_defuse_function", _afterDefuseFunction, true];
+     _device setVariable ["aquerr_bomb_explode_function", _explodeFunction, true];
  };
 
  private _prepareClientVariablesFunction = {
-    params [];
+    params ["_removeBombActionsFunction"];
 
     SETVAR(_device,aquerr_wire_bomb_interface_initialized,true);
+    SETVAR(_device,aquerr_bomb_remove_actions_function,_removeBombActionsFunction);
  };
 
  private _registerEventHandlersFunction = {
@@ -366,7 +406,7 @@ if (isServer) then {
 
     if (_device getVariable ["aquerr_bomb_is_armed", false]) exitWith {hint LLSTRING(BombAlreadyArmed);};
 
-    [_solutionCode, _timeSeconds, _explosionClassName, _shouldBeep, _serialNumber, _afterDefuseFunction] call _prepareServerVariablesFunction;
+    [_solutionCode, _timeSeconds, _explosionClassName, _shouldBeep, _serialNumber, _afterDefuseFunction, _explodeFunction] call _prepareServerVariablesFunction;
     [_device, _explodeFunction, _removeBombActionsFunction] call _bombTimerFunction;
 };
 
@@ -374,7 +414,7 @@ if (hasInterface) then {
 
     if (GETVAR(_device,aquerr_wire_bomb_interface_initialized,false)) exitWith {};
 
-    [] call _prepareClientVariablesFunction;
-    [_device, _enterDigitFunction, _prepareDigitActionFunction, _prepareClearCodeFunction, _explodeFunction, _removeBombActionsFunction, _prepareCheckTimeFunction, _prepareCheckSerialNumberFunction] call _prepareActionsFunction;
+    [_removeBombActionsFunction] call _prepareClientVariablesFunction;
+    [_device, _enterDigitFunction, _prepareDigitActionFunction, _prepareClearCodeFunction, _explodeFunction, _removeBombActionsFunction, _prepareCheckTimeFunction, _prepareCheckSerialNumberFunction, _prepareOpenGuiFunction] call _prepareActionsFunction;
     [_device] call _registerEventHandlersFunction;
 };

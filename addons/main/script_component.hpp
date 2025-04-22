@@ -18,6 +18,9 @@
 // Include BI DIK codes
 #include "\a3\ui_f\hpp\defineDIKCodes.inc"
 
+// Include common grids
+#include "\a3\ui_f\hpp\defineCommonGrids.inc"
+
 #define SIZEX ((safeZoneW / safeZoneH) min 1.2)
 #define SIZEY (SIZEX / 1.2)
 #define W_PART(num) (num * (SIZEX / 40))

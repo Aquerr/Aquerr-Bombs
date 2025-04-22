@@ -17,3 +17,5 @@ class CfgPatches {
 #include "CfgEventHandlers.hpp"
 #include "CfgSounds.hpp"
 #include "CfgUnitInsignia.hpp"
+#include "ui\Constants.hpp"
+#include "ui\Simple_Bomb_Interfaces.hpp"

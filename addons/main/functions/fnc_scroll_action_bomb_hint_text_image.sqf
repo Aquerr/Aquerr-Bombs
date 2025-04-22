@@ -150,7 +150,7 @@ private _explodeFunction = {
             _afterDefuseFunction = _device getVariable ["aquerr_bomb_after_defuse_function", {}];
             [_device, _defuser] call _afterDefuseFunction;
         } else {
-            call _explodeFunction;
+            [_device] call _explodeFunction;
         };
  };
 
