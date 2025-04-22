@@ -85,5 +85,9 @@
             <English>Open bomb interface</English>
             <Polish>Otwórz interfejs bomby</Polish>
         </Key>
+        <Key ID="str_abombs_main_wirecountcantbelessthanfour">
+            <English>Wire count cannot be less than four</English>
+            <Polish>Liczba kabli nie może być mniejsza niż cztery</Polish>
+        </Key>
     </Package>
 </Project>

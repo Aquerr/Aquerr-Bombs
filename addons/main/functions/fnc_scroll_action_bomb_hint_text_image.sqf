@@ -13,7 +13,7 @@
 		2: NUMBER - optional, the bomb time (0 = no time, the bomb will explode only on wrong cable cut)
 		3: BOOLEAN - if the bomb should beep every second
 		4: STRING - optional, the wire sign (default "|"). Pass nil if you want to use the default sign.
-		5: NUMBER - optional, the wires count (default 40). Pass nil if you want to use the default count.
+		5: NUMBER - optional, the wires count (default 40). Can't be less than 4. Pass nil if you want to use the default count.
 		6: STRING - optional, the explosion class name to use
 		            // "ammo_Missile_Cruise_01" (very big)
                     // "helicopterExploBig" (big)
@@ -30,6 +30,7 @@
 params ["_device", ["_timeSeconds", 60, [0]], ["_shouldBeep", true, [true]], ["_wireSign", "|", ["string"]], ["_wireCount", 40, [40]], ["_explosionClassName", "DemoCharge_Remote_Ammo", ["string"]], ["_afterDefuseFunction", {}, [{}]], ["_global", true, [true]]];
 
 if ((isNil "_device") || {isNull(_device)}) exitWith { hint LELSTRING(common,MustSelectObject) };
+if ((_wireCount < 4)) exitWith { hint LLSTRING(WireCountCantBeLessThanFour)};
 
 if (_global && {isMultiplayer} && {isNil {_device getVariable QGVAR(scroll_action_bomb_hint_text_image_JIP)}}) exitWith {
 
@@ -44,6 +45,24 @@ if (_global && {isMultiplayer} && {isNil {_device getVariable QGVAR(scroll_actio
 private _generateBombWires = {
     params ["_device", "_wireCount"];
 
+    private _remaining = _wireCount - 3; // At least one for each wire color.
+
+    private _correctWires = 0;
+    private _wires2 = 0;
+    private _wires3 = 0;
+
+    while {true} do {
+        private _part1 = floor random (_remaining + 1);
+        private _part2 = floor random (_remaining - _part1 + 1);
+        private _part3 = floor random (_remaining - _part1 - _part2);
+
+        _correctWires = _part1 + 1;
+        _wires2 = _part2 + 1;
+        _wires3 = _part3 + 1;
+
+        if (_correctWires > _wires2 && _correctWires > _wires3) exitWith {};
+    };
+
     // Generate wires
     // 1 = Red
     // 2 = Green
@@ -52,30 +71,42 @@ private _generateBombWires = {
     private _solutionWireColor = (floor random (count _possibleWireColors)) + 1;
     private _wrongWireColors = _possibleWireColors select {_x != _solutionWireColor};
 
-    private _remaining = _wireCount mod (count _possibleWireColors);
-    private _correctWiresCount = floor (_wireCount / (count _possibleWireColors)) + _remaining;
-    private _wrongWiresCount = floor (_wireCount / (count _possibleWireColors)) * (count _possibleWireColors - 1);
+    //TODO: Make the old randomization way "HARD MODE"
+    // private _remaining = _wireCount mod (count _possibleWireColors);
+    // private _correctWiresCount = floor (_wireCount / (count _possibleWireColors)) + _remaining;
+    // private _wrongWiresCount = floor (_wireCount / (count _possibleWireColors)) * (count _possibleWireColors - 1);
 
-    if (_remaining == 0) then {
-        // Change two wrong cables to correct ones
-        _wrongWiresCount = _wrongWiresCount - 2;
-        _correctWiresCount = _correctWiresCount + 2;
-    };
+    // if (_remaining == 0) then {
+    //     // Change two wrong cables to correct ones
+    //     _wrongWiresCount = _wrongWiresCount - 2;
+    //     _correctWiresCount = _correctWiresCount + 2;
+    // };
 
     private _wires = []; // Contains wires in following format [wire_color, wire_color];
+    
+    //TODO: Make the old randomization way "HARD MODE"
+    // Add wrong wrires
+    // {
+    //     _wrongWireColor = _x;
+    //     for "_i" from 1 to (_wrongWiresCount / 2) do {
+    //         _wires pushBack _wrongWireColor;
+    //     };
+    // } forEach _wrongWireColors;
+
     // Add correct wires
-    for "_i" from 1 to _correctWiresCount do {
+    for "_i" from 1 to _correctWires do {
         _wires pushBack _solutionWireColor;
     };
 
-    // Add wrong writes
-    {
-        _wrongWireColor = _x;
-        for "_i" from 1 to (_wrongWiresCount / 2) do {
-            _wires pushBack _wrongWireColor;
-        };
+    _wrongWireColor1 = _wrongWireColors select 0;
+    for "_i" from 1 to (_wires2) do {
+        _wires pushBack _wrongWireColor1;
+    };
 
-    } forEach _wrongWireColors;
+    _wrongWireColor2 = _wrongWireColors select 1;
+    for "_i" from 1 to (_wires3) do {
+        _wires pushBack _wrongWireColor2;
+    };
 
     _device setVariable ["aquerr_bomb_wires", _wires call BIS_fnc_arrayShuffle, true];
     _device setVariable ["aquerr_bomb_solution_wire", _solutionWireColor, true];
