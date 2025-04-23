@@ -17,7 +17,6 @@
 
 params ["_defuser", "_bomb", "_digit"];
 
-_explodeFunction = _bomb getVariable ["aquerr_bomb_explode_function", {}];
 _clientCleanUpFunction = _bomb getVariable ["aquerr_bomb_client_cleanup_function", {}];
 _afterDefuseFunction = _bomb getVariable ["aquerr_bomb_after_defuse_function", {}];
 
@@ -31,7 +30,7 @@ _bomb setVariable ["aquerr_bomb_entered_code", _newCode, true];
 hint (format [(LLSTRING(CurrentBombCode)) + ": %1", _newCode]);
 
 _solutionCode = _bomb getVariable ["aquerr_bomb_solution_code", ""];
-if ((count _newCode) == (count _solutionCode)) then {
+if ((count _newCode) >= (count _solutionCode)) then {
     if (_solutionCode isEqualTo _newCode) then {
         [_bomb] call _clientCleanUpFunction;
         _bomb setVariable ["aquerr_bomb_is_armed", false, true];
@@ -44,6 +43,6 @@ if ((count _newCode) == (count _solutionCode)) then {
         [_bomb, _defuser] call _afterDefuseFunction; 
     } else {
         [_bomb] call _clientCleanUpFunction;
-        [_bomb] call _explodeFunction;
+        [_defuser, _bomb] call FUNC(bomb_explode);
     };
 };
