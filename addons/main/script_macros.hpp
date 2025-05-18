@@ -22,7 +22,9 @@
 #ifdef DISABLE_COMPILE_CACHE
     #undef PREP
     #define PREP(fncName) DFUNC(fncName) = compile preprocessFileLineNumbers QPATHTOF(functions\DOUBLES(fnc,fncName).sqf)
+    #define PREP_BY_PATH(fncName, fncPath) DFUNC(fncName) = compile preprocessFileLineNumbers QPATHTOF(fncPath)
 #else
     #undef PREP
     #define PREP(fncName) [QPATHTOF(functions\DOUBLES(fnc,fncName).sqf), QFUNC(fncName)] call CBA_fnc_compileFunction
+    #define PREP_BY_PATH(fncName, fncPath) [QPATHTOF(fncPath), QFUNC(fncName)] call CBA_fnc_compileFunction
 #endif

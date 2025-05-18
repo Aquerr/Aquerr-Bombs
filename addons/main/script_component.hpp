@@ -27,3 +27,19 @@
 #define H_PART(num) (num * (SIZEY / 25))
 #define X_PART(num) (W_PART(num) + (safeZoneX + (safeZoneW - SIZEX) / 2))
 #define Y_PART(num) (H_PART(num) + (safeZoneY + (safeZoneH - SIZEY) / 2))
+
+// #define UI_X(numPx) (safeZoneX + (pixelW * numPx))
+// #define UI_Y(numPx) (safeZoneY + (pixelH * numPx))
+// #define UI_W(numPx) (safeZoneW / (pixelW * numPx))
+// #define UI_H(numPx) (safeZoneH / (pixelH * numPx))
+
+// pixel grids macros
+#define UI_GRID_W (pixelW * pixelGrid)
+#define UI_GRID_H (pixelH * pixelGrid)
+#define UI_GUTTER_W (pixelW * 2)
+#define UI_GUTTER_H (pixelH * 2)
+
+#define UI_X(num) (safeZoneX + safeZoneW - ((num) + UI_GUTTER_W))
+#define UI_Y(num) ((safeZoneY + UI_GUTTER_H) * num)
+#define UI_W(num) (UI_GRID_W * num)
+#define UI_H(num) (UI_GRID_H * num)

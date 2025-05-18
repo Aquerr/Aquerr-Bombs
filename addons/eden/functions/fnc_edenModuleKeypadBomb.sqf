@@ -24,6 +24,6 @@ if (not(_explosionClassNameOverride isEqualTo "")) then {
 
 if ((count _synchronizedObjects) > 0) then {
 	{
-		[_x, _bombTime, _solutionCode, _shouldBeep, _explosionClassName, _serialNumber, _afterDefuseCode] call EFUNC(main,scroll_action_keypad_bomb);
+		[_x, _bombTime, _solutionCode, _shouldBeep, _explosionClassName, _serialNumber, _afterDefuseCode] call EFUNC(main,init_keypad_bomb);
 	} forEach _synchronizedObjects;
 };

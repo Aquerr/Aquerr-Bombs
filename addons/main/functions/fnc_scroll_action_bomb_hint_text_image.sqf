@@ -112,46 +112,6 @@ private _generateBombWires = {
     _device setVariable ["aquerr_bomb_solution_wire", _solutionWireColor, true];
 };
 
-private _bombTimerFunction = {
-    params ["_device", "_explodeFunction"];
-
-    [_device, _explodeFunction] spawn {
-        params ["_device", "_explodeFunction"];
-
-        private _timeLeft = (_device getVariable ["aquerr_bomb_time_seconds", 0]);
-        private _fakeTimer = false;
-        if (_timeLeft == 0) then {
-            _fakeTimer = true;
-        };
-
-        while {true} do {
-
-            if(!alive _device) exitWith {
-                0;
-            };
-
-            if (!(_device getVariable ["aquerr_bomb_is_armed", false])) exitWith {
-                0;
-            };
-
-            sleep 1;
-
-            if (!(_fakeTimer)) then {
-                  if (_timeLeft <= 0) exitWith {
-                      call _explodeFunction;
-                  };
-                _timeLeft = _timeLeft - 1;
-                _device setVariable ["aquerr_bomb_time_seconds", _timeLeft, true];
-            };
-
-            _shouldBeep = _device getVariable ["aquerr_bomb_beep_enabled", false];
-            if (_shouldBeep) then {
-               [_device, QGVAR(BombBeep)] remoteExec ["say3D"];
-            };
-        };
-    };
-};
-
 private _explodeFunction = {
     params ["_device"];
 
@@ -386,17 +346,16 @@ private _explodeFunction = {
 
  //Variables
  private _prepareServerVariablesFunction = {
-     params ["_timeSeconds", "_explosionClassName", "_shouldBeep", "_afterDefuseFunction"];
+     params ["_explosionClassName", "_shouldBeep", "_afterDefuseFunction"];
 
      _device setVariable ["aquerr_bomb_beep_enabled", _shouldBeep, true];
      _device setVariable ["aquerr_bomb_is_armed", true, true];
-     _device setVariable ["aquerr_bomb_time_seconds", _timeSeconds, true];
      _device setVariable ["aquerr_bomb_explosion_class_name", _explosionClassName, true];
      _device setVariable ["aquerr_bomb_after_defuse_function", _afterDefuseFunction, true];
  };
 
  private _prepareClientVariablesFunction = {
-    params [];
+    params ["_device"];
 
     SETVAR(_device,aquerr_wire_bomb_interface_initialized,true);
  };
@@ -434,8 +393,8 @@ if (isServer) then {
 
     if (_device getVariable ["aquerr_bomb_is_armed", false]) exitWith {hint LLSTRING(BombAlreadyArmed);};
 
-    [_timeSeconds, _explosionClassName, _shouldBeep, _afterDefuseFunction] call _prepareServerVariablesFunction;
-    [_device, _explodeFunction] call _bombTimerFunction;
+    [_explosionClassName, _shouldBeep, _afterDefuseFunction] call _prepareServerVariablesFunction;
+    [_device, _timeSeconds] call FUNC(init_bomb_timer);
     [_device, _wireCount] call _generateBombWires;
 };
 
@@ -443,7 +402,7 @@ if (hasInterface) then {
 
     if (GETVAR(_device,aquerr_wire_bomb_interface_initialized,false)) exitWith {};
 
-    [] call _prepareClientVariablesFunction;
+    [_device] call _prepareClientVariablesFunction;
     [_device, _cutColoredWireFunction, _prepareWireCutAction, _prepareShowBombWiresInHintAction, _explodeFunction, _showWiresInHintFunction, _wireSign, _prepareCheckTimeFunction] call _prepareActionsFunction;
     [_device] call _registerEventHandlersFunction;
 };

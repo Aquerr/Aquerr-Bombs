@@ -18,4 +18,5 @@ class CfgPatches {
 #include "CfgSounds.hpp"
 #include "CfgUnitInsignia.hpp"
 #include "ui\Constants.hpp"
-#include "ui\Simple_Bomb_Interfaces.hpp"
+#include "ui\Classic_Keypad_Bomb_Interface.hpp"
+#include "ui\Keypad_Bomb_Interface.hpp"

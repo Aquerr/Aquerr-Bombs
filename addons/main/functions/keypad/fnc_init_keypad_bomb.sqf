@@ -1,4 +1,4 @@
-#include "script_component.hpp"
+#include "..\script_component.hpp"
 
 /*
 	Author: Aquerr (also known as Nerdi)
@@ -22,23 +22,23 @@
         7: BOOL - optional, if the script should be run globally. Can be skipped in most cases.
 
 	Example:
-		[_myBombThing, 60, "2454"] call abombs_main_fnc_scroll_action_keypad_bomb;
-		[_myBombThing, 0, "123", true, "GrenadeHand"] call abombs_main_fnc_scroll_action_keypad_bomb;
-        [_myBombThing, 0, "123", true, "DemoCharge_Remote_Ammo"] call abombs_main_fnc_scroll_action_keypad_bomb;
+		[_myBombThing, 60, "2454"] call abombs_main_fnc_init_keypad_bomb;
+		[_myBombThing, 0, "123", true, "GrenadeHand"] call abombs_main_fnc_init_keypad_bomb;
+        [_myBombThing, 0, "123", true, "DemoCharge_Remote_Ammo"] call abombs_main_fnc_init_keypad_bomb;
 */
 
 params ["_device", ["_timeSeconds", 60, [0]], ["_solutionCode", "0000", ["string"]], ["_shouldBeep", true, [true]], ["_explosionClassName", "DemoCharge_Remote_Ammo", ["string"]], ["_serialNumber", "", ["string"]], ["_afterDefuseFunction", {}, [{}]], ["_global", true, [true]]];
 
 if ((isNil "_device") || {isNull(_device)}) exitWith { hint LELSTRING(common,MustSelectObject) };
 
-if (_global && {isMultiplayer} && {isNil {_device getVariable QGVAR(scroll_action_keypad_bomb_JIP)}}) exitWith {
+if (_global && {isMultiplayer} && {isNil {_device getVariable QGVAR(init_keypad_bomb_JIP)}}) exitWith {
 
-    private _id = [QGVAR(scroll_action_keypad_bomb), [_device, _timeSeconds, _solutionCode, _shouldBeep, _explosionClassName, _serialNumber, _afterDefuseFunction, false]] call CBA_fnc_globalEventJIP;
+    private _id = [QGVAR(init_keypad_bomb), [_device, _timeSeconds, _solutionCode, _shouldBeep, _explosionClassName, _serialNumber, _afterDefuseFunction, false]] call CBA_fnc_globalEventJIP;
 
     // Remove JIP EH if object is deleted
     [_id, _device] call CBA_fnc_removeGlobalEventJIP;
 
-    _device setVariable [QGVAR(scroll_action_keypad_bomb_JIP), _id, true];
+    _device setVariable [QGVAR(init_keypad_bomb_JIP), _id, true];
 };
 
 private _clientCleanupFunction = {
@@ -50,47 +50,6 @@ private _clientCleanupFunction = {
     } forEach _actionIds;
 };
 
-private _bombTimerFunction = {
-    params ["_bomb", "_clientCleanupFunction"];
-
-    [_bomb, _clientCleanupFunction] spawn {
-        params ["_bomb", "_clientCleanupFunction"];
-
-        private _timeLeft = (_bomb getVariable ["aquerr_bomb_time_seconds", 0]);
-        private _fakeTimer = false;
-        if (_timeLeft == 0) then {
-            _fakeTimer = true;
-        };
-
-        while {true} do {
-
-            if(!alive _bomb) exitWith {
-                0;
-            };
-
-            if (!(_bomb getVariable ["aquerr_bomb_is_armed", false])) exitWith {
-                0;
-            };
-
-            sleep 1;
-
-            if (!(_fakeTimer)) then {
-                  if (_timeLeft <= 0) exitWith {
-                      call _clientCleanupFunction;
-                      [objNull, _bomb] call FUNC(bomb_explode);
-                  };
-                _timeLeft = _timeLeft - 1;
-                _bomb setVariable ["aquerr_bomb_time_seconds", _timeLeft, true];
-            };
-
-            _shouldBeep = _bomb getVariable ["aquerr_bomb_beep_enabled", false];
-            if (_shouldBeep) then {
-               [_bomb, QGVAR(BombBeep)] remoteExec ["say3D"];
-            };
-        };
-    };
-};
-
  private _prepareDigitActionFunction = {
         params ["_device", "_digit"];
 
@@ -98,7 +57,7 @@ private _bombTimerFunction = {
         {
             params ["_target", "_player", "_actionParams"];
             _digit = _actionParams select 0;
-            [_player, _target, _digit] call FUNC(bomb_enter_digit);
+            [_player, _target, _digit, true] call FUNC(bomb_enter_digit);
 
         }, {true}, {}, [_digit]] call ace_interact_menu_fnc_createAction;
 
@@ -111,7 +70,7 @@ private _bombTimerFunction = {
                 params ["_target", "_caller", "_actionId", "_arguments"]; // script
 
                 _digit = _arguments select 0;
-                [_caller, _target, _digit] call FUNC(bomb_enter_digit);
+                [_caller, _target, _digit, true] call FUNC(bomb_enter_digit);
             },
             [_digit],		// arguments
             1.5,		// priority
@@ -248,7 +207,8 @@ private _bombTimerFunction = {
 
     private _openGui = {
         params ["_device"];
-        [_device] call FUNC(open_simple_bomb_interface);
+        // [_device] call FUNC(open_classic_bomb_interface);
+        [_device] call FUNC(open_keypad_bomb_interface);
     };
 
     _action = ["open_gui", _actionName, "",
@@ -308,12 +268,11 @@ private _bombTimerFunction = {
  };
 
  private _prepareServerVariablesFunction = {
-     params ["_solutionCode", "_timeSeconds", "_explosionClassName", "_shouldBeep", "_serialNumber", "_afterDefuseFunction"];
+     params ["_solutionCode", "_explosionClassName", "_shouldBeep", "_serialNumber", "_afterDefuseFunction"];
 
      _device setVariable ["aquerr_bomb_type", "KEYPAD", true];
      _device setVariable ["aquerr_bomb_solution_code", _solutionCode, true];
      _device setVariable ["aquerr_bomb_is_armed", true, true];
-     _device setVariable ["aquerr_bomb_time_seconds", _timeSeconds, true];
      _device setVariable ["aquerr_bomb_entered_code", "", true];
      _device setVariable ["aquerr_explosion_class_name", _explosionClassName, true];
      _device setVariable ["aquerr_bomb_beep_enabled", _shouldBeep, true];
@@ -322,10 +281,10 @@ private _bombTimerFunction = {
  };
 
  private _prepareClientVariablesFunction = {
-    params ["_clientCleanupFunction"];
+    params ["_device", "_clientCleanupFunction"];
 
-    SETVAR(_device,aquerr_wire_bomb_interface_initialized,true);
-    SETVAR(_device,aquerr_bomb_client_cleanup_function,_clientCleanupFunction);
+    SETVAR(_device,aquerr_keypad_bomb_interface_initialized,true);
+    _device setVariable ["aquerr_bomb_client_cleanup_function", _clientCleanupFunction];
  };
 
  private _registerEventHandlersFunction = {
@@ -338,15 +297,15 @@ if (isServer) then {
 
     if (_device getVariable ["aquerr_bomb_is_armed", false]) exitWith {hint LLSTRING(BombAlreadyArmed);};
 
-    [_solutionCode, _timeSeconds, _explosionClassName, _shouldBeep, _serialNumber, _afterDefuseFunction] call _prepareServerVariablesFunction;
-    [_device, _clientCleanupFunction] call _bombTimerFunction;
+    [_solutionCode, _explosionClassName, _shouldBeep, _serialNumber, _afterDefuseFunction] call _prepareServerVariablesFunction;
+    [_device, _timeSeconds] call FUNC(init_bomb_timer);
 };
 
 if (hasInterface) then {
 
-    if (GETVAR(_device,aquerr_wire_bomb_interface_initialized,false)) exitWith {};
+    if (GETVAR(_device,aquerr_keypad_bomb_interface_initialized,false)) exitWith {};
 
-    [_clientCleanupFunction] call _prepareClientVariablesFunction;
+    [_device, _clientCleanupFunction] call _prepareClientVariablesFunction;
     [_device, _prepareDigitActionFunction, _prepareClearCodeFunction, _prepareCheckTimeFunction, _prepareCheckSerialNumberFunction, _prepareOpenGuiFunction] call _prepareActionsFunction;
     [_device, _explosionClassName] call _registerEventHandlersFunction;
 };

@@ -14,9 +14,9 @@ GVAR(Bomb_Interface_Target) = _bomb;
     params ["_bomb"];
 
     waitUntil {not dialog};
-    waitUntil {createDialog QGVAR(Simple_Keypad_Bomb_Interface_Dialog)};
+    waitUntil {createDialog QGVAR(Classic_Keypad_Bomb_Interface_Dialog)};
 
-    _dialog = findDisplay SIMPLE_KEYPAD_BOMB_INTERFACE_ID;
+    _dialog = findDisplay CLASSIC_KEYPAD_BOMB_INTERFACE_ID;
 
     // Refresh bomb solution code display and timer
     [

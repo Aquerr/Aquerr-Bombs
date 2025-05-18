@@ -1,4 +1,4 @@
-#include "script_component.hpp"
+#include "..\script_component.hpp"
 /*
 	Author: Aquerr (also known as Nerdi)
 	https://github.com/Aquerr
@@ -10,12 +10,13 @@
         0: OBJECT - the defuser player
         1: OBJECT - the bomb
         2: NUMBER - the digit
+        3: BOOL - if current code should be displayed in hint
 
 	Example:
         [_player, _bomb, 2] call abombs_main_fnc_bomb_enter_digit;
 */
 
-params ["_defuser", "_bomb", "_digit"];
+params ["_defuser", "_bomb", "_digit", ["_showInHint", false]];
 
 _clientCleanUpFunction = _bomb getVariable ["aquerr_bomb_client_cleanup_function", {}];
 _afterDefuseFunction = _bomb getVariable ["aquerr_bomb_after_defuse_function", {}];
@@ -27,7 +28,9 @@ _newCode = (format  ["%1%2", (_bomb getVariable ["aquerr_bomb_entered_code", ""]
 _bomb setVariable ["aquerr_bomb_entered_code", _newCode, true];
 [QGVAR(BombEnteredDigit), [_bomb, _defuser]] call CBA_fnc_globalEvent;
 
-hint (format [(LLSTRING(CurrentBombCode)) + ": %1", _newCode]);
+if (_showInHint) then {
+    hint (format [(LLSTRING(CurrentBombCode)) + ": %1", _newCode]);
+};
 
 _solutionCode = _bomb getVariable ["aquerr_bomb_solution_code", ""];
 if ((count _newCode) >= (count _solutionCode)) then {

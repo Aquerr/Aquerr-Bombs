@@ -16,6 +16,8 @@
 
 params ["_defuser", "_bomb"];
 
+[QGVAR(bomb_explode), [_bomb, _defuser]] call CBA_fnc_globalEvent;
+
 _explosionClassName = _bomb getVariable ["aquerr_explosion_class_name", "DemoCharge_Remote_Ammo"];
 _explosive = _explosionClassName createVehicle (getPos _bomb);
 deleteVehicle _bomb;
