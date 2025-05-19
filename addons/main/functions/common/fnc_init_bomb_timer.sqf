@@ -1,11 +1,12 @@
 #include "..\script_component.hpp"
 
-params ["_bomb", "_timeInSeconds"];
+params ["_bomb", ["_timeInSeconds", 60, [0]], ["_shouldBeep", true, [true]]];
 
 // Should only run on the server
 if (!isServer) exitWith {};
 
 _bomb setVariable ["aquerr_bomb_time_seconds", _timeInSeconds, true];
+_bomb setVariable ["aquerr_bomb_beep_enabled", _shouldBeep, true];
 
 [_bomb, _timeInSeconds] spawn {
     params ["_bomb"];

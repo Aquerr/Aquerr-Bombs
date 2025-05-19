@@ -31,6 +31,7 @@ params ["_device", ["_timeSeconds", 60, [0]], ["_solutionCode", "0000", ["string
 
 if ((isNil "_device") || {isNull(_device)}) exitWith { hint LELSTRING(common,MustSelectObject) };
 
+// Code for server + future players
 if (_global && {isMultiplayer} && {isNil {_device getVariable QGVAR(init_keypad_bomb_JIP)}}) exitWith {
 
     private _id = [QGVAR(init_keypad_bomb), [_device, _timeSeconds, _solutionCode, _shouldBeep, _explosionClassName, _serialNumber, _afterDefuseFunction, false]] call CBA_fnc_globalEventJIP;
@@ -50,262 +51,39 @@ private _clientCleanupFunction = {
     } forEach _actionIds;
 };
 
- private _prepareDigitActionFunction = {
-        params ["_device", "_digit"];
-
-        _action = [(format ["number_%1", _digit]), _digit, "",
-        {
-            params ["_target", "_player", "_actionParams"];
-            _digit = _actionParams select 0;
-            [_player, _target, _digit, true] call FUNC(bomb_enter_digit);
-
-        }, {true}, {}, [_digit]] call ace_interact_menu_fnc_createAction;
-
-        [_device, 0, ["ACE_MainActions", "aquerr_bomb_keypad"], _action] call ace_interact_menu_fnc_addActionToObject;
-
-        _device addAction
-        [
-            "<t color='#FF0000'>" + _digit + "</t>",	// title
-            {
-                params ["_target", "_caller", "_actionId", "_arguments"]; // script
-
-                _digit = _arguments select 0;
-                [_caller, _target, _digit, true] call FUNC(bomb_enter_digit);
-            },
-            [_digit],		// arguments
-            1.5,		// priority
-            true,		// showWindow
-            true,		// hideOnUse
-            "",			// shortcut
-            "true",		// condition
-            3,			// radius
-            false,		// unconscious
-            "",			// selection
-            ""			// memoryPoint
-        ];
- };
-
- private _prepareClearCodeFunction = {
-        params ["_device", "_actionName"];
-
-        private _clearCodeFunction = {
-            params ["_defuser", "_device"];
-            [_defuser, _device] call FUNC(bomb_clear_entered_code);
-        };
-
-        _action = ["code_clear", _actionName, "",
-        {
-            params ["_target", "_player", "_actionParams"];
-            [_player, _target] call (_actionParams select 0);
-
-        }, {true}, {}, [_clearCodeFunction]] call ace_interact_menu_fnc_createAction;
-
-        [_device, 0, ["ACE_MainActions", "aquerr_bomb_keypad"], _action] call ace_interact_menu_fnc_addActionToObject;
-
-        _device addAction
-        [
-            format ["<t color='#00FF00'>%1</t>", _actionName],	// title
-            {
-                params ["_target", "_caller", "_actionId", "_arguments"]; // script
-                [_caller, _target] call (_arguments select 0);
-            },
-            [_clearCodeFunction],		// arguments
-            1.5,		// priority
-            true,		// showWindow
-            true,		// hideOnUse
-            "",			// shortcut
-            "true",		// condition
-            3,			// radius
-            false,		// unconscious
-            "",			// selection
-            ""			// memoryPoint
-        ];
- };
-
- private _prepareCheckTimeFunction = {
-    params ["_device", "_actionName"];
-
-    private _checkTimeFunction = {
-        params ["_device"];
-        _bombTimeSeconds = _device getVariable ["aquerr_bomb_time_seconds", 0];
-        _bombTimeSecondsStr = str _bombTimeSeconds;
-        if (_bombTimeSeconds == 0) then {
-            _bombTimeSecondsStr = "???";
-        };
-        hint format[ LLSTRING(BombTime) + ": %1s", _bombTimeSecondsStr];
-    };
-
-    _action = ["code_clear", _actionName, "",
-        {
-            params ["_target", "_player", "_actionParams"];
-            [_target] call (_actionParams select 0);
-
-        }, {true}, {}, [_checkTimeFunction]] call ace_interact_menu_fnc_createAction;
-
-        [_device, 0, ["ACE_MainActions"], _action] call ace_interact_menu_fnc_addActionToObject;
-
-    _device addAction
-    [
-        format ["<t color='#00FF00'>%1</t>", _actionName],	// title
-        {
-            params ["_target", "_caller", "_actionId", "_arguments"]; // script
-            [_target] call (_arguments select 0);
-        },
-        [_checkTimeFunction],		// arguments
-        1.5,		// priority
-        true,		// showWindow
-        true,		// hideOnUse
-        "",			// shortcut
-        "true",		// condition
-        3,			// radius
-        false,		// unconscious
-        "",			// selection
-        ""			// memoryPoint
-    ];
- };
-
- private _prepareCheckSerialNumberFunction = {
-    params ["_device", "_actionName"];
-
-    private _checkSerialNumber = {
-        params ["_device"];
-        _bombSerialNumber = _device getVariable ["aquerr_bomb_serial_number", ""];
-        hint format[ LLSTRING(BombSerialNumber) + ": %1", _bombSerialNumber];
-    };
-
-    _action = ["check_serial_number", _actionName, "",
-        {
-            params ["_target", "_player", "_actionParams"];
-            [_target] call (_actionParams select 0);
-
-        }, {true}, {}, [_checkSerialNumber]] call ace_interact_menu_fnc_createAction;
-
-        [_device, 0, ["ACE_MainActions", "aquerr_bomb_back"], _action] call ace_interact_menu_fnc_addActionToObject;
-
-    _device addAction
-    [
-        format ["<t color='#00FF00'>%1</t>", _actionName],	// title
-        {
-            params ["_target", "_caller", "_actionId", "_arguments"]; // script
-            [_target] call (_arguments select 0);
-        },
-        [_checkSerialNumber],		// arguments
-        1.5,		// priority
-        true,		// showWindow
-        true,		// hideOnUse
-        "",			// shortcut
-        "true",		// condition
-        3,			// radius
-        false,		// unconscious
-        "",			// selection
-        ""			// memoryPoint
-    ];
- };
-
- private _prepareOpenGuiFunction = {
-    params ["_device", "_actionName"];
-
-    private _openGui = {
-        params ["_device"];
-        // [_device] call FUNC(open_classic_bomb_interface);
-        [_device] call FUNC(open_keypad_bomb_interface);
-    };
-
-    _action = ["open_gui", _actionName, "",
-        {
-            params ["_target", "_player", "_actionParams"];
-            [_target] call (_actionParams select 0);
-
-        }, {true}, {}, [_openGui]] call ace_interact_menu_fnc_createAction;
-
-        [_device, 0, ["ACE_MainActions"], _action] call ace_interact_menu_fnc_addActionToObject;
-
-    _device addAction
-    [
-        format ["<t color='#00FF00'>%1</t>", _actionName],	// title
-        {
-            params ["_target", "_caller", "_actionId", "_arguments"]; // script
-            [_target] call (_arguments select 0);
-        },
-        [_openGui],		// arguments
-        1.5,		// priority
-        true,		// showWindow
-        true,		// hideOnUse
-        "",			// shortcut
-        "true",		// condition
-        3,			// radius
-        false,		// unconscious
-        "",			// selection
-        ""			// memoryPoint
-    ];
- };
-
- private _prepareActionsFunction = {
-        params ["_device", "_prepareDigitActionFunction", "_prepareClearCodeFunction", "_prepareCheckTimeFunction", "_prepareCheckSerialNumberFunction", "_prepareOpenGuiFunction"];
-
-        _actionParent = ["aquerr_bomb_keypad", LLSTRING(AceMenuBombKeyboard), "", {}, {true}, {}, []] call ace_interact_menu_fnc_createAction;
-        [_device, 0, ["ACE_MainActions"], _actionParent] call ace_interact_menu_fnc_addActionToObject;
-        _actionParent = ["aquerr_bomb_back", LLSTRING(AceMenuBombBack), "", {}, {true}, {}, []] call ace_interact_menu_fnc_createAction;
-        [_device, 0, ["ACE_MainActions"], _actionParent] call ace_interact_menu_fnc_addActionToObject;
-
-        _bombActionIds = [];
-        _bombActionIds pushBack ([_device, LLSTRING(OpenBombInterface)] call _prepareOpenGuiFunction);
-        _bombActionIds pushBack ([_device, LLSTRING(CheckBombTime)] call _prepareCheckTimeFunction);
-        _bombActionIds pushBack ([_device, LLSTRING(ClearBombCode)] call _prepareClearCodeFunction);
-        _bombActionIds pushBack ([_device, LLSTRING(CheckBombSerialNumber)] call _prepareCheckSerialNumberFunction);
-        _bombActionIds pushBack ([_device, "0"] call _prepareDigitActionFunction);
-        _bombActionIds pushBack ([_device, "1"] call _prepareDigitActionFunction);
-        _bombActionIds pushBack ([_device, "2"] call _prepareDigitActionFunction);
-        _bombActionIds pushBack ([_device, "3"] call _prepareDigitActionFunction);
-        _bombActionIds pushBack ([_device, "4"] call _prepareDigitActionFunction);
-        _bombActionIds pushBack ([_device, "5"] call _prepareDigitActionFunction);
-        _bombActionIds pushBack ([_device, "6"] call _prepareDigitActionFunction);
-        _bombActionIds pushBack ([_device, "7"] call _prepareDigitActionFunction);
-        _bombActionIds pushBack ([_device, "8"] call _prepareDigitActionFunction);
-        _bombActionIds pushBack ([_device, "9"] call _prepareDigitActionFunction);
-
-        _device setVariable ["aquerr_bomb_action_ids", _bombActionIds, clientOwner];
- };
-
  private _prepareServerVariablesFunction = {
-     params ["_solutionCode", "_explosionClassName", "_shouldBeep", "_serialNumber", "_afterDefuseFunction"];
+     params ["_explosionClassName", "_afterDefuseFunction"];
 
      _device setVariable ["aquerr_bomb_type", "KEYPAD", true];
-     _device setVariable ["aquerr_bomb_solution_code", _solutionCode, true];
      _device setVariable ["aquerr_bomb_is_armed", true, true];
-     _device setVariable ["aquerr_bomb_entered_code", "", true];
-     _device setVariable ["aquerr_explosion_class_name", _explosionClassName, true];
-     _device setVariable ["aquerr_bomb_beep_enabled", _shouldBeep, true];
-     _device setVariable ["aquerr_bomb_serial_number", _serialNumber, true];
      _device setVariable ["aquerr_bomb_after_defuse_function", _afterDefuseFunction, true];
  };
 
  private _prepareClientVariablesFunction = {
     params ["_device", "_clientCleanupFunction"];
 
-    SETVAR(_device,aquerr_keypad_bomb_interface_initialized,true);
     _device setVariable ["aquerr_bomb_client_cleanup_function", _clientCleanupFunction];
  };
 
- private _registerEventHandlersFunction = {
-    params ["_device", "_explosionClassName"];
-
-    [_device, true, _explosionClassName, 2] call FUNC(register_explosive_handlers_for_object);
- };
-
 if (isServer) then {
-
     if (_device getVariable ["aquerr_bomb_is_armed", false]) exitWith {hint LLSTRING(BombAlreadyArmed);};
 
-    [_solutionCode, _explosionClassName, _shouldBeep, _serialNumber, _afterDefuseFunction] call _prepareServerVariablesFunction;
-    [_device, _timeSeconds] call FUNC(init_bomb_timer);
+    [_explosionClassName, _afterDefuseFunction] call _prepareServerVariablesFunction;
 };
 
 if (hasInterface) then {
-
     if (GETVAR(_device,aquerr_keypad_bomb_interface_initialized,false)) exitWith {};
 
     [_device, _clientCleanupFunction] call _prepareClientVariablesFunction;
-    [_device, _prepareDigitActionFunction, _prepareClearCodeFunction, _prepareCheckTimeFunction, _prepareCheckSerialNumberFunction, _prepareOpenGuiFunction] call _prepareActionsFunction;
-    [_device, _explosionClassName] call _registerEventHandlersFunction;
+    [_device, true, _explosionClassName, 2] call FUNC(register_explosive_handlers_for_object);
+};
+
+[_device, _timeSeconds] call FUNC(init_bomb_timer);
+[_device, _solutionCode] call FUNC(init_keypad_solution_code);
+[_device, "BOTH"] call FUNC(init_keypad_actions);
+[_device] call FUNC(init_keypad_gui);
+[_device, _serialNumber] call FUNC(init_serial_number);
+
+if (hasInterface) then {
+    SETVAR(_device,aquerr_keypad_bomb_interface_initialized,true);
 };

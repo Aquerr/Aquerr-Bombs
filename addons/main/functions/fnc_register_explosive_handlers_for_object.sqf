@@ -74,7 +74,7 @@ if (_global && {isMultiplayer} && {isNil {_object getVariable QGVAR(register_exp
         };
 
         if (!_shouldExplode) exitWith {
-            SETVAR(_target,aquerr_hits,_hits);
+            SETPVAR(_target,aquerr_hits,_hits);
         };
 
         if (!(alive _target) && {(GETVAR(_target,aquerr_vulnerable_events_registered,false)) && {((GETVAR(_vehicle,aquerr_already_exploded,0)) == 1)}}) exitWith {
@@ -89,7 +89,7 @@ if (_global && {isMultiplayer} && {isNil {_object getVariable QGVAR(register_exp
         _explosionClassName = GETVAR(_target,aquerr_explosion_class_name,IEDUrbanSmall_Remote_Ammo);
         _explosive = createVehicle [_explosionClassName, (getPosATL _target), [], 0, "CAN_COLLIDE"];
         
-        _shouldDeleteWreckAfterExplosion = _target getVariable ["aquerr_delete_after_explosion", true];
+        _shouldDeleteWreckAfterExplosion = GETVAR(_target,aquerr_delete_after_explosion,true);
         if(_shouldDeleteWreckAfterExplosion) then {
             deleteVehicle _target;
         };

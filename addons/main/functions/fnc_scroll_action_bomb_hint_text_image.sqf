@@ -148,25 +148,26 @@ private _explodeFunction = {
  };
 
  private _prepareWireCutAction = {
-        /*
-            _wireColor:
-                1 = RED
-                2 = GREEN
-                3 = BLUE
-        */
-        params ["_device", "_actionName", "_wireColor", "_cutColoredWireFunction", "_explodeFunction"];
+    /*
+        _wireColor:
+            1 = RED
+            2 = GREEN
+            3 = BLUE
+    */
+    params ["_device", "_actionName", "_wireColor", "_cutColoredWireFunction", "_explodeFunction"];
 
-        _textColor = "#FF0000";
-        if ((parseNumber _wireColor) == 2) then {
-            _textColor = "#00FF00";
-        };
+    _textColor = "#FF0000";
+    if ((parseNumber _wireColor) == 2) then {
+        _textColor = "#00FF00";
+    };
 
-        if ((parseNumber _wireColor) == 3) then {
-            _textColor = "#0000FF";
-        };
+    if ((parseNumber _wireColor) == 3) then {
+        _textColor = "#0000FF";
+    };
 
-        private _formattedActionName = format ["<t color='%1'>%2</t>", _textColor, _actionName];
+    private _formattedActionName = format ["<t color='%1'>%2</t>", _textColor, _actionName];
 
+    if (GVAR(isAceInteractionMenuLoaded)) then {
         _action = [(format ["wire_color_%1", _wireColor]), _formattedActionName, "",
         {
             params ["_target", "_player", "_actionParams"];
@@ -179,29 +180,30 @@ private _explodeFunction = {
 
         [_device, 0, ["ACE_MainActions"], _action] call ace_interact_menu_fnc_addActionToObject;
         [["ACE_ZeusActions"], _action] call ace_interact_menu_fnc_addActionToZeus;
+    };
 
-        _device addAction
-        [
-            _formattedActionName,	// title
-            {
-                params ["_target", "_caller", "_actionId", "_arguments"]; // script
+    _device addAction
+    [
+        _formattedActionName,	// title
+        {
+            params ["_target", "_caller", "_actionId", "_arguments"]; // script
 
-                _wireColor = _arguments select 0;
-                _cutColoredWireFunction = _arguments select 1;
-                _explodeFunction = _arguments select 2;
-                [_caller, _target, _wireColor, _explodeFunction] call _cutColoredWireFunction;
-            },
-            [_wireColor, _cutColoredWireFunction, _explodeFunction],		// arguments
-            1.5,		// priority
-            true,		// showWindow
-            true,		// hideOnUse
-            "",			// shortcut
-            "true",		// condition
-            3,			// radius
-            false,		// unconscious
-            "",			// selection
-            ""			// memoryPoint
-        ];
+            _wireColor = _arguments select 0;
+            _cutColoredWireFunction = _arguments select 1;
+            _explodeFunction = _arguments select 2;
+            [_caller, _target, _wireColor, _explodeFunction] call _cutColoredWireFunction;
+        },
+        [_wireColor, _cutColoredWireFunction, _explodeFunction],		// arguments
+        1.5,		// priority
+        true,		// showWindow
+        true,		// hideOnUse
+        "",			// shortcut
+        "true",		// condition
+        3,			// radius
+        false,		// unconscious
+        "",			// selection
+        ""			// memoryPoint
+    ];
  };
 
  private _showWiresInHintFunction = {
@@ -252,8 +254,9 @@ private _explodeFunction = {
  };
 
  private _prepareShowBombWiresInHintAction = {
-        params ["_device", "_actionName", "_wireSign", "_showWiresInHintFunction"];
+    params ["_device", "_actionName", "_wireSign", "_showWiresInHintFunction"];
 
+    if (GVAR(isAceInteractionMenuLoaded)) then {
         _action = ["show_wires", _actionName, "",
         {
             params ["_target", "_player", "_actionParams"];
@@ -265,28 +268,29 @@ private _explodeFunction = {
 
         [_device, 0, ["ACE_MainActions"], _action] call ace_interact_menu_fnc_addActionToObject;
         [["ACE_ZeusActions"], _action] call ace_interact_menu_fnc_addActionToZeus;
+    };
+    
+    _device addAction
+    [
+        _actionName,	// title
+        {
+            params ["_target", "_caller", "_actionId", "_arguments"]; // script
 
-        _device addAction
-        [
-            _actionName,	// title
-            {
-                params ["_target", "_caller", "_actionId", "_arguments"]; // script
-
-                _showWiresInHintFunction = _arguments select 0;
-                _wireSign = _arguments select 1;
-                [_target, _wireSign] call _showWiresInHintFunction;
-            },
-            [_showWiresInHintFunction, _wireSign],		// arguments
-            1.5,		// priority
-            true,		// showWindow
-            true,		// hideOnUse
-            "",			// shortcut
-            "true",		// condition
-            3,			// radius
-            false,		// unconscious
-            "",			// selection
-            ""			// memoryPoint
-        ];
+            _showWiresInHintFunction = _arguments select 0;
+            _wireSign = _arguments select 1;
+            [_target, _wireSign] call _showWiresInHintFunction;
+        },
+        [_showWiresInHintFunction, _wireSign],		// arguments
+        1.5,		// priority
+        true,		// showWindow
+        true,		// hideOnUse
+        "",			// shortcut
+        "true",		// condition
+        3,			// radius
+        false,		// unconscious
+        "",			// selection
+        ""			// memoryPoint
+    ];
  };
 
   private _prepareCheckTimeFunction = {
@@ -302,7 +306,8 @@ private _explodeFunction = {
          hint format[LLSTRING(BombTime) + ": %1s", _bombTimeSecondsStr];
      };
 
-     _action = ["code_clear", _actionName, "",
+    if (GVAR(isAceInteractionMenuLoaded)) then {
+         _action = ["code_clear", _actionName, "",
          {
              params ["_target", "_player", "_actionParams"];
              [_target] call (_actionParams select 0);
@@ -310,6 +315,7 @@ private _explodeFunction = {
          }, {true}, {}, [_checkTimeFunction]] call ace_interact_menu_fnc_createAction;
 
          [_device, 0, ["ACE_MainActions"], _action] call ace_interact_menu_fnc_addActionToObject;
+    };
 
      _device addAction
      [
@@ -360,34 +366,6 @@ private _explodeFunction = {
     SETVAR(_device,aquerr_wire_bomb_interface_initialized,true);
  };
 
- // Explosion handlers
- private _registerEventHandlersFunction = {
-    params ["_device"];
-
-    _device addEventHandler ["HitPart", {
-        (_this select 0) params ["_target", "_shooter", "_projectile", "_position", "_velocity", "_selection", "_ammo", "_vector", "_radius", "_surfaceType", "_isDirect", "_instigator"];
-
-        _explosionClassName = _target getVariable ["aquerr_bomb_explosion_class_name", "DemoCharge_Remote_Ammo"];
-        _explosive = createVehicle [_explosionClassName, (getPos _target), [], 0, "CAN_COLLIDE"];
-        deleteVehicle _target;
-        _explosive setDamage 1;
-    }];
-
-    _device addEventHandler ["Explosion", {
-        params ["_vehicle", "_damage", "_source"];
-        if (_vehicle getVariable ["already_exploded", 0] == 1) exitWith {};
-        _vehicle setVariable ["already_exploded", 1];
-
-        _explosionClassName = _vehicle getVariable ["aquerr_bomb_explosion_class_name", "DemoCharge_Remote_Ammo"];
-        _explosive = createVehicle [_explosionClassName, (getPos _vehicle), [], 0, "CAN_COLLIDE"];
-        deleteVehicle _vehicle;
-        _explosive setDamage 1;
-    }];
- };
-
-
-
-
 // Execution code
 if (isServer) then {
 
@@ -404,5 +382,5 @@ if (hasInterface) then {
 
     [_device] call _prepareClientVariablesFunction;
     [_device, _cutColoredWireFunction, _prepareWireCutAction, _prepareShowBombWiresInHintAction, _explodeFunction, _showWiresInHintFunction, _wireSign, _prepareCheckTimeFunction] call _prepareActionsFunction;
-    [_device] call _registerEventHandlersFunction;
+    [_device, true, _explosionClassName, 2] call FUNC(register_explosive_handlers_for_object);
 };
