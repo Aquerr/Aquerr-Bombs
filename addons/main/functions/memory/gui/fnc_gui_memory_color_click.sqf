@@ -28,7 +28,7 @@ params ["_colorPressed"];
 
     // Check if sequence complete
     if (count _input == count _sequence) then {
-        if (count _sequence >= 5) then {
+        if (count _sequence >= (_bomb getVariable ["aquerr_memory_bomb_required_rounds", 5])) then {
             _bomb setVariable ["aquerr_bomb_is_armed", false, true];
             closeDialog 0;
 
@@ -38,7 +38,7 @@ params ["_colorPressed"];
             [QGVAR(BombDefused), [_bomb, player]] call CBA_fnc_globalEvent;
 
             _afterDefuseFunction = _bomb getVariable ["aquerr_bomb_after_defuse_function", {}];
-            [_bomb, _defuser] call _afterDefuseFunction; 
+            [_bomb, player] call _afterDefuseFunction; 
 
         } else {
             // Next round

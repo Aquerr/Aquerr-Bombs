@@ -75,6 +75,14 @@ Parametry przekazane do kodu: ["_thisBomb", "_defuserPlayer"]</Polish>
             <English>Explosion class name</English>
             <Polish>Klasa eksplozji</Polish>
         </Key>
+        <Key ID="str_abombs_eden_guitypelabel">
+            <English>GUI type</English>
+            <Polish>Rodzaj interfejsu</Polish>
+        </Key>
+        <Key ID="str_abombs_eden_module_memory_bomb_description">
+            <English>This module has to be synced with objects that should be converted to memory bombs.</English>
+            <Polish>Ten moduł musi zostać zsynchronizowany z obiektami, które mają zostać zamienione w bomby.</Polish>
+        </Key>
         <Key ID="str_abombs_eden_module_memory_bomb_displayname">
             <English>Create memory bomb</English>
             <Polish>Utwórz bombę na pamięć</Polish>
@@ -86,6 +94,14 @@ Parametry przekazane do kodu: ["_thisBomb", "_defuserPlayer"]</Polish>
         <Key ID="str_abombs_eden_overrideexplosionclasslabeltooltip">
             <English>Leave empty to use value from above list</English>
             <Polish>Zostaw puste aby użyć wartości z powyższej listy</Polish>
+        </Key>
+        <Key ID="str_abombs_eden_roundscountlabel">
+            <English>Rounds count</English>
+            <Polish>Ilość rund</Polish>
+        </Key>
+        <Key ID="str_abombs_eden_roundscounttooltip">
+            <English>Determines the required number of rounds a player need to solve to defuse the bomb</English>
+            <Polish>Określa wymaganą ilość rund, którą graczm musi pokonać aby rozbroić bombę</Polish>
         </Key>
         <Key ID="str_abombs_eden_serialnumberlabel">
             <English>Serial Number</English>

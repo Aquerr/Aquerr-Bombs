@@ -19,7 +19,7 @@ private _prepareOpenGuiFunction = {
         };
 
         if (_guiType isEqualTo "CLASSIC") exitWith {
-            [_bomb] call FUNC(open_classic_bomb_interface);
+            [_bomb] call FUNC(open_classic_keypad_bomb_interface);
         };
     };
 

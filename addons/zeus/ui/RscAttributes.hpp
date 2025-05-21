@@ -242,9 +242,9 @@ class GVAR(RscShotVulnerableGlobal): RscDisplayAttributes {
     };
 };
 
-class GVAR(RscScollWireBomb): RscDisplayAttributes {
-    onLoad = QUOTE([ARR_3('onLoad',_this,QQGVAR(RscScollWireBomb))] call FUNC(zeusAttributes));
-    onUnload = QUOTE([ARR_3('onUnload',_this,QQGVAR(RscScollWireBomb))] call FUNC(zeusAttributes));
+class GVAR(RscWireBomb): RscDisplayAttributes {
+    onLoad = QUOTE([ARR_3('onLoad',_this,QQGVAR(RscWireBomb))] call FUNC(zeusAttributes));
+    onUnload = QUOTE([ARR_3('onUnload',_this,QQGVAR(RscWireBomb))] call FUNC(zeusAttributes));
     class Controls: Controls {
         class Background: Background {};
         class Title: Title {};
@@ -321,9 +321,9 @@ class GVAR(RscScollWireBomb): RscDisplayAttributes {
     };
 };
 
-class GVAR(RscScollKeypadBomb): RscDisplayAttributes {
-    onLoad = QUOTE([ARR_3('onLoad',_this,QQGVAR(RscScollKeypadBomb))] call FUNC(zeusAttributes));
-    onUnload = QUOTE([ARR_3('onUnload',_this,QQGVAR(RscScollKeypadBomb))] call FUNC(zeusAttributes));
+class GVAR(RscKeypadBomb): RscDisplayAttributes {
+    onLoad = QUOTE([ARR_3('onLoad',_this,QQGVAR(RscKeypadBomb))] call FUNC(zeusAttributes));
+    onUnload = QUOTE([ARR_3('onUnload',_this,QQGVAR(RscKeypadBomb))] call FUNC(zeusAttributes));
     class Controls: Controls {
         class Background: Background {};
         class Title: Title {};
@@ -335,6 +335,96 @@ class GVAR(RscScollKeypadBomb): RscDisplayAttributes {
                     x = 0;
                     y = 0;
                     w = QUOTE(W_PART(26));
+                    h = QUOTE(H_PART(7.7));
+                    class controls {
+                        class guiTypeLabel: RscText {
+                            idc = -1;
+                            text = CSTRING(GuiTypeLabel);
+                            x = 0;
+                            y = 0;
+                            w = QUOTE(W_PART(10));
+                            h = QUOTE(H_PART(1));
+                            colorBackground[] = {0, 0, 0, 0.5};
+                        };
+                        class guiTypeEdit: RscCombo {
+                            idc = ZEUS_KEYPAD_BOMB_DIALOG_GUI_TYPE_ID;
+                            x = QUOTE(W_PART(10.1));
+                            w = QUOTE(W_PART(15.9));
+                            h = QUOTE(H_PART(1));
+                            class Items {
+                                class CLASSIC {
+                                    text = "CLASSIC";
+                                };
+                                class STANDARD {
+                                    text = "STANDARD";
+                                };
+                            };
+                        };
+                        class bombTimeControls: GVAR(BombTimeControls) {
+                            y = QUOTE(H_PART(1.1));
+                        };
+                        class shouldBeepControls: GVAR(ShouldBeepControls) {
+                            y = QUOTE(H_PART(2.2));
+                        };
+                        class SolutionCodeLabel: RscText {
+                            idc = -1;
+                            text = CSTRING(SolutionCodeLabel);
+                            x = 0;
+                            y = QUOTE(H_PART(3.3));
+                            w = QUOTE(W_PART(10));
+                            h = QUOTE(H_PART(1));
+                            colorBackground[] = {0, 0, 0, 0.5};
+                        };
+                        class SolutionCodeEdit: RscEdit {
+                            idc = ZEUS_KEYPAD_BOMB_DIALOG_SOLUTION_CODE_ID;
+                            x = QUOTE(W_PART(10.1));
+                            y = QUOTE(H_PART(3.3));
+                            w = QUOTE(W_PART(15.9));
+                            h = QUOTE(H_PART(1));
+                            autocomplete = "";
+                        };
+                        class SerialNumberLabel: RscText {
+                            idc = -1;
+                            text = CSTRING(SerialNumberLabel);
+                            x = 0;
+                            y = QUOTE(H_PART(4.4));
+                            w = QUOTE(W_PART(10));
+                            h = QUOTE(H_PART(1));
+                            colorBackground[] = {0, 0, 0, 0.5};
+                        };
+                        class SerialNumberEdit: RscEdit {
+                            idc = ZEUS_KEYPAD_BOMB_DIALOG_SERIAL_NUMBER_ID;
+                            x = QUOTE(W_PART(10.1));
+                            y = QUOTE(H_PART(4.4));
+                            w = QUOTE(W_PART(15.9));
+                            h = QUOTE(H_PART(1));
+                        };
+                        class explosionClassControls: GVAR(ExplosionClassControls) {
+                            y = QUOTE(H_PART(5.5));
+                        };
+                    };
+                };
+            };
+        };
+        class ButtonOK: ButtonOK {};
+        class ButtonCancel: ButtonCancel {};
+    };
+};
+
+class GVAR(RscMemoryBomb): RscDisplayAttributes {
+    onLoad = QUOTE([ARR_3('onLoad',_this,QQGVAR(RscMemoryBomb))] call FUNC(zeusAttributes));
+    onUnload = QUOTE([ARR_3('onUnload',_this,QQGVAR(RscMemoryBomb))] call FUNC(zeusAttributes));
+    class Controls: Controls {
+        class Background: Background {};
+        class Title: Title {};
+        class Content: Content {
+            class Controls {
+                class memoryBomb: RscControlsGroupNoScrollbars {
+                    onSetFocus = QUOTE(call FUNC(ui_MemoryBomb));
+                    idc = ZEUS_MEMORY_BOMB_DIALOG_ID;
+                    x = 0;
+                    y = 0;
+                    w = QUOTE(W_PART(26));
                     h = QUOTE(H_PART(6.6));
                     class controls {
                         class bombTimeControls: GVAR(BombTimeControls) {
@@ -343,22 +433,21 @@ class GVAR(RscScollKeypadBomb): RscDisplayAttributes {
                         class shouldBeepControls: GVAR(ShouldBeepControls) {
                             y = QUOTE(H_PART(1.1));
                         };
-                        class SolutionCodeLabel: RscText {
+                        class RoundsCountLabel: RscText {
                             idc = -1;
-                            text = CSTRING(SolutionCodeLabel);
+                            text = CSTRING(RoundsCountLabel);
                             x = 0;
                             y = QUOTE(H_PART(2.2));
                             w = QUOTE(W_PART(10));
                             h = QUOTE(H_PART(1));
                             colorBackground[] = {0, 0, 0, 0.5};
                         };
-                        class SolutionCodeEdit: RscEdit {
-                            idc = ZEUS_KEYPAD_BOMB_DIALOG_SOLUTION_CODE_ID;
+                        class RoundsCountEdit: RscEdit {
+                            idc = ZEUS_MEMORY_BOMB_DIALOG_ROUNDS_COUNT_ID;
                             x = QUOTE(W_PART(10.1));
                             y = QUOTE(H_PART(2.2));
                             w = QUOTE(W_PART(15.9));
                             h = QUOTE(H_PART(1));
-                            autocomplete = "";
                         };
                         class SerialNumberLabel: RscText {
                             idc = -1;

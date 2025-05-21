@@ -87,6 +87,25 @@ class CfgVehicles {
         function = QFUNC(edenModuleKeypadBomb);
         scope = 2;
         class Attributes: AttributesBase {
+            class GuiType: Combo {
+                property = QGVAR(edenModuleKeypadBomb_GuiType);
+                displayName = CSTRING(GuiTypeLabel);
+                typeName = "STRING";
+                defaultValue = 0;
+                class Values
+                {
+                    class Standard
+                    {
+                        name = "STANDARD";
+                        value = "STANDARD";
+                    };
+                    class Classic
+                    {
+                        name = "STANDARD";
+                        value = "CLASSIC";
+                    };
+                };
+            };
             class BombTime: Edit {
                 property = QGVAR(edenModuleKeypadBomb_BombTime);
                 displayName = CSTRING(BombTimeLabel);
@@ -202,30 +221,31 @@ class CfgVehicles {
 
     class GVAR(edenModuleMemoryBomb): GVAR(baseEdenModule) {
         displayName = CSTRING(Module_Memory_Bomb_DisplayName);
-        function = QFUNC(edenModuleKeypadBomb);
+        function = QFUNC(edenModuleMemoryBomb);
         scope = 2;
         class Attributes: AttributesBase {
             class BombTime: Edit {
-                property = QGVAR(edenModuleKeypadBomb_BombTime);
+                property = QGVAR(edenModuleMemoryBomb_BombTime);
                 displayName = CSTRING(BombTimeLabel);
                 tooltip = CSTRING(BombTimeTooltip);
                 typeName = "NUMBER";
                 defaultValue = "60";
             };
             class ShouldBeep: Checkbox {
-                property = QGVAR(edenModuleKeypadBomb_ShouldBeep);
+                property = QGVAR(edenModuleMemoryBomb_ShouldBeep);
                 displayName = CSTRING(ShouldBeepLabel);
                 typeName = "BOOL";
                 defaultValue = "true";
             };
-            class SolutionCode: Edit {
-                property = QGVAR(edenModuleKeypadBomb_SolutionCode);
-                displayName = CSTRING(SolutionCodeLabel);
-                typeName = "STRING";
-                defaultValue = "'000000'";
+            class RoundsCount: Edit {
+                property = QGVAR(edenModuleMemoryBomb_RoundsCount);
+                displayName = CSTRING(RoundsCountLabel);
+                tooltip = CSTRING(RoundsCountTooltip);
+                typeName = "NUMBER";
+                defaultValue = "5";
             };
             class SerialNumber: Edit {
-                property = QGVAR(edenModuleKeypadBomb_SerialNumber);
+                property = QGVAR(edenModuleMemoryBomb_SerialNumber);
                 displayName = CSTRING(SerialNumberLabel);
                 tooltip = CSTRING(SerialNumberTooltip);
                 typeName = "STRING";
@@ -256,7 +276,7 @@ class CfgVehicles {
             class ModuleDescription: ModuleDescription {};
         };
         class ModuleDescription: ModuleDescription {
-            description = CSTRING(Module_Keypad_Bomb_Description);
+            description = CSTRING(Module_Memory_Bomb_Description);
         };
     };
 };

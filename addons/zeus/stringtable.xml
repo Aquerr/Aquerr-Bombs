@@ -37,6 +37,10 @@
             <English>Explosion class name</English>
             <Polish>Klasa eksplozji</Polish>
         </Key>
+        <Key ID="str_abombs_zeus_guitypelabel">
+            <English>GUI type</English>
+            <Polish>Rodzaj interfejsu</Polish>
+        </Key>
         <Key ID="str_abombs_zeus_module_memory_bomb_displayname">
             <English>Create memory bomb</English>
             <Polish>Utwórz bombę na pamięć</Polish>
@@ -56,6 +60,10 @@
         <Key ID="str_abombs_zeus_overrideexplosionclasslabeltooltip">
             <English>Leave empty to use value from above list</English>
             <Polish>Zostaw puste aby użyć wartości z powyższej listy</Polish>
+        </Key>
+        <Key ID="str_abombs_zeus_roundscountlabel">
+            <English>Rounds count</English>
+            <Polish>Ilość rund</Polish>
         </Key>
         <Key ID="str_abombs_zeus_serialnumberlabel">
             <English>Serial Number</English>

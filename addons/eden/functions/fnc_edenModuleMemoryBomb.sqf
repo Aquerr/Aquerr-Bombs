@@ -10,10 +10,9 @@ if (!_activated) exitWith {};
 
 private _synchronizedObjects = synchronizedObjects _logic;
 
-private _guiType = _logic getVariable ["GuiType", "STANDARD"];
 private _bombTime = _logic getVariable ["BombTime", "60"];
 private _shouldBeep = _logic getVariable ["ShouldBeep", true];
-private _solutionCode = _logic getVariable ["SolutionCode", "000000"];
+private _roundsCount = _logic getVariable ["RoundsCount", "60"];
 private _serialNumber = _logic getVariable ["SerialNumber", "Unknown"];
 private _explosionClassName = _logic getVariable ["ExplosionClassName", "DemoCharge_Remote_Ammo"];
 private _explosionClassNameOverride = _logic getVariable ["ExplosionClassNameOverride", ""];
@@ -25,6 +24,6 @@ if (not(_explosionClassNameOverride isEqualTo "")) then {
 
 if ((count _synchronizedObjects) > 0) then {
 	{
-		[_x, _bombTime, _solutionCode, _shouldBeep, _explosionClassName, _serialNumber, _guiType, _afterDefuseCode] call EFUNC(main,init_keypad_bomb_full);
+		[_x, _bombTime, _shouldBeep, _roundsCount, _explosionClassName, _serialNumber, _afterDefuseCode] call EFUNC(main,init_memory_bomb_full);
 	} forEach _synchronizedObjects;
 };
