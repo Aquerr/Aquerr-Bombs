@@ -7,6 +7,6 @@ params ["_object", "_bombTime", "_shouldBeep", "_wireSign", "_wireCount", "_expl
 if (_mouseOverType != "OBJECT") then {
     [LELSTRING(common,MustSelectObject)] call FUNC(showZeusFeedbackMessage);
 } else {
-    [_object, _bombTime, _shouldBeep, _wireSign, _wireCount, _explosionClassName] call EFUNC(main,scroll_action_bomb_hint_text_image);
+    [_object, _bombTime, _shouldBeep, _wireSign, _wireCount, _explosionClassName] call EFUNC(main,init_wire_bomb_full);
     [LLSTRING(BombCreated)] call FUNC(showZeusFeedbackMessage);
 };

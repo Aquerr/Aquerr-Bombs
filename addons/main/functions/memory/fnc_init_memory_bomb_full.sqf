@@ -21,8 +21,8 @@
         6: BOOL - optional, if the script should be run globally. Can be skipped in most cases.
 
 	Example:
-		[_myBombThing, 100] call abombs_main_fnc_init_memory_bomb;
-		[_myBombThing, 0, true, "GrenadeHand"] call abombs_main_fnc_init_memory_bomb;
+		[_myBombThing, 100] call abombs_main_fnc_init_memory_bomb_full;
+		[_myBombThing, 0, true, "GrenadeHand"] call abombs_main_fnc_init_memory_bomb_full;
 */
 
 params ["_bomb", ["_timeSeconds", 60, [0]], ["_shouldBeep", true, [true]], ["_explosionClassName", "DemoCharge_Remote_Ammo", ["string"]], ["_serialNumber", "", ["string"]], ["_afterDefuseFunction", {}, [{}]], ["_global", true, [true]]];
@@ -30,14 +30,14 @@ params ["_bomb", ["_timeSeconds", 60, [0]], ["_shouldBeep", true, [true]], ["_ex
 if ((isNil "_bomb") || {isNull(_bomb)}) exitWith { hint LELSTRING(common,MustSelectObject) };
 
 // Code for server + future players
-if (_global && {isMultiplayer} && {isNil {_bomb getVariable QGVAR(init_memory_bomb_JIP)}}) exitWith {
+if (_global && {isMultiplayer} && {isNil {_bomb getVariable QGVAR(init_memory_bomb_full_JIP)}}) exitWith {
 
-    private _id = [QGVAR(init_memory_bomb), [_bomb, _timeSeconds, _shouldBeep, _explosionClassName, _serialNumber, _afterDefuseFunction, false]] call CBA_fnc_globalEventJIP;
+    private _id = [QGVAR(init_memory_bomb_full), [_bomb, _timeSeconds, _shouldBeep, _explosionClassName, _serialNumber, _afterDefuseFunction, false]] call CBA_fnc_globalEventJIP;
 
     // Remove JIP EH if object is deleted
     [_id, _bomb] call CBA_fnc_removeGlobalEventJIP;
 
-    _bomb setVariable [QGVAR(init_memory_bomb_JIP), _id, true];
+    _bomb setVariable [QGVAR(init_memory_bomb_full_JIP), _id, true];
 };
 
  private _prepareServerVariablesFunction = {

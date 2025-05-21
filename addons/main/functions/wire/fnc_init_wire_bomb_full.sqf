@@ -23,8 +23,8 @@
         8: BOOL - optional, if the script should be run globally. Can be skipped in most cases.
 
 	Example:
-		[myBombThing, 360, true, "#", 20] call abombs_main_fnc_scroll_action_bomb_hint_text_image;
-		[myBombThing, 0, false, nil, nil, "GrenadeHand"] call abombs_main_fnc_scroll_action_bomb_hint_text_image;
+		[myBombThing, 360, true, "#", 20] call abombs_main_fnc_init_wire_bomb_full;
+		[myBombThing, 0, false, nil, nil, "GrenadeHand"] call abombs_main_fnc_init_wire_bomb_full;
 */
 
 params ["_device", ["_timeSeconds", 60, [0]], ["_shouldBeep", true, [true]], ["_wireSign", "|", ["string"]], ["_wireCount", 40, [40]], ["_explosionClassName", "DemoCharge_Remote_Ammo", ["string"]], ["_afterDefuseFunction", {}, [{}]], ["_global", true, [true]]];
@@ -32,14 +32,14 @@ params ["_device", ["_timeSeconds", 60, [0]], ["_shouldBeep", true, [true]], ["_
 if ((isNil "_device") || {isNull(_device)}) exitWith { hint LELSTRING(common,MustSelectObject) };
 if ((_wireCount < 4)) exitWith { hint LLSTRING(WireCountCantBeLessThanFour)};
 
-if (_global && {isMultiplayer} && {isNil {_device getVariable QGVAR(scroll_action_bomb_hint_text_image_JIP)}}) exitWith {
+if (_global && {isMultiplayer} && {isNil {_device getVariable QGVAR(init_wire_bomb_full_JIP)}}) exitWith {
 
-    private _id = [QGVAR(scroll_action_bomb_hint_text_image), [_device, _timeSeconds, _shouldBeep, _wireSign, _wireCount, _explosionClassName, _afterDefuseFunction, false]] call CBA_fnc_globalEventJIP;
+    private _id = [QGVAR(init_wire_bomb_full), [_device, _timeSeconds, _shouldBeep, _wireSign, _wireCount, _explosionClassName, _afterDefuseFunction, false]] call CBA_fnc_globalEventJIP;
 
     // Remove JIP EH if object is deleted
     [_id, _device] call CBA_fnc_removeGlobalEventJIP;
 
-    _device setVariable [QGVAR(scroll_action_bomb_hint_text_image_JIP), _id, true];
+    _device setVariable [QGVAR(init_wire_bomb_full_JIP), _id, true];
 };
 
 private _generateBombWires = {
@@ -112,21 +112,8 @@ private _generateBombWires = {
     _device setVariable ["aquerr_bomb_solution_wire", _solutionWireColor, true];
 };
 
-private _explodeFunction = {
-    params ["_device"];
-
-    // BIG = "helicopterExploBig"
-    // MEDIUM = "DemoCharge_Remote_Ammo"
-    // SMALL = "APERSMine_Range_Ammo"
-
-    _explosionClassName = _device getVariable ["aquerr_bomb_explosion_class_name", "DemoCharge_Remote_Ammo"];
-    _explosive = _explosionClassName createVehicle (getPos _device);
-    deleteVehicle _device;
-    _explosive setDamage 1;
-};
-
  private _cutColoredWireFunction = {
-    params ["_defuser", "_device", "_wireColor", "_explodeFunction"];
+    params ["_defuser", "_device", "_wireColor"];
 
     private _isArmed = _device getVariable ["aquerr_bomb_is_armed", false];
     if (!_isArmed) exitWith {hint LLSTRING(BombAlreadyDefused)};
@@ -143,7 +130,7 @@ private _explodeFunction = {
             _afterDefuseFunction = _device getVariable ["aquerr_bomb_after_defuse_function", {}];
             [_device, _defuser] call _afterDefuseFunction;
         } else {
-            [_device] call _explodeFunction;
+            [player, _device] call FUNC(bomb_explode);
         };
  };
 
@@ -154,7 +141,7 @@ private _explodeFunction = {
             2 = GREEN
             3 = BLUE
     */
-    params ["_device", "_actionName", "_wireColor", "_cutColoredWireFunction", "_explodeFunction"];
+    params ["_device", "_actionName", "_wireColor", "_cutColoredWireFunction"];
 
     _textColor = "#FF0000";
     if ((parseNumber _wireColor) == 2) then {
@@ -173,10 +160,9 @@ private _explodeFunction = {
             params ["_target", "_player", "_actionParams"];
             _wireColor = _actionParams select 0;
             _cutColoredWireFunction = _actionParams select 1;
-            _explodeFunction = _actionParams select 2;
-            [_player, _target, _wireColor, _explodeFunction] call _cutColoredWireFunction;
+            [_player, _target, _wireColor] call _cutColoredWireFunction;
 
-        }, {true}, {}, [_wireColor, _cutColoredWireFunction, _explodeFunction]] call ace_interact_menu_fnc_createAction;
+        }, {true}, {}, [_wireColor, _cutColoredWireFunction]] call ace_interact_menu_fnc_createAction;
 
         [_device, 0, ["ACE_MainActions"], _action] call ace_interact_menu_fnc_addActionToObject;
         [["ACE_ZeusActions"], _action] call ace_interact_menu_fnc_addActionToZeus;
@@ -190,10 +176,9 @@ private _explodeFunction = {
 
             _wireColor = _arguments select 0;
             _cutColoredWireFunction = _arguments select 1;
-            _explodeFunction = _arguments select 2;
-            [_caller, _target, _wireColor, _explodeFunction] call _cutColoredWireFunction;
+            [_caller, _target, _wireColor] call _cutColoredWireFunction;
         },
-        [_wireColor, _cutColoredWireFunction, _explodeFunction],		// arguments
+        [_wireColor, _cutColoredWireFunction],		// arguments
         1.5,		// priority
         true,		// showWindow
         true,		// hideOnUse
@@ -340,13 +325,13 @@ private _explodeFunction = {
 
  // Actions
  private _prepareActionsFunction = {
-        params ["_device", "_cutColoredWireFunction", "_prepareWireCutAction", "_prepareShowBombWiresInHintAction", "_explodeFunction", "_showWiresInHintFunction", "_wireSign", "_prepareCheckTimeFunction"];
+        params ["_device", "_cutColoredWireFunction", "_prepareWireCutAction", "_prepareShowBombWiresInHintAction", "_showWiresInHintFunction", "_wireSign", "_prepareCheckTimeFunction"];
 
         [_device, LLSTRING(CheckBombTime)] call _prepareCheckTimeFunction;
         [_device, LLSTRING(CheckBombWires), _wireSign, _showWiresInHintFunction] call _prepareShowBombWiresInHintAction;
-        [_device, LLSTRING(CutRedWire), "1", _cutColoredWireFunction, _explodeFunction] call _prepareWireCutAction;
-        [_device, LLSTRING(CutGreenWire), "2", _cutColoredWireFunction, _explodeFunction] call _prepareWireCutAction;
-        [_device, LLSTRING(CutBlueWire), "3", _cutColoredWireFunction, _explodeFunction] call _prepareWireCutAction;
+        [_device, LLSTRING(CutRedWire), "1", _cutColoredWireFunction] call _prepareWireCutAction;
+        [_device, LLSTRING(CutGreenWire), "2", _cutColoredWireFunction] call _prepareWireCutAction;
+        [_device, LLSTRING(CutBlueWire), "3", _cutColoredWireFunction] call _prepareWireCutAction;
  };
 
 
@@ -381,6 +366,6 @@ if (hasInterface) then {
     if (GETVAR(_device,aquerr_wire_bomb_interface_initialized,false)) exitWith {};
 
     [_device] call _prepareClientVariablesFunction;
-    [_device, _cutColoredWireFunction, _prepareWireCutAction, _prepareShowBombWiresInHintAction, _explodeFunction, _showWiresInHintFunction, _wireSign, _prepareCheckTimeFunction] call _prepareActionsFunction;
+    [_device, _cutColoredWireFunction, _prepareWireCutAction, _prepareShowBombWiresInHintAction, _showWiresInHintFunction, _wireSign, _prepareCheckTimeFunction] call _prepareActionsFunction;
     [_device, true, _explosionClassName, 2] call FUNC(register_explosive_handlers_for_object);
 };

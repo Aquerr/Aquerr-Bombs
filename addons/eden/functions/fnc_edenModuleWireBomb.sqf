@@ -24,6 +24,6 @@ if (not(_explosionClassNameOverride isEqualTo "")) then {
 
 if ((count _synchronizedObjects) > 0) then {
 	{
-		[_x, _bombTime, _shouldBeep, _wireSign, _wireCount, _explosionClassName, _afterDefuseCode] call EFUNC(main,scroll_action_bomb_hint_text_image);
+		[_x, _bombTime, _shouldBeep, _wireSign, _wireCount, _explosionClassName, _afterDefuseCode] call EFUNC(main,init_wire_bomb_full);
 	} forEach _synchronizedObjects;
 };

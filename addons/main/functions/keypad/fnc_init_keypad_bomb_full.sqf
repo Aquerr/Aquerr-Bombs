@@ -22,9 +22,9 @@
         7: BOOL - optional, if the script should be run globally. Can be skipped in most cases.
 
 	Example:
-		[_myBombThing, 60, "2454"] call abombs_main_fnc_init_keypad_bomb;
-		[_myBombThing, 0, "123", true, "GrenadeHand"] call abombs_main_fnc_init_keypad_bomb;
-        [_myBombThing, 0, "123", true, "DemoCharge_Remote_Ammo"] call abombs_main_fnc_init_keypad_bomb;
+		[_myBombThing, 60, "2454"] call abombs_main_fnc_init_keypad_bomb_full;
+		[_myBombThing, 0, "123", true, "GrenadeHand"] call abombs_main_fnc_init_keypad_bomb_full;
+        [_myBombThing, 0, "123", true, "DemoCharge_Remote_Ammo"] call abombs_main_fnc_init_keypad_bomb_full;
 */
 
 params ["_device", ["_timeSeconds", 60, [0]], ["_solutionCode", "0000", ["string"]], ["_shouldBeep", true, [true]], ["_explosionClassName", "DemoCharge_Remote_Ammo", ["string"]], ["_serialNumber", "", ["string"]], ["_afterDefuseFunction", {}, [{}]], ["_global", true, [true]]];
@@ -32,14 +32,14 @@ params ["_device", ["_timeSeconds", 60, [0]], ["_solutionCode", "0000", ["string
 if ((isNil "_device") || {isNull(_device)}) exitWith { hint LELSTRING(common,MustSelectObject) };
 
 // Code for server + future players
-if (_global && {isMultiplayer} && {isNil {_device getVariable QGVAR(init_keypad_bomb_JIP)}}) exitWith {
+if (_global && {isMultiplayer} && {isNil {_device getVariable QGVAR(init_keypad_bomb_full_JIP)}}) exitWith {
 
-    private _id = [QGVAR(init_keypad_bomb), [_device, _timeSeconds, _solutionCode, _shouldBeep, _explosionClassName, _serialNumber, _afterDefuseFunction, false]] call CBA_fnc_globalEventJIP;
+    private _id = [QGVAR(init_keypad_bomb_full), [_device, _timeSeconds, _solutionCode, _shouldBeep, _explosionClassName, _serialNumber, _afterDefuseFunction, false]] call CBA_fnc_globalEventJIP;
 
     // Remove JIP EH if object is deleted
     [_id, _device] call CBA_fnc_removeGlobalEventJIP;
 
-    _device setVariable [QGVAR(init_keypad_bomb_JIP), _id, true];
+    _device setVariable [QGVAR(init_keypad_bomb_full_JIP), _id, true];
 };
 
 private _clientCleanupFunction = {

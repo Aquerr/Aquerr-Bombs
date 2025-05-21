@@ -1,8 +1,8 @@
 // FUNCTION PREPS
 PREP(register_explosive_handlers_global);
 PREP(register_explosive_handlers_for_object);
-PREP(scroll_action_bomb_hint_text_image);
-PREP_BY_PATH(init_keypad_bomb,functions\keypad\fnc_init_keypad_bomb.sqf);
+PREP_BY_PATH(init_keypad_bomb_full,functions\keypad\fnc_init_keypad_bomb_full.sqf);
+PREP_BY_PATH(init_wire_bomb_full,functions\wire\fnc_init_wire_bomb_full.sqf);
 
 // GUI open actions
 PREP(open_classic_keypad_bomb_interface);
@@ -34,4 +34,4 @@ PREP_BY_PATH(gui_memory_color_click,functions\memory\gui\fnc_gui_memory_color_cl
 PREP_BY_PATH(gui_memory_bomb_start,functions\memory\gui\fnc_gui_memory_bomb_start.sqf);
 PREP_BY_PATH(gui_memory_bomb_play_round,functions\memory\gui\fnc_gui_memory_bomb_play_round.sqf);
 PREP_BY_PATH(init_memory_bomb_gui_action,functions\memory\fnc_init_memory_bomb_gui_action.sqf);
-PREP_BY_PATH(init_memory_bomb,functions\memory\fnc_init_memory_bomb.sqf);
+PREP_BY_PATH(init_memory_bomb_full,functions\memory\fnc_init_memory_bomb_full.sqf);
