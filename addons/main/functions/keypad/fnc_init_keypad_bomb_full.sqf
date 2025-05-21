@@ -5,7 +5,7 @@
 	https://github.com/Aquerr
 
 	Description:
-        Script for simple bomb with scroll/ace action keypad.
+        Script for simple keypad bomb.
 
 	Parameter(s):
 		0: the thing that the script should be attached to

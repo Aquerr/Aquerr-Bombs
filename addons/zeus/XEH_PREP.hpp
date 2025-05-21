@@ -5,12 +5,14 @@ PREP(showZeusFeedbackMessage);
 
 PREP(moduleShotVulnerableGlobal);
 PREP(moduleShotVulnerable);
-PREP(moduleScrollWireBomb);
-PREP(moduleScrollKeypadBomb);
+PREP(moduleWireBomb);
+PREP(moduleKeypadBomb);
+PREP(moduleMemoryBomb);
 
 PREP(ui_shotVulnerableGlobal);
 PREP(ui_shotVulnerable);
-PREP(ui_scrollWireBomb);
-PREP(ui_scrollKeypadBomb);
+PREP(ui_WireBomb);
+PREP(ui_KeypadBomb);
+PREP(ui_MemoryBomb);
 
 PREP(zeusAttributes);

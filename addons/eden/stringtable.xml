@@ -5,21 +5,13 @@
             <English>Bomb time (0 = indefinite)</English>
             <Polish>Czas bomby (0 = nieskończona)</Polish>
         </Key>
-        <Key ID="STR_abombs_eden_Module_Scroll_Keypad_Bomb_Description">
+        <Key ID="STR_abombs_eden_Module_Keypad_Bomb_Description">
             <English>This module has to be synced with objects that should be converted to keypad bombs.</English>
             <Polish>Ten moduł musi zostać zsynchronizowany z obiektami, które mają zostać zamienione w bomby.</Polish>
         </Key>
-        <Key ID="STR_abombs_eden_Module_Scroll_Keypad_Bomb_DisplayName">
+        <Key ID="STR_abombs_eden_Module_Keypad_Bomb_DisplayName">
             <English>Create keypad bomb</English>
             <Polish>Utwórz bombę na keypad</Polish>
-        </Key>
-        <Key ID="STR_abombs_eden_Module_Scroll_Wire_Bomb_Description">
-            <English>This module has to be synced with objects that should be converted to wire bombs.</English>
-            <Polish>Ten moduł musi zostać zsynchronizowany z obiektami, które mają zostać zamienione w bomby kablowe.</Polish>
-        </Key>
-        <Key ID="STR_abombs_eden_Module_Scroll_Wire_Bomb_DisplayName">
-            <English>Create scroll wire bomb</English>
-            <Polish>Utwórz scroll wire bomb</Polish>
         </Key>
         <Key ID="STR_abombs_eden_Module_Shot_Vulnerable_Description">
             <English>This module makes given class names vulnerable to shots and nearby explosions. To make a specific object shot/explosion vulnerable, sync it with this module.</English>
@@ -28,6 +20,14 @@
         <Key ID="STR_abombs_eden_Module_Shot_Vulnerable_DisplayName">
             <English>Make object vulnerable to shots</English>
             <Polish>Uczyń obiekt podatnym na strzały</Polish>
+        </Key>
+        <Key ID="STR_abombs_eden_Module_Wire_Bomb_Description">
+            <English>This module has to be synced with objects that should be converted to wire bombs.</English>
+            <Polish>Ten moduł musi zostać zsynchronizowany z obiektami, które mają zostać zamienione w bomby kablowe.</Polish>
+        </Key>
+        <Key ID="STR_abombs_eden_Module_Wire_Bomb_DisplayName">
+            <English>Create wire bomb</English>
+            <Polish>Utwórz wire bomb</Polish>
         </Key>
         <Key ID="str_abombs_eden_afterdefusecodelabel">
             <English>After defuse code function</English>
@@ -74,6 +74,10 @@ Parametry przekazane do kodu: ["_thisBomb", "_defuserPlayer"]</Polish>
         <Key ID="str_abombs_eden_explosionclasslabel">
             <English>Explosion class name</English>
             <Polish>Klasa eksplozji</Polish>
+        </Key>
+        <Key ID="str_abombs_eden_module_memory_bomb_displayname">
+            <English>Create memory bomb</English>
+            <Polish>Utwórz bombę na pamięć</Polish>
         </Key>
         <Key ID="str_abombs_eden_overrideexplosionclasslabel">
             <English>Override explosion class</English>

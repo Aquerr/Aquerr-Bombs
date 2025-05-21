@@ -4,8 +4,9 @@ class CfgPatches {
     class ADDON {
         name = COMPONENT_NAME;
         units[] = {
-            QGVAR(moduleScrollKeypadBomb),
-            QGVAR(moduleScrollWireBomb),
+            QGVAR(moduleKeypadBomb),
+            QGVAR(moduleWireBomb),
+            QGVAR(moduleMemoryBomb),
             QGVAR(moduleVulnerableObject),
             QGVAR(moduleVulnerableObjectsGlobal)
         };

@@ -31,17 +31,24 @@ class CfgVehicles {
         icon = "a3\ui_f\data\gui\rsc\rscdisplayarcademap\icon_config_ca.paa";
     };
 
-    class GVAR(moduleScrollKeypadBomb): GVAR(baseModule) {
+    class GVAR(moduleKeypadBomb): GVAR(baseModule) {
         curatorCanAttach = 1;
-        displayName = CSTRING(Module_Scroll_Keypad_Bomb_DisplayName);
+        displayName = CSTRING(Module_Keypad_Bomb_DisplayName);
         curatorInfoType = QGVAR(RscScollKeypadBomb);
         icon = "a3\ui_f\data\igui\cfg\simpletasks\types\destroy_ca.paa";
     };
 
-    class GVAR(moduleScrollWireBomb): GVAR(baseModule) {
+    class GVAR(moduleWireBomb): GVAR(baseModule) {
         curatorCanAttach = 1;
-        displayName = CSTRING(Module_Scroll_Wire_Bomb_DisplayName);
+        displayName = CSTRING(Module_Wire_Bomb_DisplayName);
         curatorInfoType = QGVAR(RscScollWireBomb);
+        icon = "a3\ui_f\data\igui\cfg\simpletasks\types\destroy_ca.paa";
+    };
+
+    class GVAR(moduleMemoryBomb): GVAR(baseModule) {
+        curatorCanAttach = 1;
+        displayName = CSTRING(Module_Memory_Bomb_DisplayName);
+        curatorInfoType = QGVAR(RscScollMemoryBomb);
         icon = "a3\ui_f\data\igui\cfg\simpletasks\types\destroy_ca.paa";
     };
 };

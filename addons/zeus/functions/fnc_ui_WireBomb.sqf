@@ -29,19 +29,35 @@ switch (false) do {
     };
 };
 
+private _fnc_onSliderMove = {
+    params ["_slider"];
+
+    private _display = ctrlParent _slider;
+    (_display displayCtrl ZEUS_WIRE_BOMB_DIALOG_WIRE_COUNT_ID) ctrlSetText (str round sliderPosition _slider);
+};
+
 private _bombTimeEditField = _display displayCtrl ZEUS_COMMON_DIALOG_BOMB_TIME_ID;
 private _shouldBeepToggleField = _display displayCtrl ZEUS_COMMON_DIALOG_SHOULD_BEEP_ID;
-private _solutionCodeEditField = _display displayCtrl ZEUS_SCROLL_KEYPAD_BOMB_DIALOG_SOLUTION_CODE_ID;
-private _serialCodeEditField = _display displayCtrl ZEUS_SCROLL_KEYPAD_BOMB_DIALOG_SERIAL_NUMBER_ID;
+private _wireSignEditField = _display displayCtrl ZEUS_WIRE_BOMB_DIALOG_WIRE_SIGN_ID;
+private _wireCountSlider = _display displayCtrl ZEUS_WIRE_BOMB_DIALOG_WIRE_COUNT_SLIDER_ID;
+private _wireCountEdit = _display displayCtrl ZEUS_WIRE_BOMB_DIALOG_WIRE_COUNT_ID;
 private _explosionClassNameCombo = _display displayCtrl ZEUS_COMMON_DIALOG_EXPLOSION_CLASS_ID;
 
 ////////////////////////////////////////////////////////////
 // Default values
 _bombTimeEditField ctrlSetText "60";
+_wireSignEditField ctrlSetText "|";
+
 _shouldBeepToggleField lbSetCurSel 1;
-_solutionCodeEditField ctrlSetText "000000";
-_serialCodeEditField ctrlSetText "Unknown";
+
+_wireCountSlider sliderSetRange [4, 100];
+_wireCountSlider sliderSetSpeed [1, 1];
+_wireCountSlider sliderSetPosition 10;
+_wireCountEdit ctrlSetText "10";
+
 _explosionClassNameCombo lbSetCurSel 2;
+
+_wireCountSlider ctrlAddEventHandler ["SliderPosChanged", _fnc_onSliderMove];
 
 /////////////////////////////////////////////////////////////
 // Cancel and Confirmation
@@ -63,8 +79,8 @@ private _fnc_onConfirm = {
 
     private _bombTime = parseNumber (ctrlText(_display displayCtrl ZEUS_COMMON_DIALOG_BOMB_TIME_ID));
     private _shouldBeep = lbCurSel (_display displayCtrl ZEUS_COMMON_DIALOG_SHOULD_BEEP_ID) > 0;
-    private _solutionCode = ctrlText (_display displayCtrl ZEUS_SCROLL_KEYPAD_BOMB_DIALOG_SOLUTION_CODE_ID);
-    private _serialNumber = ctrlText (_display displayCtrl ZEUS_SCROLL_KEYPAD_BOMB_DIALOG_SERIAL_NUMBER_ID);
+    private _wireSign = ctrlText (_display displayCtrl ZEUS_WIRE_BOMB_DIALOG_WIRE_SIGN_ID);
+    private _wireCount = round sliderPosition (_display displayCtrl ZEUS_WIRE_BOMB_DIALOG_WIRE_COUNT_SLIDER_ID);
     private _explosionClassNameIndex = lbCurSel (_display displayCtrl ZEUS_COMMON_DIALOG_EXPLOSION_CLASS_ID);
     private _explosionClassName = (_display displayCtrl ZEUS_COMMON_DIALOG_EXPLOSION_CLASS_ID) lbText _explosionClassNameIndex;
     private _overrideExplosionClassName = ctrlText (_display displayCtrl ZEUS_COMMON_DIALOG_EXPLOSION_OVERRIDE_EXPLOSION_ID);
@@ -73,7 +89,7 @@ private _fnc_onConfirm = {
         _explosionClassName = _overrideExplosionClassName;
     };
 
-    [attachedTo _logic, _bombTime, _solutionCode, _shouldBeep, _explosionClassName, _serialNumber] call FUNC(moduleScrollKeypadBomb);
+    [attachedTo _logic, _bombTime, _shouldBeep, _wireSign, _wireCount, _explosionClassName] call FUNC(moduleWireBomb);
     deleteVehicle _logic;
 };
 

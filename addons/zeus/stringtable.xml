@@ -5,17 +5,17 @@
             <English>Bomb time (0 = indefinite)</English>
             <Polish>Czas bomby (0 = nieskończona)</Polish>
         </Key>
-        <Key ID="STR_abombs_zeus_Module_Scroll_Keypad_Bomb_DisplayName">
+        <Key ID="STR_abombs_zeus_Module_Keypad_Bomb_DisplayName">
             <English>Create keypad bomb</English>
             <Polish>Utwórz bombę na keypad</Polish>
-        </Key>
-        <Key ID="STR_abombs_zeus_Module_Scroll_Wire_Bomb_DisplayName">
-            <English>Create scroll wire bomb</English>
-            <Polish>Utwórz scroll wire bomb</Polish>
         </Key>
         <Key ID="STR_abombs_zeus_Module_Shot_Vulnerable_DisplayName">
             <English>Make object vulnerable to shots</English>
             <Polish>Uczyń obiekt podatnym na strzały</Polish>
+        </Key>
+        <Key ID="STR_abombs_zeus_Module_Wire_Bomb_DisplayName">
+            <English>Create wire bomb</English>
+            <Polish>Utwórz wire bomb</Polish>
         </Key>
         <Key ID="str_abombs_zeus_bombcreated">
             <English>Bomb has been created</English>
@@ -36,6 +36,10 @@
         <Key ID="str_abombs_zeus_explosionclasslabel">
             <English>Explosion class name</English>
             <Polish>Klasa eksplozji</Polish>
+        </Key>
+        <Key ID="str_abombs_zeus_module_memory_bomb_displayname">
+            <English>Create memory bomb</English>
+            <Polish>Utwórz bombę na pamięć</Polish>
         </Key>
         <Key ID="str_abombs_zeus_module_shot_vulnerable_global_displayname">
             <English>Make class names vulnerable to shots</English>

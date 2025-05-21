@@ -82,32 +82,32 @@ class CfgVehicles {
         };
     };
 
-    class GVAR(edenModuleScrollKeypadBomb): GVAR(baseEdenModule) {
-        displayName = CSTRING(Module_Scroll_Keypad_Bomb_DisplayName);
+    class GVAR(edenModuleKeypadBomb): GVAR(baseEdenModule) {
+        displayName = CSTRING(Module_Keypad_Bomb_DisplayName);
         function = QFUNC(edenModuleKeypadBomb);
         scope = 2;
         class Attributes: AttributesBase {
             class BombTime: Edit {
-                property = QGVAR(edenModuleScrollKeypadBomb_BombTime);
+                property = QGVAR(edenModuleKeypadBomb_BombTime);
                 displayName = CSTRING(BombTimeLabel);
                 tooltip = CSTRING(BombTimeTooltip);
                 typeName = "NUMBER";
                 defaultValue = "60";
             };
             class ShouldBeep: Checkbox {
-                property = QGVAR(edenModuleScrollKeypadBomb_ShouldBeep);
+                property = QGVAR(edenModuleKeypadBomb_ShouldBeep);
                 displayName = CSTRING(ShouldBeepLabel);
                 typeName = "BOOL";
                 defaultValue = "true";
             };
             class SolutionCode: Edit {
-                property = QGVAR(edenModuleScrollKeypadBomb_SolutionCode);
+                property = QGVAR(edenModuleKeypadBomb_SolutionCode);
                 displayName = CSTRING(SolutionCodeLabel);
                 typeName = "STRING";
                 defaultValue = "'000000'";
             };
             class SerialNumber: Edit {
-                property = QGVAR(edenModuleScrollKeypadBomb_SerialNumber);
+                property = QGVAR(edenModuleKeypadBomb_SerialNumber);
                 displayName = CSTRING(SerialNumberLabel);
                 tooltip = CSTRING(SerialNumberTooltip);
                 typeName = "STRING";
@@ -128,7 +128,7 @@ class CfgVehicles {
                 defaultValue = "''";
             };
             class AfterDefuseCode: Default {
-                property = QGVAR(edenModuleScrollKeypadBomb_AfterDefuseCode);
+                property = QGVAR(edenModuleKeypadBomb_AfterDefuseCode);
                 displayName = CSTRING(AfterDefuseCodeLabel);
                 tooltip = CSTRING(AfterDefuseCodeTooltip);
                 typeName = "STRING";
@@ -138,36 +138,36 @@ class CfgVehicles {
             class ModuleDescription: ModuleDescription {};
         };
         class ModuleDescription: ModuleDescription {
-            description = CSTRING(Module_Scroll_Keypad_Bomb_Description);
+            description = CSTRING(Module_Keypad_Bomb_Description);
         };
     };
 
-    class GVAR(edenModuleScrollWireBomb): GVAR(baseEdenModule) {
-        displayName = CSTRING(Module_Scroll_Wire_Bomb_DisplayName);
+    class GVAR(edenModuleWireBomb): GVAR(baseEdenModule) {
+        displayName = CSTRING(Module_Wire_Bomb_DisplayName);
         function = QFUNC(edenModuleWireBomb);
         scope = 2;
         class Attributes: AttributesBase {
             class BombTime: Edit {
-                property = QGVAR(edenModuleScrollWireBomb_BombTime);
+                property = QGVAR(edenModuleWireBomb_BombTime);
                 displayName = CSTRING(BombTimeLabel);
                 tooltip = CSTRING(BombTimeTooltip);
                 typeName = "NUMBER";
                 defaultValue = "60";
             };
             class ShouldBeep: Checkbox {
-                property = QGVAR(edenModuleScrollWireBomb_ShouldBeep);
+                property = QGVAR(edenModuleWireBomb_ShouldBeep);
                 displayName = CSTRING(ShouldBeepLabel);
                 typeName = "BOOL";
                 defaultValue = "true";
             };
             class WireSign: Edit {
-                property = QGVAR(edenModuleScrollWireBomb_WireSign);
+                property = QGVAR(edenModuleWireBomb_WireSign);
                 displayName = CSTRING(WireSignLabel);
                 typeName = "STRING";
                 defaultValue = "'|'";
             };
             class WireCount: Edit {
-                property = QGVAR(edenModuleScrollWireBomb_WireCount);
+                property = QGVAR(edenModuleWireBomb_WireCount);
                 displayName = CSTRING(WireCountLabel);
                 typeName = "NUMBER";
                 defaultValue = "40";
@@ -186,7 +186,7 @@ class CfgVehicles {
                 defaultValue = "''";
             };
             class AfterDefuseCode: Default {
-                property = QGVAR(edenModuleScrollKeypadBomb_AfterDefuseCode);
+                property = QGVAR(edenModuleKeypadBomb_AfterDefuseCode);
                 displayName = CSTRING(AfterDefuseCodeLabel);
                 tooltip = CSTRING(AfterDefuseCodeTooltip);
                 typeName = "STRING";
@@ -196,7 +196,67 @@ class CfgVehicles {
             class ModuleDescription: ModuleDescription {};
         };
         class ModuleDescription: ModuleDescription {
-            description = CSTRING(Module_Scroll_Wire_Bomb_Description);
+            description = CSTRING(Module_Wire_Bomb_Description);
+        };
+    };
+
+    class GVAR(edenModuleMemoryBomb): GVAR(baseEdenModule) {
+        displayName = CSTRING(Module_Memory_Bomb_DisplayName);
+        function = QFUNC(edenModuleKeypadBomb);
+        scope = 2;
+        class Attributes: AttributesBase {
+            class BombTime: Edit {
+                property = QGVAR(edenModuleKeypadBomb_BombTime);
+                displayName = CSTRING(BombTimeLabel);
+                tooltip = CSTRING(BombTimeTooltip);
+                typeName = "NUMBER";
+                defaultValue = "60";
+            };
+            class ShouldBeep: Checkbox {
+                property = QGVAR(edenModuleKeypadBomb_ShouldBeep);
+                displayName = CSTRING(ShouldBeepLabel);
+                typeName = "BOOL";
+                defaultValue = "true";
+            };
+            class SolutionCode: Edit {
+                property = QGVAR(edenModuleKeypadBomb_SolutionCode);
+                displayName = CSTRING(SolutionCodeLabel);
+                typeName = "STRING";
+                defaultValue = "'000000'";
+            };
+            class SerialNumber: Edit {
+                property = QGVAR(edenModuleKeypadBomb_SerialNumber);
+                displayName = CSTRING(SerialNumberLabel);
+                tooltip = CSTRING(SerialNumberTooltip);
+                typeName = "STRING";
+                defaultValue = "'Unknown'";
+            };
+            class ExplosionClassName: Default {
+                control = QGVAR(explosionClassName);
+                property = QGVAR(edenModulePropertyCommon_explosionClassName);
+                typeName = "STRING";
+                defaultValue = "'DemoCharge_Remote_Ammo'";
+            };
+            class ExplosionClassNameOverride: Default {
+                control = QGVAR(explosionClassNameOverride);
+                property = QGVAR(edenModulePropertyCommon_explosionClassNameOverride);
+                displayName = CSTRING(OverrideExplosionClassLabel);
+                tooltip = CSTRING(OverrideExplosionClassLabelTooltip);
+                typeName = "STRING";
+                defaultValue = "''";
+            };
+            class AfterDefuseCode: Default {
+                property = QGVAR(edenModuleKeypadBomb_AfterDefuseCode);
+                displayName = CSTRING(AfterDefuseCodeLabel);
+                tooltip = CSTRING(AfterDefuseCodeTooltip);
+                typeName = "STRING";
+                defaultValue = "''";
+                control = "editcodemulti5";
+            };
+            class ModuleDescription: ModuleDescription {};
+        };
+        class ModuleDescription: ModuleDescription {
+            description = CSTRING(Module_Keypad_Bomb_Description);
         };
     };
 };

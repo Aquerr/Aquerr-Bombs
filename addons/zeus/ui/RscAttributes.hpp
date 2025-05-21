@@ -250,9 +250,9 @@ class GVAR(RscScollWireBomb): RscDisplayAttributes {
         class Title: Title {};
         class Content: Content {
             class Controls {
-                class scrollWireBomb: RscControlsGroupNoScrollbars {
-                    onSetFocus = QUOTE(call FUNC(ui_scrollWireBomb));
-                    idc = ZEUS_SCROLL_WIRE_BOMB_DIALOG_ID;
+                class wireBomb: RscControlsGroupNoScrollbars {
+                    onSetFocus = QUOTE(call FUNC(ui_WireBomb));
+                    idc = ZEUS_WIRE_BOMB_DIALOG_ID;
                     x = 0;
                     y = 0;
                     w = QUOTE(W_PART(26));
@@ -276,7 +276,7 @@ class GVAR(RscScollWireBomb): RscDisplayAttributes {
                             colorBackground[] = {0, 0, 0, 0.5};
                         };
                         class WireSign: RscEdit {
-                            idc = ZEUS_SCROLL_WIRE_BOMB_DIALOG_WIRE_SIGN_ID;
+                            idc = ZEUS_WIRE_BOMB_DIALOG_WIRE_SIGN_ID;
                             x = QUOTE(W_PART(10.1));
                             y = QUOTE(H_PART(2.2));
                             w = QUOTE(W_PART(15.9));
@@ -293,14 +293,14 @@ class GVAR(RscScollWireBomb): RscDisplayAttributes {
                             colorBackground[] = {0, 0, 0, 0.5};
                         };
                         class WireCountSlider: RscXSliderH {
-                            idc = ZEUS_SCROLL_WIRE_BOMB_DIALOG_WIRE_COUNT_SLIDER_ID;
+                            idc = ZEUS_WIRE_BOMB_DIALOG_WIRE_COUNT_SLIDER_ID;
                             x = QUOTE(W_PART(10.1));
                             y = QUOTE(H_PART(3.3));
                             w = QUOTE(W_PART(13.9));
                             h = QUOTE(H_PART(1));
                         };
                         class WireCountEdit: RscEdit {
-                            idc = ZEUS_SCROLL_WIRE_BOMB_DIALOG_WIRE_COUNT_ID;
+                            idc = ZEUS_WIRE_BOMB_DIALOG_WIRE_COUNT_ID;
                             x = QUOTE(W_PART(24.1));
                             y = QUOTE(H_PART(3.3));
                             w = QUOTE(W_PART(1.9));
@@ -329,9 +329,9 @@ class GVAR(RscScollKeypadBomb): RscDisplayAttributes {
         class Title: Title {};
         class Content: Content {
             class Controls {
-                class scrollKeypadBomb: RscControlsGroupNoScrollbars {
-                    onSetFocus = QUOTE(call FUNC(ui_scrollKeypadBomb));
-                    idc = ZEUS_SCROLL_KEYPAD_BOMB_DIALOG_ID;
+                class keypadBomb: RscControlsGroupNoScrollbars {
+                    onSetFocus = QUOTE(call FUNC(ui_KeypadBomb));
+                    idc = ZEUS_KEYPAD_BOMB_DIALOG_ID;
                     x = 0;
                     y = 0;
                     w = QUOTE(W_PART(26));
@@ -353,7 +353,7 @@ class GVAR(RscScollKeypadBomb): RscDisplayAttributes {
                             colorBackground[] = {0, 0, 0, 0.5};
                         };
                         class SolutionCodeEdit: RscEdit {
-                            idc = ZEUS_SCROLL_KEYPAD_BOMB_DIALOG_SOLUTION_CODE_ID;
+                            idc = ZEUS_KEYPAD_BOMB_DIALOG_SOLUTION_CODE_ID;
                             x = QUOTE(W_PART(10.1));
                             y = QUOTE(H_PART(2.2));
                             w = QUOTE(W_PART(15.9));
@@ -370,7 +370,7 @@ class GVAR(RscScollKeypadBomb): RscDisplayAttributes {
                             colorBackground[] = {0, 0, 0, 0.5};
                         };
                         class SerialNumberEdit: RscEdit {
-                            idc = ZEUS_SCROLL_KEYPAD_BOMB_DIALOG_SERIAL_NUMBER_ID;
+                            idc = ZEUS_KEYPAD_BOMB_DIALOG_SERIAL_NUMBER_ID;
                             x = QUOTE(W_PART(10.1));
                             y = QUOTE(H_PART(3.3));
                             w = QUOTE(W_PART(15.9));
