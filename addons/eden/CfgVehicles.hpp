@@ -27,7 +27,7 @@ class CfgVehicles {
     };
 
     ///////////////////////////////////////////////////////////////////////////////////
-    //EDEN Modules (Move to EDEN package)
+    //EDEN Modules
 
     class GVAR(edenModuleVulnerableObjects): GVAR(baseEdenModule) {
         displayName = CSTRING(Module_Shot_Vulnerable_DisplayName);

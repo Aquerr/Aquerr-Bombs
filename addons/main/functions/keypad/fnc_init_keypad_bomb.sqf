@@ -68,7 +68,7 @@ private _clientCleanupFunction = {
 if (isServer) then {
     if (_device getVariable ["aquerr_bomb_is_armed", false]) exitWith {hint LLSTRING(BombAlreadyArmed);};
 
-    [_explosionClassName, _afterDefuseFunction] call _prepareServerVariablesFunction;
+    [_device, _explosionClassName, _afterDefuseFunction] call _prepareServerVariablesFunction;
 };
 
 if (hasInterface) then {
@@ -78,11 +78,11 @@ if (hasInterface) then {
     [_device, true, _explosionClassName, 2] call FUNC(register_explosive_handlers_for_object);
 };
 
+[_device] call FUNC(init_keypad_gui);
+[_device, _serialNumber] call FUNC(init_serial_number);
 [_device, _timeSeconds] call FUNC(init_bomb_timer);
 [_device, _solutionCode] call FUNC(init_keypad_solution_code);
 [_device, "BOTH"] call FUNC(init_keypad_actions);
-[_device] call FUNC(init_keypad_gui);
-[_device, _serialNumber] call FUNC(init_serial_number);
 
 if (hasInterface) then {
     SETVAR(_device,aquerr_keypad_bomb_interface_initialized,true);

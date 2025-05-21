@@ -16,6 +16,10 @@
         [_player, _bomb, 2] call abombs_main_fnc_bomb_enter_digit;
 */
 
+
+//TODO: Rename to fnc_keypad_enter_digit.sqf
+//TODO: Add variables for storing success callback and failure callback. 
+
 params ["_defuser", "_bomb", "_digit", ["_showInHint", false]];
 
 _clientCleanUpFunction = _bomb getVariable ["aquerr_bomb_client_cleanup_function", {}];
@@ -46,6 +50,11 @@ if ((count _newCode) >= (count _solutionCode)) then {
         [_bomb, _defuser] call _afterDefuseFunction; 
     } else {
         [_bomb] call _clientCleanUpFunction;
+
+        if (dialog) then {
+            closeDialog 0;
+        };
+
         [_defuser, _bomb] call FUNC(bomb_explode);
     };
 };

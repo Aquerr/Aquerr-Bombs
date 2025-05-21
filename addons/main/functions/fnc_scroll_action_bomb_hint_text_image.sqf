@@ -352,7 +352,7 @@ private _explodeFunction = {
 
  //Variables
  private _prepareServerVariablesFunction = {
-     params ["_explosionClassName", "_shouldBeep", "_afterDefuseFunction"];
+     params ["_device", "_explosionClassName", "_shouldBeep", "_afterDefuseFunction"];
 
      _device setVariable ["aquerr_bomb_beep_enabled", _shouldBeep, true];
      _device setVariable ["aquerr_bomb_is_armed", true, true];
@@ -371,7 +371,7 @@ if (isServer) then {
 
     if (_device getVariable ["aquerr_bomb_is_armed", false]) exitWith {hint LLSTRING(BombAlreadyArmed);};
 
-    [_explosionClassName, _shouldBeep, _afterDefuseFunction] call _prepareServerVariablesFunction;
+    [_device, _explosionClassName, _shouldBeep, _afterDefuseFunction] call _prepareServerVariablesFunction;
     [_device, _timeSeconds] call FUNC(init_bomb_timer);
     [_device, _wireCount] call _generateBombWires;
 };
