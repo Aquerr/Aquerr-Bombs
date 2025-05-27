@@ -101,7 +101,7 @@ class CfgVehicles {
                     };
                     class Classic
                     {
-                        name = "STANDARD";
+                        name = "CLASSIC";
                         value = "CLASSIC";
                     };
                 };
