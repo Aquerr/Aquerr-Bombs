@@ -85,6 +85,18 @@
             <English>Open bomb interface</English>
             <Polish>Otwórz interfejs bomby</Polish>
         </Key>
+        <Key ID="str_abombs_main_settingsaquerrbombscategory">
+            <English>Aquerr Bombs</English>
+            <Polish>Aquerr Bombs</Polish>
+        </Key>
+        <Key ID="str_abombs_main_settingszeusshowbombicons">
+            <English>Show bombs icons</English>
+            <Polish>Pokaż ikony bomb</Polish>
+        </Key>
+        <Key ID="str_abombs_main_settingszeussubcategory">
+            <English>Zeus</English>
+            <Polish>Zeus</Polish>
+        </Key>
         <Key ID="str_abombs_main_wirecountcantbelessthanfour">
             <English>Wire count cannot be less than four</English>
             <Polish>Liczba kabli nie może być mniejsza niż cztery</Polish>

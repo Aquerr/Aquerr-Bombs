@@ -16,3 +16,5 @@ PREP(ui_KeypadBomb);
 PREP(ui_MemoryBomb);
 
 PREP(zeusAttributes);
+
+PREP(zeusDrawBombIcons);

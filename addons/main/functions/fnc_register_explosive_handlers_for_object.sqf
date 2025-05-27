@@ -123,6 +123,11 @@ if (_global && {isMultiplayer} && {isNil {_object getVariable QGVAR(register_exp
 
     _device setVariable ["aquerr_explosion_event_index", _explosionEventIndex];
     _device setVariable ["aquerr_hit_part_event_index", _hitPartEventIndex];
+    if (isNil QGVARMAIN(registeredBombs)) then {
+        GVARMAIN(registeredBombs) = [];
+    };
+    GVARMAIN(registeredBombs) pushBack _device;
+    systemChat format ["Added bomb: [%1]", str GVARMAIN(registeredBombs)];
 };
 
 [_object, _shouldDeleteWreckAfterExplosion, _explosionClassName, _requiredHits, _fixed] call _registerEventHandlersFunction;

@@ -6,4 +6,6 @@ ADDON = false;
 
 GVAR(isAceInteractionMenuLoaded) = isClass (configFile >> "CfgPatches" >> "ace_interact_menu");
 
+#include "cba_settings.inc.sqf"
+
 ADDON = true;
