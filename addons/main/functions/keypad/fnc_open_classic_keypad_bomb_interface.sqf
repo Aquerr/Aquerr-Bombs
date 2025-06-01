@@ -1,4 +1,4 @@
-#include "script_component.hpp"
+#include "..\script_component.hpp"
 
 params ["_bomb"];
 
@@ -6,7 +6,8 @@ if (dialog) then {
     closeDialog 0;
 };
 
-//TODO: If bomb is other than keypad then return and show info about unsupported interface.
+_guiType = _bomb getVariable ["aquerr_keypad_bomb_gui_type", "UNKNOWN"];
+if (not(_guiType isEqualTo "CLASSIC")) exitWith { hint "Unsupported GUI type! Have mission maker setup bomb correctly?" }; 
 
 GVAR(Bomb_Interface_Target) = _bomb;
 

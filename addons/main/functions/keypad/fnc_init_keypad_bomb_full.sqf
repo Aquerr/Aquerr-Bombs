@@ -70,6 +70,29 @@ if (isServer) then {
     if (_device getVariable ["aquerr_bomb_is_armed", false]) exitWith {hint LLSTRING(BombAlreadyArmed);};
 
     [_device, _explosionClassName, _afterDefuseFunction] call _prepareServerVariablesFunction;
+
+    _successFunction = {
+        params ["_bomb", "_defuser"];
+
+        [_bomb] call _clientCleanUpFunction;
+        _bomb setVariable ["aquerr_bomb_is_armed", false, true];
+        hint LLSTRING(BombDefused);
+        [_bomb, QGVAR(BombDefuse)] remoteExec ["say3D"];
+
+        [QGVAR(BombDefused), [_bomb, _defuser]] call CBA_fnc_globalEvent;
+    };
+
+    _failureFunction = {
+        params ["_bomb", "_defuser"];
+        [_bomb] call _clientCleanUpFunction;
+        [_defuser, _bomb] call FUNC(bomb_explode);
+        if (dialog) then {
+            closeDialog 0;
+        };
+    };
+
+    _device setVariable ["abombs_keypad_success_function", _successFunction, true];
+    _device setVariable ["abombs_keypad_failure_function", _failureFunction, true];
 };
 
 if (hasInterface) then {

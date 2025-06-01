@@ -1,4 +1,4 @@
-#include "script_component.hpp"
+#include "..\script_component.hpp"
 /*
 	Author: Aquerr (also known as Nerdi)
 	https://github.com/Aquerr
@@ -7,7 +7,7 @@
         Clears entered code in keypad bomb. Local only.
 
 	Example:
-        [] call abombs_main_fnc_bomb_clear_entered_code;
+        [] call abombs_main_fnc_keypad_clear_entered_code;
 */
 
 params ["_defuser", "_bomb"];

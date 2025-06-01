@@ -97,6 +97,10 @@
             <English>Zeus</English>
             <Polish>Zeus</Polish>
         </Key>
+        <Key ID="str_abombs_main_viewbackpanel">
+            <English>View back panel</English>
+            <Polish>Pokaż tylny panel</Polish>
+        </Key>
         <Key ID="str_abombs_main_wirecountcantbelessthanfour">
             <English>Wire count cannot be less than four</English>
             <Polish>Liczba kabli nie może być mniejsza niż cztery</Polish>

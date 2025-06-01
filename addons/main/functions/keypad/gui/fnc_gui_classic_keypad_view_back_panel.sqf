@@ -1,4 +1,18 @@
-#include "..\script_component.hpp"
+#include "..\..\script_component.hpp"
+
+/*
+	Author: Aquerr (also known as Nerdi)
+	https://github.com/Aquerr
+
+	Description:
+        Displays keypad's backpanel. Local only.
+
+	Parameter(s):
+        0: OBJECT - the object that keypad is attached to
+
+	Example:
+        [2] call abombs_main_fnc_gui_keypad_view_back_panel;
+*/
 
 params ["_bomb"];
 

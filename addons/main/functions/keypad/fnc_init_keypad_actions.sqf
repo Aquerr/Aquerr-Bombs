@@ -18,7 +18,7 @@ private _prepareDigitActionFunction = {
         {
             params ["_target", "_player", "_actionParams"];
             _digit = _actionParams select 0;
-            [_player, _target, _digit, true] call FUNC(bomb_enter_digit);
+            [_player, _target, _digit, true] call FUNC(keypad_enter_digit);
 
         }, {true}, {}, [_digit]] call ace_interact_menu_fnc_createAction;
 
@@ -34,7 +34,7 @@ private _prepareDigitActionFunction = {
                 params ["_target", "_caller", "_actionId", "_arguments"]; // script
 
                 _digit = _arguments select 0;
-                [_caller, _target, _digit, true] call FUNC(bomb_enter_digit);
+                [_caller, _target, _digit, true] call FUNC(keypad_enter_digit);
             },
             [_digit],		// arguments
             1.5,		// priority
@@ -55,7 +55,7 @@ private _prepareClearCodeFunction = {
 
     private _clearCodeFunction = {
         params ["_defuser", "_bomb"];
-        [_defuser, _bomb] call FUNC(bomb_clear_entered_code);
+        [_defuser, _bomb] call FUNC(keypad_clear_entered_code);
     };
 
     // ACE ACTION
