@@ -21,4 +21,5 @@ params ["_defuser", "_bomb"];
 _explosionClassName = _bomb getVariable ["aquerr_explosion_class_name", "DemoCharge_Remote_Ammo"];
 _explosive = _explosionClassName createVehicle (getPos _bomb);
 deleteVehicle _bomb;
+[_bomb] call FUNC(removeRegisteredBomb);
 _explosive setDamage 1;

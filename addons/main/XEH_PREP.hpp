@@ -4,6 +4,9 @@ PREP(register_explosive_handlers_for_object);
 PREP_BY_PATH(init_keypad_bomb_full,functions\keypad\fnc_init_keypad_bomb_full.sqf);
 PREP_BY_PATH(init_wire_bomb_full,functions\wire\fnc_init_wire_bomb_full.sqf);
 
+PREP_BY_PATH(addRegisteredBomb,functions\fnc_addRegisteredBomb.sqf);
+PREP_BY_PATH(removeRegisteredBomb,functions\fnc_removeRegisteredBomb.sqf);
+
 // GUI open actions
 PREP(open_classic_keypad_bomb_interface);
 PREP(open_keypad_bomb_interface);

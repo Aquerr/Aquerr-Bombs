@@ -4,4 +4,4 @@ params ["_bomb", "_defuser"];
 if (!hasInterface) exitWith {};
 
 _cleanup = _bomb getVariable ["aquerr_bomb_client_cleanup_function", {}];
-[] call _cleanup;
+[_bomb] call _cleanup;
