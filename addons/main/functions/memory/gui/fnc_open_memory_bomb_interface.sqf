@@ -1,4 +1,18 @@
-#include "..\script_component.hpp"
+#include "..\..\script_component.hpp"
+
+/*
+	Author: Aquerr (also known as Nerdi)
+	https://github.com/Aquerr
+
+	Description:
+        Open's memory bomb GUI Dialog and setups its fields.
+
+	Parameter(s):
+        0: OBJECT - the object that bomb is attached to
+
+	Example:
+        [2] call abombs_main_fnc_open_memory_bomb_interface;
+*/
 
 params ["_bomb"];
 
@@ -41,5 +55,4 @@ GVAR(Bomb_Interface_Target) = _bomb;
     _bomb setVariable ["aquerr_memory_bomb_input", false];
     _bomb setVariable ["aquerr_memory_bomb_sequence_showing", false];
     [_bomb] call FUNC(gui_memory_bomb_start);
-    //[_bomb] call FUNC(gui_memory_show_sequence);
 };

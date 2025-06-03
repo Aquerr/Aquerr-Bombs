@@ -1,4 +1,18 @@
-#include "..\script_component.hpp"
+#include "..\..\script_component.hpp"
+
+/*
+	Author: Aquerr (also known as Nerdi)
+	https://github.com/Aquerr
+
+	Description:
+        Open's standard keypad GUI Dialog and setups its fields.
+
+	Parameter(s):
+        0: OBJECT - the object that keypad is attached to
+
+	Example:
+        [2] call abombs_main_fnc_open_keypad_bomb_interface;
+*/
 
 params ["_bomb"];
 
@@ -7,7 +21,7 @@ if (dialog) then {
 };
 
 _guiType = _bomb getVariable ["aquerr_keypad_bomb_gui_type", "UNKNOWN"];
-if (not(_guiType isEqualTo "CLASSIC")) exitWith { hint "Unsupported GUI type! Have mission maker setup bomb correctly?" }; 
+if (not(_guiType isEqualTo "STANDARD")) exitWith { hint "Unsupported GUI type! Have mission maker setup bomb correctly?" }; 
 
 GVAR(Bomb_Interface_Target) = _bomb;
 
@@ -15,9 +29,9 @@ GVAR(Bomb_Interface_Target) = _bomb;
     params ["_bomb"];
 
     waitUntil {not dialog};
-    waitUntil {createDialog QGVAR(Classic_Keypad_Bomb_Interface_Dialog)};
+    waitUntil {createDialog QGVAR(Keypad_Bomb_Interface_Dialog)};
 
-    _dialog = findDisplay CLASSIC_KEYPAD_BOMB_INTERFACE_ID;
+    _dialog = findDisplay KEYPAD_BOMB_INTERFACE_ID;
 
     // Refresh bomb solution code display and timer
     [

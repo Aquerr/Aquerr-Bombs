@@ -21,8 +21,8 @@ PREP_BY_PATH(init_keypad_gui,functions\keypad\fnc_init_keypad_gui.sqf);
 PREP_BY_PATH(keypad_enter_digit,functions\keypad\fnc_keypad_enter_digit.sqf);
 PREP_BY_PATH(keypad_clear_entered_code,functions\keypad\fnc_keypad_clear_entered_code.sqf);
 
-PREP_BY_PATH(open_keypad_bomb_interface,functions\keypad\fnc_open_keypad_bomb_interface.sqf);
-PREP_BY_PATH(open_classic_keypad_bomb_interface,functions\keypad\fnc_open_classic_keypad_bomb_interface.sqf);
+PREP_BY_PATH(open_keypad_bomb_interface,functions\keypad\gui\fnc_open_keypad_bomb_interface.sqf);
+PREP_BY_PATH(open_classic_keypad_bomb_interface,functions\keypad\gui\fnc_open_classic_keypad_bomb_interface.sqf);
 
 PREP_BY_PATH(gui_keypad_clear_code,functions\keypad\gui\fnc_gui_keypad_clear_code.sqf);
 PREP_BY_PATH(gui_keypad_enter_digit,functions\keypad\gui\fnc_gui_keypad_enter_digit.sqf);
@@ -33,9 +33,15 @@ PREP_BY_PATH(gui_keypad_confirm_entered_code,functions\keypad\gui\fnc_gui_keypad
 PREP_BY_PATH(keypad_confirm_entered_code,functions\keypad\fnc_keypad_confirm_entered_code.sqf);
 
 // Memory
-PREP_BY_PATH(open_memory_bomb_interface,functions\memory\fnc_open_memory_bomb_interface.sqf);
+PREP_BY_PATH(open_memory_bomb_interface,functions\memory\gui\fnc_open_memory_bomb_interface.sqf);
 PREP_BY_PATH(gui_memory_color_click,functions\memory\gui\fnc_gui_memory_color_click.sqf);
 PREP_BY_PATH(gui_memory_bomb_start,functions\memory\gui\fnc_gui_memory_bomb_start.sqf);
 PREP_BY_PATH(gui_memory_bomb_play_round,functions\memory\gui\fnc_gui_memory_bomb_play_round.sqf);
 PREP_BY_PATH(init_memory_bomb_gui_action,functions\memory\fnc_init_memory_bomb_gui_action.sqf);
 PREP_BY_PATH(init_memory_bomb_full,functions\memory\fnc_init_memory_bomb_full.sqf);
+
+// Morse
+PREP_BY_PATH(init_morse_bomb_full,functions\morse\fnc_init_morse_bomb_full.sqf);
+PREP_BY_PATH(open_morse_bomb_interface,functions\morse\gui\fnc_open_morse_bomb_interface.sqf);
+PREP_BY_PATH(init_morse_bomb_gui_action,functions\morse\fnc_init_morse_bomb_gui_action.sqf);
+PREP_BY_PATH(gui_morse_bomb_start,functions\morse\gui\fnc_gui_morse_bomb_start.sqf);
