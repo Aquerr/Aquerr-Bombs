@@ -84,7 +84,7 @@ if (_global && {isMultiplayer} && {isNil {_object getVariable QGVAR(register_exp
         };
 
         if ((GETVAR(_target,aquerr_already_exploded,0)) == 1) exitWith {};
-        SETVAR(_target,aquerr_already_exploded,1);
+        SETPVAR(_target,aquerr_already_exploded,1);
 
         _explosionClassName = GETVAR(_target,aquerr_explosion_class_name,IEDUrbanSmall_Remote_Ammo);
         _explosive = createVehicle [_explosionClassName, (getPosATL _target), [], 0, "CAN_COLLIDE"];
@@ -109,7 +109,7 @@ if (_global && {isMultiplayer} && {isNil {_object getVariable QGVAR(register_exp
 
         // Workaround for event being fired multiple times... (don't know why)
         if ((GETVAR(_vehicle,aquerr_already_exploded,0)) == 1) exitWith {};
-        SETVAR(_vehicle,aquerr_already_exploded,1);
+        SETPVAR(_vehicle,aquerr_already_exploded,1);
 
         _explosionClassName = GETVAR(_vehicle,aquerr_explosion_class_name,IEDUrbanSmall_Remote_Ammo);
         _explosive = createVehicle [_explosionClassName, (getPosATL _vehicle), [], 0, "CAN_COLLIDE"];

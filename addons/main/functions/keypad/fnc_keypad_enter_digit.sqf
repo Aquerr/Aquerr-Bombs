@@ -18,9 +18,6 @@
 
 params ["_user", "_object", "_digit", ["_showInHint", false]];
 
-_clientCleanUpFunction = _object getVariable ["aquerr_bomb_client_cleanup_function", {}];
-_afterDefuseFunction = _object getVariable ["aquerr_bomb_after_defuse_function", {}];
-
 private _isArmed = _object getVariable ["aquerr_bomb_is_armed", false];
 if (!_isArmed) exitWith {hint (LLSTRING(BombAlreadyDefused))};
 

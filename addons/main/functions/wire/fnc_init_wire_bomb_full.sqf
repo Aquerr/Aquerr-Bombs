@@ -345,12 +345,6 @@ private _generateBombWires = {
      _device setVariable ["aquerr_bomb_after_defuse_function", _afterDefuseFunction, true];
  };
 
- private _prepareClientVariablesFunction = {
-    params ["_device"];
-
-    SETVAR(_device,aquerr_wire_bomb_interface_initialized,true);
- };
-
 // Execution code
 if (isServer) then {
 
@@ -364,8 +358,8 @@ if (isServer) then {
 if (hasInterface) then {
 
     if (GETVAR(_device,aquerr_wire_bomb_interface_initialized,false)) exitWith {};
+    SETVAR(_device,aquerr_wire_bomb_interface_initialized,true);
 
-    [_device] call _prepareClientVariablesFunction;
     [_device, _cutColoredWireFunction, _prepareWireCutAction, _prepareShowBombWiresInHintAction, _showWiresInHintFunction, _wireSign, _prepareCheckTimeFunction] call _prepareActionsFunction;
     [_device, true, _explosionClassName, 2] call FUNC(register_explosive_handlers_for_object);
 };
