@@ -32,7 +32,7 @@ params ["_device", ["_timeSeconds", 60, [0]], ["_shouldBeep", true, [true]], ["_
 if ((isNil "_device") || {isNull(_device)}) exitWith { hint LELSTRING(common,MustSelectObject) };
 if ((_wireCount < 4)) exitWith { hint LLSTRING(WireCountCantBeLessThanFour)};
 
-if (_global && {isMultiplayer} && {isNil {_device getVariable QGVAR(init_wire_bomb_full_JIP)}}) exitWith {
+if (isServer && {_global && {isMultiplayer && {isNil {_device getVariable QGVAR(init_wire_bomb_full_JIP)}}}}) exitWith {
 
     private _id = [QGVAR(init_wire_bomb_full), [_device, _timeSeconds, _shouldBeep, _wireSign, _wireCount, _explosionClassName, _afterDefuseFunction, false]] call CBA_fnc_globalEventJIP;
 

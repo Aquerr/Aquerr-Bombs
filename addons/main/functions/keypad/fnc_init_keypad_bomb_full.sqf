@@ -33,7 +33,7 @@ params ["_device", ["_timeSeconds", 60, [0]], ["_solutionCode", "0000", ["string
 if ((isNil "_device") || {isNull(_device)}) exitWith { hint LELSTRING(common,MustSelectObject) };
 
 // Code for server + future players
-if (_global && {isMultiplayer} && {isNil {_device getVariable QGVAR(init_keypad_bomb_full_JIP)}}) exitWith {
+if (isServer && {_global && {isMultiplayer && {isNil {_device getVariable QGVAR(init_keypad_bomb_full_JIP)}}}}) exitWith {
 
     private _id = [QGVAR(init_keypad_bomb_full), [_device, _timeSeconds, _solutionCode, _shouldBeep, _explosionClassName, _serialNumber, _guiType, _afterDefuseFunction, false]] call CBA_fnc_globalEventJIP;
 
@@ -93,6 +93,9 @@ if (isServer) then {
 
     _device setVariable ["abombs_keypad_success_function", _successFunction, true];
     _device setVariable ["abombs_keypad_failure_function", _failureFunction, true];
+
+    [_device, _solutionCode] call FUNC(init_keypad_solution_code);
+    [_device, _timeSeconds] call FUNC(init_bomb_timer);
 };
 
 if (hasInterface) then {
@@ -100,13 +103,11 @@ if (hasInterface) then {
 
     [_device, _clientCleanupFunction] call _prepareClientVariablesFunction;
     [_device, true, _explosionClassName, 2] call FUNC(register_explosive_handlers_for_object);
+    [_device, _guiType] call FUNC(init_keypad_gui);
+    [_device, "BOTH"] call FUNC(init_keypad_actions);
 };
 
-[_device, _guiType] call FUNC(init_keypad_gui);
 [_device, _serialNumber] call FUNC(init_serial_number);
-[_device, _timeSeconds] call FUNC(init_bomb_timer);
-[_device, _solutionCode] call FUNC(init_keypad_solution_code);
-[_device, "BOTH"] call FUNC(init_keypad_actions);
 
 if (hasInterface) then {
     SETVAR(_device,aquerr_keypad_bomb_interface_initialized,true);

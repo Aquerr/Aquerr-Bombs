@@ -31,7 +31,7 @@ params ["_bomb", ["_timeSeconds", 60, [0]], ["_shouldBeep", true, [true]], ["_ro
 if ((isNil "_bomb") || {isNull(_bomb)}) exitWith { hint LELSTRING(common,MustSelectObject) };
 
 // Code for server + future players
-if (_global && {isMultiplayer} && {isNil {_bomb getVariable QGVAR(init_memory_bomb_full_JIP)}}) exitWith {
+if (isServer && {_global && {isMultiplayer && {isNil {_bomb getVariable QGVAR(init_memory_bomb_full_JIP)}}}}) exitWith {
 
     private _id = [QGVAR(init_memory_bomb_full), [_bomb, _timeSeconds, _shouldBeep, _rounds, _explosionClassName, _serialNumber, _afterDefuseFunction, false]] call CBA_fnc_globalEventJIP;
 
@@ -54,12 +54,16 @@ if (_global && {isMultiplayer} && {isNil {_bomb getVariable QGVAR(init_memory_bo
     if (_bomb getVariable ["aquerr_bomb_is_armed", false]) exitWith {hint LLSTRING(BombAlreadyArmed);};
 
     [_bomb, _rounds, _afterDefuseFunction] call _prepareServerVariablesFunction;
+    [_bomb, _timeSeconds] call FUNC(init_bomb_timer);
 };
+
+[_bomb, _serialNumber] call FUNC(init_serial_number);
 
 if(hasInterface) then {
-    [_bomb, true, _explosionClassName, 2] call FUNC(register_explosive_handlers_for_object);
-};
+    if (GETVAR(_bomb,aquerr_memory_bomb_interface_initialized,false)) exitWith {};
 
-[_bomb, _timeSeconds] call FUNC(init_bomb_timer);
-[_bomb] call FUNC(init_memory_bomb_gui_action);
-[_bomb, _serialNumber] call FUNC(init_serial_number);
+    [_bomb, true, _explosionClassName, 2] call FUNC(register_explosive_handlers_for_object);
+
+    [_bomb] call FUNC(init_memory_bomb_gui_action);
+    SETVAR(_bomb,aquerr_memory_bomb_interface_initialized,true);
+};

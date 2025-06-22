@@ -7,6 +7,10 @@ if (isServer) then {
 };
 
 if (hasInterface) then {
+
+    if ((_bomb getVariable ["aquerr_bomb_serial_number_action_exists", false])) exitWith {};
+    _bomb setVariable ["aquerr_bomb_serial_number_action_exists", true];
+
     private _prepareCheckSerialNumberFunction = {
         params ["_bomb", "_actionName"];
 
