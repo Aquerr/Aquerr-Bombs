@@ -42,7 +42,7 @@ params ["_bomb",
 if ((isNil "_bomb") || {isNull(_bomb)}) exitWith { hint LELSTRING(common,MustSelectObject) };
 
 // Code for server + future players
-if (isServer && {_global && {isMultiplayer && {isNil {_bomb getVariable QGVAR(init_morse_bomb_full_JIP)}}) exitWith {
+if (isServer && {_global && {isMultiplayer && {isNil {_bomb getVariable QGVAR(init_morse_bomb_full_JIP)}}}}) exitWith {
 
     private _id = [QGVAR(init_morse_bomb_full), [_bomb, _timeSeconds, _shouldBeep, _encodedMessage, _solutionMessage, _explosionClassName, _serialNumber, _afterDefuseFunction, false]] call CBA_fnc_globalEventJIP;
 

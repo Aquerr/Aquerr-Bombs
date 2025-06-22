@@ -1,5 +1,7 @@
-class GVAR(Memory_Bomb_Interface_Dialog) {
-    idd = MEMORY_BOMB_INTERFACE_ID;
+class RscEdit;
+
+class GVAR(Morse_Bomb_Interface_Dialog) {
+    idd = MORSE_BOMB_INTERFACE_ID;
     movingEnable = 1;
     enableSimulation = 1;
     onLoad = QUOTE(uiNamespace setVariable [ARR_2(QQGVAR(Bomb_Interface_Dialog),(_this select 0))]);
@@ -32,6 +34,7 @@ class GVAR(Memory_Bomb_Interface_Dialog) {
             w = QUOTE(W_PART(4.0));
             h = QUOTE(H_PART(1.5));
         };
+        
         class TIME_TEXT: RscText
         {
             idc = BOMB_GUI_TIME_LABEL_ID;
@@ -55,7 +58,7 @@ class GVAR(Memory_Bomb_Interface_Dialog) {
         };
 
         class BtnHidden: RscButton {
-            idc = MEMORY_BOMB_BUTTON_HIDDEN_ID;
+            idc = MORSE_BOMB_BUTTON_HIDDEN_ID;
             text = "";
             x = 0.10; 
             y = 0.31;
@@ -69,8 +72,8 @@ class GVAR(Memory_Bomb_Interface_Dialog) {
             action = "";
         };
 
-        class BtnRed: RscButton {
-            idc = MEMORY_BOMB_BUTTON_RED_ID;
+        class Lamp: RscText {
+            idc = MORSE_BOMB_LAMP_ID;
             text = "";
             x = 0.31; 
             y = 0.31;
@@ -81,44 +84,10 @@ class GVAR(Memory_Bomb_Interface_Dialog) {
             colorFocused[] = {1, 0, 0, 0.8};
             colorFocused2[] = {1, 0, 0, 0.8};
             colorActive[] = {0,0,0,0};
-            action = QUOTE([0] call FUNC(gui_memory_color_click));
-            soundClick[] = {QPATHTOF(sounds\memory_button.ogg), 1, 0.6};
         };
 
-        class BtnGreen: RscButton {
-            idc = MEMORY_BOMB_BUTTON_GREEN_ID;
-            text = "";
-            x = 0.51;
-            y = 0.31;
-            w = 0.18; 
-            h = 0.18;
-            colorBackground[] = {0, 1, 0, 0.8};
-            colorBackgroundActive[] = {0, 1, 0, 1};
-            colorFocused[] = {0, 1, 0, 0.8};
-            colorFocused2[] = {0, 1, 0, 0.8};
-            colorActive[] = {0,0,0,0};
-            action = QUOTE([1] call FUNC(gui_memory_color_click));
-            soundClick[] = {QPATHTOF(sounds\memory_button.ogg), 1, 0.7};
-        };
-
-        class BtnBlue: RscButton {
-            idc = MEMORY_BOMB_BUTTON_BLUE_ID;
-            text = "";
-            x = 0.31; 
-            y = 0.51;
-            w = 0.18; 
-            h = 0.18;
-            colorBackground[] = {0, 0, 1, 0.8};
-            colorBackgroundActive[] = {0, 0, 1, 1};
-            colorFocused[] = {0, 0, 1, 0.8};
-            colorFocused2[] = {0, 0, 1, 0.8};
-            colorActive[] = {0,0,0,0};
-            action = QUOTE([2] call FUNC(gui_memory_color_click));
-            soundClick[] = {QPATHTOF(sounds\memory_button.ogg), 1, 0.8};
-        };
-
-        class BtnYellow: RscButton {
-            idc = MEMORY_BOMB_BUTTON_YELLOW_ID;
+        class InputField: RscEdit {
+            idc = MORSE_BOMB_INPUT_FIELD_ID;
             text = "";
             x = 0.51; 
             y = 0.51;
@@ -129,12 +98,27 @@ class GVAR(Memory_Bomb_Interface_Dialog) {
             colorFocused[] = {1, 1, 0, 0.8};
             colorFocused2[] = {1, 1, 0, 0.8};
             colorActive[] = {0,0,0,0};
-            action = QUOTE([3] call FUNC(gui_memory_color_click));
-            soundClick[] = {QPATHTOF(sounds\memory_button.ogg), 1, 0.9};
         };
 
-        class SERIAL_NUMBER: RscText
-        {
+        class BtnConfirm: RscButton {
+            idc = MORSE_BOMB_BUTTON_CONFIRM_ID;
+            text = "";
+            x = 0.31; 
+            y = 0.51;
+            w = 0.18; 
+            h = 0.18;
+            sizeEx = 0.03; //Text size
+            type = 1;
+            colorBackground[] = {0, 0, 1, 0.8};
+            colorBackgroundActive[] = {0, 0, 1, 1};
+            colorFocused[] = {0, 0, 1, 0.8};
+            colorFocused2[] = {0, 0, 1, 0.8};
+            colorActive[] = {0,0,0,0};
+            tooltip = "Confirm code";
+            action = QUOTE([] call FUNC(gui_morse_confirm_code));
+        };
+
+        class SERIAL_NUMBER: RscText {
             idc = BOMB_GUI_SERIAL_NUMBER_FIELD_ID;
             font="TahomaB";
             text = "";

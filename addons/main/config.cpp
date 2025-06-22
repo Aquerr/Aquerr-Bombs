@@ -22,3 +22,4 @@ class CfgPatches {
 #include "ui\Keypad_Bomb_Interface.hpp"
 #include "ui\Math_Bomb_Interface.hpp"
 #include "ui\Memory_Keypad_Bomb_Interface.hpp"
+#include "ui\Morse_Bomb_Interface.hpp"
