@@ -1,11 +1,11 @@
 // FUNCTION PREPS
-PREP(register_explosive_handlers_global);
-PREP(register_explosive_handlers_for_object);
-PREP_BY_PATH(init_keypad_bomb_full,functions\keypad\fnc_init_keypad_bomb_full.sqf);
-PREP_BY_PATH(init_wire_bomb_full,functions\wire\fnc_init_wire_bomb_full.sqf);
-
 PREP_BY_PATH(addRegisteredBomb,functions\fnc_addRegisteredBomb.sqf);
 PREP_BY_PATH(removeRegisteredBomb,functions\fnc_removeRegisteredBomb.sqf);
+
+// Shot/Explosion vulnerability
+PREP(register_explosive_handlers_global);
+PREP(register_explosive_handlers_for_object);
+PREP_BY_PATH(unregister_explosive_handlers,functions\common\fnc_unregister_explosive_handlers.sqf);
 
 // Bomb functions
 // Common
@@ -13,8 +13,11 @@ PREP_BY_PATH(init_bomb_timer,functions\common\fnc_init_bomb_timer.sqf);
 PREP_BY_PATH(init_serial_number,functions\common\fnc_init_serial_number.sqf);
 PREP_BY_PATH(after_explode_client_cleanup,functions\common\fnc_after_explode_client_cleanup.sqf);
 PREP_BY_PATH(bomb_explode,functions\common\fnc_bomb_explode.sqf);
+PREP_BY_PATH(bomb_defuse,functions\common\fnc_bomb_defuse.sqf);
 
 // Keypad
+PREP_BY_PATH(init_keypad_bomb_full,functions\keypad\fnc_init_keypad_bomb_full.sqf);
+
 PREP_BY_PATH(init_keypad_solution_code,functions\keypad\fnc_init_keypad_solution_code.sqf);
 PREP_BY_PATH(init_keypad_actions,functions\keypad\fnc_init_keypad_actions.sqf);
 PREP_BY_PATH(init_keypad_gui,functions\keypad\fnc_init_keypad_gui.sqf);
@@ -31,6 +34,9 @@ PREP_BY_PATH(gui_keypad_standard_view_back_panel,functions\keypad\gui\fnc_gui_ke
 PREP_BY_PATH(gui_keypad_confirm_entered_code,functions\keypad\gui\fnc_gui_keypad_confirm_entered_code.sqf);
 
 PREP_BY_PATH(keypad_confirm_entered_code,functions\keypad\fnc_keypad_confirm_entered_code.sqf);
+
+// Wire
+PREP_BY_PATH(init_wire_bomb_full,functions\wire\fnc_init_wire_bomb_full.sqf);
 
 // Memory
 PREP_BY_PATH(open_memory_bomb_interface,functions\memory\gui\fnc_open_memory_bomb_interface.sqf);

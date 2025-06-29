@@ -125,6 +125,13 @@ class CfgVehicles {
                 typeName = "STRING";
                 defaultValue = "'000000'";
             };
+            class MaxDefuseAttempts: Edit {
+                property = QGVAR(edenModuleKeypadBomb_MaxDefuseAttempts);
+                displayName = CSTRING(MaxDefuseAttemptsLabel);
+                tooltip = CSTRING(MaxDefuseAttemptsTooltip);
+                typeName = "NUMBER";
+                defaultValue = "1";
+            };
             class SerialNumber: Edit {
                 property = QGVAR(edenModuleKeypadBomb_SerialNumber);
                 displayName = CSTRING(SerialNumberLabel);
@@ -145,6 +152,13 @@ class CfgVehicles {
                 tooltip = CSTRING(OverrideExplosionClassLabelTooltip);
                 typeName = "STRING";
                 defaultValue = "''";
+            };
+            class RemoveShotVulnerabilityAfterDefuse: Checkbox {
+                property = QGVAR(edenModuleKeypadBomb_RemoveShotVulnerabilityAfterDefuse);
+                displayName = CSTRING(RemoveShotVulnerabilityAfterDefuseLabel);
+                tooltip = CSTRING(RemoveShotVulnerabilityAfterDefuseLabelTooltip);
+                typeName = "BOOL";
+                defaultValue = "false";
             };
             class AfterDefuseCode: Default {
                 property = QGVAR(edenModuleKeypadBomb_AfterDefuseCode);

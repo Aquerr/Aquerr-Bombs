@@ -18,7 +18,7 @@
 
 params ["_user", "_object", "_digit", ["_showInHint", false]];
 
-private _isArmed = _object getVariable ["aquerr_bomb_is_armed", false];
+private _isArmed = _object getVariable ["abombs_bomb_is_armed", false];
 if (!_isArmed) exitWith {hint (LLSTRING(BombAlreadyDefused))};
 
 _newCode = (format  ["%1%2", (_object getVariable ["aquerr_bomb_entered_code", ""]), _digit]);

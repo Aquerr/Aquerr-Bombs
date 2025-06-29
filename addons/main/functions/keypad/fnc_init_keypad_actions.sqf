@@ -98,7 +98,7 @@ private _prepareCheckTimeFunction = {
 
     private _checkTimeFunction = {
         params ["_bomb"];
-        _bombTimeSeconds = _bomb getVariable ["aquerr_bomb_time_seconds", 0];
+        _bombTimeSeconds = _bomb getVariable ["abombs_bomb_time_seconds", 0];
         _bombTimeSecondsStr = str _bombTimeSeconds;
         if (_bombTimeSeconds == 0) then {
             _bombTimeSecondsStr = "???";

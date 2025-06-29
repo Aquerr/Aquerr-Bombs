@@ -7,7 +7,7 @@ params ["_colorPressed"];
 
     _bomb = GVAR(Bomb_Interface_Target);
 
-    private _isArmed = _bomb getVariable ["aquerr_bomb_is_armed", false];
+    private _isArmed = _bomb getVariable ["abombs_bomb_is_armed", false];
     if (!_isArmed) exitWith {hint (LLSTRING(BombAlreadyDefused))};
 
     // Add pressed input
@@ -29,17 +29,8 @@ params ["_colorPressed"];
     // Check if sequence complete
     if (count _input == count _sequence) then {
         if (count _sequence >= (_bomb getVariable ["aquerr_memory_bomb_required_rounds", 5])) then {
-            _bomb setVariable ["aquerr_bomb_is_armed", false, true];
             closeDialog 0;
-
-            hint LLSTRING(BombDefused);
-            [_bomb, QGVAR(BombDefuse)] remoteExec ["say3D"];
-
-            [QGVAR(BombDefused), [_bomb, player]] call CBA_fnc_globalEvent;
-
-            _afterDefuseFunction = _bomb getVariable ["aquerr_bomb_after_defuse_function", {}];
-            [_bomb, player] call _afterDefuseFunction; 
-
+            [_device, _defuser] call FUNC(bomb_defuse);
         } else {
             // Next round
             _bomb setVariable ["aquerr_memory_bomb_round", (_bomb getVariable "aquerr_memory_bomb_round") + 1];

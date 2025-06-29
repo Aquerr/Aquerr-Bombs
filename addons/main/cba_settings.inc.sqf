@@ -1,7 +1,10 @@
+#define CBA_SETTINGS_CAT LSTRING(settingsAquerrBombsCategory)
+
+// Show bomb icons in zeus interface
 [
     QGVAR(zeusShowBombIcons),
     "CHECKBOX",
     CSTRING(settingsZeusShowBombIcons),
-    [CSTRING(settingsAquerrBombsCategory), CSTRING(settingsZeusSubCategory)],
-    true
+    [CBA_SETTINGS_CAT, CSTRING(settingsZeusSubCategory)],
+    [true]
 ] call CBA_fnc_addSetting;

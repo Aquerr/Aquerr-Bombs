@@ -14,7 +14,7 @@
         [_player, _bomb] call abombs_main_fnc_bomb_explode;
 */
 
-params ["_defuser", "_bomb"];
+params ["_bomb", "_defuser"];
 
 [QGVAR(bomb_explode), [_bomb, _defuser]] call CBA_fnc_globalEvent;
 

@@ -44,14 +44,14 @@ if (isServer && {_global && {isMultiplayer && {isNil {_bomb getVariable QGVAR(in
  private _prepareServerVariablesFunction = {
      params ["_bomb", "_rounds", "_afterDefuseFunction"];
 
-     _bomb setVariable ["aquerr_bomb_type", "MEMORY", true];
-     _bomb setVariable ["aquerr_bomb_is_armed", true, true];
-     _bomb setVariable ["aquerr_bomb_after_defuse_function", _afterDefuseFunction, true];
+     _bomb setVariable ["abombs_bomb_type", "MEMORY", true];
+     _bomb setVariable ["abombs_bomb_is_armed", true, true];
+     _bomb setVariable ["abombs_bomb_after_defuse_function", _afterDefuseFunction, true];
      _bomb setVariable ["aquerr_memory_bomb_required_rounds", _rounds, true];
  };
 
  if (isServer) then {
-    if (_bomb getVariable ["aquerr_bomb_is_armed", false]) exitWith {hint LLSTRING(BombAlreadyArmed);};
+    if (_bomb getVariable ["abombs_bomb_is_armed", false]) exitWith {hint LLSTRING(BombAlreadyArmed);};
 
     [_bomb, _rounds, _afterDefuseFunction] call _prepareServerVariablesFunction;
     [_bomb, _timeSeconds] call FUNC(init_bomb_timer);

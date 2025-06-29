@@ -115,22 +115,15 @@ private _generateBombWires = {
  private _cutColoredWireFunction = {
     params ["_defuser", "_device", "_wireColor"];
 
-    private _isArmed = _device getVariable ["aquerr_bomb_is_armed", false];
+    private _isArmed = _device getVariable ["abombs_bomb_is_armed", false];
     if (!_isArmed) exitWith {hint LLSTRING(BombAlreadyDefused)};
 
     _solutionWireColor = _device getVariable ["aquerr_bomb_solution_wire", ""];
 
     if (_solutionWireColor == parseNumber _wireColor) then {
-            _device setVariable ["aquerr_bomb_is_armed", false, true];
-            hint LLSTRING(BombDefused);
-            [_device, QGVAR(BombDefuse)] remoteExec ["say3D"];
-
-            [QGVAR(BombDefused), [_device, _defuser]] call CBA_fnc_globalEvent;
-
-            _afterDefuseFunction = _device getVariable ["aquerr_bomb_after_defuse_function", {}];
-            [_device, _defuser] call _afterDefuseFunction;
+            [_device, _defuser] call FUNC(bomb_defuse);
         } else {
-            [player, _device] call FUNC(bomb_explode);
+            [_device, _defuser] call FUNC(bomb_explode);
         };
  };
 
@@ -283,7 +276,7 @@ private _generateBombWires = {
 
      private _checkTimeFunction = {
          params ["_device"];
-         _bombTimeSeconds = _device getVariable ["aquerr_bomb_time_seconds", 0];
+         _bombTimeSeconds = _device getVariable ["abombs_bomb_time_seconds", 0];
          _bombTimeSecondsStr = str _bombTimeSeconds;
          if (_bombTimeSeconds == 0) then {
              _bombTimeSecondsStr = "???";
@@ -339,16 +332,16 @@ private _generateBombWires = {
  private _prepareServerVariablesFunction = {
      params ["_device", "_explosionClassName", "_shouldBeep", "_afterDefuseFunction"];
 
-     _device setVariable ["aquerr_bomb_beep_enabled", _shouldBeep, true];
-     _device setVariable ["aquerr_bomb_is_armed", true, true];
+     _device setVariable ["abombs_bomb_beep_enabled", _shouldBeep, true];
+     _device setVariable ["abombs_bomb_is_armed", true, true];
      _device setVariable ["aquerr_bomb_explosion_class_name", _explosionClassName, true];
-     _device setVariable ["aquerr_bomb_after_defuse_function", _afterDefuseFunction, true];
+     _device setVariable ["abombs_bomb_after_defuse_function", _afterDefuseFunction, true];
  };
 
 // Execution code
 if (isServer) then {
 
-    if (_device getVariable ["aquerr_bomb_is_armed", false]) exitWith {hint LLSTRING(BombAlreadyArmed);};
+    if (_device getVariable ["abombs_bomb_is_armed", false]) exitWith {hint LLSTRING(BombAlreadyArmed);};
 
     [_device, _explosionClassName, _shouldBeep, _afterDefuseFunction] call _prepareServerVariablesFunction;
     [_device, _timeSeconds] call FUNC(init_bomb_timer);

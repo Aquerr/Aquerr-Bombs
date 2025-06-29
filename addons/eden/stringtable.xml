@@ -79,6 +79,14 @@ Parametry przekazane do kodu: ["_thisBomb", "_defuserPlayer"]</Polish>
             <English>GUI type</English>
             <Polish>Rodzaj interfejsu</Polish>
         </Key>
+        <Key ID="str_abombs_eden_maxdefuseattemptslabel">
+            <English>Max defuse attempts</English>
+            <Polish>Max prób rozbrojenia</Polish>
+        </Key>
+        <Key ID="str_abombs_eden_maxdefuseattemptstooltip">
+            <English>The max number of defuse attempts before bomb explodes. E.g. 3 = you can make 2 mistakes</English>
+            <Polish>Maksymalna ilość prób rozbrojenia bomby zanim wybuchnie. Np. 3 = możesz popełnić dwa błędy</Polish>
+        </Key>
         <Key ID="str_abombs_eden_module_memory_bomb_description">
             <English>This module has to be synced with objects that should be converted to memory bombs.</English>
             <Polish>Ten moduł musi zostać zsynchronizowany z obiektami, które mają zostać zamienione w bomby.</Polish>
@@ -94,6 +102,14 @@ Parametry przekazane do kodu: ["_thisBomb", "_defuserPlayer"]</Polish>
         <Key ID="str_abombs_eden_overrideexplosionclasslabeltooltip">
             <English>Leave empty to use value from above list</English>
             <Polish>Zostaw puste aby użyć wartości z powyższej listy</Polish>
+        </Key>
+        <Key ID="str_abombs_eden_removeshotvulnerabilityafterdefuselabel">
+            <English>Remove vulnerability after defuse</English>
+            <Polish>Usuwa wrażliwość po rozbrojeniu</Polish>
+        </Key>
+        <Key ID="str_abombs_eden_removeshotvulnerabilityafterdefuselabeltooltip">
+            <English>Normally bomb explodes if shot or on nearby explosions even when defused</English>
+            <Polish>Normalnie bobma wybucha kiedy postrzelona lub przez pobliskie ekslopzje nawet kiedy jest rozbrojona</Polish>
         </Key>
         <Key ID="str_abombs_eden_roundscountlabel">
             <English>Rounds count</English>

@@ -47,7 +47,7 @@ GVAR(Bomb_Interface_Target) = _bomb;
             _solutionCodeDisplayField ctrlSetText (_bomb getVariable ["aquerr_bomb_entered_code", ""]);
 
 
-            _secondsLeft = _bomb getVariable ["aquerr_bomb_time_seconds", 0];
+            _secondsLeft = _bomb getVariable ["abombs_bomb_time_seconds", 0];
             _timeLeftFormatted = [_secondsLeft, "MM:SS"] call BIS_fnc_secondsToString;
             _timeLeftLabel = _dialog displayCtrl BOMB_GUI_TIME_LABEL_ID;
             _timeLeftLabel ctrlSetText _timeLeftFormatted;

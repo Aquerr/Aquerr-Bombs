@@ -17,17 +17,24 @@
 
 params ["_object", "_user"];
 
+private _isArmed = _bomb getVariable ["abombs_bomb_is_armed", false];
+if (!_isArmed) exitWith {hint (LLSTRING(BombAlreadyDefused))};
+
 _enteredCode = _object getVariable ["aquerr_bomb_entered_code", ""];
 _solutionCode = _object getVariable ["abombs_keypad_solution_code", ""];
 if ((count _enteredCode) >= (count _solutionCode)) then {
     if (_solutionCode isEqualTo _enteredCode) then {
-        _successFunction = _object getVariable ["abombs_keypad_success_function", {}];
-        [_object, _user] call _successFunction;
-
-        _afterDefuseFunction = _object getVariable ["aquerr_bomb_after_defuse_function", {}];
-        [_object, _user] call _afterDefuseFunction; 
+        [_object, _user] call FUNC(bomb_defuse);
     } else {
-        _failureFunction = _object getVariable ["abombs_keypad_failure_function", {}];
-        [_object, _user] call _failureFunction;
+        _maxDefuseAttempts = _object getVariable ["abombs_bomb_max_defuse_attempts", 1];
+        _attempts = (_object getVariable ["abombs_bomb_defuse_attempts", 0]) + 1;
+        _object setVariable ["abombs_bomb_defuse_attempts", _attempts, true];
+        if (_attempts >= _maxDefuseAttempts) then {
+            _failureFunction = _object getVariable ["abombs_keypad_failure_function", {}];
+            [_object, _user] call _failureFunction;
+        } else {
+            _object setVariable ["aquerr_bomb_entered_code", "", true];
+            hint "Bomb still ticks...";
+        };
     };
 };
