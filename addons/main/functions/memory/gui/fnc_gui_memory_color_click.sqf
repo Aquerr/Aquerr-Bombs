@@ -18,12 +18,21 @@ params ["_colorPressed"];
     ctrlSetFocus _controlHidden; // Unfocus all colored buttons
 
     private _sequence = _bomb getVariable ["aquerr_memory_bomb_sequence", []];
+    if ((count _sequence) == 0) exitWith {};
 
     // Check input so far
     private _index = count _input - 1;
     if (_input select _index != _sequence select _index) exitWith {
-        closeDialog 0;
-        [_bomb, player] call FUNC(bomb_explode);
+        _maxDefuseAttempts = _bomb getVariable ["abombs_bomb_max_defuse_attempts", 1];
+        _attempts = (_bomb getVariable ["abombs_bomb_defuse_attempts", 0]) + 1;
+        _bomb setVariable ["abombs_bomb_defuse_attempts", _attempts, true];
+        if (_attempts >= _maxDefuseAttempts) then {
+            closeDialog 0;
+            [_bomb, player] call FUNC(bomb_explode);
+        } else {
+            hint "Bomb still ticks...";
+            [_bomb] call FUNC(gui_memory_bomb_start);
+        };
     };
 
     // Check if sequence complete

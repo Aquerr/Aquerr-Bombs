@@ -14,20 +14,33 @@
 		3: BOOLEAN - if the bomb should beep every second
 		4: STRING - optional, the wire sign (default "|"). Pass nil if you want to use the default sign.
 		5: NUMBER - optional, the wires count (default 40). Can't be less than 4. Pass nil if you want to use the default count.
-		6: STRING - optional, the explosion class name to use
+        6: NUMBER - max (wrong) defuse attempts. Default: 1 
+		7: STRING - optional, the explosion class name to use
 		            // "ammo_Missile_Cruise_01" (very big)
                     // "helicopterExploBig" (big)
                     // "DemoCharge_Remote_Ammo" (medium)
                     // "APERSMine_Range_Ammo" (small)
-        7: CODE - optional, after defuse function. Executed LOCALLY when bomb is defused. Passed parameters are ["_bomb", "_defuserPlayer"]
-        8: BOOL - optional, if the script should be run globally. Can be skipped in most cases.
+        8: BOOL - if the bomb should NOT be vulnerable to shots and nearby explosions after successful defusal. Default: false
+        9: CODE - optional, after defuse function. Executed LOCALLY when bomb is defused. Passed parameters are ["_bomb", "_defuserPlayer"]
+        10: BOOL - optional, if the script should be run globally. Can be skipped in most cases.
 
 	Example:
 		[myBombThing, 360, true, "#", 20] call abombs_main_fnc_init_wire_bomb_full;
 		[myBombThing, 0, false, nil, nil, "GrenadeHand"] call abombs_main_fnc_init_wire_bomb_full;
 */
 
-params ["_device", ["_timeSeconds", 60, [0]], ["_shouldBeep", true, [true]], ["_wireSign", "|", ["string"]], ["_wireCount", 40, [40]], ["_explosionClassName", "DemoCharge_Remote_Ammo", ["string"]], ["_afterDefuseFunction", {}, [{}]], ["_global", true, [true]]];
+params [
+    "_device", 
+    ["_timeSeconds", 60, [0]], 
+    ["_shouldBeep", true, [true]], 
+    ["_wireSign", "|", ["string"]], 
+    ["_wireCount", 40, [40]], 
+    ["_maxDefuseAttempts", 1, [0]], 
+    ["_explosionClassName", "DemoCharge_Remote_Ammo", ["string"]], 
+    ["_removeShotVulnerabilityAfterDefuse", false, [true]],
+    ["_afterDefuseFunction", {}, [{}]], 
+    ["_global", true, [true]]
+];
 
 if ((isNil "_device") || {isNull(_device)}) exitWith { hint LELSTRING(common,MustSelectObject) };
 if ((_wireCount < 4)) exitWith { hint LLSTRING(WireCountCantBeLessThanFour)};
@@ -121,10 +134,18 @@ private _generateBombWires = {
     _solutionWireColor = _device getVariable ["aquerr_bomb_solution_wire", ""];
 
     if (_solutionWireColor == parseNumber _wireColor) then {
-            [_device, _defuser] call FUNC(bomb_defuse);
+        [_device, _defuser] call FUNC(bomb_defuse);
+    } else {
+        _maxDefuseAttempts = _bomb getVariable ["abombs_bomb_max_defuse_attempts", 1];
+        _attempts = (_bomb getVariable ["abombs_bomb_defuse_attempts", 0]) + 1;
+        _bomb setVariable ["abombs_bomb_defuse_attempts", _attempts, true];
+        if (_attempts >= _maxDefuseAttempts) then {
+            closeDialog 0;
+            [_bomb, player] call FUNC(bomb_explode);
         } else {
-            [_device, _defuser] call FUNC(bomb_explode);
+            hint "Bomb still ticks...";
         };
+    };
  };
 
  private _prepareWireCutAction = {
@@ -329,21 +350,22 @@ private _generateBombWires = {
 
 
  //Variables
- private _prepareServerVariablesFunction = {
-     params ["_device", "_explosionClassName", "_shouldBeep", "_afterDefuseFunction"];
+private _prepareServerVariablesFunction = {
+    params ["_device", "_explosionClassName", "_shouldBeep", "_afterDefuseFunction", "_maxDefuseAttempts"];
 
-     _device setVariable ["abombs_bomb_beep_enabled", _shouldBeep, true];
-     _device setVariable ["abombs_bomb_is_armed", true, true];
-     _device setVariable ["aquerr_bomb_explosion_class_name", _explosionClassName, true];
-     _device setVariable ["abombs_bomb_after_defuse_function", _afterDefuseFunction, true];
- };
+    _device setVariable ["abombs_bomb_beep_enabled", _shouldBeep, true];
+    _device setVariable ["abombs_bomb_is_armed", true, true];
+    _device setVariable ["aquerr_bomb_explosion_class_name", _explosionClassName, true];
+    _device setVariable ["abombs_bomb_after_defuse_function", _afterDefuseFunction, true];
+    _device setVariable ["abombs_bomb_max_defuse_attempts", _maxDefuseAttempts, true];
+};
 
 // Execution code
 if (isServer) then {
 
     if (_device getVariable ["abombs_bomb_is_armed", false]) exitWith {hint LLSTRING(BombAlreadyArmed);};
 
-    [_device, _explosionClassName, _shouldBeep, _afterDefuseFunction] call _prepareServerVariablesFunction;
+    [_device, _explosionClassName, _shouldBeep, _afterDefuseFunction, _maxDefuseAttempts] call _prepareServerVariablesFunction;
     [_device, _timeSeconds] call FUNC(init_bomb_timer);
     [_device, _wireCount] call _generateBombWires;
 };
@@ -352,6 +374,10 @@ if (hasInterface) then {
 
     if (GETVAR(_device,aquerr_wire_bomb_interface_initialized,false)) exitWith {};
     SETVAR(_device,aquerr_wire_bomb_interface_initialized,true);
+    // For JIP players when bomb is already defused
+    if (GETVAR(_device,abombs_bomb_was_defused,false)) exitWith {};
+
+    _device setVariable ["abombs_bomb_remove_shot_vulnerability_after_defuse", _removeShotVulnerabilityAfterDefuse];
 
     [_device, _cutColoredWireFunction, _prepareWireCutAction, _prepareShowBombWiresInHintAction, _showWiresInHintFunction, _wireSign, _prepareCheckTimeFunction] call _prepareActionsFunction;
     [_device, true, _explosionClassName, 2] call FUNC(register_explosive_handlers_for_object);

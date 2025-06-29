@@ -18,6 +18,7 @@
 params ["_bomb", "_defuser"];
 
 _bomb setVariable ["abombs_bomb_is_armed", false, true];
+_bomb setVariable ["abombs_bomb_was_defused", false, true];
 hint LLSTRING(BombDefused);
 [_bomb, QGVAR(BombDefuse)] remoteExec ["say3D"];
 
@@ -29,8 +30,8 @@ if (_removeVulnerabilityAfterDefuse) then {
 [QGVAR(BombDefused), [_bomb, _defuser]] call CBA_fnc_globalEvent;
 
 
-_afterDefuseFunction = _object getVariable ["abombs_bomb_after_defuse_function", {}];
-[_object, _user] call _afterDefuseFunction; 
+_afterDefuseFunction = _bomb getVariable ["abombs_bomb_after_defuse_function", {}];
+[_bomb, _defuser] call _afterDefuseFunction; 
 
-_clientCleanUpFunction = _object getVariable ["abombs_bomb_client_cleanup_function", {}];
-[_object, _user] call _clientCleanUpFunction;
+_clientCleanUpFunction = _bomb getVariable ["abombs_bomb_client_cleanup_function", {}];
+[_bomb, _defuser] call _clientCleanUpFunction;

@@ -21,6 +21,14 @@
             <English>Bomb has been created</English>
             <Polish>Bomba została utworzona</Polish>
         </Key>
+        <Key ID="str_abombs_zeus_bombmaxdefuseattemptslabel">
+            <English>Max defuse attempts</English>
+            <Polish>Max prób rozbrojenia</Polish>
+        </Key>
+        <Key ID="str_abombs_zeus_bombremoveshotvulnerabilityafterdefuselabel">
+            <English>Should bomb no longer explode on shot or nearby explosions after defuse?</English>
+            <Polish>Czy bomba ma przestać wybuchać w kontakcie z pociskiem lub wybuchem po rozbrojeniu?</Polish>
+        </Key>
         <Key ID="str_abombs_zeus_classnameslabel">
             <English>Class names</English>
             <Polish>Nazwy klas</Polish>

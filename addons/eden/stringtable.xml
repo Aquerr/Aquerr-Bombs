@@ -108,8 +108,8 @@ Parametry przekazane do kodu: ["_thisBomb", "_defuserPlayer"]</Polish>
             <Polish>Usuwa wrażliwość po rozbrojeniu</Polish>
         </Key>
         <Key ID="str_abombs_eden_removeshotvulnerabilityafterdefuselabeltooltip">
-            <English>Normally bomb explodes if shot or on nearby explosions even when defused</English>
-            <Polish>Normalnie bobma wybucha kiedy postrzelona lub przez pobliskie ekslopzje nawet kiedy jest rozbrojona</Polish>
+            <English>Should bomb no longer explode on shot or nearby explosions after defuse?</English>
+            <Polish>Czy bomba ma przestać wybuchać w kontakcie z pociskiem lub wybuchem po rozbrojeniu?</Polish>
         </Key>
         <Key ID="str_abombs_eden_roundscountlabel">
             <English>Rounds count</English>

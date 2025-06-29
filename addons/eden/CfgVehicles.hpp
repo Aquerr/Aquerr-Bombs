@@ -126,14 +126,14 @@ class CfgVehicles {
                 defaultValue = "'000000'";
             };
             class MaxDefuseAttempts: Edit {
-                property = QGVAR(edenModuleKeypadBomb_MaxDefuseAttempts);
+                property = QGVAR(edenModulePropertyCommon_MaxDefuseAttempts);
                 displayName = CSTRING(MaxDefuseAttemptsLabel);
                 tooltip = CSTRING(MaxDefuseAttemptsTooltip);
                 typeName = "NUMBER";
                 defaultValue = "1";
             };
             class SerialNumber: Edit {
-                property = QGVAR(edenModuleKeypadBomb_SerialNumber);
+                property = QGVAR(edenModulePropertyCommon_SerialNumber);
                 displayName = CSTRING(SerialNumberLabel);
                 tooltip = CSTRING(SerialNumberTooltip);
                 typeName = "STRING";
@@ -154,14 +154,14 @@ class CfgVehicles {
                 defaultValue = "''";
             };
             class RemoveShotVulnerabilityAfterDefuse: Checkbox {
-                property = QGVAR(edenModuleKeypadBomb_RemoveShotVulnerabilityAfterDefuse);
+                property = QGVAR(edenModulePropertyCommon_RemoveShotVulnerabilityAfterDefuse);
                 displayName = CSTRING(RemoveShotVulnerabilityAfterDefuseLabel);
                 tooltip = CSTRING(RemoveShotVulnerabilityAfterDefuseLabelTooltip);
                 typeName = "BOOL";
                 defaultValue = "false";
             };
             class AfterDefuseCode: Default {
-                property = QGVAR(edenModuleKeypadBomb_AfterDefuseCode);
+                property = QGVAR(edenModulePropertyCommon_AfterDefuseCode);
                 displayName = CSTRING(AfterDefuseCodeLabel);
                 tooltip = CSTRING(AfterDefuseCodeTooltip);
                 typeName = "STRING";
@@ -205,6 +205,13 @@ class CfgVehicles {
                 typeName = "NUMBER";
                 defaultValue = "40";
             };
+            class MaxDefuseAttempts: Edit {
+                property = QGVAR(edenModulePropertyCommon_MaxDefuseAttempts);
+                displayName = CSTRING(MaxDefuseAttemptsLabel);
+                tooltip = CSTRING(MaxDefuseAttemptsTooltip);
+                typeName = "NUMBER";
+                defaultValue = "1";
+            };
             class ExplosionClassName: Default {
                 control = QGVAR(explosionClassName);
                 property = QGVAR(edenModulePropertyCommon_explosionClassName);
@@ -218,8 +225,15 @@ class CfgVehicles {
                 typeName = "STRING";
                 defaultValue = "''";
             };
+            class RemoveShotVulnerabilityAfterDefuse: Checkbox {
+                property = QGVAR(edenModulePropertyCommon_RemoveShotVulnerabilityAfterDefuse);
+                displayName = CSTRING(RemoveShotVulnerabilityAfterDefuseLabel);
+                tooltip = CSTRING(RemoveShotVulnerabilityAfterDefuseLabelTooltip);
+                typeName = "BOOL";
+                defaultValue = "false";
+            };
             class AfterDefuseCode: Default {
-                property = QGVAR(edenModuleKeypadBomb_AfterDefuseCode);
+                property = QGVAR(edenModulePropertyCommon_AfterDefuseCode);
                 displayName = CSTRING(AfterDefuseCodeLabel);
                 tooltip = CSTRING(AfterDefuseCodeTooltip);
                 typeName = "STRING";
@@ -258,8 +272,15 @@ class CfgVehicles {
                 typeName = "NUMBER";
                 defaultValue = "5";
             };
+            class MaxDefuseAttempts: Edit {
+                property = QGVAR(edenModulePropertyCommon_MaxDefuseAttempts);
+                displayName = CSTRING(MaxDefuseAttemptsLabel);
+                tooltip = CSTRING(MaxDefuseAttemptsTooltip);
+                typeName = "NUMBER";
+                defaultValue = "1";
+            };
             class SerialNumber: Edit {
-                property = QGVAR(edenModuleMemoryBomb_SerialNumber);
+                property = QGVAR(edenModulePropertyCommon_SerialNumber);
                 displayName = CSTRING(SerialNumberLabel);
                 tooltip = CSTRING(SerialNumberTooltip);
                 typeName = "STRING";
@@ -279,8 +300,15 @@ class CfgVehicles {
                 typeName = "STRING";
                 defaultValue = "''";
             };
+            class RemoveShotVulnerabilityAfterDefuse: Checkbox {
+                property = QGVAR(edenModulePropertyCommon_RemoveShotVulnerabilityAfterDefuse);
+                displayName = CSTRING(RemoveShotVulnerabilityAfterDefuseLabel);
+                tooltip = CSTRING(RemoveShotVulnerabilityAfterDefuseLabelTooltip);
+                typeName = "BOOL";
+                defaultValue = "false";
+            };
             class AfterDefuseCode: Default {
-                property = QGVAR(edenModuleKeypadBomb_AfterDefuseCode);
+                property = QGVAR(edenModulePropertyCommon_AfterDefuseCode);
                 displayName = CSTRING(AfterDefuseCodeLabel);
                 tooltip = CSTRING(AfterDefuseCodeTooltip);
                 typeName = "STRING";

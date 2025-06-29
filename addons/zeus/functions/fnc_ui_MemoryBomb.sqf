@@ -32,8 +32,10 @@ switch (false) do {
 private _bombTimeEditField = _display displayCtrl ZEUS_COMMON_DIALOG_BOMB_TIME_ID;
 private _shouldBeepToggleField = _display displayCtrl ZEUS_COMMON_DIALOG_SHOULD_BEEP_ID;
 private _roundsCountEditField = _display displayCtrl ZEUS_MEMORY_BOMB_DIALOG_ROUNDS_COUNT_ID;
-private _serialCodeEditField = _display displayCtrl ZEUS_KEYPAD_BOMB_DIALOG_SERIAL_NUMBER_ID;
+private _serialCodeEditField = _display displayCtrl ZEUS_COMMON_DIALOG_SERIAL_NUMBER_ID;
 private _explosionClassNameCombo = _display displayCtrl ZEUS_COMMON_DIALOG_EXPLOSION_CLASS_ID;
+private _maxDefuseAttempts = _display displayCtrl ZEUS_COMMON_DIALOG_MAX_DEFUSE_ATTEMPTS_ID;
+private _removeShotVulnerabilityAfterDefuse = _display displayCtrl ZEUS_COMMON_DIALOG_REMOVE_SHOT_VULNERABILITY_AFTER_DEFUSE_ID;
 
 ////////////////////////////////////////////////////////////
 // Default values
@@ -42,6 +44,8 @@ _shouldBeepToggleField lbSetCurSel 1;
 _roundsCountEditField ctrlSetText "5";
 _serialCodeEditField ctrlSetText "Unknown";
 _explosionClassNameCombo lbSetCurSel 2;
+_maxDefuseAttempts ctrlSetText "1";
+_removeShotVulnerabilityAfterDefuse lbSetCurSel 0;
 
 /////////////////////////////////////////////////////////////
 // Cancel and Confirmation
@@ -61,19 +65,21 @@ private _fnc_onConfirm = {
     private _logic = GETMVAR(BIS_fnc_initCuratorAttributes_target,objNull);
     if (isNull _logic) exitWith {};
 
-    private _bombTime = parseNumber (ctrlText(_display displayCtrl ZEUS_COMMON_DIALOG_BOMB_TIME_ID));
+    private _bombTime = parseNumber (ctrlText (_display displayCtrl ZEUS_COMMON_DIALOG_BOMB_TIME_ID));
     private _shouldBeep = lbCurSel (_display displayCtrl ZEUS_COMMON_DIALOG_SHOULD_BEEP_ID) > 0;
     private _roundsCount = parseNumber (ctrlText(_display displayCtrl ZEUS_MEMORY_BOMB_DIALOG_ROUNDS_COUNT_ID));
-    private _serialNumber = ctrlText (_display displayCtrl ZEUS_KEYPAD_BOMB_DIALOG_SERIAL_NUMBER_ID);
+    private _serialNumber = ctrlText (_display displayCtrl ZEUS_COMMON_DIALOG_SERIAL_NUMBER_ID);
     private _explosionClassNameIndex = lbCurSel (_display displayCtrl ZEUS_COMMON_DIALOG_EXPLOSION_CLASS_ID);
     private _explosionClassName = (_display displayCtrl ZEUS_COMMON_DIALOG_EXPLOSION_CLASS_ID) lbText _explosionClassNameIndex;
     private _overrideExplosionClassName = ctrlText (_display displayCtrl ZEUS_COMMON_DIALOG_EXPLOSION_OVERRIDE_EXPLOSION_ID);
+    private _maxDefuseAttempts = parseNumber (ctrlText (_display displayCtrl ZEUS_COMMON_DIALOG_MAX_DEFUSE_ATTEMPTS_ID));
+    private _removeShotVulnerabilityAfterDefuse = (lbCurSel (_display displayCtrl ZEUS_COMMON_DIALOG_REMOVE_SHOT_VULNERABILITY_AFTER_DEFUSE_ID)) > 0;
 
     if (not(_overrideExplosionClassName isEqualTo "")) then {
         _explosionClassName = _overrideExplosionClassName;
     };
 
-    [attachedTo _logic, _bombTime, _shouldBeep, _roundsCount, _explosionClassName, _serialNumber] call FUNC(moduleMemoryBomb);
+    [attachedTo _logic, _bombTime, _shouldBeep, _roundsCount, _maxDefuseAttempts, _explosionClassName, _removeShotVulnerabilityAfterDefuse, _serialNumber] call FUNC(moduleMemoryBomb);
     deleteVehicle _logic;
 };
 

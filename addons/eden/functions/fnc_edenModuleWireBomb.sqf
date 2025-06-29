@@ -17,6 +17,8 @@ private _wireCount = _logic getVariable ["WireCount", "60"];
 private _explosionClassName = _logic getVariable ["ExplosionClassName", "DemoCharge_Remote_Ammo"];
 private _explosionClassNameOverride = _logic getVariable ["ExplosionClassNameOverride", ""];
 private _afterDefuseCode = compile (_logic getVariable ["AfterDefuseCode", '{}']);
+private _maxDefuseAttempts = _logic getVariable ["MaxDefuseAttempts", "1"];
+private _removeShotVulnerabilityAfterDefuse = _logic getVariable ["RemoveShotVulnerabilityAfterDefuse", false];
 
 if (not(_explosionClassNameOverride isEqualTo "")) then {
 	_explosionClassName = _explosionClassNameOverride;
@@ -24,6 +26,6 @@ if (not(_explosionClassNameOverride isEqualTo "")) then {
 
 if ((count _synchronizedObjects) > 0) then {
 	{
-		[_x, _bombTime, _shouldBeep, _wireSign, _wireCount, _explosionClassName, _afterDefuseCode] call EFUNC(main,init_wire_bomb_full);
+		[_x, _bombTime, _shouldBeep, _wireSign, _wireCount, _maxDefuseAttempts, _explosionClassName, _removeShotVulnerabilityAfterDefuse, _afterDefuseCode] call EFUNC(main,init_wire_bomb_full);
 	} forEach _synchronizedObjects;
 };

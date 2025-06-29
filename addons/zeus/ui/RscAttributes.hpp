@@ -26,6 +26,81 @@ class RscDisplayAttributes {
     };
 };
 
+class GVAR(BombMaxDefuseAttemptsControls): RscControlsGroupNoScrollbars {
+    idc = -1;
+    w = QUOTE(W_PART(26));
+    h = QUOTE(H_PART(1.1));
+    class controls {
+        class BombMaxDefuseAttemptsLabel: RscText {
+            idc = -1;
+            text = CSTRING(BombMaxDefuseAttemptsLabel);
+            x = 0;
+            y = 0;
+            w = QUOTE(W_PART(10));
+            h = QUOTE(H_PART(1));
+            colorBackground[] = {0, 0, 0, 0.5};
+        };
+        class BombMaxDefuseAttempts: RscEdit {
+            idc = ZEUS_COMMON_DIALOG_MAX_DEFUSE_ATTEMPTS_ID;
+            x = QUOTE(W_PART(10.1));
+            y = QUOTE(H_PART(0.0));
+            w = QUOTE(W_PART(15.9));
+            h = QUOTE(H_PART(1));
+            autocomplete = "";
+        };
+    };
+};
+
+class GVAR(BombRemoveShotVulnerabilityAfterDefuseControls): RscControlsGroupNoScrollbars {
+    idc = -1;
+    w = QUOTE(W_PART(26));
+    h = QUOTE(H_PART(1.1));
+    class controls {
+        class BombRemoveShotVulnerabilityAfterDefuseLabel: RscText {
+            idc = -1;
+            text = CSTRING(BombRemoveShotVulnerabilityAfterDefuseLabel);
+            x = 0;
+            y = 0;
+            w = QUOTE(W_PART(10));
+            h = QUOTE(H_PART(1));
+            colorBackground[] = {0, 0, 0, 0.5};
+        };
+        class BombRemoveShotVulnerabilityAfterDefuse: RscEdit {
+            idc = ZEUS_COMMON_DIALOG_REMOVE_SHOT_VULNERABILITY_AFTER_DEFUSE_ID;
+            x = QUOTE(W_PART(10.1));
+            y = QUOTE(H_PART(0.0));
+            w = QUOTE(W_PART(15.9));
+            h = QUOTE(H_PART(1));
+            autocomplete = "";
+        };
+    };
+};
+
+class GVAR(SerialNumberControls): RscControlsGroupNoScrollbars {
+    idc = -1;
+    w = QUOTE(W_PART(26));
+    h = QUOTE(H_PART(1.1));
+    class controls {
+        class SerialNumberLabel: RscText {
+            idc = -1;
+            text = CSTRING(serialnumberlabel);
+            x = 0;
+            y = 0;
+            w = QUOTE(W_PART(10));
+            h = QUOTE(H_PART(1));
+            colorBackground[] = {0, 0, 0, 0.5};
+        };
+        class SerialNumber: RscEdit {
+            idc = ZEUS_COMMON_DIALOG_SERIAL_NUMBER_ID;
+            x = QUOTE(W_PART(10.1));
+            y = QUOTE(H_PART(0.0));
+            w = QUOTE(W_PART(15.9));
+            h = QUOTE(H_PART(1));
+            autocomplete = "";
+        };
+    };
+};
+
 class GVAR(BombTimeControls): RscControlsGroupNoScrollbars {
     idc = -1;
     w = QUOTE(W_PART(26));
@@ -309,8 +384,17 @@ class GVAR(RscWireBomb): RscDisplayAttributes {
                             maxChars = 3;
                             canModify = 0;
                         };
-                        class explosionClassControls: GVAR(ExplosionClassControls) {
+                        class BombMaxDefuseAttemptsControls: GVAR(BombMaxDefuseAttemptsControls) {
                             y = QUOTE(H_PART(4.4));
+                        };
+                        class SerialNumberControls: GVAR(SerialNumberControls) {
+                            y = QUOTE(H_PART(5.5));
+                        };
+                        class explosionClassControls: GVAR(ExplosionClassControls) {
+                            y = QUOTE(H_PART(6.6));
+                        };
+                        class BombRemoveShotVulnerabilityAfterDefuseControls: GVAR(BombRemoveShotVulnerabilityAfterDefuseControls) {
+                            y = QUOTE(H_PART(8.8));
                         };
                     };
                 };
@@ -383,24 +467,17 @@ class GVAR(RscKeypadBomb): RscDisplayAttributes {
                             h = QUOTE(H_PART(1));
                             autocomplete = "";
                         };
-                        class SerialNumberLabel: RscText {
-                            idc = -1;
-                            text = CSTRING(SerialNumberLabel);
-                            x = 0;
+                        class BombMaxDefuseAttemptsControls: GVAR(BombMaxDefuseAttemptsControls) {
                             y = QUOTE(H_PART(4.4));
-                            w = QUOTE(W_PART(10));
-                            h = QUOTE(H_PART(1));
-                            colorBackground[] = {0, 0, 0, 0.5};
                         };
-                        class SerialNumberEdit: RscEdit {
-                            idc = ZEUS_KEYPAD_BOMB_DIALOG_SERIAL_NUMBER_ID;
-                            x = QUOTE(W_PART(10.1));
-                            y = QUOTE(H_PART(4.4));
-                            w = QUOTE(W_PART(15.9));
-                            h = QUOTE(H_PART(1));
+                        class SerialNumberControls: GVAR(SerialNumberControls) {
+                            y = QUOTE(H_PART(5.5));
                         };
                         class explosionClassControls: GVAR(ExplosionClassControls) {
-                            y = QUOTE(H_PART(5.5));
+                            y = QUOTE(H_PART(6.6));
+                        };
+                        class BombRemoveShotVulnerabilityAfterDefuseControls: GVAR(BombRemoveShotVulnerabilityAfterDefuseControls) {
+                            y = QUOTE(H_PART(8.8));
                         };
                     };
                 };
@@ -449,24 +526,17 @@ class GVAR(RscMemoryBomb): RscDisplayAttributes {
                             w = QUOTE(W_PART(15.9));
                             h = QUOTE(H_PART(1));
                         };
-                        class SerialNumberLabel: RscText {
-                            idc = -1;
-                            text = CSTRING(SerialNumberLabel);
-                            x = 0;
+                        class BombMaxDefuseAttemptsControls: GVAR(BombMaxDefuseAttemptsControls) {
                             y = QUOTE(H_PART(3.3));
-                            w = QUOTE(W_PART(10));
-                            h = QUOTE(H_PART(1));
-                            colorBackground[] = {0, 0, 0, 0.5};
                         };
-                        class SerialNumberEdit: RscEdit {
-                            idc = ZEUS_KEYPAD_BOMB_DIALOG_SERIAL_NUMBER_ID;
-                            x = QUOTE(W_PART(10.1));
-                            y = QUOTE(H_PART(3.3));
-                            w = QUOTE(W_PART(15.9));
-                            h = QUOTE(H_PART(1));
+                        class SerialNumberControls: GVAR(SerialNumberControls) {
+                            y = QUOTE(H_PART(4.4));
                         };
                         class explosionClassControls: GVAR(ExplosionClassControls) {
-                            y = QUOTE(H_PART(4.4));
+                            y = QUOTE(H_PART(5.5));
+                        };
+                        class BombRemoveShotVulnerabilityAfterDefuseControls: GVAR(BombRemoveShotVulnerabilityAfterDefuseControls) {
+                            y = QUOTE(H_PART(7.7));
                         };
                     };
                 };

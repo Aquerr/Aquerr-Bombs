@@ -105,6 +105,9 @@ if (isServer) then {
 if (hasInterface) then {
     if (GETVAR(_device,aquerr_keypad_bomb_interface_initialized,false)) exitWith {};
 
+    // For JIP players when bomb is already defused
+    if (GETVAR(_device,abombs_bomb_was_defused,false)) exitWith {};
+
     [_device, _clientCleanupFunction, _removeShotVulnerabilityAfterDefuse] call _prepareClientVariablesFunction;
     [_device, true, _explosionClassName, 2] call FUNC(register_explosive_handlers_for_object);
     [_device, _guiType] call FUNC(init_keypad_gui);
