@@ -17,6 +17,13 @@ class CfgVehicles {
     ///////////////////////////////////////////////////////////
     // Zeus modules
 
+    class GVAR(moduleRemoveVulnerableObject): GVAR(baseModule) {
+        curatorCanAttach = 1;
+        displayName = CSTRING(Module_Remove_Shot_Vulnerable_DisplayName);
+        function = QFUNC(ui_removeShotVulnerable);
+        icon = "a3\ui_f\data\gui\rsc\rscdisplayarcademap\icon_config_ca.paa";
+    };
+
     class GVAR(moduleVulnerableObject): GVAR(baseModule) {
         curatorCanAttach = 1;
         displayName = CSTRING(Module_Shot_Vulnerable_DisplayName);

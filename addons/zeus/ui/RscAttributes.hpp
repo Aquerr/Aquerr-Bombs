@@ -59,20 +59,24 @@ class GVAR(BombRemoveShotVulnerabilityAfterDefuseControls): RscControlsGroupNoSc
         class BombRemoveShotVulnerabilityAfterDefuseLabel: RscText {
             idc = -1;
             text = CSTRING(BombRemoveShotVulnerabilityAfterDefuseLabel);
+            tooltip = CSTRING(BombRemoveShotVulnerabilityAfterDefuseLabelTooltip);
             x = 0;
             y = 0;
             w = QUOTE(W_PART(10));
             h = QUOTE(H_PART(1));
             colorBackground[] = {0, 0, 0, 0.5};
         };
-        class BombRemoveShotVulnerabilityAfterDefuse: RscEdit {
+        class BombRemoveShotVulnerabilityAfterDefuse: ctrlToolbox {
             idc = ZEUS_COMMON_DIALOG_REMOVE_SHOT_VULNERABILITY_AFTER_DEFUSE_ID;
             x = QUOTE(W_PART(10.1));
             y = QUOTE(H_PART(0.0));
             w = QUOTE(W_PART(15.9));
             h = QUOTE(H_PART(1));
-            autocomplete = "";
+            rows = 1;
+            columns = 2;
+            strings[] = {ECSTRING(common,No), ECSTRING(common,Yes)};
         };
+
     };
 };
 
@@ -331,7 +335,7 @@ class GVAR(RscWireBomb): RscDisplayAttributes {
                     x = 0;
                     y = 0;
                     w = QUOTE(W_PART(26));
-                    h = QUOTE(H_PART(6.6));
+                    h = QUOTE(H_PART(9.9));
                     class controls {
                         class bombTimeControls: GVAR(BombTimeControls) {
                             x = 0;
@@ -419,7 +423,7 @@ class GVAR(RscKeypadBomb): RscDisplayAttributes {
                     x = 0;
                     y = 0;
                     w = QUOTE(W_PART(26));
-                    h = QUOTE(H_PART(7.7));
+                    h = QUOTE(H_PART(9.9));
                     class controls {
                         class guiTypeLabel: RscText {
                             idc = -1;
@@ -502,7 +506,7 @@ class GVAR(RscMemoryBomb): RscDisplayAttributes {
                     x = 0;
                     y = 0;
                     w = QUOTE(W_PART(26));
-                    h = QUOTE(H_PART(6.6));
+                    h = QUOTE(H_PART(8.8));
                     class controls {
                         class bombTimeControls: GVAR(BombTimeControls) {
                             y = 0;

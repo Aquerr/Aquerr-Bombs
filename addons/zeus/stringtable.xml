@@ -26,6 +26,10 @@
             <Polish>Max prób rozbrojenia</Polish>
         </Key>
         <Key ID="str_abombs_zeus_bombremoveshotvulnerabilityafterdefuselabel">
+            <English>Remove shot vulnerabilty on defuse?</English>
+            <Polish>Usunąć podatność na strzały po rozbrojeniu?</Polish>
+        </Key>
+        <Key ID="str_abombs_zeus_bombremoveshotvulnerabilityafterdefuselabeltooltip">
             <English>Should bomb no longer explode on shot or nearby explosions after defuse?</English>
             <Polish>Czy bomba ma przestać wybuchać w kontakcie z pociskiem lub wybuchem po rozbrojeniu?</Polish>
         </Key>
@@ -53,9 +57,17 @@
             <English>Create memory bomb</English>
             <Polish>Utwórz bombę na pamięć</Polish>
         </Key>
+        <Key ID="str_abombs_zeus_module_remove_shot_vulnerable_displayname">
+            <English>Remove shot vulnerability</English>
+            <Polish>Usuń wrażliwość na strzały</Polish>
+        </Key>
         <Key ID="str_abombs_zeus_module_shot_vulnerable_global_displayname">
             <English>Make class names vulnerable to shots</English>
             <Polish>Uczyń nazwy klas wrażliwe na strzały</Polish>
+        </Key>
+        <Key ID="str_abombs_zeus_objectisnolongervulnerabletoshots">
+            <English>Object is no longer vulnerable to shots and explosions</English>
+            <Polish>Obiekt nie jest już podatny na strzały i eksplozje</Polish>
         </Key>
         <Key ID="str_abombs_zeus_objectisnowvulnerabletoshots">
             <English>Object is now vulnerable to shots</English>

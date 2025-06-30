@@ -13,6 +13,14 @@
             <English>Must select an object!</English>
             <Polish>Należy wybrać obiekt!</Polish>
         </Key>
+        <Key ID="str_abombs_common_no">
+            <English>No</English>
+            <Polish>Nie</Polish>
+        </Key>
+        <Key ID="str_abombs_common_yes">
+            <English>Yes</English>
+            <Polish>Tak</Polish>
+        </Key>
         <Key ID="str_abombs_main_acemenubombback">
             <English>Back panel</English>
             <Polish>Tył bomby</Polish>

@@ -8,21 +8,22 @@
         Used to confirm entered keypad code. Local only.
 
 	Parameter(s):
-        1: OBJECT - the object that has a keypad attached to
-        0: OBJECT - the user who interacted with keypad
+        0: OBJECT - the object that has a keypad attached to
+        1: OBJECT - the user who interacted with keypad
+        2: BOOL - if forced. (Don't check if endered code length match the solution code)
 
 	Example:
         [_object, _user] call abombs_main_fnc_keypad_confirm_entered_code;
 */
 
-params ["_object", "_user"];
+params ["_object", "_user", ["_forced", false, [false]]];
 
 private _isArmed = _bomb getVariable ["abombs_bomb_is_armed", false];
 if (!_isArmed) exitWith {hint (LLSTRING(BombAlreadyDefused))};
 
 _enteredCode = _object getVariable ["aquerr_bomb_entered_code", ""];
 _solutionCode = _object getVariable ["abombs_keypad_solution_code", ""];
-if ((count _enteredCode) >= (count _solutionCode)) then {
+if (((count _enteredCode) >= (count _solutionCode)) || _forced) then {
     if (_solutionCode isEqualTo _enteredCode) then {
         [_object, _user] call FUNC(bomb_defuse);
     } else {
