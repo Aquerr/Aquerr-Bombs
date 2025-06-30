@@ -31,7 +31,7 @@
 */
 
 params [
-    "_device", 
+    "_bomb", 
     ["_timeSeconds", 60, [0]], 
     ["_solutionCode", "0000", ["string"]], 
     ["_maxDefuseAttempts", 1, [0]], 
@@ -44,48 +44,48 @@ params [
     ["_global", true, [true]]
 ];
 
-if ((isNil "_device") || {isNull(_device)}) exitWith { hint LELSTRING(common,MustSelectObject) };
+if ((isNil "_bomb") || {isNull(_bomb)}) exitWith { hint LELSTRING(common,MustSelectObject) };
 
 // Code for server + future players
-if (isServer && {_global && {isMultiplayer && {isNil {_device getVariable QGVAR(init_keypad_bomb_full_JIP)}}}}) exitWith {
+if (isServer && {_global && {isMultiplayer && {isNil {_bomb getVariable QGVAR(init_keypad_bomb_full_JIP)}}}}) exitWith {
 
-    private _id = [QGVAR(init_keypad_bomb_full), [_device, _timeSeconds, _solutionCode, _maxDefuseAttempts, _shouldBeep, _explosionClassName, _removeShotVulnerabilityAfterDefuse, _serialNumber, _guiType, _afterDefuseFunction, false]] call CBA_fnc_globalEventJIP;
+    private _id = [QGVAR(init_keypad_bomb_full), [_bomb, _timeSeconds, _solutionCode, _maxDefuseAttempts, _shouldBeep, _explosionClassName, _removeShotVulnerabilityAfterDefuse, _serialNumber, _guiType, _afterDefuseFunction, false]] call CBA_fnc_globalEventJIP;
 
     // Remove JIP EH if object is deleted
-    [_id, _device] call CBA_fnc_removeGlobalEventJIP;
+    [_id, _bomb] call CBA_fnc_removeGlobalEventJIP;
 
-    _device setVariable [QGVAR(init_keypad_bomb_full_JIP), _id, true];
+    _bomb setVariable [QGVAR(init_keypad_bomb_full_JIP), _id, true];
 };
 
 private _clientCleanupFunction = {
-    params ["_device"];
+    params ["_bomb"];
 
-    _actionIds = _device getVariable ["aquerr_bomb_action_ids", []];
+    _actionIds = _bomb getVariable ["aquerr_bomb_action_ids", []];
     {
-        _device removeAction _x;
+        _bomb removeAction _x;
     } forEach _actionIds;
 };
 
  private _prepareServerVariablesFunction = {
-     params ["_device", "_explosionClassName", "_afterDefuseFunction", "_maxDefuseAttempts"];
+     params ["_bomb", "_explosionClassName", "_afterDefuseFunction", "_maxDefuseAttempts"];
 
-     _device setVariable ["abombs_bomb_type", "KEYPAD", true];
-     _device setVariable ["abombs_bomb_is_armed", true, true];
-     _device setVariable ["abombs_bomb_after_defuse_function", _afterDefuseFunction, true];
-     _device setVariable ["abombs_bomb_max_defuse_attempts", _maxDefuseAttempts, true];
+     _bomb setVariable ["abombs_bomb_type", "KEYPAD", true];
+     _bomb setVariable ["abombs_bomb_is_armed", true, true];
+     _bomb setVariable ["abombs_bomb_after_defuse_function", _afterDefuseFunction, true];
+     _bomb setVariable ["abombs_bomb_max_defuse_attempts", _maxDefuseAttempts, true];
  };
 
  private _prepareClientVariablesFunction = {
-    params ["_device", "_clientCleanupFunction", "_removeShotVulnerabilityAfterDefuse"];
+    params ["_bomb", "_clientCleanupFunction", "_removeShotVulnerabilityAfterDefuse"];
 
-    _device setVariable ["abombs_bomb_remove_shot_vulnerability_after_defuse", _removeShotVulnerabilityAfterDefuse];
-    _device setVariable ["abombs_bomb_client_cleanup_function", _clientCleanupFunction];
+    _bomb setVariable ["abombs_bomb_remove_shot_vulnerability_after_defuse", _removeShotVulnerabilityAfterDefuse];
+    _bomb setVariable ["abombs_bomb_client_cleanup_function", _clientCleanupFunction];
  };
 
 if (isServer) then {
-    if (_device getVariable ["abombs_bomb_is_armed", false]) exitWith {hint LLSTRING(BombAlreadyArmed);};
+    if (_bomb getVariable ["abombs_bomb_is_armed", false]) exitWith {hint LLSTRING(BombAlreadyArmed);};
 
-    [_device, _explosionClassName, _afterDefuseFunction, _maxDefuseAttempts] call _prepareServerVariablesFunction;
+    [_bomb, _explosionClassName, _afterDefuseFunction, _maxDefuseAttempts] call _prepareServerVariablesFunction;
 
     _failureFunction = {
         params ["_bomb", "_defuser"];
@@ -96,26 +96,28 @@ if (isServer) then {
         };
     };
 
-    _device setVariable ["abombs_keypad_failure_function", _failureFunction, true];
+    _bomb setVariable ["abombs_keypad_failure_function", _failureFunction, true];
 
-    [_device, _solutionCode] call FUNC(init_keypad_solution_code);
-    [_device, _timeSeconds] call FUNC(init_bomb_timer);
+    [_bomb, _solutionCode] call FUNC(init_keypad_solution_code);
+    [_bomb, _timeSeconds] call FUNC(init_bomb_timer);
 };
 
 if (hasInterface) then {
-    if (GETVAR(_device,aquerr_keypad_bomb_interface_initialized,false)) exitWith {};
+    if (GETVAR(_bomb,aquerr_keypad_bomb_interface_initialized,false)) exitWith {};
+
+    [_bomb, _clientCleanupFunction, _removeShotVulnerabilityAfterDefuse] call _prepareClientVariablesFunction;
+    [_bomb, _guiType] call FUNC(init_keypad_gui);
+    [_bomb, "BOTH"] call FUNC(init_keypad_actions);
 
     // For JIP players when bomb is already defused
-    if (GETVAR(_device,abombs_bomb_was_defused,false)) exitWith {};
-
-    [_device, _clientCleanupFunction, _removeShotVulnerabilityAfterDefuse] call _prepareClientVariablesFunction;
-    [_device, true, _explosionClassName, 2] call FUNC(register_explosive_handlers_for_object);
-    [_device, _guiType] call FUNC(init_keypad_gui);
-    [_device, "BOTH"] call FUNC(init_keypad_actions);
+    _wasDefused = GETVAR(_bomb,abombs_bomb_was_defused,false);
+    if (!_wasDefused || (_wasDefused && !_removeShotVulnerabilityAfterDefuse)) then {
+        [_bomb, true, _explosionClassName, 2] call FUNC(register_explosive_handlers_for_object);
+    };
 };
 
-[_device, _serialNumber] call FUNC(init_serial_number);
+[_bomb, _serialNumber] call FUNC(init_serial_number);
 
 if (hasInterface) then {
-    SETVAR(_device,aquerr_keypad_bomb_interface_initialized,true);
+    SETVAR(_bomb,aquerr_keypad_bomb_interface_initialized,true);
 };

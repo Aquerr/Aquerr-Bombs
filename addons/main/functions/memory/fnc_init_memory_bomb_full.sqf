@@ -75,13 +75,15 @@ if (isServer && {_global && {isMultiplayer && {isNil {_bomb getVariable QGVAR(in
 
 if(hasInterface) then {
     if (GETVAR(_bomb,aquerr_memory_bomb_interface_initialized,false)) exitWith {};
-    // For JIP players when bomb is already defused
-    if (GETVAR(_bomb,abombs_bomb_was_defused,false)) exitWith {};
 
     _bomb setVariable ["abombs_bomb_remove_shot_vulnerability_after_defuse", _removeShotVulnerabilityAfterDefuse];
 
-    [_bomb, true, _explosionClassName, 2] call FUNC(register_explosive_handlers_for_object);
-
     [_bomb] call FUNC(init_memory_bomb_gui_action);
     SETVAR(_bomb,aquerr_memory_bomb_interface_initialized,true);
+
+    // For JIP players when bomb is already defused
+    _wasDefused = GETVAR(_bomb,abombs_bomb_was_defused,false);
+    if (!_wasDefused || (_wasDefused && !_removeShotVulnerabilityAfterDefuse)) then {
+        [_bomb, true, _explosionClassName, 2] call FUNC(register_explosive_handlers_for_object);
+    };
 };

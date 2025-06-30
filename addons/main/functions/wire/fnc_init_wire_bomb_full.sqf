@@ -374,11 +374,14 @@ if (hasInterface) then {
 
     if (GETVAR(_device,aquerr_wire_bomb_interface_initialized,false)) exitWith {};
     SETVAR(_device,aquerr_wire_bomb_interface_initialized,true);
-    // For JIP players when bomb is already defused
-    if (GETVAR(_device,abombs_bomb_was_defused,false)) exitWith {};
 
     _device setVariable ["abombs_bomb_remove_shot_vulnerability_after_defuse", _removeShotVulnerabilityAfterDefuse];
 
     [_device, _cutColoredWireFunction, _prepareWireCutAction, _prepareShowBombWiresInHintAction, _showWiresInHintFunction, _wireSign, _prepareCheckTimeFunction] call _prepareActionsFunction;
-    [_device, true, _explosionClassName, 2] call FUNC(register_explosive_handlers_for_object);
+    
+    // For JIP players when bomb is already defused
+    _wasDefused = GETVAR(_device,abombs_bomb_was_defused,false);
+    if (!_wasDefused || (_wasDefused && !_removeShotVulnerabilityAfterDefuse)) then {
+        [_device, true, _explosionClassName, 2] call FUNC(register_explosive_handlers_for_object);
+    };
 };
