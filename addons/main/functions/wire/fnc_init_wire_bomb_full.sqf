@@ -47,7 +47,7 @@ if ((_wireCount < 4)) exitWith { hint LLSTRING(WireCountCantBeLessThanFour)};
 
 if (isServer && {_global && {isMultiplayer && {isNil {_device getVariable QGVAR(init_wire_bomb_full_JIP)}}}}) exitWith {
 
-    private _id = [QGVAR(init_wire_bomb_full), [_device, _timeSeconds, _shouldBeep, _wireSign, _wireCount, _explosionClassName, _afterDefuseFunction, false]] call CBA_fnc_globalEventJIP;
+    private _id = [QGVAR(init_wire_bomb_full), [_device, _timeSeconds, _shouldBeep, _wireSign, _wireCount, _maxDefuseAttempts, _explosionClassName, _removeShotVulnerabilityAfterDefuse, _afterDefuseFunction, false]] call CBA_fnc_globalEventJIP;
 
     // Remove JIP EH if object is deleted
     [_id, _device] call CBA_fnc_removeGlobalEventJIP;

@@ -7,6 +7,6 @@ params ["_object", "_shouldDeleteWreckAfterExplosion", "_explosionClassName"];
 if (_mouseOverType != "OBJECT") then {
     [LELSTRING(common,MustSelectObject)] call FUNC(showZeusFeedbackMessage);
 } else {
-    [_object, _shouldDeleteWreckAfterExplosion, _explosionClassName] call EFUNC(main,register_explosive_handlers_for_object);
+    [_object, _shouldDeleteWreckAfterExplosion, _explosionClassName] remoteExec [QEFUNC(main,register_explosive_handlers_for_object), 2];
     [LLSTRING(ObjectIsNowVulnerableToShots)] call FUNC(showZeusFeedbackMessage);
 };

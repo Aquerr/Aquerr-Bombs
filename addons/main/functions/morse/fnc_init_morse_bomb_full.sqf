@@ -50,7 +50,7 @@ if ((isNil "_bomb") || {isNull(_bomb)}) exitWith { hint LELSTRING(common,MustSel
 // Code for server + future players
 if (isServer && {_global && {isMultiplayer && {isNil {_bomb getVariable QGVAR(init_morse_bomb_full_JIP)}}}}) exitWith {
 
-    private _id = [QGVAR(init_morse_bomb_full), [_bomb, _timeSeconds, _shouldBeep, _encodedMessage, _solutionMessage, _explosionClassName, _serialNumber, _afterDefuseFunction, false]] call CBA_fnc_globalEventJIP;
+    private _id = [QGVAR(init_morse_bomb_full), [_bomb, _timeSeconds, _shouldBeep, _maxDefuseAttempts, _encodedMessage, _solutionMessage, _explosionClassName, _removeShotVulnerabilityAfterDefuse, _serialNumber, _afterDefuseFunction, false]] call CBA_fnc_globalEventJIP;
 
     // Remove JIP EH if object is deleted
     [_id, _bomb] call CBA_fnc_removeGlobalEventJIP;

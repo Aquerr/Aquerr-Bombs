@@ -39,7 +39,7 @@ params ["_colorPressed"];
     if (count _input == count _sequence) then {
         if (count _sequence >= (_bomb getVariable ["aquerr_memory_bomb_required_rounds", 5])) then {
             closeDialog 0;
-            [_device, _defuser] call FUNC(bomb_defuse);
+            [_bomb, player] call FUNC(bomb_defuse);
         } else {
             // Next round
             _bomb setVariable ["aquerr_memory_bomb_round", (_bomb getVariable "aquerr_memory_bomb_round") + 1];

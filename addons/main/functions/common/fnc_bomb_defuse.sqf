@@ -18,7 +18,7 @@
 params ["_bomb", "_defuser"];
 
 _bomb setVariable ["abombs_bomb_is_armed", false, true];
-_bomb setVariable ["abombs_bomb_was_defused", false, true];
+_bomb setVariable ["abombs_bomb_was_defused", true, true];
 hint LLSTRING(BombDefused);
 [_bomb, QGVAR(BombDefuse)] remoteExec ["say3D"];
 

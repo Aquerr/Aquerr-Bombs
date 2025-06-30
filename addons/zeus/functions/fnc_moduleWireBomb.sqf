@@ -7,6 +7,6 @@ params ["_object", "_bombTime", "_shouldBeep", "_wireSign", "_wireCount", "_maxD
 if (_mouseOverType != "OBJECT") then {
     [LELSTRING(common,MustSelectObject)] call FUNC(showZeusFeedbackMessage);
 } else {
-    [_object, _bombTime, _shouldBeep, _wireSign, _wireCount, _maxDefuseAttempts, _explosionClassName, _removeShotVulnerabilityAfterDefuse] call EFUNC(main,init_wire_bomb_full);
+    [_object, _bombTime, _shouldBeep, _wireSign, _wireCount, _maxDefuseAttempts, _explosionClassName, _removeShotVulnerabilityAfterDefuse] remoteExec [QEFUNC(main,init_wire_bomb_full), 2];
     [LLSTRING(BombCreated)] call FUNC(showZeusFeedbackMessage);
 };
