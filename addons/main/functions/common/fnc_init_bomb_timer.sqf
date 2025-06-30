@@ -38,7 +38,7 @@ _bomb setVariable ["abombs_bomb_beep_enabled", _shouldBeep, true];
         };
 
         _shouldBeep = _bomb getVariable ["abombs_bomb_beep_enabled", false];
-        if (_shouldBeep) then {
+        if (_shouldBeep && {(count ((_bomb nearEntities ["Man", 50]) select {isPlayer _x})) > 0}) then {
             [_bomb, QGVAR(BombBeep)] remoteExec ["say3D"];
         };
     };
