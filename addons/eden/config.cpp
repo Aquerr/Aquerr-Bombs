@@ -7,7 +7,8 @@ class CfgPatches {
             QGVAR(edenModuleVulnerableObjects),
             QGVAR(edenModuleWireBomb),
             QGVAR(edenModuleKeypadBomb),
-            QGVAR(edenModuleMemoryBomb)
+            QGVAR(edenModuleMemoryBomb),
+            QGVAR(edenModuleMorseBomb)
         };
         weapons[] = {};
         requiredVersion = REQUIRED_VERSION;

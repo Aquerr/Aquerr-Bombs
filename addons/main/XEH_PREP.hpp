@@ -51,3 +51,4 @@ PREP_BY_PATH(init_morse_bomb_full,functions\morse\fnc_init_morse_bomb_full.sqf);
 PREP_BY_PATH(open_morse_bomb_interface,functions\morse\gui\fnc_open_morse_bomb_interface.sqf);
 PREP_BY_PATH(init_morse_bomb_gui_action,functions\morse\fnc_init_morse_bomb_gui_action.sqf);
 PREP_BY_PATH(gui_morse_bomb_start,functions\morse\gui\fnc_gui_morse_bomb_start.sqf);
+PREP_BY_PATH(gui_morse_confirm_code,functions\morse\gui\fnc_gui_morse_bomb_confirm_code.sqf);

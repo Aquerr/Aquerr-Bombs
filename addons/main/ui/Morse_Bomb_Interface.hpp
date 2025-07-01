@@ -48,15 +48,6 @@ class GVAR(Morse_Bomb_Interface_Dialog) {
             colorText[] = {1,1,1,1};
         };
 
-        class Background: RscText {
-            idc = -1;
-            x = 0.3; 
-            y = 0.3;
-            w = 0.4; 
-            h = 0.4;
-            colorBackground[] = {0, 0, 0, 0.7};
-        };
-
         class BtnHidden: RscButton {
             idc = MORSE_BOMB_BUTTON_HIDDEN_ID;
             text = "";
@@ -75,22 +66,8 @@ class GVAR(Morse_Bomb_Interface_Dialog) {
         class Lamp: RscText {
             idc = MORSE_BOMB_LAMP_ID;
             text = "";
-            x = 0.31; 
+            x = 0.41; 
             y = 0.31;
-            w = 0.18; 
-            h = 0.18;
-            colorBackground[] = {1, 0, 0, 0.8};
-            colorBackgroundActive[] = {1, 0, 0, 1};
-            colorFocused[] = {1, 0, 0, 0.8};
-            colorFocused2[] = {1, 0, 0, 0.8};
-            colorActive[] = {0,0,0,0};
-        };
-
-        class InputField: RscEdit {
-            idc = MORSE_BOMB_INPUT_FIELD_ID;
-            text = "";
-            x = 0.51; 
-            y = 0.51;
             w = 0.18; 
             h = 0.18;
             colorBackground[] = {1, 1, 0, 0.8};
@@ -100,21 +77,36 @@ class GVAR(Morse_Bomb_Interface_Dialog) {
             colorActive[] = {0,0,0,0};
         };
 
+        class EnteredCodeInputField: RscEdit {
+            idc = MORSE_BOMB_INPUT_FIELD_ID;
+            text = "";
+            x = 0.36; 
+            y = 0.61;
+            w = 0.28; 
+            h = 0.10;
+            style = 2;
+            colorBackground[] = {0, 0, 0, 0.7};
+            colorBackgroundActive[] = {0, 0, 0, 0.7};
+            colorFocused[] = {0, 0, 0, 0.0};
+            colorFocused2[] = {0, 0, 0, 0.0};
+            colorActive[] = {0,0,0,0};
+        };
+
         class BtnConfirm: RscButton {
             idc = MORSE_BOMB_BUTTON_CONFIRM_ID;
-            text = "";
-            x = 0.31; 
-            y = 0.51;
-            w = 0.18; 
-            h = 0.18;
+            text = "Confirm";
+            x = 0.44; 
+            y = 0.75;
+            w = 0.11; 
+            h = 0.11;
             sizeEx = 0.03; //Text size
-            type = 1;
-            colorBackground[] = {0, 0, 1, 0.8};
-            colorBackgroundActive[] = {0, 0, 1, 1};
-            colorFocused[] = {0, 0, 1, 0.8};
-            colorFocused2[] = {0, 0, 1, 0.8};
+            type=1;
+            colorBackground[] = {1, 0, 0, 0.8};
+            colorBackgroundActive[] = {1, 0, 0, 1};
+            colorFocused[] = {1, 0, 0, 1};
+            colorFocused2[] = {1, 0, 0, 1};
             colorActive[] = {0,0,0,0};
-            tooltip = "Confirm code";
+            tooltip = "Confirm";
             action = QUOTE([] call FUNC(gui_morse_confirm_code));
         };
 

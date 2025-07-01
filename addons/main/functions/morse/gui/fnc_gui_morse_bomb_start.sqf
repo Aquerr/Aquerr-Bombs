@@ -2,6 +2,9 @@
 
 params ["_bomb"];
 
+private _isArmed = _bomb getVariable ["abombs_bomb_is_armed", false];
+if (!_isArmed) exitWith {hint (LLSTRING(BombAlreadyDefused))};
+
 // ============= PREPARATION ===============
 
 // Create dictionary only once and only when at least one morse bomb is used.
@@ -53,8 +56,6 @@ _encodedCharacters = toArray _encodedMessage apply {toUpperANSI(toString [_x])};
 // =================== RUN ==================
 
 // Start after 2 seconds.
-sleep 2;
-
 _bomb setVariable ["aquerr_morse_bomb_sequence_showing", true];
 
 _lampControl = (findDisplay MORSE_BOMB_INTERFACE_ID) displayCtrl MORSE_BOMB_LAMP_ID;
@@ -69,6 +70,7 @@ _lampControl = (findDisplay MORSE_BOMB_INTERFACE_ID) displayCtrl MORSE_BOMB_LAMP
     // Special handling for spaces/whitespace.
     if (_character isEqualTo " ") then {
         sleep 2;
+        continue;
     };
 
     _characterMorseCode = abombsMorseCodeDictionary getOrDefault [_character, []];
@@ -78,14 +80,26 @@ _lampControl = (findDisplay MORSE_BOMB_INTERFACE_ID) displayCtrl MORSE_BOMB_LAMP
 
     {
         _beepLength = _x;
-        
-        _baseColor = ctrlBackgroundColor _lampControl;
+
+        private _soundOffset = 0;
+        if (_beepLength == 1) then {
+            _soundOffset = 0.2;
+        };
+
+        private _soundId = playSoundUI [QGVAR(BombMorseBeep), 1, 1, true, _soundOffset];
+        private _baseColor = ctrlBackgroundColor _lampControl;
         _lampControl ctrlSetBackgroundColor [1, 1, 1, 1]; // Flash white
         
-        playSoundUI [QGVAR(MemoryButton), 1, 1];
-        sleep (_beepLength / 2);
+        waitUntil { (soundParams _soundId) isEqualTo []};
+        
         _lampControl ctrlSetBackgroundColor _baseColor; // Reset
+        sleep 0.2;
     }
     forEach _characterMorseCode;
+    sleep 0.5;
 }
 forEach _encodedCharacters;
+
+sleep 10;
+
+[_bomb] call FUNC(gui_morse_bomb_start);

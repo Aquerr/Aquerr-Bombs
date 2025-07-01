@@ -14,8 +14,8 @@
 		1: NUMBER - the bomb time (0 = no time, the bomb will explode only on wrong code)
         2: BOOLEAN - if the boom should beep every second
         3: NUMBER - max (wrong) defuse attempts. Default: 1 
-        4: STRING - the encoded message (only 26 letters and 10 numerals from https://en.wikipedia.org/wiki/Morse_code are supported)
-        5: STRING - the solution message
+        4: STRING - the encoded message (only 26 letters and 10 numerals from https://en.wikipedia.org/wiki/Morse_code are supported) that will be presented for the player
+        5: STRING - the solution message. This message is required to be entered by the player as a response. Case insensitive.
         6: STRING - the explosion class name to use
             // "ammo_Missile_Cruise_01" (very big)
             // "helicopterExploBig" (big)

@@ -321,4 +321,86 @@ class CfgVehicles {
             description = CSTRING(Module_Memory_Bomb_Description);
         };
     };
+
+    class GVAR(edenModuleMorseBomb): GVAR(baseEdenModule) {
+        displayName = CSTRING(Module_Morse_Bomb_DisplayName);
+        function = QFUNC(edenModuleMorseBomb);
+        scope = 2;
+        class Attributes: AttributesBase {
+            class BombTime: Edit {
+                property = QGVAR(edenModuleMorseBomb_BombTime);
+                displayName = CSTRING(BombTimeLabel);
+                tooltip = CSTRING(BombTimeTooltip);
+                typeName = "NUMBER";
+                defaultValue = "60";
+            };
+            class ShouldBeep: Checkbox {
+                property = QGVAR(edenModuleMorseBomb_ShouldBeep);
+                displayName = CSTRING(ShouldBeepLabel);
+                typeName = "BOOL";
+                defaultValue = "true";
+            };
+            class MaxDefuseAttempts: Edit {
+                property = QGVAR(edenModulePropertyCommon_MaxDefuseAttempts);
+                displayName = CSTRING(MaxDefuseAttemptsLabel);
+                tooltip = CSTRING(MaxDefuseAttemptsTooltip);
+                typeName = "NUMBER";
+                defaultValue = "1";
+            };
+            class EncodedMessage: Edit {
+                property = QGVAR(edenModuleMorseBomb_EncodedMessage);
+                displayName = CSTRING(EncodedMessageLabel);
+                tooltip = CSTRING(EncodedMessageTooltip);
+                typeName = "STRING";
+                defaultValue = "''";
+            };
+            class SolutionMessage: Edit {
+                property = QGVAR(edenModuleMorseBomb_SolutionMessage);
+                displayName = CSTRING(SolutionMessageLabel);
+                tooltip = CSTRING(SolutionMessageTooltip);
+                typeName = "STRING";
+                defaultValue = "''";
+            };
+            class SerialNumber: Edit {
+                property = QGVAR(edenModulePropertyCommon_SerialNumber);
+                displayName = CSTRING(SerialNumberLabel);
+                tooltip = CSTRING(SerialNumberTooltip);
+                typeName = "STRING";
+                defaultValue = "'Unknown'";
+            };
+            class ExplosionClassName: Default {
+                control = QGVAR(explosionClassName);
+                property = QGVAR(edenModulePropertyCommon_explosionClassName);
+                typeName = "STRING";
+                defaultValue = "'DemoCharge_Remote_Ammo'";
+            };
+            class ExplosionClassNameOverride: Default {
+                control = QGVAR(explosionClassNameOverride);
+                property = QGVAR(edenModulePropertyCommon_explosionClassNameOverride);
+                displayName = CSTRING(OverrideExplosionClassLabel);
+                tooltip = CSTRING(OverrideExplosionClassLabelTooltip);
+                typeName = "STRING";
+                defaultValue = "''";
+            };
+            class RemoveShotVulnerabilityAfterDefuse: Checkbox {
+                property = QGVAR(edenModulePropertyCommon_RemoveShotVulnerabilityAfterDefuse);
+                displayName = CSTRING(RemoveShotVulnerabilityAfterDefuseLabel);
+                tooltip = CSTRING(RemoveShotVulnerabilityAfterDefuseLabelTooltip);
+                typeName = "BOOL";
+                defaultValue = "false";
+            };
+            class AfterDefuseCode: Default {
+                property = QGVAR(edenModulePropertyCommon_AfterDefuseCode);
+                displayName = CSTRING(AfterDefuseCodeLabel);
+                tooltip = CSTRING(AfterDefuseCodeTooltip);
+                typeName = "STRING";
+                defaultValue = "''";
+                control = "editcodemulti5";
+            };
+            class ModuleDescription: ModuleDescription {};
+        };
+        class ModuleDescription: ModuleDescription {
+            description = CSTRING(Module_Morse_Bomb_Description);
+        };
+    };
 };

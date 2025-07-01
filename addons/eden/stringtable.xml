@@ -71,6 +71,14 @@ Parametry przekazane do kodu: ["_thisBomb", "_defuserPlayer"]</Polish>
             <English>Max hits to trigger the expolsion. Chance to trigger the explosion is increased with each hit.</English>
             <Polish>Maksymalna ilość trafień aby wywołać ekslpozję. Szansa na eksplozję wzrasta z każdym trafieniem.</Polish>
         </Key>
+        <Key ID="str_abombs_eden_encodedmessagelabel">
+            <English>Encoded incoming message</English>
+            <Polish>Zakodowana przychodząca wiadomość</Polish>
+        </Key>
+        <Key ID="str_abombs_eden_encodedmessagetooltip">
+            <English>The incoming message that will be beep-ed to the player</English>
+            <Polish>Przychodząca wiadomość która będzie wy-beep-owana graczowi</Polish>
+        </Key>
         <Key ID="str_abombs_eden_explosionclasslabel">
             <English>Explosion class name</English>
             <Polish>Klasa eksplozji</Polish>
@@ -94,6 +102,14 @@ Parametry przekazane do kodu: ["_thisBomb", "_defuserPlayer"]</Polish>
         <Key ID="str_abombs_eden_module_memory_bomb_displayname">
             <English>Create memory bomb</English>
             <Polish>Utwórz bombę na pamięć</Polish>
+        </Key>
+        <Key ID="str_abombs_eden_module_morse_bomb_description">
+            <English>This module has to be synced with objects that should be converted to memory bombs.</English>
+            <Polish>Ten moduł musi zostać zsynchronizowany z obiektami, które mają zostać zamienione w bomby.</Polish>
+        </Key>
+        <Key ID="str_abombs_eden_module_morse_bomb_displayname">
+            <English>Create Morse bomb</English>
+            <Polish>Utwórz bombę Morse'a</Polish>
         </Key>
         <Key ID="str_abombs_eden_overrideexplosionclasslabel">
             <English>Override explosion class</English>
@@ -134,6 +150,14 @@ Parametry przekazane do kodu: ["_thisBomb", "_defuserPlayer"]</Polish>
         <Key ID="str_abombs_eden_solutioncodelabel">
             <English>Solution Code (digits only)</English>
             <Polish>Kod rozwiązania (tylko cyfry)</Polish>
+        </Key>
+        <Key ID="str_abombs_eden_solutionmessagelabel">
+            <English>Solution message</English>
+            <Polish>Wiadomość rozwiązania</Polish>
+        </Key>
+        <Key ID="str_abombs_eden_solutionmessagetooltip">
+            <English>A text that needs to be entered by the player to defuse the bomb</English>
+            <Polish>Tekst, który musi być wpisany przez gracza aby rozbroić bombę</Polish>
         </Key>
         <Key ID="str_abombs_eden_wirecountlabel">
             <English>Wire count</English>

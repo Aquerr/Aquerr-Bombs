@@ -49,9 +49,6 @@ GVAR(Bomb_Interface_Target) = _bomb;
         }
     , 0.25, [_dialog, _bomb]] call CBA_fnc_addPerFrameHandler;
 
-    private _isArmed = _bomb getVariable ["abombs_bomb_is_armed", false];
-    if (!_isArmed) exitWith {hint (LLSTRING(BombAlreadyDefused))};
-
     _bomb setVariable ["aquerr_morse_bomb_input", false];
     _bomb setVariable ["aquerr_morse_bomb_sequence_showing", false];
 
