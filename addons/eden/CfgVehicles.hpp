@@ -5,10 +5,7 @@ class CfgVehicles {
             class Default;
             class Combo;
             class Edit;
-            class EditArray;
             class Checkbox;
-            class EditMulti3;
-            class EditCodeMulti3;
             class ModuleDescription;
         };
         class ModuleDescription;
