@@ -100,6 +100,6 @@ _lampControl = (findDisplay MORSE_BOMB_INTERFACE_ID) displayCtrl MORSE_BOMB_LAMP
 }
 forEach _encodedCharacters;
 
-sleep 10;
+sleep 8;
 
 [_bomb] call FUNC(gui_morse_bomb_start);

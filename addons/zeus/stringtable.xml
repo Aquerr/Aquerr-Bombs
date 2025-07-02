@@ -45,6 +45,14 @@
             <English>Delete wreck after explosion?</English>
             <Polish>Usunąć wrak po eksplozji?</Polish>
         </Key>
+        <Key ID="str_abombs_zeus_encodedmessagelabel">
+            <English>Encoded incoming message</English>
+            <Polish>Zakodowana przychodząca wiadomość</Polish>
+        </Key>
+        <Key ID="str_abombs_zeus_encodedmessagelabeltooltip">
+            <English>The incoming alphanumeric message (in International Morse Code) that will be beep-ed to the player</English>
+            <Polish>Przychodząca alfanumeryczna wiadomość (w Międzynarodowym Kodzie Morse'a) która będzie wy-beep-owana graczowi</Polish>
+        </Key>
         <Key ID="str_abombs_zeus_explosionclasslabel">
             <English>Explosion class name</English>
             <Polish>Klasa eksplozji</Polish>
@@ -56,6 +64,10 @@
         <Key ID="str_abombs_zeus_module_memory_bomb_displayname">
             <English>Create memory bomb</English>
             <Polish>Utwórz bombę na pamięć</Polish>
+        </Key>
+        <Key ID="str_abombs_zeus_module_morse_bomb_displayname">
+            <English>Create Morse bomb</English>
+            <Polish>Utwórz bombę Morse'a</Polish>
         </Key>
         <Key ID="str_abombs_zeus_module_remove_shot_vulnerable_displayname">
             <English>Remove shot vulnerability</English>
@@ -96,6 +108,14 @@
         <Key ID="str_abombs_zeus_solutioncodelabel">
             <English>Solution Code (digits only)</English>
             <Polish>Kod rozwiązania (tylko cyfry)</Polish>
+        </Key>
+        <Key ID="str_abombs_zeus_solutionmessagelabel">
+            <English>Solution message</English>
+            <Polish>Wiadomość rozwiązania</Polish>
+        </Key>
+        <Key ID="str_abombs_zeus_solutionmessagelabeltooltip">
+            <English>An alphanumeric text that needs to be entered by the player to defuse the bomb</English>
+            <Polish>Alfanumeryczny tekst, który musi być wpisany przez gracza aby rozbroić bombę</Polish>
         </Key>
         <Key ID="str_abombs_zeus_wirecountlabel">
             <English>Wire count</English>

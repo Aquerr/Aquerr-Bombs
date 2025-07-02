@@ -550,3 +550,82 @@ class GVAR(RscMemoryBomb): RscDisplayAttributes {
         class ButtonCancel: ButtonCancel {};
     };
 };
+
+class GVAR(RscMorseBomb): RscDisplayAttributes {
+    onLoad = QUOTE([ARR_3('onLoad',_this,QQGVAR(RscMorseBomb))] call FUNC(zeusAttributes));
+    onUnload = QUOTE([ARR_3('onUnload',_this,QQGVAR(RscMorseBomb))] call FUNC(zeusAttributes));
+    class Controls: Controls {
+        class Background: Background {};
+        class Title: Title {};
+        class Content: Content {
+            class Controls {
+                class memoryBomb: RscControlsGroupNoScrollbars {
+                    onSetFocus = QUOTE(call FUNC(ui_MorseBomb));
+                    idc = ZEUS_MORSE_BOMB_DIALOG_ID;
+                    x = 0;
+                    y = 0;
+                    w = QUOTE(W_PART(26));
+                    h = QUOTE(H_PART(9.9));
+                    class controls {
+                        class bombTimeControls: GVAR(BombTimeControls) {
+                            y = 0;
+                        };
+                        class shouldBeepControls: GVAR(ShouldBeepControls) {
+                            y = QUOTE(H_PART(1.1));
+                        };
+                        class BombMaxDefuseAttemptsControls: GVAR(BombMaxDefuseAttemptsControls) {
+                            y = QUOTE(H_PART(2.2));
+                        };
+                        class EncodedMessageLabel: RscText {
+                            idc = -1;
+                            text = CSTRING(EncodedMessageLabel);
+                            tooltip = CSTRING(EncodedMessageLabelTooltip);
+                            x = 0;
+                            y = QUOTE(H_PART(3.3));
+                            w = QUOTE(W_PART(10));
+                            h = QUOTE(H_PART(1));
+                            colorBackground[] = {0, 0, 0, 0.5};
+                        };
+                        class EncodedMessageEdit: RscEdit {
+                            idc = ZEUS_MORSE_BOMB_DIALOG_ENCODED_MESSAGE_ID;
+                            x = QUOTE(W_PART(10.1));
+                            y = QUOTE(H_PART(3.3));
+                            w = QUOTE(W_PART(15.9));
+                            h = QUOTE(H_PART(1));
+                            autocomplete = "";
+                        };
+                        class SolutionMessageLabel: RscText {
+                            idc = -1;
+                            text = CSTRING(SolutionMessageLabel);
+                            tooltip = CSTRING(SolutionMessageLabelTooltip);
+                            x = 0;
+                            y = QUOTE(H_PART(4.4));
+                            w = QUOTE(W_PART(10));
+                            h = QUOTE(H_PART(1));
+                            colorBackground[] = {0, 0, 0, 0.5};
+                        };
+                        class SolutionMessageEdit: RscEdit {
+                            idc = ZEUS_MORSE_BOMB_DIALOG_SOLUTION_MESSAGE_ID;
+                            x = QUOTE(W_PART(10.1));
+                            y = QUOTE(H_PART(4.4));
+                            w = QUOTE(W_PART(15.9));
+                            h = QUOTE(H_PART(1));
+                            autocomplete = "";
+                        };
+                        class SerialNumberControls: GVAR(SerialNumberControls) {
+                            y = QUOTE(H_PART(5.5));
+                        };
+                        class explosionClassControls: GVAR(ExplosionClassControls) {
+                            y = QUOTE(H_PART(6.6));
+                        };
+                        class BombRemoveShotVulnerabilityAfterDefuseControls: GVAR(BombRemoveShotVulnerabilityAfterDefuseControls) {
+                            y = QUOTE(H_PART(8.8));
+                        };
+                    };
+                };
+            };
+        };
+        class ButtonOK: ButtonOK {};
+        class ButtonCancel: ButtonCancel {};
+    };
+};

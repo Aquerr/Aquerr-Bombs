@@ -7,6 +7,7 @@ class CfgPatches {
             QGVAR(moduleKeypadBomb),
             QGVAR(moduleWireBomb),
             QGVAR(moduleMemoryBomb),
+            QGVAR(moduleMorseBomb),
             QGVAR(moduleVulnerableObject),
             QGVAR(moduleVulnerableObjectsGlobal),
             QGVAR(moduleRemoveVulnerableObject)

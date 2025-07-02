@@ -58,4 +58,11 @@ class CfgVehicles {
         curatorInfoType = QGVAR(RscMemoryBomb);
         icon = "a3\ui_f\data\igui\cfg\simpletasks\types\destroy_ca.paa";
     };
+
+    class GVAR(moduleMorseBomb): GVAR(baseModule) {
+        curatorCanAttach = 1;
+        displayName = CSTRING(Module_Morse_Bomb_DisplayName);
+        curatorInfoType = QGVAR(RscMorseBomb);
+        icon = "a3\ui_f\data\igui\cfg\simpletasks\types\destroy_ca.paa";
+    };
 };

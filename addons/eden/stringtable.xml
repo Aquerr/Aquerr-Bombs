@@ -76,8 +76,8 @@ Parametry przekazane do kodu: ["_thisBomb", "_defuserPlayer"]</Polish>
             <Polish>Zakodowana przychodząca wiadomość</Polish>
         </Key>
         <Key ID="str_abombs_eden_encodedmessagetooltip">
-            <English>The incoming message that will be beep-ed to the player</English>
-            <Polish>Przychodząca wiadomość która będzie wy-beep-owana graczowi</Polish>
+            <English>The incoming alphanumeric message (in International Morse Code) that will be beep-ed to the player</English>
+            <Polish>Przychodząca alfanumeryczna wiadomość (w Międzynarodowym Kodzie Morse'a) która będzie wy-beep-owana graczowi</Polish>
         </Key>
         <Key ID="str_abombs_eden_explosionclasslabel">
             <English>Explosion class name</English>
@@ -156,8 +156,8 @@ Parametry przekazane do kodu: ["_thisBomb", "_defuserPlayer"]</Polish>
             <Polish>Wiadomość rozwiązania</Polish>
         </Key>
         <Key ID="str_abombs_eden_solutionmessagetooltip">
-            <English>A text that needs to be entered by the player to defuse the bomb</English>
-            <Polish>Tekst, który musi być wpisany przez gracza aby rozbroić bombę</Polish>
+            <English>An alphanumeric text that needs to be entered by the player to defuse the bomb</English>
+            <Polish>Alfanumeryczny tekst, który musi być wpisany przez gracza aby rozbroić bombę</Polish>
         </Key>
         <Key ID="str_abombs_eden_wirecountlabel">
             <English>Wire count</English>
