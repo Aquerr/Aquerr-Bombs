@@ -10,8 +10,8 @@
         A player need to decode the message and enter the solution message that either is the same as decoded message or can be found with help of decoded message (Mission Maker decides).
 
 	Parameter(s):
-		0: the thing that the script should be attached to
-		1: NUMBER - the bomb time (0 = no time, the bomb will explode only on wrong code)
+        0: the thing that the script should be attached to
+        1: NUMBER - the bomb time (0 = no time, the bomb will explode only on wrong code)
         2: BOOLEAN - if the boom should beep every second
         3: NUMBER - max (wrong) defuse attempts. Default: 1 
         4: STRING - the encoded message (only 26 letters and 10 numerals from https://en.wikipedia.org/wiki/Morse_code are supported) that will be presented for the player
@@ -28,7 +28,7 @@
 
 	Example:
 		[_myBombThing, 100] call abombs_main_fnc_init_morse_bomb_full;
-		[_myBombThing, 0, true, "GrenadeHand"] call abombs_main_fnc_init_morse_bomb_full;
+		[_myBombThing, 0, true, 1, "THE CODE IS 2356", "2356", "GrenadeHand"] call abombs_main_fnc_init_morse_bomb_full;
 */
 
 params [

@@ -25,7 +25,7 @@
 
 	Example:
 		[_myBombThing, 100] call abombs_main_fnc_init_memory_bomb_full;
-		[_myBombThing, 0, true, "GrenadeHand"] call abombs_main_fnc_init_memory_bomb_full;
+		[_myBombThing, 0, true, 5, 1, "GrenadeHand"] call abombs_main_fnc_init_memory_bomb_full;
 */
 
 params [

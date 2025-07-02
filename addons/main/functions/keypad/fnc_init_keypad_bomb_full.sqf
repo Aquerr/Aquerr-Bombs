@@ -26,8 +26,8 @@
 
 	Example:
 		[_myBombThing, 60, "2454"] call abombs_main_fnc_init_keypad_bomb_full;
-		[_myBombThing, 0, "123", true, "GrenadeHand"] call abombs_main_fnc_init_keypad_bomb_full;
-        [_myBombThing, 0, "123", true, "DemoCharge_Remote_Ammo"] call abombs_main_fnc_init_keypad_bomb_full;
+		[_myBombThing, 0, "123", 3, true, "GrenadeHand"] call abombs_main_fnc_init_keypad_bomb_full;
+        [_myBombThing, 0, "123", 5, true, "DemoCharge_Remote_Ammo"] call abombs_main_fnc_init_keypad_bomb_full;
 */
 
 params [

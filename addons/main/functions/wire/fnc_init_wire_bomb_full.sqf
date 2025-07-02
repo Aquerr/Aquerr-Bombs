@@ -26,7 +26,7 @@
 
 	Example:
 		[myBombThing, 360, true, "#", 20] call abombs_main_fnc_init_wire_bomb_full;
-		[myBombThing, 0, false, nil, nil, "GrenadeHand"] call abombs_main_fnc_init_wire_bomb_full;
+		[myBombThing, 0, false, nil, nil, 1, "GrenadeHand"] call abombs_main_fnc_init_wire_bomb_full;
 */
 
 params [
