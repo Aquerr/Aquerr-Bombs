@@ -68,7 +68,7 @@ if (isServer && {_global && {isMultiplayer && {isNil {_bomb getVariable QGVAR(in
     if (_bomb getVariable ["abombs_bomb_is_armed", false]) exitWith {hint LLSTRING(BombAlreadyArmed);};
 
     [_bomb, _rounds, _afterDefuseFunction, _maxDefuseAttempts] call _prepareServerVariablesFunction;
-    [_bomb, _timeSeconds] call FUNC(init_bomb_timer);
+    [_bomb, _timeSeconds, _shouldBeep] call FUNC(init_bomb_timer);
 };
 
 [_bomb, _serialNumber] call FUNC(init_serial_number);

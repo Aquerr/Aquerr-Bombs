@@ -73,7 +73,7 @@ private _prepareServerVariablesFunction = {
     if (_bomb getVariable ["abombs_bomb_is_armed", false]) exitWith {hint LLSTRING(BombAlreadyArmed);};
 
     [_bomb, _encodedMessage, _solutionMessage, _afterDefuseFunction, _maxDefuseAttempts] call _prepareServerVariablesFunction;
-    [_bomb, _timeSeconds] call FUNC(init_bomb_timer);
+    [_bomb, _timeSeconds, _shouldBeep] call FUNC(init_bomb_timer);
 };
 
 if(hasInterface) then {

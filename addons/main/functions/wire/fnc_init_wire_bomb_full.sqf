@@ -366,7 +366,7 @@ if (isServer) then {
     if (_device getVariable ["abombs_bomb_is_armed", false]) exitWith {hint LLSTRING(BombAlreadyArmed);};
 
     [_device, _explosionClassName, _shouldBeep, _afterDefuseFunction, _maxDefuseAttempts] call _prepareServerVariablesFunction;
-    [_device, _timeSeconds] call FUNC(init_bomb_timer);
+    [_device, _timeSeconds, _shouldBeep] call FUNC(init_bomb_timer);
     [_device, _wireCount] call _generateBombWires;
 };
 
