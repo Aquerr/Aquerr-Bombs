@@ -24,8 +24,48 @@ if (not(_explosionClassNameOverride isEqualTo "")) then {
 	_explosionClassName = _explosionClassNameOverride;
 };
 
-if ((count _synchronizedObjects) > 0) then {
-	{
-		[_x, _bombTime, _shouldBeep, _roundsCount, _maxDefuseAttempts, _explosionClassName, _removeShotVulnerabilityAfterDefuse, _serialNumber, _afterDefuseCode] call EFUNC(main,init_memory_bomb_full);
-	} forEach _synchronizedObjects;
+private _syncedTriggers = _synchronizedObjects select { _x isKindOf "EmptyDetector" };
+private _connectedObjects = _synchronizedObjects select { not (_x isKindOf "EmptyDetector") };
+
+private _initBombFunction = {
+	_this call EFUNC(main,init_memory_bomb_full);
 };
+
+{
+	private _bombParams = [
+		_x, 
+		_bombTime, 
+		_shouldBeep, 
+		_roundsCount, 
+		_maxDefuseAttempts, 
+		_explosionClassName, 
+		_removeShotVulnerabilityAfterDefuse, 
+		_serialNumber, 
+		_afterDefuseCode
+	];
+
+	if (count (_syncedTriggers) > 0) then {
+		{
+			private _trigger = _x;
+			// Trigger based init
+			[
+				_trigger,
+				_bombParams,
+				_initBombFunction
+			] spawn {
+				params [
+					"_trigger",
+					"_bombParams",
+					"_initBombFunction"
+				];
+
+        		waitUntil { sleep 1; triggerActivated _trigger };
+
+				_bombParams call _initBombFunction;
+			};
+		} forEach _syncedTriggers;
+	} else {
+		// Regular init (no trigger)
+		_bombParams call _initBombFunction;
+	};
+} forEach _connectedObjects;

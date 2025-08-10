@@ -17,7 +17,7 @@ class CfgVehicles {
         category = QGVAR(ABOMBS);
         function = QFUNC(emptyFunction);
         functionPriority = 1;
-        isGlobal = 1;
+        isGlobal = 0;
         isTriggerActivated = 0;
         scope = 0; // 2 for EDEN and Zeus, 1 for Zeus.
         scopeCurator = 0; // 0 hidden from Zeus
