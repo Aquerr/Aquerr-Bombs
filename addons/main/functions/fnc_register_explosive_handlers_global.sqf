@@ -47,7 +47,7 @@ _explosiveObjectsFiltered = [];
 } forEach _explosiveObjects;
 
 {
-	[_x, _shouldDeleteWreckAfterExplosion, _explosionClassName, _requiredHits, _fixed, false] call FUNC(register_explosive_handlers_for_object);
+	[_x, _shouldDeleteWreckAfterExplosion, _explosionClassName, _requiredHits, _fixed, _global] call FUNC(register_explosive_handlers_for_object);
 } forEach _explosiveObjectsFiltered;
 
 _explosiveObjectsFiltered = nil;
