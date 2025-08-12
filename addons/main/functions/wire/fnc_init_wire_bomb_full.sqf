@@ -136,12 +136,12 @@ private _generateBombWires = {
     if (_solutionWireColor == parseNumber _wireColor) then {
         [_device, _defuser] call FUNC(bomb_defuse);
     } else {
-        _maxDefuseAttempts = _bomb getVariable ["abombs_bomb_max_defuse_attempts", 1];
-        _attempts = (_bomb getVariable ["abombs_bomb_defuse_attempts", 0]) + 1;
-        _bomb setVariable ["abombs_bomb_defuse_attempts", _attempts, true];
+        _maxDefuseAttempts = _device getVariable ["abombs_bomb_max_defuse_attempts", 1];
+        _attempts = (_device getVariable ["abombs_bomb_defuse_attempts", 0]) + 1;
+        _device setVariable ["abombs_bomb_defuse_attempts", _attempts, true];
         if (_attempts >= _maxDefuseAttempts) then {
             closeDialog 0;
-            [_bomb, player] call FUNC(bomb_explode);
+            [_device, player] call FUNC(bomb_explode);
         } else {
             hint "Bomb still ticks...";
         };
