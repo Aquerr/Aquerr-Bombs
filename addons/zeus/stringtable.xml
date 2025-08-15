@@ -61,6 +61,10 @@
             <English>GUI type</English>
             <Polish>Rodzaj interfejsu</Polish>
         </Key>
+        <Key ID="str_abombs_zeus_module_explode_displayname">
+            <English>Explode</English>
+            <Polish>Wysadź</Polish>
+        </Key>
         <Key ID="str_abombs_zeus_module_memory_bomb_displayname">
             <English>Create memory bomb</English>
             <Polish>Utwórz bombę na pamięć</Polish>

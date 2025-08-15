@@ -90,7 +90,7 @@ if (isServer && {_global && {isMultiplayer && {isNil {_object getVariable QGVAR(
         _shouldDeleteWreckAfterExplosion = GETVAR(_target,aquerr_delete_after_explosion,true);
         if(_shouldDeleteWreckAfterExplosion) then {
             deleteVehicle _target;
-            [_target] call FUNC(removeRegisteredBomb);
+            [_target] remoteExec [QFUNC(removeRegisteredBomb)];
         };
         
         _explosive setDamage 1;
@@ -113,7 +113,7 @@ if (isServer && {_global && {isMultiplayer && {isNil {_object getVariable QGVAR(
         _shouldDeleteWreckAfterExplosion = GETVAR(_vehicle,aquerr_delete_after_explosion,true);
         if(_shouldDeleteWreckAfterExplosion) then {
             deleteVehicle _vehicle;
-            [_vehicle] call FUNC(removeRegisteredBomb);
+            [_vehicle] remoteExec [QFUNC(removeRegisteredBomb)];
         };
         
         _explosive setDamage 1;

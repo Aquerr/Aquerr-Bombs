@@ -10,5 +10,5 @@ _object setVariable ["abombs_register_explosive_handlers_for_object_JIP", nil];
 _object setVariable ["abombs_vulnerable_events_registered", false];
 
 if ((_object getVariable ["abombs_bomb_is_armed", false]) == false) then {
-	[_object] call FUNC(removeRegisteredBomb);
+	[_object] remoteExec [QFUNC(removeRegisteredBomb)];
 };

@@ -16,6 +16,12 @@ class CfgVehicles {
 
     ///////////////////////////////////////////////////////////
     // Zeus modules
+    class GVAR(moduleExplode): GVAR(baseModule) {
+        curatorCanAttach = 1;
+        displayName = CSTRING(Module_Explode_DisplayName);
+        curatorInfoType = QGVAR(RscExplode);
+        icon = "a3\ui_f\data\gui\rsc\rscdisplayarcademap\icon_config_ca.paa";
+    };
 
     class GVAR(moduleRemoveVulnerableObject): GVAR(baseModule) {
         curatorCanAttach = 1;

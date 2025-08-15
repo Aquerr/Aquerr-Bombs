@@ -13,6 +13,7 @@ PREP_BY_PATH(init_bomb_timer,functions\common\fnc_init_bomb_timer.sqf);
 PREP_BY_PATH(init_serial_number,functions\common\fnc_init_serial_number.sqf);
 PREP_BY_PATH(after_explode_client_cleanup,functions\common\fnc_after_explode_client_cleanup.sqf);
 PREP_BY_PATH(bomb_explode,functions\common\fnc_bomb_explode.sqf);
+PREP_BY_PATH(explode,functions\common\fnc_explode.sqf);
 PREP_BY_PATH(bomb_defuse,functions\common\fnc_bomb_defuse.sqf);
 PREP_BY_PATH(set_require_eod,functions\common\fnc_set_require_eod.sqf);
 PREP_BY_PATH(set_require_defusal_items,functions\common\fnc_set_require_defusal_items.sqf);
