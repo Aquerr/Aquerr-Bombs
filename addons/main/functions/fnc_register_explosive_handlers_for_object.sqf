@@ -107,7 +107,7 @@ if (isServer && {_global && {isMultiplayer && {isNil {_object getVariable QGVAR(
         if ((GETVAR(_vehicle,aquerr_already_exploded,0)) == 1) exitWith {};
         SETPVAR(_vehicle,aquerr_already_exploded,1);
 
-        _explosionClassName = GETVAR(_vehicle,aquerr_explosion_class_name,IEDUrbanSmall_Remote_Ammo);
+        _explosionClassName = GETVAR(_vehicle,aquerr_explosion_class_name,"IEDUrbanSmall_Remote_Ammo");
         _explosive = createVehicle [_explosionClassName, (getPosATL _vehicle), [], 0, "CAN_COLLIDE"];
         
         _shouldDeleteWreckAfterExplosion = GETVAR(_vehicle,aquerr_delete_after_explosion,true);

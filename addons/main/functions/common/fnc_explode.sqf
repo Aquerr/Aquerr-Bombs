@@ -15,7 +15,7 @@
 
 params ["_object"];
 
-_explosionClassName = GETVAR(_object,aquerr_explosion_class_name,DemoCharge_Remote_Ammo);
+_explosionClassName = GETVAR(_object,aquerr_explosion_class_name,"DemoCharge_Remote_Ammo");
 _explosive = createVehicle [_explosionClassName, (getPosATL _object), [], 0, "CAN_COLLIDE"];
 
 _shouldDeleteWreckAfterExplosion = GETVAR(_object,aquerr_delete_after_explosion,true);

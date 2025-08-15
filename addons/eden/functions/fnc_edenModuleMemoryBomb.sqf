@@ -20,7 +20,7 @@ private _afterDefuseCode = compile (_logic getVariable ["AfterDefuseCode", '{}']
 private _maxDefuseAttempts = _logic getVariable ["MaxDefuseAttempts", "1"];
 private _removeShotVulnerabilityAfterDefuse = _logic getVariable ["RemoveShotVulnerabilityAfterDefuse", false];
 private _requireEOD = _logic getVariable ["RequireEOD", false];
-private _requiredDefusalItems = parseSimpleArray (_logic getVariable ["RequiredDefusalItems", "[]"]);
+private _requiredDefusalItemsArray = parseSimpleArray (_logic getVariable ["RequiredDefusalItems", "[]"]);
 
 if (not(_explosionClassNameOverride isEqualTo "")) then {
 	_explosionClassName = _explosionClassNameOverride;
@@ -48,7 +48,7 @@ private _initBombFunction = {
 		_serialNumber, 
 		_afterDefuseCode,
 		_requireEOD,
-		_requiredDefusalItems
+		_requiredDefusalItemsArray
 	];
 
 	if (count (_syncedTriggers) > 0) then {

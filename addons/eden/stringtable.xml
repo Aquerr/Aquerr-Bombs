@@ -132,8 +132,8 @@ Parametry przekazane do kodu: ["_thisBomb", "_defuserPlayer"]</Polish>
             <Polish>Wymagane przedmioty do rozbrojenia</Polish>
         </Key>
         <Key ID="str_abombs_eden_requireddefusalitemslabeltooltip">
-            <English>Should be in array format, i.e: ["ACE_defsualKit", "Toolkit"]</English>
-            <Polish>W formacie array-a np: ["ACE_defsualKit", "Toolkit"]</Polish>
+            <English>Should be in array format, i.e: ["ACE_DefusalKit", "ToolKit"]</English>
+            <Polish>W formacie array-a np: ["ACE_DefusalKit", "ToolKit"]</Polish>
         </Key>
         <Key ID="str_abombs_eden_requireeodlabel">
             <English>Require EOD</English>

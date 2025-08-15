@@ -20,12 +20,14 @@
 params ["_bomb", "_user"];
 
 // Check if the bomb is armed. If it is not then... well... no need to defuse it again. :D
-if ((_bomb getVariable ["abombs_bomb_is_armed", false]) == flase) exitWith {true};
+if ((_bomb getVariable ["abombs_bomb_is_armed", false]) == false) exitWith {
+    false
+};
 
 // Check if the player has required EOD trait
 _requireEOD = _bomb getVariable ["abombs_require_eod", false];
-if (_requireEOD) then {
-    if ((_user getVariable ["ACE_isEOD", _unit getUnitTrait "explosiveSpecialist"]) in [0, false]) exitWith {false};
+if (_requireEOD && {(_user getVariable ["ACE_isEOD", _user getUnitTrait "explosiveSpecialist"]) in [0, false]}) exitWith {
+    false
 };
 
 // Check if the player has required defusal items

@@ -169,7 +169,7 @@ class CfgVehicles {
                 displayName = CSTRING(RequiredDefusalItemsLabel);
                 tooltip = CSTRING(RequiredDefusalItemsLabelTooltip);
                 typeName = "STRING";
-                defaultValue = "''";
+                defaultValue = "[]";
             };
             class AfterDefuseCode: Default {
                 property = QGVAR(edenModulePropertyCommon_AfterDefuseCode);
@@ -255,7 +255,7 @@ class CfgVehicles {
                 displayName = CSTRING(RequiredDefusalItemsLabel);
                 tooltip = CSTRING(RequiredDefusalItemsLabelTooltip);
                 typeName = "STRING";
-                defaultValue = "''";
+                defaultValue = "[]";
             };
             class AfterDefuseCode: Default {
                 property = QGVAR(edenModulePropertyCommon_AfterDefuseCode);
@@ -344,7 +344,7 @@ class CfgVehicles {
                 displayName = CSTRING(RequiredDefusalItemsLabel);
                 tooltip = CSTRING(RequiredDefusalItemsLabelTooltip);
                 typeName = "STRING";
-                defaultValue = "''";
+                defaultValue = "[]";
             };
             class AfterDefuseCode: Default {
                 property = QGVAR(edenModulePropertyCommon_AfterDefuseCode);
@@ -440,7 +440,7 @@ class CfgVehicles {
                 displayName = CSTRING(RequiredDefusalItemsLabel);
                 tooltip = CSTRING(RequiredDefusalItemsLabelTooltip);
                 typeName = "STRING";
-                defaultValue = "''";
+                defaultValue = "[]";
             };
             class AfterDefuseCode: Default {
                 property = QGVAR(edenModulePropertyCommon_AfterDefuseCode);

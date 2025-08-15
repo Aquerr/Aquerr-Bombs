@@ -252,9 +252,27 @@ class GVAR(RscExplode): RscDisplayAttributes {
                     w = QUOTE(W_PART(26));
                     h = QUOTE(H_PART(3.3));
                     class controls {
-                        class deleteObjectAfterExplosionControls: GVAR(DeleteObjectAfterExplosionControls) {};
-                        class explosionClassControls: GVAR(ExplosionClassControls) {
+                        class DelayLabel: RscText {
+                            idc = ZEUS_EXPLODE_DIALOG_DELAY_EDIT_ID;
+                            text = CSTRING(DelayLabel);
+                            x = 0;
+                            y = 0;
+                            w = QUOTE(W_PART(10));
+                            h = QUOTE(H_PART(1));
+                            colorBackground[] = {0, 0, 0, 0.5};
+                        };
+                        class DelayLabelSlider: RscXSliderH {
+                            idc = ZEUS_EXPLODE_DIALOG_DELAY_SLIDER_ID;
+                            x = QUOTE(W_PART(10.1));
+                            y = 0;
+                            w = QUOTE(W_PART(13.9));
+                            h = QUOTE(H_PART(1));
+                        };
+                        class deleteObjectAfterExplosionControls: GVAR(DeleteObjectAfterExplosionControls) {
                             y = QUOTE(H_PART(1.1));
+                        };
+                        class explosionClassControls: GVAR(ExplosionClassControls) {
+                            y = QUOTE(H_PART(2.2));
                         };
                     };
                 };

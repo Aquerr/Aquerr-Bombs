@@ -21,7 +21,7 @@ params ["_object", "_user", ["_forced", false, [false]]];
 private _isArmed = _bomb getVariable ["abombs_bomb_is_armed", false];
 if (!_isArmed) exitWith {hint (LLSTRING(BombAlreadyDefused))};
 
-if (!([_bomb, _defuser] call FUNC(can_defuse_bomb))) exitWith {
+if (!([_object, _user] call FUNC(can_defuse_bomb))) exitWith {
 	hint LLSTRING(BombDefuseRequirementsNotMet);
 };
 

@@ -41,6 +41,10 @@
             <English>Should be in array format</English>
             <Polish>Powinny być w formacie array</Polish>
         </Key>
+        <Key ID="str_abombs_zeus_delaylabel">
+            <English>Delay</English>
+            <Polish>Opóźnienie</Polish>
+        </Key>
         <Key ID="str_abombs_zeus_deletewreckafterexplosionlabel">
             <English>Delete wreck after explosion?</English>
             <Polish>Usunąć wrak po eksplozji?</Polish>
