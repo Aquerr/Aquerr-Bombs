@@ -24,6 +24,10 @@ _dialog = findDisplay MORSE_BOMB_INTERFACE_ID;
 _enteredInputFieldControl = _dialog displayCtrl MORSE_BOMB_INPUT_FIELD_ID;
 _enteredCode = ctrlText _enteredInputFieldControl;
 
+if (!([_bomb, _defuser] call FUNC(can_defuse_bomb))) exitWith {
+	hint LLSTRING(BombDefuseRequirementsNotMet);
+};
+
 _solutionCode = _bomb getVariable ["aquerr_morse_bomb_solution_message", ""];
 if (_solutionCode isEqualTo _enteredCode) then {
         [_bomb, _defuser] call FUNC(bomb_defuse);

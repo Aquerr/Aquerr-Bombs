@@ -21,6 +21,10 @@ params ["_object", "_user", ["_forced", false, [false]]];
 private _isArmed = _bomb getVariable ["abombs_bomb_is_armed", false];
 if (!_isArmed) exitWith {hint (LLSTRING(BombAlreadyDefused))};
 
+if (!([_bomb, _defuser] call FUNC(can_defuse_bomb))) exitWith {
+	hint LLSTRING(BombDefuseRequirementsNotMet);
+};
+
 _enteredCode = _object getVariable ["aquerr_bomb_entered_code", ""];
 _solutionCode = _object getVariable ["abombs_keypad_solution_code", ""];
 if (((count _enteredCode) >= (count _solutionCode)) || _forced) then {

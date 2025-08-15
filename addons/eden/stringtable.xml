@@ -127,6 +127,22 @@ Parametry przekazane do kodu: ["_thisBomb", "_defuserPlayer"]</Polish>
             <English>Should bomb no longer explode on shot or nearby explosions after defuse?</English>
             <Polish>Czy bomba ma przestać wybuchać w kontakcie z pociskiem lub wybuchem po rozbrojeniu?</Polish>
         </Key>
+        <Key ID="str_abombs_eden_requireddefusalitemslabel">
+            <English>Required defusal items</English>
+            <Polish>Wymagane przedmioty do rozbrojenia</Polish>
+        </Key>
+        <Key ID="str_abombs_eden_requireddefusalitemslabeltooltip">
+            <English>Should be in array format, i.e: ["ACE_defsualKit", "Toolkit"]</English>
+            <Polish>W formacie array-a np: ["ACE_defsualKit", "Toolkit"]</Polish>
+        </Key>
+        <Key ID="str_abombs_eden_requireeodlabel">
+            <English>Require EOD</English>
+            <Polish>Wymagaj wyszkolenia EOD</Polish>
+        </Key>
+        <Key ID="str_abombs_eden_requireeodlabeltooltip">
+            <English>Counts as EOD from ACE or explosiveSpecialist form Vanilla</English>
+            <Polish>Liczy się jako EOD z ACE lub specjalisty od ładunków wybuchowych z Vanilli</Polish>
+        </Key>
         <Key ID="str_abombs_eden_roundscountlabel">
             <English>Rounds count</English>
             <Polish>Ilość rund</Polish>

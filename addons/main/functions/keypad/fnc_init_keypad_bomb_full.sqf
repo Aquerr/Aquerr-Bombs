@@ -97,7 +97,7 @@ if (isServer) then {
     };
 
     _bomb setVariable ["abombs_keypad_failure_function", _failureFunction, true];
-
+    
     [_bomb, _solutionCode] call FUNC(init_keypad_solution_code);
     [_bomb, _timeSeconds, _shouldBeep] call FUNC(init_bomb_timer);
 };

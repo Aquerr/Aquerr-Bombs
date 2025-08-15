@@ -18,6 +18,8 @@ private _explosionClassName = _logic getVariable ["ExplosionClassName", "DemoCha
 private _explosionClassNameOverride = _logic getVariable ["ExplosionClassNameOverride", ""];
 private _afterDefuseCode = compile (_logic getVariable ["AfterDefuseCode", '{}']);
 private _maxDefuseAttempts = _logic getVariable ["MaxDefuseAttempts", "1"];
+private _requireEOD = _logic getVariable ["RequireEOD", false];
+private _requiredDefusalItems = parseSimpleArray (_logic getVariable ["RequiredDefusalItems", "[]"]);
 private _removeShotVulnerabilityAfterDefuse = _logic getVariable ["RemoveShotVulnerabilityAfterDefuse", false];
 
 if (not(_explosionClassNameOverride isEqualTo "")) then {
@@ -28,7 +30,11 @@ private _syncedTriggers = _synchronizedObjects select { _x isKindOf "EmptyDetect
 private _connectedObjects = _synchronizedObjects select { not (_x isKindOf "EmptyDetector") };
 
 private _initBombFunction = {
+
 	_this call EFUNC(main,init_wire_bomb_full);
+	_bomb = _this select 0;
+	[_bomb, _this select 9] call EFUNC(main,set_require_eod);
+	[_bomb, _this select 10] call EFUNC(main,set_require_defusal_items);
 };
 
 {
@@ -41,7 +47,9 @@ private _initBombFunction = {
 		_maxDefuseAttempts, 
 		_explosionClassName, 
 		_removeShotVulnerabilityAfterDefuse, 
-		_afterDefuseCode
+		_afterDefuseCode,
+		_requireEOD,
+		_requiredDefusalItems
 	];
 
 	if (count (_syncedTriggers) > 0) then {

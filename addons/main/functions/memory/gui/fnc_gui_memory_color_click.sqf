@@ -10,6 +10,10 @@ params ["_colorPressed"];
     private _isArmed = _bomb getVariable ["abombs_bomb_is_armed", false];
     if (!_isArmed) exitWith {hint (LLSTRING(BombAlreadyDefused))};
 
+    if ((uiNamespace getVariable ["abombs_morse_bomb_can_defuse", false]) == false) exitWith {
+	    hint LLSTRING(BombDefuseRequirementsNotMet);
+    };
+
     // Add pressed input
     _bomb setVariable ["aquerr_memory_bomb_input", ((_bomb getVariable ["aquerr_memory_bomb_input", []]) + [_colorPressed])];
     private _input = _bomb getVariable ["aquerr_memory_bomb_input", []];

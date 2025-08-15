@@ -41,6 +41,10 @@
             <English>Bomb has been defused</English>
             <Polish>Bomba rozbrojona</Polish>
         </Key>
+        <Key ID="str_abombs_main_bombdefuserequirementsnotmet">
+            <English>You don't meet requirements to defuse this bomb</English>
+            <Polish>Nie spełniasz wymogów aby rozbroić tę bombę</Polish>
+        </Key>
         <Key ID="str_abombs_main_bombserialnumber">
             <English>Serial number</English>
             <Polish>Numer seryjny</Polish>

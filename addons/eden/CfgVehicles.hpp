@@ -157,6 +157,20 @@ class CfgVehicles {
                 typeName = "BOOL";
                 defaultValue = "false";
             };
+            class RequireEOD: Checkbox {
+                property = QGVAR(edenModulePropertyCommon_RequireEOD);
+                displayName = CSTRING(RequireEODLabel);
+                tooltip = CSTRING(RequireEODLabelTooltip);
+                typeName = "BOOL";
+                defaultValue = "false";
+            };
+            class RequiredDefusalItems: Edit {
+                property = QGVAR(edenModulePropertyCommon_RequiredDefusalItems);
+                displayName = CSTRING(RequiredDefusalItemsLabel);
+                tooltip = CSTRING(RequiredDefusalItemsLabelTooltip);
+                typeName = "STRING";
+                defaultValue = "''";
+            };
             class AfterDefuseCode: Default {
                 property = QGVAR(edenModulePropertyCommon_AfterDefuseCode);
                 displayName = CSTRING(AfterDefuseCodeLabel);
@@ -202,7 +216,7 @@ class CfgVehicles {
                 typeName = "NUMBER";
                 defaultValue = "40";
             };
-            class MaxDefuseAttempts: Edit {
+                class MaxDefuseAttempts: Edit {
                 property = QGVAR(edenModulePropertyCommon_MaxDefuseAttempts);
                 displayName = CSTRING(MaxDefuseAttemptsLabel);
                 tooltip = CSTRING(MaxDefuseAttemptsTooltip);
@@ -228,6 +242,20 @@ class CfgVehicles {
                 tooltip = CSTRING(RemoveShotVulnerabilityAfterDefuseLabelTooltip);
                 typeName = "BOOL";
                 defaultValue = "false";
+            };
+            class RequireEOD: Checkbox {
+                property = QGVAR(edenModulePropertyCommon_RequireEOD);
+                displayName = CSTRING(RequireEODLabel);
+                tooltip = CSTRING(RequireEODLabelTooltip);
+                typeName = "BOOL";
+                defaultValue = "false";
+            };
+            class RequiredDefusalItems: Edit {
+                property = QGVAR(edenModulePropertyCommon_RequiredDefusalItems);
+                displayName = CSTRING(RequiredDefusalItemsLabel);
+                tooltip = CSTRING(RequiredDefusalItemsLabelTooltip);
+                typeName = "STRING";
+                defaultValue = "''";
             };
             class AfterDefuseCode: Default {
                 property = QGVAR(edenModulePropertyCommon_AfterDefuseCode);
@@ -303,6 +331,20 @@ class CfgVehicles {
                 tooltip = CSTRING(RemoveShotVulnerabilityAfterDefuseLabelTooltip);
                 typeName = "BOOL";
                 defaultValue = "false";
+            };
+            class RequireEOD: Checkbox {
+                property = QGVAR(edenModulePropertyCommon_RequireEOD);
+                displayName = CSTRING(RequireEODLabel);
+                tooltip = CSTRING(RequireEODLabelTooltip);
+                typeName = "BOOL";
+                defaultValue = "false";
+            };
+            class RequiredDefusalItems: Edit {
+                property = QGVAR(edenModulePropertyCommon_RequiredDefusalItems);
+                displayName = CSTRING(RequiredDefusalItemsLabel);
+                tooltip = CSTRING(RequiredDefusalItemsLabelTooltip);
+                typeName = "STRING";
+                defaultValue = "''";
             };
             class AfterDefuseCode: Default {
                 property = QGVAR(edenModulePropertyCommon_AfterDefuseCode);
@@ -385,6 +427,20 @@ class CfgVehicles {
                 tooltip = CSTRING(RemoveShotVulnerabilityAfterDefuseLabelTooltip);
                 typeName = "BOOL";
                 defaultValue = "false";
+            };
+            class RequireEOD: Checkbox {
+                property = QGVAR(edenModulePropertyCommon_RequireEOD);
+                displayName = CSTRING(RequireEODLabel);
+                tooltip = CSTRING(RequireEODLabelTooltip);
+                typeName = "BOOL";
+                defaultValue = "false";
+            };
+            class RequiredDefusalItems: Edit {
+                property = QGVAR(edenModulePropertyCommon_RequiredDefusalItems);
+                displayName = CSTRING(RequiredDefusalItemsLabel);
+                tooltip = CSTRING(RequiredDefusalItemsLabelTooltip);
+                typeName = "STRING";
+                defaultValue = "''";
             };
             class AfterDefuseCode: Default {
                 property = QGVAR(edenModulePropertyCommon_AfterDefuseCode);

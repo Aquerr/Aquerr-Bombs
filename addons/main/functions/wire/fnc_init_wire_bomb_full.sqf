@@ -131,6 +131,10 @@ private _generateBombWires = {
     private _isArmed = _device getVariable ["abombs_bomb_is_armed", false];
     if (!_isArmed) exitWith {hint LLSTRING(BombAlreadyDefused)};
 
+    if (!([_device, _defuser] call FUNC(can_defuse_bomb))) exitWith {
+        hint LLSTRING(BombDefuseRequirementsNotMet);
+    };
+
     _solutionWireColor = _device getVariable ["aquerr_bomb_solution_wire", ""];
 
     if (_solutionWireColor == parseNumber _wireColor) then {

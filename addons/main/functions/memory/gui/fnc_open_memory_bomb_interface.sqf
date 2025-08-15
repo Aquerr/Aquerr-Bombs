@@ -28,6 +28,8 @@ GVAR(Bomb_Interface_Target) = _bomb;
     waitUntil {not dialog};
     waitUntil {createDialog QGVAR(Memory_Bomb_Interface_Dialog)};
 
+    uiNamespace setVariable ["abombs_morse_bomb_can_defuse", [_bomb, player] call FUNC(can_defuse_bomb)];
+
     _dialog = findDisplay MEMORY_BOMB_INTERFACE_ID;
 
     _serialNumberField = _dialog displayCtrl BOMB_GUI_SERIAL_NUMBER_FIELD_ID;
