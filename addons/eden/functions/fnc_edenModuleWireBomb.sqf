@@ -33,8 +33,8 @@ private _initBombFunction = {
 
 	_this call EFUNC(main,init_wire_bomb_full);
 	_bomb = _this select 0;
-	[_bomb, _this select 9] call EFUNC(main,set_require_eod);
-	[_bomb, _this select 10] call EFUNC(main,set_require_defusal_items);
+	[_bomb, _this select 10] call EFUNC(main,set_require_eod);
+	[_bomb, _this select 11] call EFUNC(main,set_require_defusal_items);
 };
 
 {
@@ -48,6 +48,7 @@ private _initBombFunction = {
 		_explosionClassName, 
 		_removeShotVulnerabilityAfterDefuse, 
 		_afterDefuseCode,
+		true,
 		_requireEOD,
 		_requiredDefusalItemsArray
 	];

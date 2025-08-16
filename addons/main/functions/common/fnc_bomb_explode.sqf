@@ -21,5 +21,5 @@ params ["_bomb", "_defuser"];
 [
 	_bomb, 
 	GETVAR(_bomb,aquerr_explosion_class_name,"DemoCharge_Remote_Ammo"),
-	GETVAR(_object,aquerr_delete_after_explosion,true)
+	GETVAR(_bomb,aquerr_delete_after_explosion,true)
 ] call FUNC(explode);

@@ -33,8 +33,8 @@ private _connectedObjects = _synchronizedObjects select { not (_x isKindOf "Empt
 private _initBombFunction = {
 	_this call EFUNC(main,init_keypad_bomb_full);
 	_bomb = _this select 0;
-	[_bomb, _this select 10] call EFUNC(main,set_require_eod);
-	[_bomb, _this select 11] call EFUNC(main,set_require_defusal_items);
+	[_bomb, _this select 11] call EFUNC(main,set_require_eod);
+	[_bomb, _this select 12] call EFUNC(main,set_require_defusal_items);
 };
 
 {
@@ -49,6 +49,7 @@ private _initBombFunction = {
 		_serialNumber, 
 		_guiType, 
 		_afterDefuseCode,
+		true,
 		_requireEOD,
 		_requiredDefusalItemsArray
 	];
