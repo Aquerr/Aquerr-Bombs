@@ -101,6 +101,14 @@
             <English>Leave empty to use value from above list</English>
             <Polish>Zostaw puste aby użyć wartości z powyższej listy</Polish>
         </Key>
+        <Key ID="str_abombs_zeus_requireddefsualitemslabel">
+            <English>Required defusal items</English>
+            <Polish>Wymagane przedmioty do rozbrojenia</Polish>
+        </Key>
+        <Key ID="str_abombs_zeus_requireeodlabel">
+            <English>Require EOD</English>
+            <Polish>Wymagaj wyszkolenia EOD</Polish>
+        </Key>
         <Key ID="str_abombs_zeus_roundscountlabel">
             <English>Rounds count</English>
             <Polish>Ilość rund</Polish>

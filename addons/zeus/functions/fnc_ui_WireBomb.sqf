@@ -44,6 +44,8 @@ private _wireCountEdit = _display displayCtrl ZEUS_WIRE_BOMB_DIALOG_WIRE_COUNT_I
 private _explosionClassNameCombo = _display displayCtrl ZEUS_COMMON_DIALOG_EXPLOSION_CLASS_ID;
 private _maxDefuseAttempts = _display displayCtrl ZEUS_COMMON_DIALOG_MAX_DEFUSE_ATTEMPTS_ID;
 private _removeShotVulnerabilityAfterDefuse = _display displayCtrl ZEUS_COMMON_DIALOG_REMOVE_SHOT_VULNERABILITY_AFTER_DEFUSE_ID;
+private _requireEODToggleField = _display displayCtrl ZEUS_COMMON_DIALOG_REQUIRE_EOD_ID;
+private _requiredDefusalItemsEditField = _display displayCtrl ZEUS_COMMON_DIALOG_REQUIRED_DEFUSAL_ITEMS_EDIT_ID;
 
 ////////////////////////////////////////////////////////////
 // Default values
@@ -58,6 +60,8 @@ _wireCountSlider sliderSetPosition 10;
 _wireCountEdit ctrlSetText "10";
 _maxDefuseAttempts ctrlSetText "1";
 _removeShotVulnerabilityAfterDefuse lbSetCurSel 0;
+_requireEODToggleField lbSetCurSel 0;
+_requiredDefusalItemsEditField ctrlSetText "[]";
 
 _explosionClassNameCombo lbSetCurSel 2;
 
@@ -90,12 +94,14 @@ private _fnc_onConfirm = {
     private _overrideExplosionClassName = ctrlText (_display displayCtrl ZEUS_COMMON_DIALOG_EXPLOSION_OVERRIDE_EXPLOSION_ID);
     private _maxDefuseAttempts = parseNumber (ctrlText (_display displayCtrl ZEUS_COMMON_DIALOG_MAX_DEFUSE_ATTEMPTS_ID));
     private _removeShotVulnerabilityAfterDefuse = (lbCurSel (_display displayCtrl ZEUS_COMMON_DIALOG_REMOVE_SHOT_VULNERABILITY_AFTER_DEFUSE_ID)) > 0;
+    private _requireEOD = (lbCurSel (_display displayCtrl ZEUS_COMMON_DIALOG_REQUIRE_EOD_ID)) > 0;
+    private _requiredDefusalItems = parseSimpleArray (ctrlText (_display displayCtrl ZEUS_COMMON_DIALOG_REQUIRED_DEFUSAL_ITEMS_EDIT_ID));
 
     if (not(_overrideExplosionClassName isEqualTo "")) then {
         _explosionClassName = _overrideExplosionClassName;
     };
 
-    [attachedTo _logic, _bombTime, _shouldBeep, _wireSign, _wireCount, _maxDefuseAttempts, _explosionClassName, _removeShotVulnerabilityAfterDefuse] call FUNC(moduleWireBomb);
+    [attachedTo _logic, _bombTime, _shouldBeep, _wireSign, _wireCount, _maxDefuseAttempts, _explosionClassName, _removeShotVulnerabilityAfterDefuse, _requireEOD, _requiredDefusalItems] call FUNC(moduleWireBomb);
     deleteVehicle _logic;
 };
 

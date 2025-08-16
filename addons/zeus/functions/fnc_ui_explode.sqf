@@ -19,6 +19,8 @@ private _fnc_onSliderMove = {
 private _delaySlider = _display displayCtrl ZEUS_EXPLODE_DIALOG_DELAY_SLIDER_ID;
 private _delayEdit = _display displayCtrl ZEUS_EXPLODE_DIALOG_DELAY_EDIT_ID;
 private _shouldDeleteWreckAfterExplosionToggle = _display displayCtrl ZEUS_COMMON_DIALOG_DELETE_OBJECT_AFTER_EXPLOSION_ID;
+
+//TODO: Populate the COMBO with all cfgAmmo that has explosionType = "explosive" or "bomb".
 private _explosionClassNameCombo = _display displayCtrl ZEUS_COMMON_DIALOG_EXPLOSION_CLASS_ID;
 
 ////////////////////////////////////////////////////////////

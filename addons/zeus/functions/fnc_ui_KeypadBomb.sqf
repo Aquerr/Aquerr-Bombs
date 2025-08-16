@@ -37,6 +37,8 @@ private _serialCodeEditField = _display displayCtrl ZEUS_COMMON_DIALOG_SERIAL_NU
 private _explosionClassNameCombo = _display displayCtrl ZEUS_COMMON_DIALOG_EXPLOSION_CLASS_ID;
 private _maxDefuseAttempts = _display displayCtrl ZEUS_COMMON_DIALOG_MAX_DEFUSE_ATTEMPTS_ID;
 private _removeShotVulnerabilityAfterDefuse = _display displayCtrl ZEUS_COMMON_DIALOG_REMOVE_SHOT_VULNERABILITY_AFTER_DEFUSE_ID;
+private _requireEODToggleField = _display displayCtrl ZEUS_COMMON_DIALOG_REQUIRE_EOD_ID;
+private _requiredDefusalItemsEditField = _display displayCtrl ZEUS_COMMON_DIALOG_REQUIRED_DEFUSAL_ITEMS_EDIT_ID;
 
 ////////////////////////////////////////////////////////////
 // Default values
@@ -48,6 +50,8 @@ _serialCodeEditField ctrlSetText "Unknown";
 _explosionClassNameCombo lbSetCurSel 2;
 _maxDefuseAttempts ctrlSetText "1";
 _removeShotVulnerabilityAfterDefuse lbSetCurSel 0;
+_requireEODToggleField lbSetCurSel 0;
+_requiredDefusalItemsEditField ctrlSetText "[]";
 
 /////////////////////////////////////////////////////////////
 // Cancel and Confirmation
@@ -79,12 +83,15 @@ private _fnc_onConfirm = {
     private _overrideExplosionClassName = ctrlText (_display displayCtrl ZEUS_COMMON_DIALOG_EXPLOSION_OVERRIDE_EXPLOSION_ID);
     private _maxDefuseAttempts = parseNumber (ctrlText (_display displayCtrl ZEUS_COMMON_DIALOG_MAX_DEFUSE_ATTEMPTS_ID));
     private _removeShotVulnerabilityAfterDefuse = (lbCurSel (_display displayCtrl ZEUS_COMMON_DIALOG_REMOVE_SHOT_VULNERABILITY_AFTER_DEFUSE_ID)) > 0;
+    private _requireEOD = (lbCurSel (_display displayCtrl ZEUS_COMMON_DIALOG_REQUIRE_EOD_ID)) > 0;
+    private _requiredDefusalItems = parseSimpleArray (ctrlText (_display displayCtrl ZEUS_COMMON_DIALOG_REQUIRED_DEFUSAL_ITEMS_EDIT_ID));
+
 
     if (not(_overrideExplosionClassName isEqualTo "")) then {
         _explosionClassName = _overrideExplosionClassName;
     };
 
-    [attachedTo _logic, _bombTime, _solutionCode, _maxDefuseAttempts, _shouldBeep, _explosionClassName, _removeShotVulnerabilityAfterDefuse, _serialNumber, _guiType] call FUNC(moduleKeypadBomb);
+    [attachedTo _logic, _bombTime, _solutionCode, _maxDefuseAttempts, _shouldBeep, _explosionClassName, _removeShotVulnerabilityAfterDefuse, _serialNumber, _guiType, _requireEOD, _requiredDefusalItems] call FUNC(moduleKeypadBomb);
     deleteVehicle _logic;
 };
 

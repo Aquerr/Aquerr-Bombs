@@ -236,6 +236,49 @@ class GVAR(DeleteObjectAfterExplosionControls): RscControlsGroupNoScrollbars {
     };
 };
 
+class GVAR(EodAndItemsRequirementControls): RscControlsGroupNoScrollbars {
+    idc = -1;
+    w = QUOTE(W_PART(26));
+    h = QUOTE(H_PART(2.2));
+    class controls {
+        class RequireEodLabel: RscText {
+            text = CSTRING(RequireEodLabel);
+            x = 0;
+            y = 0;
+            w = QUOTE(W_PART(10));
+            h = QUOTE(H_PART(1));
+            colorBackground[] = {0, 0, 0, 0.5};
+        };
+        class RequireEodToggle: ctrlToolbox {
+            idc = ZEUS_COMMON_DIALOG_REQUIRE_EOD_ID;
+            x = QUOTE(W_PART(10.1));
+            y = 0;
+            w = QUOTE(W_PART(15.9));
+            h = QUOTE(H_PART(1));
+            rows = 1;
+            columns = 2;
+            strings[] = {ECSTRING(common,No), ECSTRING(common,Yes)};
+        };
+        class RequiredDefusalItemsLabel: RscText {
+            idc = -1;
+            text = CSTRING(RequiredDefsualItemsLabel);
+            x = 0;
+            y = QUOTE(H_PART(1.1));
+            w = QUOTE(W_PART(10));
+            h = QUOTE(H_PART(1));
+            colorBackground[] = {0, 0, 0, 0.5};
+        };
+        class RequiredDefusalItemsEdit: RscEdit {
+            idc = ZEUS_COMMON_DIALOG_REQUIRED_DEFUSAL_ITEMS_EDIT_ID;
+            x = QUOTE(W_PART(10.1));
+            y = QUOTE(H_PART(1.1));
+            w = QUOTE(W_PART(15.9));
+            h = QUOTE(H_PART(1));
+            autocomplete = "";
+        };
+    };
+};
+
 class GVAR(RscExplode): RscDisplayAttributes {
     onLoad = QUOTE([ARR_3('onLoad',_this,QQGVAR(RscExplode))] call FUNC(zeusAttributes));
     onUnload = QUOTE([ARR_3('onUnload',_this,QQGVAR(RscExplode))] call FUNC(zeusAttributes));
@@ -375,7 +418,7 @@ class GVAR(RscWireBomb): RscDisplayAttributes {
                     x = 0;
                     y = 0;
                     w = QUOTE(W_PART(26));
-                    h = QUOTE(H_PART(9.9));
+                    h = QUOTE(H_PART(12.12));
                     class controls {
                         class bombTimeControls: GVAR(BombTimeControls) {
                             x = 0;
@@ -434,11 +477,14 @@ class GVAR(RscWireBomb): RscDisplayAttributes {
                         class SerialNumberControls: GVAR(SerialNumberControls) {
                             y = QUOTE(H_PART(5.5));
                         };
-                        class explosionClassControls: GVAR(ExplosionClassControls) {
+                        class eodAndItemsRequirementControls: GVAR(EodAndItemsRequirementControls) {
                             y = QUOTE(H_PART(6.6));
                         };
-                        class BombRemoveShotVulnerabilityAfterDefuseControls: GVAR(BombRemoveShotVulnerabilityAfterDefuseControls) {
+                        class explosionClassControls: GVAR(ExplosionClassControls) {
                             y = QUOTE(H_PART(8.8));
+                        };
+                        class BombRemoveShotVulnerabilityAfterDefuseControls: GVAR(BombRemoveShotVulnerabilityAfterDefuseControls) {
+                            y = QUOTE(H_PART(11.11));
                         };
                     };
                 };
@@ -463,7 +509,7 @@ class GVAR(RscKeypadBomb): RscDisplayAttributes {
                     x = 0;
                     y = 0;
                     w = QUOTE(W_PART(26));
-                    h = QUOTE(H_PART(9.9));
+                    h = QUOTE(H_PART(12.12));
                     class controls {
                         class guiTypeLabel: RscText {
                             idc = -1;
@@ -517,11 +563,14 @@ class GVAR(RscKeypadBomb): RscDisplayAttributes {
                         class SerialNumberControls: GVAR(SerialNumberControls) {
                             y = QUOTE(H_PART(5.5));
                         };
-                        class explosionClassControls: GVAR(ExplosionClassControls) {
+                        class eodAndItemsRequirementControls: GVAR(EodAndItemsRequirementControls) {
                             y = QUOTE(H_PART(6.6));
                         };
-                        class BombRemoveShotVulnerabilityAfterDefuseControls: GVAR(BombRemoveShotVulnerabilityAfterDefuseControls) {
+                        class explosionClassControls: GVAR(ExplosionClassControls) {
                             y = QUOTE(H_PART(8.8));
+                        };
+                        class BombRemoveShotVulnerabilityAfterDefuseControls: GVAR(BombRemoveShotVulnerabilityAfterDefuseControls) {
+                            y = QUOTE(H_PART(11.11));
                         };
                     };
                 };
@@ -546,7 +595,7 @@ class GVAR(RscMemoryBomb): RscDisplayAttributes {
                     x = 0;
                     y = 0;
                     w = QUOTE(W_PART(26));
-                    h = QUOTE(H_PART(8.8));
+                    h = QUOTE(H_PART(11.11));
                     class controls {
                         class bombTimeControls: GVAR(BombTimeControls) {
                             y = 0;
@@ -576,11 +625,14 @@ class GVAR(RscMemoryBomb): RscDisplayAttributes {
                         class SerialNumberControls: GVAR(SerialNumberControls) {
                             y = QUOTE(H_PART(4.4));
                         };
-                        class explosionClassControls: GVAR(ExplosionClassControls) {
+                        class eodAndItemsRequirementControls: GVAR(EodAndItemsRequirementControls) {
                             y = QUOTE(H_PART(5.5));
                         };
-                        class BombRemoveShotVulnerabilityAfterDefuseControls: GVAR(BombRemoveShotVulnerabilityAfterDefuseControls) {
+                        class explosionClassControls: GVAR(ExplosionClassControls) {
                             y = QUOTE(H_PART(7.7));
+                        };
+                        class BombRemoveShotVulnerabilityAfterDefuseControls: GVAR(BombRemoveShotVulnerabilityAfterDefuseControls) {
+                            y = QUOTE(H_PART(9.9));
                         };
                     };
                 };
@@ -605,7 +657,7 @@ class GVAR(RscMorseBomb): RscDisplayAttributes {
                     x = 0;
                     y = 0;
                     w = QUOTE(W_PART(26));
-                    h = QUOTE(H_PART(9.9));
+                    h = QUOTE(H_PART(11.11));
                     class controls {
                         class bombTimeControls: GVAR(BombTimeControls) {
                             y = 0;
@@ -655,11 +707,14 @@ class GVAR(RscMorseBomb): RscDisplayAttributes {
                         class SerialNumberControls: GVAR(SerialNumberControls) {
                             y = QUOTE(H_PART(5.5));
                         };
-                        class explosionClassControls: GVAR(ExplosionClassControls) {
+                        class eodAndItemsRequirementControls: GVAR(EodAndItemsRequirementControls) {
                             y = QUOTE(H_PART(6.6));
                         };
-                        class BombRemoveShotVulnerabilityAfterDefuseControls: GVAR(BombRemoveShotVulnerabilityAfterDefuseControls) {
+                        class explosionClassControls: GVAR(ExplosionClassControls) {
                             y = QUOTE(H_PART(8.8));
+                        };
+                        class BombRemoveShotVulnerabilityAfterDefuseControls: GVAR(BombRemoveShotVulnerabilityAfterDefuseControls) {
+                            y = QUOTE(H_PART(11.11));
                         };
                     };
                 };
