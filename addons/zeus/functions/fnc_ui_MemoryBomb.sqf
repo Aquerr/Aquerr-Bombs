@@ -29,6 +29,10 @@ switch (false) do {
     };
 };
 
+if (isNil QGVAR(ExplosionClassNames)) then {
+    GVAR(ExplosionClassNames) = ("(getText (_x >> 'explosionType') in ['bomb', 'explosive']) && (getNumber (_x >> 'hit') > 0) && (count ([_x] call BIS_fnc_returnParents) > 2)" configClasses (configFile >> "cfgAmmo")) apply { configName _x };
+};
+
 private _bombTimeEditField = _display displayCtrl ZEUS_COMMON_DIALOG_BOMB_TIME_ID;
 private _shouldBeepToggleField = _display displayCtrl ZEUS_COMMON_DIALOG_SHOULD_BEEP_ID;
 private _roundsCountEditField = _display displayCtrl ZEUS_MEMORY_BOMB_DIALOG_ROUNDS_COUNT_ID;
@@ -45,6 +49,9 @@ _bombTimeEditField ctrlSetText "60";
 _shouldBeepToggleField lbSetCurSel 1;
 _roundsCountEditField ctrlSetText "5";
 _serialCodeEditField ctrlSetText "Unknown";
+{
+    _explosionClassNameCombo lbAdd _x;
+} forEach GVAR(ExplosionClassNames);
 _explosionClassNameCombo lbSetCurSel 2;
 _maxDefuseAttempts ctrlSetText "1";
 _removeShotVulnerabilityAfterDefuse lbSetCurSel 0;

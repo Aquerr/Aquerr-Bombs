@@ -29,12 +29,19 @@ switch (false) do {
     };
 };
 
+if (isNil QGVAR(ExplosionClassNames)) then {
+    GVAR(ExplosionClassNames) = ("(getText (_x >> 'explosionType') in ['bomb', 'explosive']) && (getNumber (_x >> 'hit') > 0) && (count ([_x] call BIS_fnc_returnParents) > 2)" configClasses (configFile >> "cfgAmmo")) apply { configName _x };
+};
+
 private _shouldDeleteWreckAfterExplosionToggle = _display displayCtrl ZEUS_COMMON_DIALOG_DELETE_OBJECT_AFTER_EXPLOSION_ID;
 private _explosionClassNameCombo = _display displayCtrl ZEUS_COMMON_DIALOG_EXPLOSION_CLASS_ID;
 
 ////////////////////////////////////////////////////////////
 // Default values
 _shouldDeleteWreckAfterExplosionToggle lbSetCurSel 1;
+{
+    _explosionClassNameCombo lbAdd _x;
+} forEach GVAR(ExplosionClassNames);
 _explosionClassNameCombo lbSetCurSel 3;
 
 /////////////////////////////////////////////////////////////

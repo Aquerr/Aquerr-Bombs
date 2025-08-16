@@ -4,24 +4,39 @@
 	https://github.com/Aquerr
 
 	Description:
-        Performs the explosion.
+                Performs the explosion.
 
 	Parameter(s):
-        0: OBJECT - the object to explode
+                0: OBJECT/ARRAY - the object to explode OR position ATL where te explosion should be created
+                1: STRING - the explosion class name 
+                2: BOOL - should delete object after explosion?
 
 	Example:
-        [_object] call abombs_main_fnc_explode;
+                [_object, "DemoCharge_Remote_Ammo", true] call abombs_main_fnc_explode;
+                [_explosionPosition, false] call abombs_main_fnc_explode;
 */
 
-params ["_object"];
+params [
+        ["_object", objNull, [objNull, []]], 
+        ["_explosionClassName", "DemoCharge_Remote_Ammo", ["string"]],
+        ["_shouldDeleteObjectAfterExplosion", true, [true]]
+];
 
-_explosionClassName = GETVAR(_object,aquerr_explosion_class_name,"DemoCharge_Remote_Ammo");
-_explosive = createVehicle [_explosionClassName, (getPosATL _object), [], 0, "CAN_COLLIDE"];
+private _explosionPosition = [];
 
-_shouldDeleteWreckAfterExplosion = GETVAR(_object,aquerr_delete_after_explosion,true);
-if(_shouldDeleteWreckAfterExplosion) then {
-    deleteVehicle _object;
-    [_object] remoteExec [QFUNC(removeRegisteredBomb)]; // Just in case if it was a bomb
+if (_object isEqualType []) then {
+        // If position
+        _explosionPosition = _object;
+        _shouldDeleteObjectAfterExplosion = false;
+} else {
+        // If object
+        _explosionPosition = getPosATL _object;
+};
+
+_explosive = createVehicle [_explosionClassName, _explosionPosition, [], 0, "CAN_COLLIDE"];
+if(_shouldDeleteObjectAfterExplosion) then {
+        deleteVehicle _object;
+        [_object] remoteExec [QFUNC(removeRegisteredBomb)]; // Just in case if it was a bomb
 };
 
 _explosive setDamage 1;

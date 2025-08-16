@@ -36,6 +36,10 @@ private _fnc_onSliderMove = {
     (_display displayCtrl ZEUS_WIRE_BOMB_DIALOG_WIRE_COUNT_ID) ctrlSetText (str round sliderPosition _slider);
 };
 
+if (isNil QGVAR(ExplosionClassNames)) then {
+    GVAR(ExplosionClassNames) = ("(getText (_x >> 'explosionType') in ['bomb', 'explosive']) && (getNumber (_x >> 'hit') > 0) && (count ([_x] call BIS_fnc_returnParents) > 2)" configClasses (configFile >> "cfgAmmo")) apply { configName _x };
+};
+
 private _bombTimeEditField = _display displayCtrl ZEUS_COMMON_DIALOG_BOMB_TIME_ID;
 private _shouldBeepToggleField = _display displayCtrl ZEUS_COMMON_DIALOG_SHOULD_BEEP_ID;
 private _wireSignEditField = _display displayCtrl ZEUS_WIRE_BOMB_DIALOG_WIRE_SIGN_ID;
@@ -63,6 +67,9 @@ _removeShotVulnerabilityAfterDefuse lbSetCurSel 0;
 _requireEODToggleField lbSetCurSel 0;
 _requiredDefusalItemsEditField ctrlSetText "[]";
 
+{
+    _explosionClassNameCombo lbAdd _x;
+} forEach GVAR(ExplosionClassNames);
 _explosionClassNameCombo lbSetCurSel 2;
 
 _wireCountSlider ctrlAddEventHandler ["SliderPosChanged", _fnc_onSliderMove];

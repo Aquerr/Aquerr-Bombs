@@ -6,7 +6,12 @@ private _display = ctrlParent _control;
 private _ctrlButtonOK = _display displayCtrl 1; // IDC_OK
 private _logic = GETMVAR(BIS_fnc_initCuratorAttributes_target,objNull);
 
+
 _control ctrlRemoveAllEventHandlers "SetFocus";
+
+if (isNil QGVAR(ExplosionClassNames)) then {
+    GVAR(ExplosionClassNames) = ("(getText (_x >> 'explosionType') in ['bomb', 'explosive']) && (getNumber (_x >> 'hit') > 0) && (count ([_x] call BIS_fnc_returnParents) > 2)" configClasses (configFile >> "cfgAmmo")) apply { configName _x };
+};
 
 private _classNamesEdit = _display displayCtrl ZEUS_VULNERABLE_OBJECTS_GLOBAL_DIALOG_CLASS_NAMES_ID;
 private _shouldDeleteWreckAfterExplosionToggle = _display displayCtrl ZEUS_COMMON_DIALOG_DELETE_OBJECT_AFTER_EXPLOSION_ID;
@@ -24,6 +29,9 @@ if (!(isNull _unit)) then {
 
 _classNamesEdit ctrlSetText _classListPreparedValue;
 _shouldDeleteWreckAfterExplosionToggle lbSetCurSel 1;
+{
+    _explosionClassNameCombo lbAdd _x;
+} forEach GVAR(ExplosionClassNames);
 _explosionClassNameCombo lbSetCurSel 3;
 
 /////////////////////////////////////////////////////////////

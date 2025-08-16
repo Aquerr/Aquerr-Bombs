@@ -4,11 +4,8 @@ params ["_object", "_delay", "_shouldDeleteWreckAfterExplosion", "_explosionClas
 
 (GETMVAR(bis_fnc_curatorObjectPlaced_mouseOver,[""])) params ["_mouseOverType", "_mouseOverUnit"];
 
-_object setVariable ["aquerr_explosion_class_name", _explosionClassName];
-_object setVariable ["aquerr_delete_after_explosion", _shouldDeleteWreckAfterExplosion];
-
-[_object, _delay] spawn {
-    params ["_object", "_delay"];
+[_object, _delay, _explosionClassName, _shouldDeleteWreckAfterExplosion] spawn {
+    params ["_object", "_delay", "_explosionClassName", "_shouldDeleteWreckAfterExplosion"];
     sleep _delay;
-    [_object] remoteExec [QEFUNC(main,explode), 2];
+    [_object, _explosionClassName, _shouldDeleteWreckAfterExplosion] remoteExec [QEFUNC(main,explode), 2];
 };
