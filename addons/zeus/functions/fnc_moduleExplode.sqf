@@ -7,5 +7,5 @@ params ["_object", "_delay", "_shouldDeleteWreckAfterExplosion", "_explosionClas
 [_object, _delay, _explosionClassName, _shouldDeleteWreckAfterExplosion] spawn {
     params ["_object", "_delay", "_explosionClassName", "_shouldDeleteWreckAfterExplosion"];
     sleep _delay;
-    [_object, _explosionClassName, _shouldDeleteWreckAfterExplosion] remoteExec [QEFUNC(main,explode), 2];
+    [_object, _explosionClassName, _shouldDeleteWreckAfterExplosion] call EFUNC(main,explode);
 };
