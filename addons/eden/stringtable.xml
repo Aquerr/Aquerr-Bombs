@@ -6,24 +6,24 @@
             <Polish>Czas bomby (0 = nieskończona)</Polish>
         </Key>
         <Key ID="STR_abombs_eden_Module_Keypad_Bomb_Description">
-            <English>This module has to be synced with objects that should be converted to keypad bombs.</English>
-            <Polish>Ten moduł musi zostać zsynchronizowany z obiektami, które mają zostać zamienione w bomby.</Polish>
+            <English>This module has to be synced with objects that should be converted to keypad bombs. Bomb object should neither be local nor simple object.</English>
+            <Polish>Ten moduł musi zostać zsynchronizowany z obiektami, które mają zostać zamienione w bomby. Obiekt bomby nie powinien być obiektem lokalnym ani prostym.</Polish>
         </Key>
         <Key ID="STR_abombs_eden_Module_Keypad_Bomb_DisplayName">
             <English>Create keypad bomb</English>
             <Polish>Utwórz bombę na keypad</Polish>
         </Key>
         <Key ID="STR_abombs_eden_Module_Shot_Vulnerable_Description">
-            <English>This module makes given class names vulnerable to shots and nearby explosions. To make a specific object shot/explosion vulnerable, sync it with this module.</English>
-            <Polish>Ten moduł uczynia podane klasy obiektów podatne na strzały i pobliskie eksplozje. Aby uczynić konrketny obiekt podatnym na strzały, zsynchronizuj go z tym modułem.</Polish>
+            <English>This module makes given class names vulnerable to shots and nearby explosions. To make a specific object shot/explosion vulnerable, sync it with this module. The object should neither be local nor simple object.</English>
+            <Polish>Ten moduł uczynia podane klasy obiektów podatne na strzały i pobliskie eksplozje. Aby uczynić konrketny obiekt podatnym na strzały, zsynchronizuj go z tym modułem. Obiekt nie powinien być obiektem lokalnym ani prostym.</Polish>
         </Key>
         <Key ID="STR_abombs_eden_Module_Shot_Vulnerable_DisplayName">
             <English>Make object vulnerable to shots</English>
             <Polish>Uczyń obiekt podatnym na strzały</Polish>
         </Key>
         <Key ID="STR_abombs_eden_Module_Wire_Bomb_Description">
-            <English>This module has to be synced with objects that should be converted to wire bombs.</English>
-            <Polish>Ten moduł musi zostać zsynchronizowany z obiektami, które mają zostać zamienione w bomby kablowe.</Polish>
+            <English>This module has to be synced with objects that should be converted to wire bombs. The bomb object should neither be local nor simple object.</English>
+            <Polish>Ten moduł musi zostać zsynchronizowany z obiektami, które mają zostać zamienione w bomby kablowe. Obiekt bomby nie powinien być obiektem lokalnym ani prostym.</Polish>
         </Key>
         <Key ID="STR_abombs_eden_Module_Wire_Bomb_DisplayName">
             <English>Create wire bomb</English>
@@ -96,16 +96,16 @@ Parametry przekazane do kodu: ["_thisBomb", "_defuserPlayer"]</Polish>
             <Polish>Maksymalna ilość prób rozbrojenia bomby zanim wybuchnie. Np. 3 = możesz popełnić dwa błędy</Polish>
         </Key>
         <Key ID="str_abombs_eden_module_memory_bomb_description">
-            <English>This module has to be synced with objects that should be converted to memory bombs.</English>
-            <Polish>Ten moduł musi zostać zsynchronizowany z obiektami, które mają zostać zamienione w bomby.</Polish>
+            <English>This module has to be synced with objects that should be converted to memory bombs. The bomb object should neither be local nor simple object.</English>
+            <Polish>Ten moduł musi zostać zsynchronizowany z obiektami, które mają zostać zamienione w bomby. Obiekt bomby nie powinien być obiektem lokalnym ani prostym.</Polish>
         </Key>
         <Key ID="str_abombs_eden_module_memory_bomb_displayname">
             <English>Create memory bomb</English>
             <Polish>Utwórz bombę na pamięć</Polish>
         </Key>
         <Key ID="str_abombs_eden_module_morse_bomb_description">
-            <English>This module has to be synced with objects that should be converted to memory bombs.</English>
-            <Polish>Ten moduł musi zostać zsynchronizowany z obiektami, które mają zostać zamienione w bomby.</Polish>
+            <English>This module has to be synced with objects that should be converted to Morse bombs. The bomb object should neither be local nor simple object.</English>
+            <Polish>Ten moduł musi zostać zsynchronizowany z obiektami, które mają zostać zamienione w bomby. Obiekt bomby nie powinien być obiektem lokalnym ani prostym.</Polish>
         </Key>
         <Key ID="str_abombs_eden_module_morse_bomb_displayname">
             <English>Create Morse bomb</English>
