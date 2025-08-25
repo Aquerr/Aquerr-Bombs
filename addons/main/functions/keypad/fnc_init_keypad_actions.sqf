@@ -13,7 +13,7 @@ private _prepareDigitActionFunction = {
     params ["_bomb", "_digit", "_actionsType"];
 
     // ACE ACTION
-    if (_actionsType isEqualTo "BOTH" || {_actionsType isEqualTo "ACE" && {GVAR(isAceInteractionMenuLoaded)}}) then {
+    if (GVAR(isAceInteractionMenuLoaded) && {_actionsType isEqualTo "BOTH" || _actionsType isEqualTo "ACE"}) then {
         _action = [(format ["number_%1", _digit]), _digit, "",
         {
             params ["_target", "_player", "_actionParams"];
@@ -59,7 +59,7 @@ private _prepareClearCodeFunction = {
     };
 
     // ACE ACTION
-    if (_actionsType isEqualTo "BOTH" || {_actionsType isEqualTo "ACE" && {GVAR(isAceInteractionMenuLoaded)}}) then {
+    if (GVAR(isAceInteractionMenuLoaded) && {_actionsType isEqualTo "BOTH" || _actionsType isEqualTo "ACE"}) then {
         _action = ["code_clear", _actionName, "",
         {
             params ["_target", "_player", "_actionParams"];
@@ -107,7 +107,7 @@ private _prepareCheckTimeFunction = {
     };
 
     // ACE ACTION
-    if (_actionsType isEqualTo "BOTH" || {_actionsType isEqualTo "ACE" && {GVAR(isAceInteractionMenuLoaded)}}) then {
+    if (GVAR(isAceInteractionMenuLoaded) && {_actionsType isEqualTo "BOTH" || _actionsType isEqualTo "ACE"}) then {
         _action = ["code_clear", _actionName, "",
         {
             params ["_target", "_player", "_actionParams"];
@@ -144,7 +144,7 @@ private _prepareCheckTimeFunction = {
 private _prepareActionsFunction = {
     params ["_bomb", "_prepareDigitActionFunction", "_prepareClearCodeFunction", "_prepareCheckTimeFunction", "_actionsType"];
 
-    if (_actionsType isEqualTo "BOTH" || {_actionsType isEqualTo "ACE" && {GVAR(isAceInteractionMenuLoaded)}}) then {
+    if (GVAR(isAceInteractionMenuLoaded) && {_actionsType isEqualTo "BOTH" || _actionsType isEqualTo "ACE"}) then {
         _actionParent = ["aquerr_bomb_keypad", LLSTRING(AceMenuBombKeyboard), "", {}, {true}, {}, []] call ace_interact_menu_fnc_createAction;
         [_bomb, 0, ["ACE_MainActions"], _actionParent] call ace_interact_menu_fnc_addActionToObject;
         _actionParent = ["aquerr_bomb_back", LLSTRING(AceMenuBombBack), "", {}, {true}, {}, []] call ace_interact_menu_fnc_createAction;
