@@ -13,5 +13,5 @@
 params [];
 
 _defuser = player;
-_bomb = GVAR(Bomb_Interface_Target);
+_bomb = GVAR(Interface_Target_Object);
 [_defuser, _bomb] call FUNC(keypad_clear_entered_code);

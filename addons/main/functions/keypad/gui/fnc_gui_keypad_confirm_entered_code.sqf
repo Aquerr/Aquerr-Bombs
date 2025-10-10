@@ -13,5 +13,5 @@
 params [];
 
 _defuser = player;
-_bomb = GVAR(Bomb_Interface_Target);
+_bomb = GVAR(Interface_Target_Object);
 [_bomb, _defuser, true] call FUNC(keypad_confirm_entered_code);

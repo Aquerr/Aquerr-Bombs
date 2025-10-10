@@ -20,7 +20,7 @@ if (dialog) then {
     closeDialog 0;
 };
 
-GVAR(Bomb_Interface_Target) = _bomb;
+GVAR(Interface_Target) = _bomb;
 
 [_bomb] spawn {
     params ["_bomb"];

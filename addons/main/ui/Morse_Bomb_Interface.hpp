@@ -106,7 +106,7 @@ class GVAR(Morse_Bomb_Interface_Dialog) {
             colorFocused[] = {1, 0, 0, 1};
             colorFocused2[] = {1, 0, 0, 1};
             colorActive[] = {0,0,0,0};
-            tooltip = "Confirm";
+            tooltip = CSTRING(ConfirmCode);
             action = QUOTE([] call FUNC(gui_morse_confirm_code));
         };
 

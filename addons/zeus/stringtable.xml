@@ -1,81 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Project name="Aquerr-Bombs">
     <Package name="zeus">
-        <Key ID="STR_abombs_zeus_BombTimeLabel">
-            <English>Bomb time (0 = indefinite)</English>
-            <Polish>Czas bomby (0 = nieskończona)</Polish>
-        </Key>
-        <Key ID="STR_abombs_zeus_Module_Keypad_Bomb_DisplayName">
-            <English>Create keypad bomb</English>
-            <Polish>Utwórz bombę na keypad</Polish>
-        </Key>
-        <Key ID="STR_abombs_zeus_Module_Shot_Vulnerable_DisplayName">
-            <English>Make object vulnerable to shots</English>
-            <Polish>Uczyń obiekt podatnym na strzały</Polish>
-        </Key>
-        <Key ID="STR_abombs_zeus_Module_Wire_Bomb_DisplayName">
-            <English>Create wire bomb</English>
-            <Polish>Utwórz wire bomb</Polish>
-        </Key>
         <Key ID="str_abombs_zeus_bombcreated">
             <English>Bomb has been created</English>
             <Polish>Bomba została utworzona</Polish>
         </Key>
-        <Key ID="str_abombs_zeus_bombmaxdefuseattemptslabel">
-            <English>Max defuse attempts</English>
-            <Polish>Max prób rozbrojenia</Polish>
-        </Key>
         <Key ID="str_abombs_zeus_bombremoveshotvulnerabilityafterdefuselabel">
             <English>Remove shot vulnerabilty on defuse?</English>
             <Polish>Usunąć podatność na strzały po rozbrojeniu?</Polish>
-        </Key>
-        <Key ID="str_abombs_zeus_bombremoveshotvulnerabilityafterdefuselabeltooltip">
-            <English>Should bomb no longer explode on shot or nearby explosions after defuse?</English>
-            <Polish>Czy bomba ma przestać wybuchać w kontakcie z pociskiem lub wybuchem po rozbrojeniu?</Polish>
-        </Key>
-        <Key ID="str_abombs_zeus_classnameslabel">
-            <English>Class names</English>
-            <Polish>Nazwy klas</Polish>
-        </Key>
-        <Key ID="str_abombs_zeus_classnameslabeltooltip">
-            <English>Should be in array format</English>
-            <Polish>Powinny być w formacie array</Polish>
-        </Key>
-        <Key ID="str_abombs_zeus_delaylabel">
-            <English>Delay</English>
-            <Polish>Opóźnienie</Polish>
-        </Key>
-        <Key ID="str_abombs_zeus_deletewreckafterexplosionlabel">
-            <English>Delete wreck after explosion?</English>
-            <Polish>Usunąć wrak po eksplozji?</Polish>
-        </Key>
-        <Key ID="str_abombs_zeus_encodedmessagelabel">
-            <English>Encoded incoming message</English>
-            <Polish>Zakodowana przychodząca wiadomość</Polish>
-        </Key>
-        <Key ID="str_abombs_zeus_encodedmessagelabeltooltip">
-            <English>The incoming alphanumeric message (in International Morse Code) that will be beep-ed to the player</English>
-            <Polish>Przychodząca alfanumeryczna wiadomość (w Międzynarodowym Kodzie Morse'a) która będzie wy-beep-owana graczowi</Polish>
-        </Key>
-        <Key ID="str_abombs_zeus_explosionclasslabel">
-            <English>Explosion class name</English>
-            <Polish>Klasa eksplozji</Polish>
-        </Key>
-        <Key ID="str_abombs_zeus_guitypelabel">
-            <English>GUI type</English>
-            <Polish>Rodzaj interfejsu</Polish>
-        </Key>
-        <Key ID="str_abombs_zeus_module_explode_displayname">
-            <English>Explode</English>
-            <Polish>Wysadź</Polish>
-        </Key>
-        <Key ID="str_abombs_zeus_module_memory_bomb_displayname">
-            <English>Create memory bomb</English>
-            <Polish>Utwórz bombę na pamięć</Polish>
-        </Key>
-        <Key ID="str_abombs_zeus_module_morse_bomb_displayname">
-            <English>Create Morse bomb</English>
-            <Polish>Utwórz bombę Morse'a</Polish>
         </Key>
         <Key ID="str_abombs_zeus_module_remove_shot_vulnerable_displayname">
             <English>Remove shot vulnerability</English>
@@ -92,54 +24,6 @@
         <Key ID="str_abombs_zeus_objectisnowvulnerabletoshots">
             <English>Object is now vulnerable to shots</English>
             <Polish>Obiekt jest teraz podatny na strzały</Polish>
-        </Key>
-        <Key ID="str_abombs_zeus_overrideexplosionclasslabel">
-            <English>Override explosion class</English>
-            <Polish>Nadpisz klasę eksplozji</Polish>
-        </Key>
-        <Key ID="str_abombs_zeus_overrideexplosionclasslabeltooltip">
-            <English>Leave empty to use value from above list</English>
-            <Polish>Zostaw puste aby użyć wartości z powyższej listy</Polish>
-        </Key>
-        <Key ID="str_abombs_zeus_requireddefsualitemslabel">
-            <English>Required defusal items</English>
-            <Polish>Wymagane przedmioty do rozbrojenia</Polish>
-        </Key>
-        <Key ID="str_abombs_zeus_requireeodlabel">
-            <English>Require EOD</English>
-            <Polish>Wymagaj wyszkolenia EOD</Polish>
-        </Key>
-        <Key ID="str_abombs_zeus_roundscountlabel">
-            <English>Rounds count</English>
-            <Polish>Ilość rund</Polish>
-        </Key>
-        <Key ID="str_abombs_zeus_serialnumberlabel">
-            <English>Serial Number</English>
-            <Polish>Kod seryjny</Polish>
-        </Key>
-        <Key ID="str_abombs_zeus_shouldbeeplabel">
-            <English>Should beep?</English>
-            <Polish>Wydaje dźwięk?</Polish>
-        </Key>
-        <Key ID="str_abombs_zeus_solutioncodelabel">
-            <English>Solution Code (digits only)</English>
-            <Polish>Kod rozwiązania (tylko cyfry)</Polish>
-        </Key>
-        <Key ID="str_abombs_zeus_solutionmessagelabel">
-            <English>Solution message</English>
-            <Polish>Wiadomość rozwiązania</Polish>
-        </Key>
-        <Key ID="str_abombs_zeus_solutionmessagelabeltooltip">
-            <English>An alphanumeric text that needs to be entered by the player to defuse the bomb</English>
-            <Polish>Alfanumeryczny tekst, który musi być wpisany przez gracza aby rozbroić bombę</Polish>
-        </Key>
-        <Key ID="str_abombs_zeus_wirecountlabel">
-            <English>Wire count</English>
-            <Polish>Ilość kabli</Polish>
-        </Key>
-        <Key ID="str_abombs_zeus_wiresignlabel">
-            <English>Wire sign</English>
-            <Polish>Znak kabla</Polish>
         </Key>
     </Package>
 </Project>

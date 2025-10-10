@@ -27,7 +27,7 @@ class CfgVehicles {
     //EDEN Modules
 
     class GVAR(edenModuleExplode): GVAR(baseEdenModule) {
-        displayName = CSTRING(Module_Explode_DisplayName);
+        displayName = ECSTRING(main,Module_Explode_DisplayName);
         function = QFUNC(edenModuleExplode);
         scope = 2;
         class Attributes: AttributesBase {
@@ -65,14 +65,14 @@ class CfgVehicles {
     };
 
     class GVAR(edenModuleVulnerableObjects): GVAR(baseEdenModule) {
-        displayName = CSTRING(Module_Shot_Vulnerable_DisplayName);
+        displayName = ECSTRING(main,Module_Shot_Vulnerable_DisplayName);
         function = QFUNC(edenModuleShotVulnerable);
         scope = 2;
         class Attributes: AttributesBase {
             class ClassNames: Edit {
                 property = QGVAR(edenModuleVulnerableObjects_ClassNames);
-                displayName = CSTRING(ClassNamesLabel);
-                tooltip = CSTRING(ClassNamesLabelTooltip);
+                displayName = ECSTRING(main,ClassNamesLabel);
+                tooltip = ECSTRING(main,ClassNamesLabelTooltip);
                 typeName = "STRING";
                 defaultValue = "['Land_MetalBarrel_F','Land_GasTank_02_F','Barrel1']";
             };
@@ -118,7 +118,7 @@ class CfgVehicles {
     };
 
     class GVAR(edenModuleKeypadBomb): GVAR(baseEdenModule) {
-        displayName = CSTRING(Module_Keypad_Bomb_DisplayName);
+        displayName = ECSTRING(main,Module_Keypad_Bomb_DisplayName);
         function = QFUNC(edenModuleKeypadBomb);
         scope = 2;
         class Attributes: AttributesBase {
@@ -143,20 +143,20 @@ class CfgVehicles {
             };
             class BombTime: Edit {
                 property = QGVAR(edenModuleKeypadBomb_BombTime);
-                displayName = CSTRING(BombTimeLabel);
+                displayName = ECSTRING(main,BombTimeLabel);
                 tooltip = CSTRING(BombTimeTooltip);
                 typeName = "NUMBER";
                 defaultValue = "60";
             };
             class ShouldBeep: Checkbox {
                 property = QGVAR(edenModuleKeypadBomb_ShouldBeep);
-                displayName = CSTRING(ShouldBeepLabel);
+                displayName = ECSTRING(main,ShouldBeepLabel);
                 typeName = "BOOL";
                 defaultValue = "true";
             };
             class SolutionCode: Edit {
                 property = QGVAR(edenModuleKeypadBomb_SolutionCode);
-                displayName = CSTRING(SolutionCodeLabel);
+                displayName = ECSTRING(main,SolutionCodeLabel);
                 typeName = "STRING";
                 defaultValue = "'000000'";
             };
@@ -169,7 +169,7 @@ class CfgVehicles {
             };
             class SerialNumber: Edit {
                 property = QGVAR(edenModulePropertyCommon_SerialNumber);
-                displayName = CSTRING(SerialNumberLabel);
+                displayName = ECSTRING(main,SerialNumberLabel);
                 tooltip = CSTRING(SerialNumberTooltip);
                 typeName = "STRING";
                 defaultValue = "'Unknown'";
@@ -197,7 +197,7 @@ class CfgVehicles {
             };
             class RequireEOD: Checkbox {
                 property = QGVAR(edenModulePropertyCommon_RequireEOD);
-                displayName = CSTRING(RequireEODLabel);
+                displayName = ECSTRING(main,RequireEODLabel);
                 tooltip = CSTRING(RequireEODLabelTooltip);
                 typeName = "BOOL";
                 defaultValue = "false";
@@ -225,32 +225,32 @@ class CfgVehicles {
     };
 
     class GVAR(edenModuleWireBomb): GVAR(baseEdenModule) {
-        displayName = CSTRING(Module_Wire_Bomb_DisplayName);
+        displayName = ECSTRING(main,Module_Wire_Bomb_DisplayName);
         function = QFUNC(edenModuleWireBomb);
         scope = 2;
         class Attributes: AttributesBase {
             class BombTime: Edit {
                 property = QGVAR(edenModuleWireBomb_BombTime);
-                displayName = CSTRING(BombTimeLabel);
+                displayName = ECSTRING(main,BombTimeLabel);
                 tooltip = CSTRING(BombTimeTooltip);
                 typeName = "NUMBER";
                 defaultValue = "60";
             };
             class ShouldBeep: Checkbox {
                 property = QGVAR(edenModuleWireBomb_ShouldBeep);
-                displayName = CSTRING(ShouldBeepLabel);
+                displayName = ECSTRING(main,ShouldBeepLabel);
                 typeName = "BOOL";
                 defaultValue = "true";
             };
             class WireSign: Edit {
                 property = QGVAR(edenModuleWireBomb_WireSign);
-                displayName = CSTRING(WireSignLabel);
+                displayName = ECSTRING(main,WireSignLabel);
                 typeName = "STRING";
                 defaultValue = "'|'";
             };
             class WireCount: Edit {
                 property = QGVAR(edenModuleWireBomb_WireCount);
-                displayName = CSTRING(WireCountLabel);
+                displayName = ECSTRING(main,WireCountLabel);
                 typeName = "NUMBER";
                 defaultValue = "40";
             };
@@ -283,7 +283,7 @@ class CfgVehicles {
             };
             class RequireEOD: Checkbox {
                 property = QGVAR(edenModulePropertyCommon_RequireEOD);
-                displayName = CSTRING(RequireEODLabel);
+                displayName = ECSTRING(main,RequireEODLabel);
                 tooltip = CSTRING(RequireEODLabelTooltip);
                 typeName = "BOOL";
                 defaultValue = "false";
@@ -311,26 +311,26 @@ class CfgVehicles {
     };
 
     class GVAR(edenModuleMemoryBomb): GVAR(baseEdenModule) {
-        displayName = CSTRING(Module_Memory_Bomb_DisplayName);
+        displayName = ECSTRING(main,Module_Memory_Bomb_DisplayName);
         function = QFUNC(edenModuleMemoryBomb);
         scope = 2;
         class Attributes: AttributesBase {
             class BombTime: Edit {
                 property = QGVAR(edenModuleMemoryBomb_BombTime);
-                displayName = CSTRING(BombTimeLabel);
+                displayName = ECSTRING(main,BombTimeLabel);
                 tooltip = CSTRING(BombTimeTooltip);
                 typeName = "NUMBER";
                 defaultValue = "60";
             };
             class ShouldBeep: Checkbox {
                 property = QGVAR(edenModuleMemoryBomb_ShouldBeep);
-                displayName = CSTRING(ShouldBeepLabel);
+                displayName = ECSTRING(main,ShouldBeepLabel);
                 typeName = "BOOL";
                 defaultValue = "true";
             };
             class RoundsCount: Edit {
                 property = QGVAR(edenModuleMemoryBomb_RoundsCount);
-                displayName = CSTRING(RoundsCountLabel);
+                displayName = ECSTRING(main,RoundsCountLabel);
                 tooltip = CSTRING(RoundsCountTooltip);
                 typeName = "NUMBER";
                 defaultValue = "5";
@@ -344,7 +344,7 @@ class CfgVehicles {
             };
             class SerialNumber: Edit {
                 property = QGVAR(edenModulePropertyCommon_SerialNumber);
-                displayName = CSTRING(SerialNumberLabel);
+                displayName = ECSTRING(main,SerialNumberLabel);
                 tooltip = CSTRING(SerialNumberTooltip);
                 typeName = "STRING";
                 defaultValue = "'Unknown'";
@@ -372,7 +372,7 @@ class CfgVehicles {
             };
             class RequireEOD: Checkbox {
                 property = QGVAR(edenModulePropertyCommon_RequireEOD);
-                displayName = CSTRING(RequireEODLabel);
+                displayName = ECSTRING(main,RequireEODLabel);
                 tooltip = CSTRING(RequireEODLabelTooltip);
                 typeName = "BOOL";
                 defaultValue = "false";
@@ -400,20 +400,20 @@ class CfgVehicles {
     };
 
     class GVAR(edenModuleMorseBomb): GVAR(baseEdenModule) {
-        displayName = CSTRING(Module_Morse_Bomb_DisplayName);
+        displayName = ECSTRING(main,Module_Morse_Bomb_DisplayName);
         function = QFUNC(edenModuleMorseBomb);
         scope = 2;
         class Attributes: AttributesBase {
             class BombTime: Edit {
                 property = QGVAR(edenModuleMorseBomb_BombTime);
-                displayName = CSTRING(BombTimeLabel);
+                displayName = ECSTRING(main,BombTimeLabel);
                 tooltip = CSTRING(BombTimeTooltip);
                 typeName = "NUMBER";
                 defaultValue = "60";
             };
             class ShouldBeep: Checkbox {
                 property = QGVAR(edenModuleMorseBomb_ShouldBeep);
-                displayName = CSTRING(ShouldBeepLabel);
+                displayName = ECSTRING(main,ShouldBeepLabel);
                 typeName = "BOOL";
                 defaultValue = "true";
             };
@@ -433,14 +433,14 @@ class CfgVehicles {
             };
             class SolutionMessage: Edit {
                 property = QGVAR(edenModuleMorseBomb_SolutionMessage);
-                displayName = CSTRING(SolutionMessageLabel);
-                tooltip = CSTRING(SolutionMessageTooltip);
+                displayName = ECSTRING(main,SolutionMessageLabel);
+                tooltip = ECSTRING(main,SolutionMessageTooltip);
                 typeName = "STRING";
                 defaultValue = "''";
             };
             class SerialNumber: Edit {
                 property = QGVAR(edenModulePropertyCommon_SerialNumber);
-                displayName = CSTRING(SerialNumberLabel);
+                displayName = ECSTRING(main,SerialNumberLabel);
                 tooltip = CSTRING(SerialNumberTooltip);
                 typeName = "STRING";
                 defaultValue = "'Unknown'";
@@ -468,7 +468,7 @@ class CfgVehicles {
             };
             class RequireEOD: Checkbox {
                 property = QGVAR(edenModulePropertyCommon_RequireEOD);
-                displayName = CSTRING(RequireEODLabel);
+                displayName = ECSTRING(main,RequireEODLabel);
                 tooltip = CSTRING(RequireEODLabelTooltip);
                 typeName = "BOOL";
                 defaultValue = "false";

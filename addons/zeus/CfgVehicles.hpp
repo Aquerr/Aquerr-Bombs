@@ -18,7 +18,7 @@ class CfgVehicles {
     // Zeus modules
     class GVAR(moduleExplode): GVAR(baseModule) {
         curatorCanAttach = 1;
-        displayName = CSTRING(Module_Explode_DisplayName);
+        displayName = ECSTRING(main,Module_Explode_DisplayName);
         curatorInfoType = QGVAR(RscExplode);
         icon = "a3\ui_f\data\gui\rsc\rscdisplayarcademap\icon_config_ca.paa";
     };
@@ -32,7 +32,7 @@ class CfgVehicles {
 
     class GVAR(moduleVulnerableObject): GVAR(baseModule) {
         curatorCanAttach = 1;
-        displayName = CSTRING(Module_Shot_Vulnerable_DisplayName);
+        displayName = ECSTRING(main,Module_Shot_Vulnerable_DisplayName);
         curatorInfoType = QGVAR(RscShotVulnerable);
         icon = "a3\ui_f\data\gui\rsc\rscdisplayarcademap\icon_config_ca.paa";
     };
@@ -46,28 +46,28 @@ class CfgVehicles {
 
     class GVAR(moduleKeypadBomb): GVAR(baseModule) {
         curatorCanAttach = 1;
-        displayName = CSTRING(Module_Keypad_Bomb_DisplayName);
+        displayName = ECSTRING(main,Module_Keypad_Bomb_DisplayName);
         curatorInfoType = QGVAR(RscKeypadBomb);
         icon = "a3\ui_f\data\igui\cfg\simpletasks\types\destroy_ca.paa";
     };
 
     class GVAR(moduleWireBomb): GVAR(baseModule) {
         curatorCanAttach = 1;
-        displayName = CSTRING(Module_Wire_Bomb_DisplayName);
+        displayName = ECSTRING(main,Module_Wire_Bomb_DisplayName);
         curatorInfoType = QGVAR(RscWireBomb);
         icon = "a3\ui_f\data\igui\cfg\simpletasks\types\destroy_ca.paa";
     };
 
     class GVAR(moduleMemoryBomb): GVAR(baseModule) {
         curatorCanAttach = 1;
-        displayName = CSTRING(Module_Memory_Bomb_DisplayName);
+        displayName = ECSTRING(main,Module_Memory_Bomb_DisplayName);
         curatorInfoType = QGVAR(RscMemoryBomb);
         icon = "a3\ui_f\data\igui\cfg\simpletasks\types\destroy_ca.paa";
     };
 
     class GVAR(moduleMorseBomb): GVAR(baseModule) {
         curatorCanAttach = 1;
-        displayName = CSTRING(Module_Morse_Bomb_DisplayName);
+        displayName = ECSTRING(main,Module_Morse_Bomb_DisplayName);
         curatorInfoType = QGVAR(RscMorseBomb);
         icon = "a3\ui_f\data\igui\cfg\simpletasks\types\destroy_ca.paa";
     };

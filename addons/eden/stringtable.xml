@@ -1,33 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Project name="Aquerr-Bombs">
     <Package name="eden">
-        <Key ID="STR_abombs_eden_BombTimeLabel">
-            <English>Bomb time (0 = indefinite)</English>
-            <Polish>Czas bomby (0 = nieskończona)</Polish>
-        </Key>
-        <Key ID="STR_abombs_eden_Module_Keypad_Bomb_Description">
+        <Key ID="str_abombs_eden_Module_Keypad_Bomb_Description">
             <English>This module has to be synced with objects that should be converted to keypad bombs. Bomb object should neither be local nor simple object.</English>
             <Polish>Ten moduł musi zostać zsynchronizowany z obiektami, które mają zostać zamienione w bomby. Obiekt bomby nie powinien być obiektem lokalnym ani prostym.</Polish>
         </Key>
-        <Key ID="STR_abombs_eden_Module_Keypad_Bomb_DisplayName">
-            <English>Create keypad bomb</English>
-            <Polish>Utwórz bombę na keypad</Polish>
-        </Key>
-        <Key ID="STR_abombs_eden_Module_Shot_Vulnerable_Description">
+        <Key ID="str_abombs_eden_Module_Shot_Vulnerable_Description">
             <English>This module makes given class names vulnerable to shots and nearby explosions. To make a specific object shot/explosion vulnerable, sync it with this module. The object should neither be local nor simple object.</English>
             <Polish>Ten moduł uczynia podane klasy obiektów podatne na strzały i pobliskie eksplozje. Aby uczynić konrketny obiekt podatnym na strzały, zsynchronizuj go z tym modułem. Obiekt nie powinien być obiektem lokalnym ani prostym.</Polish>
         </Key>
-        <Key ID="STR_abombs_eden_Module_Shot_Vulnerable_DisplayName">
-            <English>Make object vulnerable to shots</English>
-            <Polish>Uczyń obiekt podatnym na strzały</Polish>
-        </Key>
-        <Key ID="STR_abombs_eden_Module_Wire_Bomb_Description">
+        <Key ID="str_abombs_eden_Module_Wire_Bomb_Description">
             <English>This module has to be synced with objects that should be converted to wire bombs. The bomb object should neither be local nor simple object.</English>
             <Polish>Ten moduł musi zostać zsynchronizowany z obiektami, które mają zostać zamienione w bomby kablowe. Obiekt bomby nie powinien być obiektem lokalnym ani prostym.</Polish>
-        </Key>
-        <Key ID="STR_abombs_eden_Module_Wire_Bomb_DisplayName">
-            <English>Create wire bomb</English>
-            <Polish>Utwórz wire bomb</Polish>
         </Key>
         <Key ID="str_abombs_eden_afterdefusecodelabel">
             <English>After defuse code function</English>
@@ -42,14 +26,6 @@ Parametry przekazane do kodu: ["_thisBomb", "_defuserPlayer"]</Polish>
         <Key ID="str_abombs_eden_bombtimetooltip">
             <English>Bomb time in seconds. 0 = indefinite</English>
             <Polish>Czas bomby w sekundach. 0 = nieskończona</Polish>
-        </Key>
-        <Key ID="str_abombs_eden_classnameslabel">
-            <English>Class names</English>
-            <Polish>Nazwy klas</Polish>
-        </Key>
-        <Key ID="str_abombs_eden_classnameslabeltooltip">
-            <English>Should be in array format</English>
-            <Polish>Powinny być w formacie array</Polish>
         </Key>
         <Key ID="str_abombs_eden_delaylabel">
             <English>Delay</English>
@@ -107,25 +83,13 @@ Parametry przekazane do kodu: ["_thisBomb", "_defuserPlayer"]</Polish>
             <English>This module will create an explosion at desired location. If an object is synced with this module, then that object's location will be used for the bomb explosion. You can also sync a trigger with this module to execute the module at desired time.</English>
             <Polish>Ten moduł utworzy ekspolozję w wybranym miejscu. Jeśli jakiś obiekt będzie zsynchronizowany z tym modułem to jego pozycja zostanie wykorzystana jako pozycja eksplozji. Możesz również zsynchronizować wyzwalacz z tym modułem aby uruchomić go w odpowiednim momencie.</Polish>
         </Key>
-        <Key ID="str_abombs_eden_module_explode_displayname">
-            <English>Explode</English>
-            <Polish>Wysadź</Polish>
-        </Key>
         <Key ID="str_abombs_eden_module_memory_bomb_description">
             <English>This module has to be synced with objects that should be converted to memory bombs. The bomb object should neither be local nor simple object.</English>
             <Polish>Ten moduł musi zostać zsynchronizowany z obiektami, które mają zostać zamienione w bomby. Obiekt bomby nie powinien być obiektem lokalnym ani prostym.</Polish>
         </Key>
-        <Key ID="str_abombs_eden_module_memory_bomb_displayname">
-            <English>Create memory bomb</English>
-            <Polish>Utwórz bombę na pamięć</Polish>
-        </Key>
         <Key ID="str_abombs_eden_module_morse_bomb_description">
             <English>This module has to be synced with objects that should be converted to Morse bombs. The bomb object should neither be local nor simple object.</English>
             <Polish>Ten moduł musi zostać zsynchronizowany z obiektami, które mają zostać zamienione w bomby. Obiekt bomby nie powinien być obiektem lokalnym ani prostym.</Polish>
-        </Key>
-        <Key ID="str_abombs_eden_module_morse_bomb_displayname">
-            <English>Create Morse bomb</English>
-            <Polish>Utwórz bombę Morse'a</Polish>
         </Key>
         <Key ID="str_abombs_eden_overrideexplosionclasslabel">
             <English>Override explosion class</English>
@@ -151,53 +115,17 @@ Parametry przekazane do kodu: ["_thisBomb", "_defuserPlayer"]</Polish>
             <English>Should be in array format, i.e: ["ACE_DefusalKit", "ToolKit"]</English>
             <Polish>W formacie array-a np: ["ACE_DefusalKit", "ToolKit"]</Polish>
         </Key>
-        <Key ID="str_abombs_eden_requireeodlabel">
-            <English>Require EOD</English>
-            <Polish>Wymagaj wyszkolenia EOD</Polish>
-        </Key>
         <Key ID="str_abombs_eden_requireeodlabeltooltip">
             <English>Counts as EOD from ACE or explosiveSpecialist form Vanilla</English>
             <Polish>Liczy się jako EOD z ACE lub specjalisty od ładunków wybuchowych z Vanilli</Polish>
-        </Key>
-        <Key ID="str_abombs_eden_roundscountlabel">
-            <English>Rounds count</English>
-            <Polish>Ilość rund</Polish>
         </Key>
         <Key ID="str_abombs_eden_roundscounttooltip">
             <English>Determines the required number of rounds a player need to solve to defuse the bomb</English>
             <Polish>Określa wymaganą ilość rund, którą graczm musi pokonać aby rozbroić bombę</Polish>
         </Key>
-        <Key ID="str_abombs_eden_serialnumberlabel">
-            <English>Serial Number</English>
-            <Polish>Kod seryjny</Polish>
-        </Key>
         <Key ID="str_abombs_eden_serialnumbertooltip">
             <English>Player can check it by interacting with bomb. Not used by the mod. Feel free to use it how you want.</English>
             <Polish>Gracze mogą go sprawdzić poprzez interakcję z bombą. Nieużywane przez mod. Użyj tego jak chcesz.</Polish>
-        </Key>
-        <Key ID="str_abombs_eden_shouldbeeplabel">
-            <English>Should beep?</English>
-            <Polish>Wydaje dźwięk?</Polish>
-        </Key>
-        <Key ID="str_abombs_eden_solutioncodelabel">
-            <English>Solution Code (digits only)</English>
-            <Polish>Kod rozwiązania (tylko cyfry)</Polish>
-        </Key>
-        <Key ID="str_abombs_eden_solutionmessagelabel">
-            <English>Solution message</English>
-            <Polish>Wiadomość rozwiązania</Polish>
-        </Key>
-        <Key ID="str_abombs_eden_solutionmessagetooltip">
-            <English>An alphanumeric text that needs to be entered by the player to defuse the bomb</English>
-            <Polish>Alfanumeryczny tekst, który musi być wpisany przez gracza aby rozbroić bombę</Polish>
-        </Key>
-        <Key ID="str_abombs_eden_wirecountlabel">
-            <English>Wire count</English>
-            <Polish>Ilość kabli</Polish>
-        </Key>
-        <Key ID="str_abombs_eden_wiresignlabel">
-            <English>Wire sign</English>
-            <Polish>Znak kabla</Polish>
         </Key>
     </Package>
 </Project>

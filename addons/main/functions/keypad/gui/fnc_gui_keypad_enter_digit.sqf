@@ -16,7 +16,7 @@
 params["_digit"];
 
 _defuser = player;
-_bomb = GVAR(Bomb_Interface_Target);
+_bomb = GVAR(Interface_Target_Object);
 
 _newCode = (format  ["%1%2", (_bomb getVariable ["aquerr_bomb_entered_code", ""]), _digit]);
 _bomb setVariable ["aquerr_bomb_entered_code", _newCode, true];

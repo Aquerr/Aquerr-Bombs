@@ -26,7 +26,7 @@ class GVAR(BombMaxDefuseAttemptsControls): RscControlsGroupNoScrollbars {
     class controls {
         class BombMaxDefuseAttemptsLabel: RscText {
             idc = -1;
-            text = CSTRING(BombMaxDefuseAttemptsLabel);
+            text = ECSTRING(main,BombMaxDefuseAttemptsLabel);
             x = 0;
             y = 0;
             w = QUOTE(W_PART(10));
@@ -52,7 +52,7 @@ class GVAR(BombRemoveShotVulnerabilityAfterDefuseControls): RscControlsGroupNoSc
         class BombRemoveShotVulnerabilityAfterDefuseLabel: RscText {
             idc = -1;
             text = CSTRING(BombRemoveShotVulnerabilityAfterDefuseLabel);
-            tooltip = CSTRING(BombRemoveShotVulnerabilityAfterDefuseLabelTooltip);
+            tooltip = ECSTRING(main,BombRemoveShotVulnerabilityAfterDefuseLabelTooltip);
             x = 0;
             y = 0;
             w = QUOTE(W_PART(10));
@@ -80,7 +80,7 @@ class GVAR(SerialNumberControls): RscControlsGroupNoScrollbars {
     class controls {
         class SerialNumberLabel: RscText {
             idc = -1;
-            text = CSTRING(serialnumberlabel);
+            text = ECSTRING(main,serialnumberlabel);
             x = 0;
             y = 0;
             w = QUOTE(W_PART(10));
@@ -105,7 +105,7 @@ class GVAR(BombTimeControls): RscControlsGroupNoScrollbars {
     class controls {
         class BombTimeLabel: RscText {
             idc = -1;
-            text = CSTRING(BombTimeLabel);
+            text = ECSTRING(main,BombTimeLabel);
             x = 0;
             y = 0;
             w = QUOTE(W_PART(10));
@@ -129,7 +129,7 @@ class GVAR(ShouldBeepControls): RscControlsGroupNoScrollbars {
     h = QUOTE(H_PART(1.1));
     class controls {
         class ShouldBeepLabel: RscText {
-            text = CSTRING(ShouldBeepLabel);
+            text = ECSTRING(main,ShouldBeepLabel);
             x = 0;
             y = 0;
             w = QUOTE(W_PART(10));
@@ -156,7 +156,7 @@ class GVAR(ExplosionClassControls): RscControlsGroupNoScrollbars {
     class controls {
         class ExplosionClassLabel: RscText {
             idc = -1;
-            text = CSTRING(ExplosionClassLabel);
+            text = ECSTRING(main,ExplosionClassLabel);
             x = 0;
             y = 0;
             w = QUOTE(W_PART(10));
@@ -190,8 +190,8 @@ class GVAR(ExplosionClassControls): RscControlsGroupNoScrollbars {
         };
         class OverrideExplosionClassLabel: RscText {
             idc = -1;
-            text = CSTRING(OverrideExplosionClassLabel);
-            tooltip = CSTRING(OverrideExplosionClassLabelTooltip);
+            text = ECSTRING(main,OverrideExplosionClassLabel);
+            tooltip = ECSTRING(main,OverrideExplosionClassLabelTooltip);
             x = 0;
             y = QUOTE(H_PART(1.1));
             w = QUOTE(W_PART(10));
@@ -216,7 +216,7 @@ class GVAR(DeleteObjectAfterExplosionControls): RscControlsGroupNoScrollbars {
     class controls {
         class DeleteWreckAfterExplosionLabel: RscText {
             idc = -1;
-            text = CSTRING(DeleteWreckAfterExplosionLabel);
+            text = ECSTRING(main,DeleteWreckAfterExplosionLabel);
             x = 0;
             y = 0;
             w = QUOTE(W_PART(10));
@@ -242,7 +242,7 @@ class GVAR(EodAndItemsRequirementControls): RscControlsGroupNoScrollbars {
     h = QUOTE(H_PART(2.2));
     class controls {
         class RequireEodLabel: RscText {
-            text = CSTRING(RequireEodLabel);
+            text = ECSTRING(main,RequireEodLabel);
             x = 0;
             y = 0;
             w = QUOTE(W_PART(10));
@@ -261,7 +261,7 @@ class GVAR(EodAndItemsRequirementControls): RscControlsGroupNoScrollbars {
         };
         class RequiredDefusalItemsLabel: RscText {
             idc = -1;
-            text = CSTRING(RequiredDefsualItemsLabel);
+            text = ECSTRING(main,RequiredDefsualItemsLabel);
             x = 0;
             y = QUOTE(H_PART(1.1));
             w = QUOTE(W_PART(10));
@@ -297,7 +297,7 @@ class GVAR(RscExplode): RscDisplayAttributes {
                     class controls {
                         class DelayLabel: RscText {
                             idc = ZEUS_EXPLODE_DIALOG_DELAY_EDIT_ID;
-                            text = CSTRING(DelayLabel);
+                            text = ECSTRING(main,DelayLabel);
                             x = 0;
                             y = 0;
                             w = QUOTE(W_PART(10));
@@ -373,8 +373,8 @@ class GVAR(RscShotVulnerableGlobal): RscDisplayAttributes {
                     class controls {
                         class ClassNamesLabel: RscText {
                             idc = -1;
-                            text = CSTRING(ClassNamesLabel);
-                            tooltip = CSTRING(ClassNamesLabelTooltip);
+                            text = ECSTRING(main,ClassNamesLabel);
+                            tooltip = ECSTRING(main,ClassNamesLabelTooltip);
                             x = 0;
                             y = 0;
                             w = QUOTE(W_PART(10));
@@ -430,7 +430,7 @@ class GVAR(RscWireBomb): RscDisplayAttributes {
                         };
                         class WireSignLabel: RscText {
                             idc = -1;
-                            text = CSTRING(WireSignLabel);
+                            text = ECSTRING(main,WireSignLabel);
                             x = 0;
                             y = QUOTE(H_PART(2.2));
                             w = QUOTE(W_PART(10));
@@ -447,7 +447,7 @@ class GVAR(RscWireBomb): RscDisplayAttributes {
                         };
                         class WireCountLabel: RscText {
                             idc = -1;
-                            text = CSTRING(WireCountLabel);
+                            text = ECSTRING(main,WireCountLabel);
                             x = 0;
                             y = QUOTE(H_PART(3.3));
                             w = QUOTE(W_PART(10));
@@ -513,7 +513,7 @@ class GVAR(RscKeypadBomb): RscDisplayAttributes {
                     class controls {
                         class guiTypeLabel: RscText {
                             idc = -1;
-                            text = CSTRING(GuiTypeLabel);
+                            text = ECSTRING(main,GuiTypeLabel);
                             x = 0;
                             y = 0;
                             w = QUOTE(W_PART(10));
@@ -542,7 +542,7 @@ class GVAR(RscKeypadBomb): RscDisplayAttributes {
                         };
                         class SolutionCodeLabel: RscText {
                             idc = -1;
-                            text = CSTRING(SolutionCodeLabel);
+                            text = ECSTRING(main,SolutionCodeLabel);
                             x = 0;
                             y = QUOTE(H_PART(3.3));
                             w = QUOTE(W_PART(10));
@@ -605,7 +605,7 @@ class GVAR(RscMemoryBomb): RscDisplayAttributes {
                         };
                         class RoundsCountLabel: RscText {
                             idc = -1;
-                            text = CSTRING(RoundsCountLabel);
+                            text = ECSTRING(main,RoundsCountLabel);
                             x = 0;
                             y = QUOTE(H_PART(2.2));
                             w = QUOTE(W_PART(10));
@@ -670,8 +670,8 @@ class GVAR(RscMorseBomb): RscDisplayAttributes {
                         };
                         class EncodedMessageLabel: RscText {
                             idc = -1;
-                            text = CSTRING(EncodedMessageLabel);
-                            tooltip = CSTRING(EncodedMessageLabelTooltip);
+                            text = ECSTRING(main,EncodedMessageLabel);
+                            tooltip = ECSTRING(main,EncodedMessageLabelTooltip);
                             x = 0;
                             y = QUOTE(H_PART(3.3));
                             w = QUOTE(W_PART(10));
@@ -688,8 +688,8 @@ class GVAR(RscMorseBomb): RscDisplayAttributes {
                         };
                         class SolutionMessageLabel: RscText {
                             idc = -1;
-                            text = CSTRING(SolutionMessageLabel);
-                            tooltip = CSTRING(SolutionMessageLabelTooltip);
+                            text = ECSTRING(main,SolutionMessageLabel);
+                            tooltip = ECSTRING(main,SolutionMessageLabelTooltip);
                             x = 0;
                             y = QUOTE(H_PART(4.4));
                             w = QUOTE(W_PART(10));

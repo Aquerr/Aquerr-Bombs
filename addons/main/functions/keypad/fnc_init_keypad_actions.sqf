@@ -153,7 +153,7 @@ private _prepareActionsFunction = {
 
     _bombActionIds = [];
     _bombActionIds pushBack ([_bomb, LLSTRING(CheckBombTime), _actionsType] call _prepareCheckTimeFunction);
-    _bombActionIds pushBack ([_bomb, LLSTRING(ClearBombCode), _actionsType] call _prepareClearCodeFunction);
+    _bombActionIds pushBack ([_bomb, LLSTRING(ClearCode), _actionsType] call _prepareClearCodeFunction);
     _bombActionIds pushBack ([_bomb, "0", _actionsType] call _prepareDigitActionFunction);
     _bombActionIds pushBack ([_bomb, "1", _actionsType] call _prepareDigitActionFunction);
     _bombActionIds pushBack ([_bomb, "2", _actionsType] call _prepareDigitActionFunction);

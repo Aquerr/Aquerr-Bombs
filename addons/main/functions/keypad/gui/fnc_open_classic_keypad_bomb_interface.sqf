@@ -23,7 +23,7 @@ if (dialog) then {
 _guiType = _bomb getVariable ["aquerr_keypad_bomb_gui_type", "UNKNOWN"];
 if (not(_guiType isEqualTo "CLASSIC")) exitWith { hint "Unsupported GUI type! Have mission maker setup bomb correctly?" }; 
 
-GVAR(Bomb_Interface_Target) = _bomb;
+GVAR(Interface_Target_Object) = _bomb;
 
 [_bomb] spawn {
     params ["_bomb"];

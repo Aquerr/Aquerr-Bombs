@@ -13,7 +13,7 @@
 
 params [];
 
-_bomb = GVAR(Bomb_Interface_Target);
+_bomb = GVAR(Interface_Target_Object);
 
 private _isArmed = _bomb getVariable ["abombs_bomb_is_armed", false];
 if (!_isArmed) exitWith {hint (LLSTRING(BombAlreadyDefused))};
