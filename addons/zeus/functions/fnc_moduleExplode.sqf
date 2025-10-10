@@ -4,8 +4,12 @@ params ["_object", "_delay", "_shouldDeleteWreckAfterExplosion", "_explosionClas
 
 (GETMVAR(bis_fnc_curatorObjectPlaced_mouseOver,[""])) params ["_mouseOverType", "_mouseOverUnit"];
 
-[_object, _delay, _explosionClassName, _shouldDeleteWreckAfterExplosion] spawn {
-    params ["_object", "_delay", "_explosionClassName", "_shouldDeleteWreckAfterExplosion"];
-    sleep _delay;
-    [_object, _explosionClassName, _shouldDeleteWreckAfterExplosion] call EFUNC(main,explode);
-};
+[
+    {
+        params ["_objectOrLocation", "_explosionClassName", "_shouldDeleteWreckAfterExplosion"];
+        [_objectOrLocation, _explosionClassName, _shouldDeleteWreckAfterExplosion] call EFUNC(main,explode);
+    }, 
+    [_object, _explosionClassName, _shouldDeleteWreckAfterExplosion], 
+    _delay
+] 
+call CBA_fnc_waitAndExecute;
