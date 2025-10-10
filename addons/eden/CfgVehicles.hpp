@@ -26,6 +26,44 @@ class CfgVehicles {
     ///////////////////////////////////////////////////////////////////////////////////
     //EDEN Modules
 
+    class GVAR(edenModuleExplode): GVAR(baseEdenModule) {
+        displayName = CSTRING(Module_Explode_DisplayName);
+        function = QFUNC(edenModuleExplode);
+        scope = 2;
+        class Attributes: AttributesBase {
+            class Delay: Edit {
+                property = QGVAR(edenModuleExplode_Delay);
+                displayName = CSTRING(DelayLabel);
+                tooltip = CSTRING(DelayTooltip);
+                typeName = "NUMBER";
+                defaultValue = "0";
+            };
+            class DeleteAfterExplosion: Checkbox {
+                property = QGVAR(edenModuleExplode_DeleteAfterExplosion);
+                displayName = CSTRING(DeleteWreckAfterExplosionLabel);
+                tooltip = "";
+                typeName = "BOOL";
+                defaultValue = "true";
+            };
+            class ExplosionClassName: Default {
+                control = QGVAR(explosionClassName);
+                property = QGVAR(edenModulePropertyCommon_explosionClassName);
+                typeName = "STRING";
+                defaultValue = "'DemoCharge_Remote_Ammo'";
+            };
+            class ExplosionClassNameOverride: Default {
+                control = QGVAR(explosionClassNameOverride);
+                property = QGVAR(edenModulePropertyCommon_explosionClassNameOverride);
+                typeName = "STRING";
+                defaultValue = "''";
+            };
+            class ModuleDescription: ModuleDescription {};
+        };
+        class ModuleDescription: ModuleDescription {
+            description = CSTRING(Module_Explode_Description);
+        };
+    };
+
     class GVAR(edenModuleVulnerableObjects): GVAR(baseEdenModule) {
         displayName = CSTRING(Module_Shot_Vulnerable_DisplayName);
         function = QFUNC(edenModuleShotVulnerable);

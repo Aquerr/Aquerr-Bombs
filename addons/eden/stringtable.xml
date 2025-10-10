@@ -51,6 +51,14 @@ Parametry przekazane do kodu: ["_thisBomb", "_defuserPlayer"]</Polish>
             <English>Should be in array format</English>
             <Polish>Powinny być w formacie array</Polish>
         </Key>
+        <Key ID="str_abombs_eden_delaylabel">
+            <English>Delay</English>
+            <Polish>Opóźnienie</Polish>
+        </Key>
+        <Key ID="str_abombs_eden_delaytooltip">
+            <English>Delay explosion in seconds</English>
+            <Polish>Opóźnienie eksplozji w sekundach</Polish>
+        </Key>
         <Key ID="str_abombs_eden_deletewreckafterexplosionlabel">
             <English>Delete wreck after explosion?</English>
             <Polish>Usunąć wrak po eksplozji?</Polish>
@@ -94,6 +102,14 @@ Parametry przekazane do kodu: ["_thisBomb", "_defuserPlayer"]</Polish>
         <Key ID="str_abombs_eden_maxdefuseattemptstooltip">
             <English>The max number of defuse attempts before bomb explodes. E.g. 3 = you can make 2 mistakes</English>
             <Polish>Maksymalna ilość prób rozbrojenia bomby zanim wybuchnie. Np. 3 = możesz popełnić dwa błędy</Polish>
+        </Key>
+        <Key ID="str_abombs_eden_module_explode_description">
+            <English>This module will create an explosion at desired location. If an object is synced with this module, then that object's location will be used for the bomb explosion. You can also sync a trigger with this module to execute the module at desired time.</English>
+            <Polish>Ten moduł utworzy ekspolozję w wybranym miejscu. Jeśli jakiś obiekt będzie zsynchronizowany z tym modułem to jego pozycja zostanie wykorzystana jako pozycja eksplozji. Możesz również zsynchronizować wyzwalacz z tym modułem aby uruchomić go w odpowiednim momencie.</Polish>
+        </Key>
+        <Key ID="str_abombs_eden_module_explode_displayname">
+            <English>Explode</English>
+            <Polish>Wysadź</Polish>
         </Key>
         <Key ID="str_abombs_eden_module_memory_bomb_description">
             <English>This module has to be synced with objects that should be converted to memory bombs. The bomb object should neither be local nor simple object.</English>
