@@ -224,6 +224,39 @@ class CfgVehicles {
         };
     };
 
+    class GVAR(edenModuleKeypad): GVAR(baseEdenModule) {
+        displayName = ECSTRING(main,Module_Keypad_DisplayName);
+        function = QFUNC(edenModuleKeypad);
+        scope = 2;
+        class Attributes: AttributesBase {
+            class SolutionCode: Edit {
+                property = QGVAR(edenModuleKeypad_SolutionCode);
+                displayName = ECSTRING(main,SolutionCodeLabel);
+                typeName = "STRING";
+                defaultValue = "'000000'";
+            };
+            class SerialNumber: Edit {
+                property = QGVAR(edenModulePropertyCommon_SerialNumber);
+                displayName = ECSTRING(main,SerialNumberLabel);
+                tooltip = CSTRING(SerialNumberTooltip);
+                typeName = "STRING";
+                defaultValue = "'Unknown'";
+            };
+            class AfterSuccessCode: Default {
+                property = QGVAR(edenModulePropertyCommon_AfterSuccessCode);
+                displayName = CSTRING(AfterSuccessCodeLabel);
+                tooltip = CSTRING(AfterSuccessCodeTooltip);
+                typeName = "STRING";
+                defaultValue = "''";
+                control = "editcodemulti5";
+            };
+            class ModuleDescription: ModuleDescription {};
+        };
+        class ModuleDescription: ModuleDescription {
+            description = CSTRING(Module_Keypad_Description);
+        };
+    };
+
     class GVAR(edenModuleWireBomb): GVAR(baseEdenModule) {
         displayName = ECSTRING(main,Module_Wire_Bomb_DisplayName);
         function = QFUNC(edenModuleWireBomb);

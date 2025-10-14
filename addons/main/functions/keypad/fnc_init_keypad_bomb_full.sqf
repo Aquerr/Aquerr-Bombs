@@ -87,16 +87,58 @@ if (isServer) then {
 
     [_bomb, _explosionClassName, _afterDefuseFunction, _maxDefuseAttempts] call _prepareServerVariablesFunction;
 
-    _failureFunction = {
-        params ["_bomb", "_defuser"];
-        [_bomb] call _clientCleanUpFunction;
-        [_bomb, _defuser] call FUNC(bomb_explode);
-        if (dialog) then {
-            closeDialog 0;
+    private _failureFunction = {
+        params ["_object", "_defuser"];
+
+        _maxDefuseAttempts = _object getVariable ["abombs_bomb_max_defuse_attempts", 1];
+        _attempts = (_object getVariable ["abombs_bomb_defuse_attempts", 0]) + 1;
+        _object setVariable ["abombs_bomb_defuse_attempts", _attempts, true];
+        if (_attempts >= _maxDefuseAttempts) then {
+            private _clientCleanUpFunction = _object getVariable ["abombs_bomb_client_cleanup_function", {}];
+            [_object] call _clientCleanUpFunction;
+            [_object, _defuser] call FUNC(bomb_explode);
+            if (dialog) then {
+                closeDialog 0;
+            };
+        } else {
+            _object setVariable ["abombs_keypad_entered_code", "", true];
+            hint "Bomb still ticks...";
         };
     };
 
+    private _canEnterDigitFunction = {
+        params ["_user", "_object", "_digit"];
+        private _isArmed = _object getVariable ["abombs_bomb_is_armed", false];
+        if (!_isArmed) then {
+            hint (LLSTRING(BombAlreadyDefused));
+        };
+        _isArmed;
+    };
+
+    private _canConfirmFunction = {
+        params ["_object", "_user"];
+        private _isArmed = _object getVariable ["abombs_bomb_is_armed", false];
+        if (!_isArmed) exitWith {
+            hint (LLSTRING(BombAlreadyDefused));
+            false;    
+        };
+
+        if (!([_object, _user] call FUNC(can_defuse_bomb))) exitWith {
+            hint LLSTRING(BombDefuseRequirementsNotMet);
+            false;
+        };
+        true;
+    };
+
+    private _successFunction = {
+        params ["_object", "_user"];
+        [_object, _user] call FUNC(bomb_defuse);
+    };
+
     _bomb setVariable ["abombs_keypad_failure_function", _failureFunction, true];
+    _bomb setVariable ["abombs_keypad_can_enter_digit_function", _canEnterDigitFunction, true];
+    _bomb setVariable ["abombs_keypad_can_confirm_function", _canConfirmFunction, true];
+    _bomb setVariable ["abombs_keypad_success_function", _successFunction, true];
     
     [_bomb, _solutionCode] call FUNC(init_keypad_solution_code);
     [_bomb, _timeSeconds, _shouldBeep] call FUNC(init_bomb_timer);

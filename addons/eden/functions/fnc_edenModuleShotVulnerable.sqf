@@ -21,11 +21,11 @@ if (not(_explosionClassNameOverride isEqualTo "")) then {
 	_explosionClassName = _explosionClassNameOverride;
 };
 
-if ((count _objectClassNames) > 0) then {
+if (_objectClassNames isNotEqualTo []) then {
 	[_objectClassNames, _shouldDeleteWreckAfterExplosion, _explosionClassName, _requiredHits, _fixedRequiredHits] call EFUNC(main,register_explosive_handlers_global);
 };
 
-if ((count _synchronizedObjects) > 0) then {
+if (_synchronizedObjects isNotEqualTo []) then {
 	{
 		[_x, _shouldDeleteWreckAfterExplosion, _explosionClassName, _requiredHits, _fixedRequiredHits] call EFUNC(main,register_explosive_handlers_for_object);
 	} forEach _synchronizedObjects;

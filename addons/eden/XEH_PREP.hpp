@@ -5,5 +5,6 @@ PREP(edenModuleExplode);
 PREP(edenModuleShotVulnerable);
 PREP(edenModuleWireBomb);
 PREP(edenModuleKeypadBomb);
+PREP(edenModuleKeypad);
 PREP(edenModuleMemoryBomb);
 PREP(edenModuleMorseBomb);

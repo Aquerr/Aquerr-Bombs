@@ -109,7 +109,7 @@
             <English>Confirm code</English>
             <Polish>Potwierdź kod</Polish>
         </Key>
-        <Key ID="str_abombs_main_currentbombcode">
+        <Key ID="str_abombs_main_currentcode">
             <English>Current code</English>
             <Polish>Obecny kod</Polish>
         </Key>
@@ -201,6 +201,10 @@
             <English>Explode</English>
             <Polish>Wysadź</Polish>
         </Key>
+        <Key ID="str_abombs_main_module_keypad_displayname">
+            <English>Create keypad</English>
+            <Polish>Utwórz keypad</Polish>
+        </Key>
         <Key ID="str_abombs_main_module_memory_bomb_displayname">
             <English>Create memory bomb</English>
             <Polish>Utwórz bombę na pamięć</Polish>
@@ -288,6 +292,10 @@
         <Key ID="str_abombs_main_wiresignlabel">
             <English>Wire sign</English>
             <Polish>Znak kabla</Polish>
+        </Key>
+        <Key ID="str_abombs_main_wrongcode">
+            <English>Wrong code</English>
+            <Polish>Niepoprawny kod</Polish>
         </Key>
     </Package>
 </Project>

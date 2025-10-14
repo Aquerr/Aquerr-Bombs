@@ -4,7 +4,7 @@
 	https://github.com/Aquerr
 
 	Description:
-        Enters a digit in keypad bomb. Local only.
+        Enters a digit in keypad. Local only.
 
 	Parameter(s):
         0: OBJECT - the user who entered the digit
@@ -18,15 +18,17 @@
 
 params ["_user", "_object", "_digit", ["_showInHint", false]];
 
-private _isArmed = _object getVariable ["abombs_bomb_is_armed", false];
-if (!_isArmed) exitWith {hint (LLSTRING(BombAlreadyDefused))};
+private _canEnterDigitFunction = _object getVariable ["abombs_keypad_can_enter_digit_function", {}];
+private _canEnterDigit = [_user, _object, _digit] call _canEnterDigitFunction;
 
-_newCode = (format  ["%1%2", (_object getVariable ["aquerr_bomb_entered_code", ""]), _digit]);
-_object setVariable ["aquerr_bomb_entered_code", _newCode, true];
-[QGVAR(BombEnteredDigit), [_object, _user]] call CBA_fnc_globalEvent;
+if (!_canEnterDigit) exitWith {};
+
+_newCode = (format  ["%1%2", (_object getVariable ["abombs_keypad_entered_code", ""]), _digit]);
+_object setVariable ["abombs_keypad_entered_code", _newCode, true];
+[QGVAR(KeypadEnteredDigit), [_object, _user]] call CBA_fnc_globalEvent;
 
 if (_showInHint) then {
-    hint (format [(LLSTRING(CurrentBombCode)) + ": %1", _newCode]);
+    hint (format [(LLSTRING(CurrentCode)) + ": %1", _newCode]);
 };
 
 [_object, _user] call FUNC(keypad_confirm_entered_code);

@@ -33,7 +33,7 @@ private _explodeFunction = {
 };
 
 // If nothing is connected then use this module location
-if ((count _connectedObjects) == 0) then {
+if (_connectedObjects isEqualTo []) then {
 	_connectedObjects pushBack (getPosATL _logic);
 };
 
@@ -45,7 +45,7 @@ if ((count _connectedObjects) == 0) then {
 		_shouldDeleteWreckAfterExplosion
 	];
 
-	if (count (_syncedTriggers) > 0) then {
+	if (_syncedTriggers isNotEqualTo []) then {
 		{
 			private _trigger = _x;
 			// Trigger based init

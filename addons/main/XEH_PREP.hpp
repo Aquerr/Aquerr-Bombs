@@ -20,6 +20,7 @@ PREP_BY_PATH(set_require_defusal_items,functions\common\fnc_set_require_defusal_
 PREP_BY_PATH(can_defuse_bomb,functions\common\fnc_can_defuse_bomb.sqf);
 
 // Keypad
+PREP_BY_PATH(init_keypad_full,functions\keypad\fnc_init_keypad_full.sqf);
 PREP_BY_PATH(init_keypad_bomb_full,functions\keypad\fnc_init_keypad_bomb_full.sqf);
 
 PREP_BY_PATH(init_keypad_solution_code,functions\keypad\fnc_init_keypad_solution_code.sqf);
@@ -30,10 +31,11 @@ PREP_BY_PATH(keypad_clear_entered_code,functions\keypad\fnc_keypad_clear_entered
 
 PREP_BY_PATH(open_keypad_bomb_interface,functions\keypad\gui\fnc_open_keypad_bomb_interface.sqf);
 PREP_BY_PATH(open_classic_keypad_bomb_interface,functions\keypad\gui\fnc_open_classic_keypad_bomb_interface.sqf);
+PREP_BY_PATH(open_classic_keypad_interface,functions\keypad\gui\fnc_open_classic_keypad_interface.sqf);
+PREP_BY_PATH(open_classic_keypad_back_panel_interface,functions\keypad\gui\fnc_open_classic_keypad_back_panel_interface.sqf);
 
 PREP_BY_PATH(gui_keypad_clear_code,functions\keypad\gui\fnc_gui_keypad_clear_code.sqf);
 PREP_BY_PATH(gui_keypad_enter_digit,functions\keypad\gui\fnc_gui_keypad_enter_digit.sqf);
-PREP_BY_PATH(gui_keypad_classic_view_back_panel,functions\keypad\gui\fnc_gui_classic_keypad_view_back_panel.sqf);
 PREP_BY_PATH(gui_keypad_standard_view_back_panel,functions\keypad\gui\fnc_gui_keypad_view_back_panel.sqf);
 PREP_BY_PATH(gui_keypad_confirm_entered_code,functions\keypad\gui\fnc_gui_keypad_confirm_entered_code.sqf);
 

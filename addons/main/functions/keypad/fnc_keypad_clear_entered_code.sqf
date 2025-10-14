@@ -12,6 +12,6 @@
 
 params ["_defuser", "_bomb"];
 
-_bomb setVariable ["aquerr_bomb_entered_code", "", true];
+_bomb setVariable ["abombs_keypad_entered_code", "", true];
 hint LLSTRING(CodeCleared);
 [QGVAR(BombClearedEnteredCode), [_bomb, _defuser]] call CBA_fnc_globalEvent;

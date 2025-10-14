@@ -23,6 +23,16 @@ Params passed to the code: ["_thisBomb", "_defuserPlayer"]</English>
             <Polish>Kod będzie wykonany lokalnie dla rozbrajającego. 
 Parametry przekazane do kodu: ["_thisBomb", "_defuserPlayer"]</Polish>
         </Key>
+        <Key ID="str_abombs_eden_aftersuccesscodelabel">
+            <English>After success code</English>
+            <Polish>Kod po sukcesie</Polish>
+        </Key>
+        <Key ID="str_abombs_eden_aftersuccesscodetooltip">
+            <English>Code that will be executed after entering correct keypad code (Locally for player entering code). 
+Params: [_object, _user]</English>
+            <Polish>Kod który będzie uruchomiony po wpisaniu poprawnego kodu (Lokalnie dla gracza wpisującego kod). 
+Params: [_object, _user]</Polish>
+        </Key>
         <Key ID="str_abombs_eden_bombtimetooltip">
             <English>Bomb time in seconds. 0 = indefinite</English>
             <Polish>Czas bomby w sekundach. 0 = nieskończona</Polish>
@@ -82,6 +92,10 @@ Parametry przekazane do kodu: ["_thisBomb", "_defuserPlayer"]</Polish>
         <Key ID="str_abombs_eden_module_explode_description">
             <English>This module will create an explosion at desired location. If an object is synced with this module, then that object's location will be used for the bomb explosion. You can also sync a trigger with this module to execute the module at desired time.</English>
             <Polish>Ten moduł utworzy ekspolozję w wybranym miejscu. Jeśli jakiś obiekt będzie zsynchronizowany z tym modułem to jego pozycja zostanie wykorzystana jako pozycja eksplozji. Możesz również zsynchronizować wyzwalacz z tym modułem aby uruchomić go w odpowiednim momencie.</Polish>
+        </Key>
+        <Key ID="str_abombs_eden_module_keypad_description">
+            <English>This module attaches a keypad to a synced object.</English>
+            <Polish>Ten moduł podłącza keypad do zsynchronizowanego obiektu.</Polish>
         </Key>
         <Key ID="str_abombs_eden_module_memory_bomb_description">
             <English>This module has to be synced with objects that should be converted to memory bombs. The bomb object should neither be local nor simple object.</English>

@@ -77,7 +77,7 @@ if (isServer && {_global && {isMultiplayer && {isNil {_object getVariable QGVAR(
             SETPVAR(_target,aquerr_hits,_hits);
         };
 
-        if (!(alive _target) && {(GETVAR(_target,abombs_vulnerable_events_registered,false)) && {((GETVAR(_vehicle,aquerr_already_exploded,0)) == 1)}}) exitWith {
+        if (!(alive _target) && {(GETVAR(_target,abombs_vulnerable_events_registered,false)) && {((GETVAR(_target,aquerr_already_exploded,0)) == 1)}}) exitWith {
             [_target] call FUNC(unregister_explosive_handlers);
         };
 

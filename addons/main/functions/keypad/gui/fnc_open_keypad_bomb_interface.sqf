@@ -44,7 +44,7 @@ GVAR(Interface_Target_Object) = _bomb;
             };
 
             _solutionCodeDisplayField = _dialog displayCtrl BOMB_GUI_ENTERED_CODE_FIELD_ID;
-            _solutionCodeDisplayField ctrlSetText (_bomb getVariable ["aquerr_bomb_entered_code", ""]);
+            _solutionCodeDisplayField ctrlSetText (_bomb getVariable ["abombs_keypad_entered_code", ""]);
 
 
             _secondsLeft = _bomb getVariable ["abombs_bomb_time_seconds", 0];

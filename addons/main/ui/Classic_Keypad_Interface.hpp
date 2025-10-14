@@ -1,10 +1,6 @@
-class RscText;
-class RscFrame;
-class RscButton;
-
 //TODO: Make controls positions being calculated based on screen resolution.
 
-class GVAR(Classic_Keypad_Bomb_Interface_Dialog) {
+class GVAR(Classic_Keypad_Interface_Dialog) {
     idd = CLASSIC_KEYPAD_INTERFACE_ID;
     movingEnable = 1;
     enableSimulation = 1;
@@ -47,28 +43,6 @@ class GVAR(Classic_Keypad_Bomb_Interface_Dialog) {
             h = QUOTE(H_PART(2.5));
             colorText[] = {1,1,1,1};
             tooltip = CSTRING(EnterCode);
-        };
-
-        class TIME_FRAME: RscFrame
-        {
-            idc = -1;
-            text = "";
-            x = 0.44;
-            y = 0.1;
-            w = QUOTE(W_PART(4.0));
-            h = QUOTE(H_PART(1.5));
-        };
-        class TIME_TEXT: RscText
-        {
-            idc = BOMB_GUI_TIME_LABEL_ID;
-            font="TahomaB";
-            text = "";
-            style = 2;
-            x = 0.44;
-            y = 0.10;
-            w = QUOTE(W_PART(4.0));
-            h = QUOTE(H_PART(1.5));
-            colorText[] = {1,1,1,1};
         };
 
         class KEYPAD_FRAME: RscFrame
@@ -262,12 +236,12 @@ class GVAR(Classic_Keypad_Bomb_Interface_Dialog) {
             type=1;
             colorBackground[] = {0.3, 0.3, 0.3,0.5};
             tooltip = CSTRING(ViewBackPanel);
-            action = QUOTE([ARR_2(GVAR(Interface_Target_Object),QQGVAR(Classic_Keypad_Bomb_Interface_Back_Panel_Dialog))] call FUNC(open_classic_keypad_back_panel_interface));
+            action = QUOTE([ARR_2(GVAR(Interface_Target_Object),QQGVAR(Classic_Keypad_Interface_Back_Panel_Dialog))] call FUNC(open_classic_keypad_back_panel_interface));
         };
     };
 };
 
-class GVAR(Classic_Keypad_Bomb_Interface_Back_Panel_Dialog) {
+class GVAR(Classic_Keypad_Interface_Back_Panel_Dialog) {
     idd = CLASSIC_KEYPAD_INTERFACE_BACK_PANEL_ID;
     movingEnable = 1;
     onLoad = QUOTE(uiNamespace setVariable [ARR_2(QQGVAR(Bomb_Interface_Dialog),(_this select 0))]);
@@ -301,7 +275,7 @@ class GVAR(Classic_Keypad_Bomb_Interface_Back_Panel_Dialog) {
             type=1;
             colorBackground[] = {0.3, 0.3, 0.3,0.5};
             tooltip = CSTRING(ViewFrontPanel);
-            action = QUOTE([GVAR(Interface_Target_Object)] call FUNC(open_classic_keypad_bomb_interface));
+            action = QUOTE([GVAR(Interface_Target_Object)] call FUNC(open_classic_keypad_interface));
         };
         class SERIAL_NUMBER: RscText
         {

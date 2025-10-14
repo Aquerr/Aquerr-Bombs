@@ -7,7 +7,7 @@ if (!hasInterface) exitWith {};
 _possibleActionTypes = ["SCROLL", "ACE", "BOTH"];
 if ((_possibleActionTypes findIf { _x isEqualTo _actionsType } == -1)) exitWith {};
 
-_bomb setVariable ["aquerr_bomb_entered_code", "", true];
+_bomb setVariable ["abombs_keypad_entered_code", "", true];
 
 private _prepareDigitActionFunction = {
     params ["_bomb", "_digit", "_actionsType"];

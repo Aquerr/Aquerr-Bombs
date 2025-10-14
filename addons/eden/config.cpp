@@ -8,6 +8,7 @@ class CfgPatches {
             QGVAR(edenModuleVulnerableObjects),
             QGVAR(edenModuleWireBomb),
             QGVAR(edenModuleKeypadBomb),
+            QGVAR(edenModuleKeypad),
             QGVAR(edenModuleMemoryBomb),
             QGVAR(edenModuleMorseBomb)
         };

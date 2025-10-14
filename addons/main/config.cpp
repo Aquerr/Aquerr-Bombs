@@ -19,6 +19,7 @@ class CfgPatches {
 #include "CfgUnitInsignia.hpp"
 #include "ui\Constants.hpp"
 #include "ui\Classic_Keypad_Bomb_Interface.hpp"
+#include "ui\Classic_Keypad_Interface.hpp"
 #include "ui\Keypad_Bomb_Interface.hpp"
 #include "ui\Math_Bomb_Interface.hpp"
 #include "ui\Memory_Keypad_Bomb_Interface.hpp"

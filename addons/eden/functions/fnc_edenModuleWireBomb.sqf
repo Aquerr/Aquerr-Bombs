@@ -53,7 +53,7 @@ private _initBombFunction = {
 		_requiredDefusalItemsArray
 	];
 
-	if (count (_syncedTriggers) > 0) then {
+	if (_syncedTriggers isNotEqualTo []) then {
 		{
 			private _trigger = _x;
 			// Trigger based init
