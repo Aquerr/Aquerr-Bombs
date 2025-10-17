@@ -32,7 +32,7 @@
 
 params [["_explosiveObjectsClassNames", [], [[]]], ["_shouldDeleteWreckAfterExplosion", true, [true]], ["_explosionClassName", "IEDUrbanSmall_Remote_Ammo", ["string"]], ["_requiredHits", 5, [5]], ["_fixed", false, [false]], ["_global", true, [true]]];
 
-TRACE_1("_explosiveObjectsClassNames",str _objectClassNames);
+TRACE_1("_explosiveObjectsClassNames",str _explosiveObjectsClassNames);
 
 _explosiveObjects = allMissionObjects "";
 _explosiveObjectsFiltered = [];

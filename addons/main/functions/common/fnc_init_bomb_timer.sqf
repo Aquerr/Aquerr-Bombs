@@ -35,9 +35,13 @@ _bomb setVariable ["abombs_bomb_beep_enabled", _shouldBeep, true];
                 _bomb setVariable ["abombs_bomb_time_seconds", _timeLeft, true];
             };
 
-            _shouldBeep = _bomb getVariable ["abombs_bomb_beep_enabled", false];
-            if (_shouldBeep && {(((_bomb nearEntities ["Man", 50]) select {isPlayer _x})) isNotEqualTo []}) then {
-                [_bomb, QGVAR(BombBeep)] remoteExec ["say3D"];
+            private _shouldBeep = _bomb getVariable ["abombs_bomb_beep_enabled", false];
+            if (_shouldBeep) then {
+                private _nearPlayers = _bomb nearEntities ["Man", 50] select {isPlayer _x};
+                {
+                    [_bomb, QGVAR(BombBeep)] remoteExec ["say3D", _x];
+                }
+                forEach _nearPlayers;
             };
 
 }, 1, [_bomb]] call CBA_fnc_addPerFrameHandler;
