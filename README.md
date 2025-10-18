@@ -11,6 +11,7 @@ This mod was specially made for a TIS unit/group and as a modding learning proje
 
 ## Features
 
+- [x] Eden module for keypad (does not have bomb attached, can be used for custom things)
 - [x] Zeus/Eden module for keypad bomb
 - [x] Zeus/Eden module for memory bomb
 - [x] Zeus/Eden module for scroll/ace wires bomb
